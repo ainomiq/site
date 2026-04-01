@@ -283,10 +283,10 @@ export default function HomePage() {
                 </div>
                 <div>
                   <div className="text-3xl font-extrabold tracking-tight text-ainomiq-text">
-                    {"<"}<AnimatedCounter end={2} /> wk
+                    <AnimatedCounter end={2} suffix="M+" />
                   </div>
                   <div className="text-sm text-ainomiq-text-muted">
-                    Time to live
+                    Tasks / month
                   </div>
                 </div>
                 <div>
