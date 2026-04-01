@@ -4,10 +4,13 @@ import { redirect } from "next/navigation";
 async function authenticate(formData: FormData) {
   "use server";
 
-  const password = (formData.get("password") as string)?.trim();
+  const raw = formData.get("password");
+  const password = typeof raw === "string" ? raw.trim() : "";
   const expected = (process.env.SITE_PASSWORD || "XrpBtc2002!").trim();
 
-  if (password === expected) {
+  console.log("[auth] password length:", password.length, "expected length:", expected.length, "match:", password === expected);
+
+  if (password && password === expected) {
     const cookieStore = await cookies();
     cookieStore.set("site-auth", "authenticated", {
       httpOnly: true,
