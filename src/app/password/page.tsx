@@ -1,30 +1,3 @@
-import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
-
-async function authenticate(formData: FormData) {
-  "use server";
-
-  const raw = formData.get("password");
-  const password = typeof raw === "string" ? raw.trim() : "";
-  const expected = (process.env.SITE_PASSWORD || "XrpBtc2002!").trim();
-
-  console.log("[auth] password length:", password.length, "expected length:", expected.length, "match:", password === expected);
-
-  if (password && password === expected) {
-    const cookieStore = await cookies();
-    cookieStore.set("site-auth", "authenticated", {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "lax",
-      maxAge: 60 * 60 * 24 * 30, // 30 days
-      path: "/",
-    });
-    redirect("/");
-  }
-
-  redirect("/password?error=1");
-}
-
 export default async function PasswordPage({
   searchParams,
 }: {
@@ -44,7 +17,7 @@ export default async function PasswordPage({
           </p>
         </div>
 
-        <form action={authenticate} className="space-y-4">
+        <form action="/api/auth" method="POST" className="space-y-4">
           <div>
             <input
               type="password"
