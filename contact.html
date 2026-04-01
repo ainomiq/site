@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — AiNomiq</title>
+  <meta name="description" content="Neem contact op met AiNomiq. Plan een gesprek of stuur ons een bericht.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="nav-wrapper">
+    <nav class="nav">
+      <a href="index.html" class="nav-logo"><span class="ai">ai</span><span class="nomiq">nomiq</span></a>
+      <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+      <div class="nav-links">
+        <a href="ecommerce.html">E-Commerce</a>
+        <a href="enterprise.html">Enterprise</a>
+        <a href="academy.html">Academy</a>
+        <a href="cases.html">Cases</a>
+        <a href="about.html">Over ons</a>
+        <a href="contact.html" class="nav-cta active">Contact</a>
+      </div>
+    </nav>
+  </div>
+
+  <!-- Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="eyebrow reveal">Contact</div>
+      <h1 class="hero-headline reveal">Laten we <span class="highlight">praten</span></h1>
+      <p class="hero-body reveal">Heb je een vraag, wil je een demo of ben je klaar om te starten? We horen graag van je.</p>
+    </div>
+  </section>
+
+  <!-- Contact Form -->
+  <section class="features-section features-section--warm">
+    <div class="container">
+      <div style="display:grid;grid-template-columns:1fr;gap:4rem;max-width:900px;margin:0 auto;">
+
+        <div>
+          <form class="contact-form reveal" onsubmit="event.preventDefault();alert('Bedankt voor je bericht! We nemen zo snel mogelijk contact op.');">
+            <div class="form-row">
+              <div class="form-group"><label for="c-name">Naam *</label><input type="text" id="c-name" placeholder="Je volledige naam" required></div>
+              <div class="form-group"><label for="c-email">E-mail *</label><input type="email" id="c-email" placeholder="naam@bedrijf.nl" required></div>
+            </div>
+            <div class="form-row">
+              <div class="form-group"><label for="c-company">Bedrijf</label><input type="text" id="c-company" placeholder="Bedrijfsnaam"></div>
+              <div class="form-group"><label for="c-phone">Telefoon</label><input type="tel" id="c-phone" placeholder="+31 6 12345678"></div>
+            </div>
+            <div class="form-group">
+              <label for="c-interest">Interesse</label>
+              <select id="c-interest">
+                <option value="">Selecteer een onderwerp</option>
+                <option value="ecommerce">E-Commerce AI</option>
+                <option value="enterprise">Enterprise Automation</option>
+                <option value="academy">AI Academy</option>
+                <option value="consulting">AI Strategy Consulting</option>
+                <option value="other">Anders</option>
+              </select>
+            </div>
+            <div class="form-group"><label for="c-message">Bericht *</label><textarea id="c-message" placeholder="Vertel ons over je project of vraag..." rows="6" required></textarea></div>
+            <button type="submit" class="pill-btn pill-btn--primary" style="width:100%;justify-content:center;">Verstuur bericht</button>
+          </form>
+
+          <!-- Contact Info -->
+          <div class="contact-info reveal" style="margin-top:3rem;">
+            <div class="contact-info-item">
+              <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <a href="mailto:info@ainomiq.com" style="color:var(--color-accent);">info@ainomiq.com</a>
+            </div>
+            <div class="contact-info-item">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>Nederland</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Calendly Placeholder -->
+  <section class="features-section">
+    <div class="container">
+      <div class="features-header">
+        <div class="eyebrow reveal">Gesprek plannen</div>
+        <h2 class="section-title reveal">Plan direct een gesprek</h2>
+        <p class="section-subtitle reveal">Kies een moment dat jou uitkomt voor een vrijblijvend kennismakingsgesprek.</p>
+      </div>
+      <div class="calendly-placeholder reveal">
+        <p style="font-size:1.125rem;font-weight:600;color:var(--color-text);margin-bottom:0.5rem;">Calendly integratie</p>
+        <p>Hier komt de Calendly widget. Plan een gesprek via <a href="mailto:info@ainomiq.com" style="color:var(--color-accent);font-weight:600;">info@ainomiq.com</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="container">
+      <div class="cta-inner">
+        <div class="eyebrow reveal">Direct contact</div>
+        <h2 class="section-title reveal">Liever bellen of mailen?</h2>
+        <p class="reveal">Stuur een mail naar info@ainomiq.com of bel ons. We reageren binnen 24 uur.</p>
+        <div class="cta-buttons reveal">
+          <a href="mailto:info@ainomiq.com" class="pill-btn pill-btn--primary">Mail ons</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand"><a href="index.html" class="nav-logo"><span class="ai" style="color:#fff">ai</span><span class="nomiq" style="color:rgba(255,255,255,0.7)">nomiq</span></a><p>AI-automatisering die werkt. Gebouwd voor Nederlandse ondernemers.</p></div>
+        <div class="footer-col"><h4>Diensten</h4><a href="ecommerce.html">E-Commerce AI</a><a href="enterprise.html">Enterprise</a><a href="academy.html">AI Academy</a><a href="cases.html">Cases</a></div>
+        <div class="footer-col"><h4>Bedrijf</h4><a href="about.html">Over ons</a><a href="contact.html">Contact</a></div>
+        <div class="footer-col"><h4>Contact</h4><a href="mailto:info@ainomiq.com">info@ainomiq.com</a><a href="#">LinkedIn</a><a href="#">Instagram</a></div>
+      </div>
+      <div class="footer-bottom"><span>&copy; 2026 AiNomiq. Alle rechten voorbehouden.</span></div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>
