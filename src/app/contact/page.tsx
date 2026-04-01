@@ -38,7 +38,7 @@ export default function ContactPage() {
           <Card className="bg-white border-ainomiq-border">
             <CardContent className="p-8 md:p-10">
               <form
-                action={`mailto:hello@ainomiq.com`}
+                action={`mailto:info@ainomiq.com`}
                 method="POST"
                 encType="text/plain"
                 className="space-y-5"
@@ -140,10 +140,10 @@ export default function ContactPage() {
                 <div className="flex items-center gap-3 text-sm text-ainomiq-text-muted">
                   <Mail className="h-5 w-5 text-ainomiq-blue shrink-0" />
                   <a
-                    href="mailto:hello@ainomiq.com"
+                    href="mailto:info@ainomiq.com"
                     className="hover:text-ainomiq-text transition-colors"
                   >
-                    hello@ainomiq.com
+                    info@ainomiq.com
                   </a>
                 </div>
                 <div className="flex items-center gap-3 text-sm text-ainomiq-text-muted">
@@ -163,14 +163,14 @@ export default function ContactPage() {
             Prefer to schedule directly?
           </h2>
           <p className="text-lg text-ainomiq-text-muted mb-10 max-w-lg mx-auto">
-            Send an email to hello@ainomiq.com. We respond within 24 hours.
+            Send an email to info@ainomiq.com. We respond within 24 hours.
           </p>
           <Button
             asChild
             size="lg"
             className="rounded-full bg-ainomiq-blue hover:bg-ainomiq-blue-hover text-white px-10 h-12"
           >
-            <a href="mailto:hello@ainomiq.com">Email us</a>
+            <a href="mailto:info@ainomiq.com">Email us</a>
           </Button>
         </div>
       </section>

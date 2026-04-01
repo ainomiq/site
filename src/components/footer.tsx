@@ -70,10 +70,10 @@ export function Footer() {
             <ul className="space-y-2.5">
               <li>
                 <a
-                  href="mailto:hello@ainomiq.com"
+                  href="mailto:info@ainomiq.com"
                   className="text-sm text-ainomiq-text-subtle transition-colors hover:text-ainomiq-text"
                 >
-                  hello@ainomiq.com
+                  info@ainomiq.com
                 </a>
               </li>
               <li>
