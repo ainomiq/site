@@ -98,3 +98,65 @@ document.addEventListener('DOMContentLoaded', function() {
     card.style.transform = 'rotateX(' + rotate + 'deg) scale(' + scale + ')';
   }, { passive: true });
 })();
+
+// ==========================================
+// Sparkles Canvas Effect
+// ==========================================
+(function() {
+  var canvas = document.getElementById('sparkles-canvas');
+  if (!canvas) return;
+  
+  var ctx = canvas.getContext('2d');
+  var particles = [];
+  var PARTICLE_COUNT = 80;
+  var colors = ['#3b82f6', '#60a5fa', '#93c5fd', '#ffffff'];
+  
+  function resize() {
+    var parent = canvas.parentElement;
+    canvas.width = parent.offsetWidth;
+    canvas.height = parent.offsetHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+  
+  function createParticle() {
+    return {
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      size: Math.random() * 3 + 1,
+      speedX: (Math.random() - 0.5) * 0.5,
+      speedY: (Math.random() - 0.5) * 0.5,
+      opacity: Math.random(),
+      opacitySpeed: (Math.random() - 0.5) * 0.02,
+      color: colors[Math.floor(Math.random() * colors.length)],
+    };
+  }
+  
+  for (var i = 0; i < PARTICLE_COUNT; i++) {
+    particles.push(createParticle());
+  }
+  
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (var i = 0; i < particles.length; i++) {
+      var p = particles[i];
+      p.x += p.speedX;
+      p.y += p.speedY;
+      p.opacity += p.opacitySpeed;
+      if (p.opacity <= 0 || p.opacity >= 1) p.opacitySpeed *= -1;
+      if (p.x < 0) p.x = canvas.width;
+      if (p.x > canvas.width) p.x = 0;
+      if (p.y < 0) p.y = canvas.height;
+      if (p.y > canvas.height) p.y = 0;
+      
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      ctx.fillStyle = p.color;
+      ctx.globalAlpha = Math.max(0, Math.min(1, p.opacity));
+      ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(animate);
+  }
+  animate();
+})();
