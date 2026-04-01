@@ -125,8 +125,8 @@ export default function HomePage() {
             Always Ahead
           </div>
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight leading-[1.02] text-ainomiq-text animate-float-up delay-100">
-            Always{" "}
-            <span className="gradient-text">ahead.</span>
+            Always<br />
+            <span className="gradient-text">Ahead.</span>
           </h1>
           <p className="text-lg md:text-xl text-ainomiq-text-muted max-w-2xl animate-float-up delay-200">
             We build AI that runs — not reports that gather dust.
