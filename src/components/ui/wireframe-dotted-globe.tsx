@@ -21,6 +21,7 @@ interface WireframeGlobeProps {
 const locations: { name: string; coords: [number, number]; isHQ?: boolean }[] =
   [
     { name: "Amsterdam", coords: [4.9, 52.37], isHQ: true },
+    // Europe
     { name: "Berlin", coords: [13.41, 52.52] },
     { name: "London", coords: [-0.13, 51.51] },
     { name: "Paris", coords: [2.35, 48.86] },
@@ -28,6 +29,27 @@ const locations: { name: string; coords: [number, number]; isHQ?: boolean }[] =
     { name: "Rome", coords: [12.5, 41.9] },
     { name: "Stockholm", coords: [18.07, 59.33] },
     { name: "Brussels", coords: [4.35, 50.85] },
+    { name: "Lisbon", coords: [-9.14, 38.74] },
+    { name: "Warsaw", coords: [21.01, 52.23] },
+    { name: "Vienna", coords: [16.37, 48.21] },
+    { name: "Dublin", coords: [-6.26, 53.35] },
+    { name: "Zurich", coords: [8.54, 47.38] },
+    { name: "Copenhagen", coords: [12.57, 55.68] },
+    { name: "Oslo", coords: [10.75, 59.91] },
+    { name: "Helsinki", coords: [24.94, 60.17] },
+    // Americas
+    { name: "New York", coords: [-74.0, 40.71] },
+    { name: "São Paulo", coords: [-46.63, -23.55] },
+    { name: "Toronto", coords: [-79.38, 43.65] },
+    { name: "Mexico City", coords: [-99.13, 19.43] },
+    // Asia & Middle East
+    { name: "Dubai", coords: [55.27, 25.2] },
+    { name: "Singapore", coords: [103.82, 1.35] },
+    { name: "Tokyo", coords: [139.69, 35.69] },
+    { name: "Sydney", coords: [151.21, -33.87] },
+    // Africa
+    { name: "Cape Town", coords: [18.42, -33.93] },
+    { name: "Lagos", coords: [3.38, 6.52] },
   ];
 
 // Pre-compute dots at module level so it only runs once
@@ -76,7 +98,7 @@ function computeDots() {
     return false;
   };
 
-  const stepSize = 1.6; // degrees — lower = more dots
+  const stepSize = 0.9; // degrees — lower = more dots
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   (landData as any).features.forEach((feature: any) => {
     const bounds = geoBounds(feature);
@@ -197,16 +219,16 @@ export default function WireframeGlobe({
         if (loc.isHQ) {
           context.beginPath();
           context.arc(x, y, 8 * sf, 0, 2 * Math.PI);
-          context.fillStyle = "rgba(59, 130, 246, 0.2)";
+          context.fillStyle = "rgba(0, 0, 0, 0.15)";
           context.fill();
 
           context.beginPath();
           context.arc(x, y, 4 * sf, 0, 2 * Math.PI);
-          context.fillStyle = BLUE;
+          context.fillStyle = "#000000";
           context.fill();
 
           context.font = `bold ${11 * sf}px system-ui, sans-serif`;
-          context.fillStyle = BLUE;
+          context.fillStyle = "#000000";
           context.fillText("HQ", x + 10 * sf, y + 4 * sf);
         } else {
           context.beginPath();
