@@ -119,18 +119,18 @@ export default function HomePage() {
   return (
     <>
       {/* Hero — BeamsBackground */}
-      <BeamsBackground intensity="medium">
+      <BeamsBackground intensity="strong">
         <div className="flex flex-col items-center justify-center gap-6 px-6 text-center max-w-4xl">
           <div className="inline-flex items-center rounded-full bg-ainomiq-blue/10 backdrop-blur-sm px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ainomiq-blue animate-float-up">
-            AI Automation Platform
+            Always Ahead
           </div>
           <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight leading-[1.02] text-ainomiq-text animate-float-up delay-100">
-            Your business.{" "}
-            <span className="gradient-text">Automated.</span>
+            Always{" "}
+            <span className="gradient-text">ahead.</span>
           </h1>
           <p className="text-lg md:text-xl text-ainomiq-text-muted max-w-2xl animate-float-up delay-200">
-            No PowerPoints. No pilots that go nowhere. We implement
-            AI automation that delivers results from week one.
+            We build AI that runs — not reports that gather dust.
+            Real automation, real results, from week one.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4 animate-float-up delay-300">
             <Button
@@ -146,7 +146,7 @@ export default function HomePage() {
               size="lg"
               className="rounded-full border-ainomiq-border hover:border-ainomiq-border-hover bg-white/60 backdrop-blur-sm text-ainomiq-text px-8 h-12 text-base"
             >
-              <Link href="/platform">View platform</Link>
+              <Link href="/platform">Explore platform</Link>
             </Button>
           </div>
         </div>
