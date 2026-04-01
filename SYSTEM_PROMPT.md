@@ -71,8 +71,17 @@ card: rgba(255,255,255,0.03)
 ```
 
 ## FONTS (EXACT — do not change)
+```html
+<!-- Google Fonts import (exact, do not change) -->
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+```
+
 ```css
-font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+/* Body text — all content */
+--font: 'Plus Jakarta Sans', sans-serif;
+
+/* Hero/display headlines only */
+--font-display: 'DM Serif Display', serif;
 ```
 
 ## CTA STYLE
