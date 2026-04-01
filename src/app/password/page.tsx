@@ -4,8 +4,8 @@ import { redirect } from "next/navigation";
 async function authenticate(formData: FormData) {
   "use server";
 
-  const password = formData.get("password") as string;
-  const expected = process.env.SITE_PASSWORD || "XrpBtc2002!";
+  const password = (formData.get("password") as string)?.trim();
+  const expected = (process.env.SITE_PASSWORD || "XrpBtc2002!").trim();
 
   if (password === expected) {
     const cookieStore = await cookies();
