@@ -1,6 +1,6 @@
 "use client";
-import React from "react";
-import { motion } from "motion/react";
+import React, { useEffect } from "react";
+import { motion, useAnimationControls } from "motion/react";
 
 export const TestimonialsColumn = (props: {
   className?: string;
@@ -12,18 +12,39 @@ export const TestimonialsColumn = (props: {
   }[];
   duration?: number;
 }) => {
+  const controls = useAnimationControls()
+  const dur = props.duration || 10
+
+  useEffect(() => {
+    controls.start({
+      translateY: "-50%",
+      transition: {
+        duration: dur,
+        repeat: Infinity,
+        ease: "linear",
+        repeatType: "loop",
+      },
+    })
+  }, [controls, dur])
+
   return (
-    <div className={props.className}>
-      <motion.div
-        animate={{
+    <div
+      className={props.className}
+      onMouseEnter={() => controls.stop()}
+      onMouseLeave={() =>
+        controls.start({
           translateY: "-50%",
-        }}
-        transition={{
-          duration: props.duration || 10,
-          repeat: Infinity,
-          ease: "linear",
-          repeatType: "loop",
-        }}
+          transition: {
+            duration: dur,
+            repeat: Infinity,
+            ease: "linear",
+            repeatType: "loop",
+          },
+        })
+      }
+    >
+      <motion.div
+        animate={controls}
         className="flex flex-col gap-6 pb-6"
       >
         {[
