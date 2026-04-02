@@ -4,7 +4,7 @@ import { useState, useEffect, useRef, useMemo, useCallback, type FormEvent } fro
 import { Users, MessageCircle, Activity, Send } from 'lucide-react'
 import DottedMap from 'dotted-map'
 import { Area, AreaChart, CartesianGrid } from 'recharts'
-import { type ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart'
+import { type ChartConfig, ChartContainer } from '@/components/ui/chart'
 import { useChat } from '@ai-sdk/react'
 import { DefaultChatTransport } from 'ai'
 
@@ -433,7 +433,6 @@ const MonitoringChart = () => {
                     </linearGradient>
                 </defs>
                 <CartesianGrid vertical={false} />
-                <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
                 <Area strokeWidth={2} dataKey="before" type="monotone" fill="url(#fillBefore)" fillOpacity={0.1} stroke="var(--color-before)" />
                 <Area strokeWidth={2} dataKey="after" type="monotone" fill="url(#fillAfter)" fillOpacity={0.1} stroke="var(--color-after)" />
             </AreaChart>
