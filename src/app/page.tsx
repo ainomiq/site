@@ -297,7 +297,7 @@ export default function HomePage() {
         <p className="text-ainomiq-text-muted text-lg max-w-xl mb-16">
           Start small, scale up. No long-term contracts.
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto items-stretch">
           {pricingPlans.map((plan) => (
             <Card
               key={plan.name}
@@ -305,12 +305,14 @@ export default function HomePage() {
                 plan.featured ? "ring-2 ring-ainomiq-blue" : ""
               }`}
             >
-              <CardContent className="p-8">
-                {plan.featured && (
-                  <span className="mb-4 inline-block rounded-full bg-ainomiq-blue px-3 py-1 text-xs font-semibold text-white">
-                    Popular
-                  </span>
-                )}
+              <CardContent className="p-8 flex flex-col h-full">
+                <div className="h-7 mb-2">
+                  {plan.featured && (
+                    <span className="inline-block rounded-full bg-ainomiq-blue px-3 py-1 text-xs font-semibold text-white">
+                      Popular
+                    </span>
+                  )}
+                </div>
                 <h3 className="text-xl font-bold mb-1">{plan.name}</h3>
                 <div className="mb-1">
                   <span className="text-4xl font-extrabold tracking-tight">
@@ -329,7 +331,7 @@ export default function HomePage() {
                 <p className="text-sm text-ainomiq-text-muted mb-6">
                   {plan.description}
                 </p>
-                <ul className="space-y-3 mb-8">
+                <ul className="space-y-3 mb-8 flex-1">
                   {plan.features.map((f) => (
                     <li
                       key={f.label}
