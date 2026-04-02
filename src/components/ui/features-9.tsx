@@ -226,7 +226,7 @@ export function Features() {
                             See results from day one
                         </span>
                         <p className="mt-4 text-2xl font-semibold text-ainomiq-text">
-                            Save up to 76% on monthly costs{' '}
+                            Pim saved 76% on monthly costs{' '}
                             <span className="text-ainomiq-text-muted">
                                 by automating what doesn&apos;t need a human.
                             </span>

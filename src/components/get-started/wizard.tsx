@@ -6,7 +6,19 @@ import { UrlInput } from "./url-input";
 import { AnalysisProgress } from "./progress";
 import { Results } from "./results";
 import { FallbackForm } from "./fallback-form";
+import { InfiniteSlider } from "@/components/ui/infinite-slider";
 import type { SiteAnalysis, ManualAnswers } from "@/lib/analysis-types";
+
+const CLIENTS = [
+  "Domino\u2019s",
+  "Alpina",
+  "Billie Jeans",
+  "Button Amsterdam",
+  "La Dos",
+  "Smoothly",
+  "BYS",
+  "SchoolRegister",
+];
 
 type Step = "input" | "analyzing" | "results" | "fallback";
 
@@ -262,6 +274,25 @@ export function GetStartedWizard() {
               <FallbackForm key="fallback" onSubmit={handleFallbackSubmit} />
             )}
           </AnimatePresence>
+        </div>
+      </div>
+
+      {/* Client logos marquee */}
+      <div className="pb-12">
+        <p className="text-center text-sm text-ainomiq-text-muted mb-6">
+          Businesses we help optimize
+        </p>
+        <div className="overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_15%,black_85%,transparent)]">
+          <InfiniteSlider gap={48} speed={80} speedOnHover={25}>
+            {CLIENTS.map((name) => (
+              <span
+                key={name}
+                className="whitespace-nowrap text-lg font-semibold text-ainomiq-text/40 select-none"
+              >
+                {name}
+              </span>
+            ))}
+          </InfiniteSlider>
         </div>
       </div>
     </section>
