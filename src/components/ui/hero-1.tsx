@@ -88,8 +88,8 @@ export function HeroSection() {
               size="lg"
               className="rounded-full border border-ainomiq-border bg-white text-ainomiq-text hover:bg-ainomiq-navy-light"
             >
-              <Link href="/platform">
-                See Demo&apos;s
+              <Link href="/demos">
+                View demos
               </Link>
             </Button>
             <Button
