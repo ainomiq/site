@@ -47,7 +47,7 @@ export function HeroSection() {
       </div>
 
       <div className="mx-auto max-w-5xl">
-        <div className="relative flex flex-col items-center justify-center gap-5 px-6 pt-32 pb-24">
+        <div className="relative flex min-h-[calc(100vh-4rem)] flex-col items-center justify-center gap-5 px-6 pt-32 pb-32">
           {/* Inner decorative lines */}
           <div
             aria-hidden="true"
