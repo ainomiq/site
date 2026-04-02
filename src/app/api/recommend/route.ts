@@ -3,32 +3,26 @@ import { generateText } from "ai";
 import { openai } from "@ai-sdk/openai";
 import type { SiteAnalysis, ManualAnswers } from "@/lib/analysis-types";
 
-const SYSTEM_PROMPT = `You are Ainomiq's AI advisor. You analyze businesses and recommend specific Ainomiq services with estimated monthly cost savings.
+const SYSTEM_PROMPT = `You are Ainomiq's AI advisor. You recommend Ainomiq services based STRICTLY on scan data provided.
 
-Ainomiq has 4 core services:
+Ainomiq services:
+1. 24/7 Support — AI customer service (email, phone, social media, chat). Saves 45-76% on support costs.
+2. Precise Performance — AI ad management (Meta, Google, TikTok). Saves 30-55% on ad costs.
+3. Mail Engine — AI email marketing (Klaviyo/Mailchimp). Saves 40-65% on email marketing costs.
+4. Smart Inventory — AI stock predictions & reorder alerts. Saves 25-50% on inventory costs.
 
-1. **24/7 Support** — AI customer service that handles email, phone, social media, and chat tickets automatically. Handles 200+ tickets/day.
-   - Typical savings: 45-76% on support costs (replaces 1-3 support agents)
+CRITICAL RULES — FOLLOW EXACTLY:
+- ONLY mention technologies, tools, or platforms that appear in the "Technologies" field. If Google Ads is NOT in the Technologies list, do NOT mention Google Ads.
+- ONLY mention products that appear in the "Products" field. If no products were found, say "your product catalog" instead of naming specific products.
+- ONLY mention social platforms that appear in the "Social" field.
+- NEVER fabricate, assume, or infer technologies that were not detected. If Meta Pixel was not detected, do NOT say "you use Meta ads".
+- If a technology is NOT detected, the description should say what Ainomiq COULD do for them, not what they currently use.
+- For services where no relevant tech was detected, set relevance to "medium" or "low" and use lower savings %.
+- Services with detected matching tech (e.g., Klaviyo detected → Mail Engine is "high") get higher savings.
+- Keep descriptions to 1 sentence max. Be factual, not salesy.
+- Respond with ONLY valid JSON, no markdown, no code fences.
 
-2. **Precise Performance** — AI-powered ad management for Meta, Google, and TikTok. Automated budget allocation, creative testing, audience optimization.
-   - Typical savings: 30-55% on ad management costs (replaces agency or in-house ad manager)
-
-3. **Mail Engine** — AI email marketing automation with Klaviyo/Mailchimp integration. Automated flows, segmentation, AI copywriting.
-   - Typical savings: 40-65% on email marketing costs (replaces email agency or specialist)
-
-4. **Smart Inventory** — AI stock predictions, reorder alerts, multi-warehouse support. Prevents overstock and stockouts.
-   - Typical savings: 25-50% on inventory-related costs (fewer stockouts, less overstock waste)
-
-RULES:
-- Respond with ONLY valid JSON, no markdown, no code fences, no explanation
-- Base savings on the detected tech stack, products, business size
-- If they use a tool (e.g. Klaviyo), savings for that service are HIGHER
-- If they run ads (Meta Pixel, Google Ads), Precise Performance savings are HIGHER
-- Give a SPECIFIC savings % per service (not a range)
-- The description MUST reference specific things you found on their site (product names, tools, etc.)
-- Be impressive and specific — show you really analyzed their business
-
-JSON structure:
+JSON format:
 {"services":[{"id":"support","name":"24/7 Support","savingsPercent":NUMBER,"description":"STRING","relevance":"high|medium|low"},{"id":"performance","name":"Precise Performance","savingsPercent":NUMBER,"description":"STRING","relevance":"high|medium|low"},{"id":"email","name":"Mail Engine","savingsPercent":NUMBER,"description":"STRING","relevance":"high|medium|low"},{"id":"inventory","name":"Smart Inventory","savingsPercent":NUMBER,"description":"STRING","relevance":"high|medium|low"}],"summary":"STRING","plan":"App|Enterprise"}`;
 
 export async function POST(request: NextRequest) {
@@ -49,22 +43,34 @@ export async function POST(request: NextRequest) {
         .map((p) => `${p.name}${p.price ? ` — ${p.price}` : ""}`)
         .join(", ");
 
-      userPrompt = `Analyze this business:
+      const hasAds = analysis.technologies.some((t) => t.category === "ads");
+      const hasEmail = analysis.technologies.some((t) => t.category === "email");
+      const adTechs = analysis.technologies.filter((t) => t.category === "ads").map((t) => t.name).join(", ");
+      const emailTechs = analysis.technologies.filter((t) => t.category === "email").map((t) => t.name).join(", ");
+
+      userPrompt = `SCAN RESULTS — only reference data listed here, nothing else:
+
 Site: ${analysis.url}
 Title: ${analysis.title}
 Description: ${analysis.description}
-Technologies: ${techList || "None detected"}
-E-commerce: ${analysis.hasEcommerce ? "Yes" : "No"}
-Scale: ${analysis.estimatedScale}
-Products (${analysis.products.length}): ${productList || "None found on page"}
+
+DETECTED TECHNOLOGIES (only these exist — do not mention others):
+${techList || "NONE — no technologies were detected on this site"}
+
+AD PLATFORMS DETECTED: ${hasAds ? adTechs : "NONE — no ad pixels or ad platforms were found"}
+EMAIL TOOLS DETECTED: ${hasEmail ? emailTechs : "NONE — no email marketing tools were found"}
+E-COMMERCE PLATFORM: ${analysis.hasEcommerce ? "Yes" : "No e-commerce platform detected"}
+Scale estimate: ${analysis.estimatedScale}
+
+PRODUCTS FOUND (${analysis.products.length}): ${productList || "NONE — no products were found on the scanned page"}
 Price range: ${analysis.priceRange ? `${analysis.currency} ${analysis.priceRange.min} - ${analysis.priceRange.max}` : "Unknown"}
+
 FAQ items (${analysis.faqItems.length}): ${analysis.faqItems.slice(0, 5).join(" | ") || "None"}
 Pages: ${analysis.pageCount}
-Social: ${analysis.socialPresence.join(", ") || "None"}
+Social channels: ${analysis.socialPresence.join(", ") || "None detected"}
 Contact: ${analysis.contactEmail || "none"}, ${analysis.contactPhone || "none"}
 
-Site content:
-${analysis.bodyTextSummary}`;
+IMPORTANT: If a technology is listed as "NONE", do NOT claim they use it. Only reference what is listed above.`;
     } else if (manual) {
       userPrompt = `Recommend services based on:
 Platform: ${manual.platform}
