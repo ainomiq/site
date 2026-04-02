@@ -6,9 +6,9 @@ import { cn } from "@/lib/utils"
 const testimonials = [
   {
     id: 1,
-    quote: "Ainomiq automated 80% of our customer service. We can finally focus on growth instead of tickets.",
-    author: "Billie Jeans",
-    role: "E-commerce — Fashion",
+    quote: "Ainomiq saved us 76% on monthly costs. What used to take a full team now runs on autopilot.",
+    author: "Pim Smit",
+    role: "Billie Jeans — App",
     avatar: "https://images.unsplash.com/photo-1701615004837-40d8573b6652?q=80&w=1480&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
   },
   {
