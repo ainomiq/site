@@ -56,28 +56,30 @@ export function GetStartedWizard() {
   }, []);
 
   return (
-    <BeamsBackground intensity="subtle" className="min-h-screen pt-32 pb-16">
-      <AnimatePresence mode="wait">
-        {step === "input" && (
-          <UrlInput
-            key="input"
-            onSubmit={handleUrlSubmit}
-            isLoading={isLoading}
-          />
-        )}
-        {step === "analyzing" && (
-          <AnalysisProgress
-            key="progress"
-            onComplete={handleProgressComplete}
-          />
-        )}
-        {step === "results" && (
-          <Results key="results" analysis={analysis} manual={manual} />
-        )}
-        {step === "fallback" && (
-          <FallbackForm key="fallback" onSubmit={handleFallbackSubmit} />
-        )}
-      </AnimatePresence>
+    <BeamsBackground intensity="subtle">
+      <div className="mx-auto max-w-5xl w-full min-h-[calc(75vh-4rem)] flex flex-col items-center justify-center px-6 pt-32 pb-20">
+        <AnimatePresence mode="wait">
+          {step === "input" && (
+            <UrlInput
+              key="input"
+              onSubmit={handleUrlSubmit}
+              isLoading={isLoading}
+            />
+          )}
+          {step === "analyzing" && (
+            <AnalysisProgress
+              key="progress"
+              onComplete={handleProgressComplete}
+            />
+          )}
+          {step === "results" && (
+            <Results key="results" analysis={analysis} manual={manual} />
+          )}
+          {step === "fallback" && (
+            <FallbackForm key="fallback" onSubmit={handleFallbackSubmit} />
+          )}
+        </AnimatePresence>
+      </div>
     </BeamsBackground>
   );
 }
