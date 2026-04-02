@@ -13,8 +13,8 @@ export default function GetStartedPage() {
   return (
     <>
       <GetStartedWizard />
-      <Testimonials />
       <Features />
+      <Testimonials />
     </>
   );
 }
