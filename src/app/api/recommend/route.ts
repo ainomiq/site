@@ -70,7 +70,12 @@ Pages: ${analysis.pageCount}
 Social channels: ${analysis.socialPresence.join(", ") || "None detected"}
 Contact: ${analysis.contactEmail || "none"}, ${analysis.contactPhone || "none"}
 
-IMPORTANT: If a technology is listed as "NONE", do NOT claim they use it. Only reference what is listed above.`;
+IMPORTANT: If a technology is listed as "NONE", do NOT claim they use it. Only reference what is listed above.
+
+PLAN SELECTION RULES:
+- Default to "App" for almost everyone. The App plan covers 99% of businesses.
+- ONLY recommend "Enterprise" if the business is clearly a franchise (like Domino's, McDonald's) OR an e-commerce brand doing 5M+ per month revenue.
+- If in doubt, recommend "App".`;
     } else if (manual) {
       userPrompt = `Recommend services based on:
 Platform: ${manual.platform}
