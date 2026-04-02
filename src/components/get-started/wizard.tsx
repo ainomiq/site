@@ -9,15 +9,15 @@ import { FallbackForm } from "./fallback-form";
 import { InfiniteSlider } from "@/components/ui/infinite-slider";
 import type { SiteAnalysis, ManualAnswers } from "@/lib/analysis-types";
 
-const CLIENTS = [
-  "Domino\u2019s",
-  "Alpina",
-  "Billie Jeans",
-  "Button Amsterdam",
-  "La Dos",
-  "Smoothly",
-  "BYS",
-  "SchoolRegister",
+const CLIENTS: { name: string; logo?: string }[] = [
+  { name: "Domino\u2019s", logo: "/logos/dominos.png" },
+  { name: "Alpina", logo: "/logos/alpina.png" },
+  { name: "Billie Jeans" },
+  { name: "Button Amsterdam" },
+  { name: "La Dos" },
+  { name: "Smoothly" },
+  { name: "BYS" },
+  { name: "SchoolRegister" },
 ];
 
 type Step = "input" | "analyzing" | "results" | "fallback";
@@ -284,14 +284,23 @@ export function GetStartedWizard() {
         </p>
         <div className="overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_15%,black_85%,transparent)]">
           <InfiniteSlider gap={48} speed={80} speedOnHover={25}>
-            {CLIENTS.map((name) => (
-              <span
-                key={name}
-                className="whitespace-nowrap text-lg font-semibold text-ainomiq-text/40 select-none"
-              >
-                {name}
-              </span>
-            ))}
+            {CLIENTS.map((client) =>
+              client.logo ? (
+                <img
+                  key={client.name}
+                  src={client.logo}
+                  alt={client.name}
+                  className="h-6 w-auto object-contain opacity-40 select-none pointer-events-none"
+                />
+              ) : (
+                <span
+                  key={client.name}
+                  className="whitespace-nowrap text-lg font-semibold text-ainomiq-text/40 select-none"
+                >
+                  {client.name}
+                </span>
+              )
+            )}
           </InfiniteSlider>
         </div>
       </div>
