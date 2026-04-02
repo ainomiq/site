@@ -1,4 +1,5 @@
 import { streamText, convertToModelMessages } from "ai";
+import { openai } from "@ai-sdk/openai";
 
 const SYSTEM_PROMPT = `You are Ainomiq's friendly assistant on ainomiq.com. Help visitors understand what Ainomiq offers.
 
@@ -46,7 +47,7 @@ export async function POST(req: Request) {
     const { messages } = await req.json();
 
     const result = streamText({
-      model: "openai/gpt-5.4-mini",
+      model: openai("gpt-4o-mini"),
       system: SYSTEM_PROMPT,
       messages: await convertToModelMessages(messages),
     });

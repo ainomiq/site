@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useRef, useMemo, useCallback, type FormEvent } from 'react'
 import { Users, MessageCircle, Activity, Send } from 'lucide-react'
-import { AnimatePresence, motion } from 'motion/react'
 import DottedMap from 'dotted-map'
 import { Area, AreaChart, CartesianGrid } from 'recharts'
 import { type ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart'
@@ -21,29 +20,72 @@ interface LiveDot {
 
 const DOT_LIFETIME = 6000
 
+// Time-of-day aware base count — more realistic than random jumps
+function getBaseCount() {
+    const hour = new Date().getHours()
+    if (hour >= 9 && hour <= 17) return 38 + (hour - 9) * 3  // business hours: 38-62
+    if (hour >= 18 && hour <= 22) return 52 - (hour - 18) * 4 // evening: 52-36
+    return 24 + hour                                           // night: 24-32
+}
+
+const INITIAL_MESSAGES = [
+    {
+        id: 'q1',
+        role: 'user' as const,
+        parts: [{ type: 'text' as const, text: 'Why Ainomiq?' }],
+    },
+    {
+        id: 'a1',
+        role: 'assistant' as const,
+        parts: [{
+            type: 'text' as const,
+            text: "Because we don't just consult — we build. While others write reports, we ship systems that run your customer service, optimize your ads, and manage your inventory. Founded by two people who were the customer first: we know exactly what e-commerce businesses need. No legacy baggage, always the latest tech, live within 2 weeks. Start free, scale when you're ready.",
+        }],
+    },
+]
+
 export function Features() {
-    const [count, setCount] = useState(3)
+    // Realistic counter: mean-reverting random walk with small deltas
+    const [count, setCount] = useState(() => getBaseCount() + Math.floor(Math.random() * 5 - 2))
+    const timeoutRef = useRef<ReturnType<typeof setTimeout>>(null)
+
+    // Organic dots
     const [dots, setDots] = useState<LiveDot[]>([])
     const dotIdRef = useRef(0)
+
+    // Chat
     const [chatInput, setChatInput] = useState('')
     const chatRef = useRef<HTMLDivElement>(null)
-
     const transport = useMemo(() => new DefaultChatTransport({ api: '/api/chat' }), [])
-    const { messages, sendMessage, status, error } = useChat({ transport })
+    const { messages, sendMessage, status, error } = useChat({
+        transport,
+        messages: INITIAL_MESSAGES,
+    })
 
-    // Counter updates every 5s
+    // Counter: small +/- changes every 4-7s, mean-reverting toward base
     useEffect(() => {
-        const interval = setInterval(() => {
-            setCount(3 + Math.floor(Math.random() * 28))
-        }, 5000)
-        return () => clearInterval(interval)
+        const tick = () => {
+            setCount(prev => {
+                const base = getBaseCount()
+                const diff = prev - base
+                // Pull gently toward base
+                const pull = -Math.sign(diff) * Math.min(Math.abs(diff) * 0.25, 1)
+                const noise = (Math.random() - 0.48) * 2.5 // slight upward bias
+                const delta = Math.round(pull + noise)
+                // Clamp: never below 12, never above base+20
+                return Math.max(12, Math.min(base + 20, prev + delta))
+            })
+            timeoutRef.current = setTimeout(tick, 4000 + Math.random() * 3000)
+        }
+        timeoutRef.current = setTimeout(tick, 4000 + Math.random() * 3000)
+        return () => { if (timeoutRef.current) clearTimeout(timeoutRef.current) }
     }, [])
 
-    // Dots appear organically: 1-3 new dots every 1.5s, each lives ~6s
+    // Dots: 1-2 new dots every 2s, each lives 6s
     useEffect(() => {
         const spawnDots = () => {
             const now = Date.now()
-            const newCount = 1 + Math.floor(Math.random() * 3)
+            const newCount = 1 + Math.floor(Math.random() * 2)
             setDots(prev => {
                 const alive = prev.filter(d => now - d.born < DOT_LIFETIME)
                 const spawned = Array.from({ length: newCount }, () => {
@@ -54,14 +96,13 @@ export function Features() {
             })
         }
         spawnDots()
-        const interval = setInterval(spawnDots, 1500)
+        const interval = setInterval(spawnDots, 2000)
         return () => clearInterval(interval)
     }, [])
 
+    // Auto-scroll chat
     useEffect(() => {
-        if (chatRef.current) {
-            chatRef.current.scrollTop = chatRef.current.scrollHeight
-        }
+        if (chatRef.current) chatRef.current.scrollTop = chatRef.current.scrollHeight
     }, [messages])
 
     const handleSend = useCallback((e: FormEvent) => {
@@ -82,19 +123,8 @@ export function Features() {
                             Live activity
                         </span>
                         <p className="mt-8 text-2xl font-semibold text-ainomiq-text">
-                            <AnimatePresence mode="wait">
-                                <motion.span
-                                    key={count}
-                                    initial={{ opacity: 0, y: 8 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    exit={{ opacity: 0, y: -8 }}
-                                    transition={{ duration: 0.3 }}
-                                    className="inline-block text-ainomiq-blue font-bold tabular-nums"
-                                >
-                                    {count}
-                                </motion.span>
-                            </AnimatePresence>{' '}
-                            People are now starting with Ainomiq
+                            <span className="text-ainomiq-blue font-bold tabular-nums">{count}</span>{' '}
+                            people explored Ainomiq today
                         </p>
                     </div>
                     <div className="relative overflow-hidden">
@@ -114,11 +144,6 @@ export function Features() {
                     </div>
                     <div className="flex flex-1 flex-col px-6 sm:px-12 pb-6 sm:pb-12">
                         <div ref={chatRef} className="flex-1 space-y-3 overflow-y-auto mb-4 max-h-[220px]">
-                            {messages.length === 0 && !error && (
-                                <div className="rounded-xl bg-white border border-ainomiq-border p-3 text-xs text-ainomiq-text">
-                                    Hi! Ask me anything about Ainomiq — our products, pricing, or how we can help your business.
-                                </div>
-                            )}
                             {messages.map((msg) => (
                                 <div key={msg.id} className={msg.role === 'user' ? 'flex justify-end' : ''}>
                                     <div className={`rounded-xl p-3 text-xs max-w-[85%] ${
@@ -195,12 +220,10 @@ const MapWithDots = ({ dots }: { dots: LiveDot[] }) => {
             ))}
             {dots.map((dot) => (
                 <g key={dot.id}>
-                    {/* Dot that fades in then fades out */}
                     <circle cx={dot.x} cy={dot.y} r={0} fill="#3b82f6">
                         <animate attributeName="r" values="0;0.5;0.5;0" keyTimes="0;0.1;0.8;1" dur="6s" fill="freeze" />
                         <animate attributeName="opacity" values="0;0.9;0.9;0" keyTimes="0;0.1;0.8;1" dur="6s" fill="freeze" />
                     </circle>
-                    {/* Ripple ring */}
                     <circle cx={dot.x} cy={dot.y} r={0.5} fill="none" stroke="#3b82f6" strokeWidth={0.08}>
                         <animate attributeName="r" from="0.5" to="1.8" dur="2s" repeatCount="2" />
                         <animate attributeName="opacity" from="0.5" to="0" dur="2s" repeatCount="2" />
