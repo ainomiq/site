@@ -137,30 +137,25 @@ export function GetStartedWizard() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.filter = "blur(35px)";
 
-      const mx = mouseRef.current.x * window.innerWidth;
-      const my = mouseRef.current.y * window.innerHeight;
+      // Normalized mouse position (0-1)
+      const mx = mouseRef.current.x;
+      const my = mouseRef.current.y;
       const totalBeams = beamsRef.current.length;
 
       beamsRef.current.forEach((beam, index) => {
-        // Mouse interaction: beams near cursor move faster and glow brighter
-        const dx = beam.x - mx;
-        const dy = beam.y - my;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        const influence = Math.max(0, 1 - dist / 400);
+        beam.y -= beam.speed;
+        beam.pulse += beam.pulseSpeed;
 
-        beam.y -= beam.speed + influence * 1.5;
-        beam.x += dx * influence * 0.003;
-        beam.pulse += beam.pulseSpeed + influence * 0.04;
+        // Gentle global drift based on mouse position
+        // All beams shift slightly toward the cursor direction
+        beam.x += (mx - 0.5) * 0.4;
+        beam.angle += (mx - 0.5) * 0.02;
 
         if (beam.y + beam.length < -100) {
           resetBeam(beam, index, totalBeams);
         }
 
-        // Temporarily boost opacity near cursor
-        const origOpacity = beam.opacity;
-        beam.opacity = origOpacity + influence * 0.15;
         drawBeam(ctx, beam);
-        beam.opacity = origOpacity;
       });
 
       animationFrameRef.current = requestAnimationFrame(animate);
@@ -225,26 +220,8 @@ export function GetStartedWizard() {
         />
       </div>
 
-      {/* Decorative lines */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 mx-auto hidden max-w-5xl lg:block"
-      >
-        <div className="absolute inset-y-0 left-0 w-px bg-gradient-to-b from-transparent via-ainomiq-border to-ainomiq-border" />
-        <div className="absolute inset-y-0 right-0 w-px bg-gradient-to-b from-transparent via-ainomiq-border to-ainomiq-border" />
-      </div>
-
       <div className="mx-auto max-w-5xl">
         <div className="relative flex min-h-[calc(75vh-4rem)] flex-col items-center justify-center gap-5 px-6 pt-32 pb-20">
-          {/* Inner decorative lines */}
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0 -z-[1] overflow-hidden"
-          >
-            <div className="absolute inset-y-0 left-4 w-px bg-gradient-to-b from-transparent via-ainomiq-border to-ainomiq-border md:left-8" />
-            <div className="absolute inset-y-0 right-4 w-px bg-gradient-to-b from-transparent via-ainomiq-border to-ainomiq-border md:right-8" />
-          </div>
-
           <AnimatePresence mode="wait">
             {step === "input" && (
               <UrlInput
