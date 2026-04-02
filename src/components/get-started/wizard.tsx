@@ -278,25 +278,32 @@ export function GetStartedWizard() {
         </div>
       </div>
 
-      {/* Client logos marquee */}
-      <div className="pb-12">
-        <p className="text-center text-sm text-ainomiq-text-muted mb-6">
-          Businesses we help optimize
-        </p>
-        <div className="overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_15%,black_85%,transparent)]">
-          <InfiniteSlider gap={56} duration={60} durationOnHover={500}>
-            {/* Repeat 3x to ensure no gaps on wide screens */}
-            {[...CLIENTS, ...CLIENTS, ...CLIENTS].map((client, i) => (
+      {/* Client logos marquee — matches homepage LogosSection format */}
+      <section className="relative overflow-hidden border-y border-ainomiq-border bg-ainomiq-navy-light py-8">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_50%,rgba(59,130,246,0.06),transparent)]"
+        />
+
+        <h2 className="relative z-10 mb-4 text-center text-lg font-medium tracking-tight text-ainomiq-text-muted md:text-xl">
+          Businesses we help{" "}
+          <span className="font-semibold text-ainomiq-text">optimize</span>
+        </h2>
+
+        <div className="relative z-10 mx-auto max-w-4xl overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_15%,black_85%,transparent)]">
+          <InfiniteSlider gap={56} duration={30} reverse>
+            {CLIENTS.map((client) => (
               <img
-                key={`${client.name}-${i}`}
+                key={client.name}
                 src={client.logo}
                 alt={client.name}
-                className="h-10 w-auto object-contain select-none pointer-events-none opacity-40"
+                loading="lazy"
+                className="pointer-events-none h-6 w-auto select-none opacity-40 grayscale md:h-7"
               />
             ))}
           </InfiniteSlider>
         </div>
-      </div>
+      </section>
     </section>
   );
 }
