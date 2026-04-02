@@ -219,16 +219,16 @@ export function Features() {
                 </div>
 
                 {/* Activity chart */}
-                <div className="relative col-span-full">
-                    <div className="absolute z-10 max-w-lg px-6 pr-12 pt-6 md:px-12 md:pt-12">
+                <div className="col-span-full">
+                    <div className="px-6 pt-6 pb-2 md:px-12 md:pt-12 md:pb-4">
                         <span className="text-ainomiq-text-muted flex items-center gap-2">
                             <Activity className="size-4" />
                             See results from day one
                         </span>
-                        <p className="my-8 text-2xl font-semibold text-ainomiq-text">
-                            Save up to 40% on operational costs{' '}
+                        <p className="mt-4 text-2xl font-semibold text-ainomiq-text">
+                            Save up to 76% on monthly costs{' '}
                             <span className="text-ainomiq-text-muted">
-                                — tracked in real-time.
+                                by automating what doesn&apos;t need a human.
                             </span>
                         </p>
                     </div>
@@ -407,12 +407,12 @@ const chartConfig = {
 } satisfies ChartConfig
 
 const chartData = [
-    { month: 'Week 1', before: 100, after: 100 },
-    { month: 'Week 2', before: 105, after: 88 },
-    { month: 'Week 3', before: 102, after: 76 },
-    { month: 'Week 4', before: 108, after: 68 },
-    { month: 'Week 5', before: 104, after: 62 },
-    { month: 'Week 6', before: 106, after: 58 },
+    { month: 'Month 1', before: 100, after: 100 },
+    { month: 'Month 2', before: 102, after: 78 },
+    { month: 'Month 3', before: 105, after: 55 },
+    { month: 'Month 4', before: 103, after: 38 },
+    { month: 'Month 5', before: 106, after: 28 },
+    { month: 'Month 6', before: 104, after: 24 },
 ]
 
 const MonitoringChart = () => {
