@@ -226,9 +226,9 @@ export function Features() {
                             See results from day one
                         </span>
                         <p className="my-8 text-2xl font-semibold text-ainomiq-text">
-                            Every sale, click, and conversion{' '}
+                            Save up to 40% on operational costs{' '}
                             <span className="text-ainomiq-text-muted">
-                                — tracked automatically.
+                                — tracked in real-time.
                             </span>
                         </p>
                     </div>
@@ -402,17 +402,17 @@ const ActiveMap = () => {
 
 // ── Chart ────────────────────────────────────────────────────────
 const chartConfig = {
-    before: { label: 'Before Ainomiq', color: '#93c5fd' },
+    before: { label: 'Without Ainomiq', color: '#93c5fd' },
     after: { label: 'With Ainomiq', color: '#3b82f6' },
 } satisfies ChartConfig
 
 const chartData = [
-    { month: 'Week 1', before: 120, after: 120 },
-    { month: 'Week 2', before: 115, after: 145 },
-    { month: 'Week 3', before: 125, after: 190 },
-    { month: 'Week 4', before: 110, after: 260 },
-    { month: 'Week 5', before: 118, after: 340 },
-    { month: 'Week 6', before: 122, after: 480 },
+    { month: 'Week 1', before: 100, after: 100 },
+    { month: 'Week 2', before: 105, after: 88 },
+    { month: 'Week 3', before: 102, after: 76 },
+    { month: 'Week 4', before: 108, after: 68 },
+    { month: 'Week 5', before: 104, after: 62 },
+    { month: 'Week 6', before: 106, after: 58 },
 ]
 
 const MonitoringChart = () => {
