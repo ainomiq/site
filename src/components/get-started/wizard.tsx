@@ -282,12 +282,15 @@ export function GetStartedWizard() {
         </p>
         <div className="overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_15%,black_85%,transparent)]">
           <InfiniteSlider gap={56} speed={80} speedOnHover={25}>
-            {CLIENTS.map((client) => (
+            {/* Repeat 3x to ensure no gaps on wide screens */}
+            {[...CLIENTS, ...CLIENTS, ...CLIENTS].map((client, i) => (
               <img
-                key={client.name}
+                key={`${client.name}-${i}`}
                 src={client.logo}
                 alt={client.name}
-                className="h-10 w-auto object-contain opacity-40 select-none pointer-events-none"
+                className={`w-auto object-contain select-none pointer-events-none mix-blend-multiply opacity-40 ${
+                  client.name === "Billie Jeans" ? "h-14" : "h-10"
+                }`}
               />
             ))}
           </InfiniteSlider>
