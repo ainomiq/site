@@ -225,7 +225,7 @@ export function Results({ analysis, manual }: ResultsProps) {
       {analysis && (
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
           {[
-            { label: "Products", value: products.length, icon: ShoppingBag, show: products.length > 0 },
+            { label: "Products", value: products.length, icon: ShoppingBag, show: true },
             { label: "Pages", value: analysis.pageCount, icon: Link2, show: analysis.pageCount > 0 },
             { label: "Social channels", value: analysis.socialPresence.length, icon: Instagram, show: analysis.socialPresence.length > 0 },
             { label: "FAQ items", value: analysis.faqItems.length, icon: MessageCircleQuestion, show: analysis.faqItems.length > 0 },
