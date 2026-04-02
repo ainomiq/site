@@ -4,6 +4,13 @@ export interface TechDetection {
   confidence: "high" | "medium" | "low";
 }
 
+export interface ScrapedProduct {
+  name: string;
+  price: string | null;
+  image: string | null;
+  url: string | null;
+}
+
 export interface SiteAnalysis {
   url: string;
   title: string;
@@ -11,13 +18,14 @@ export interface SiteAnalysis {
   technologies: TechDetection[];
   hasEcommerce: boolean;
   estimatedScale: "small" | "medium" | "large";
-  productCount: number;
-  sampleProducts: string[];
+  products: ScrapedProduct[];
   priceRange: { min: number; max: number } | null;
   currency: string;
   faqItems: string[];
   pageCount: number;
+  pageLinks: string[];
   socialPresence: string[];
+  socialLinks: Record<string, string>;
   contactEmail: string | null;
   contactPhone: string | null;
   bodyTextSummary: string;

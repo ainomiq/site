@@ -10,13 +10,14 @@ import { InfiniteSlider } from "@/components/ui/infinite-slider";
 import type { SiteAnalysis, ManualAnswers } from "@/lib/analysis-types";
 
 const CLIENTS: { name: string; logo: string }[] = [
+  // Sorted: short (portrait), long (landscape), alternating
   { name: "Domino\u2019s", logo: "/logos/dominos.png" },
-  { name: "Alpina", logo: "/logos/alpina.png" },
-  { name: "Billie Jeans", logo: "/logos/billie-jeans.png" },
   { name: "Button Amsterdam", logo: "/logos/button-amsterdam.png" },
+  { name: "Alpina", logo: "/logos/alpina.png" },
   { name: "La Dos", logo: "/logos/la-dos.png" },
-  { name: "SchoolRegister", logo: "/logos/schoolregister.png" },
+  { name: "Billie Jeans", logo: "/logos/billie-jeans.png" },
   { name: "AccuExpert", logo: "/logos/accu-expert.png" },
+  { name: "SchoolRegister", logo: "/logos/schoolregister.png" },
   { name: "VindJeRijschool.nl", logo: "/logos/vindjerijschool.png" },
   { name: "Padelland", logo: "/logos/padelland.png" },
 ];

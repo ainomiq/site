@@ -1,10 +1,10 @@
 import * as cheerio from "cheerio";
 
-export interface ProductInfo {
-  count: number;
-  sampleNames: string[];
-  priceRange: { min: number; max: number } | null;
-  currency: string;
+export interface ScrapedProduct {
+  name: string;
+  price: string | null;
+  image: string | null;
+  url: string | null;
 }
 
 export interface ScrapedData {
@@ -14,7 +14,9 @@ export interface ScrapedData {
   scripts: string[];
   links: string[];
   metas: Record<string, string>;
-  products: ProductInfo;
+  products: ScrapedProduct[];
+  priceRange: { min: number; max: number } | null;
+  currency: string;
   faqItems: string[];
   pageLinks: string[];
   socialLinks: Record<string, string>;
@@ -22,17 +24,25 @@ export interface ScrapedData {
   bodyText: string;
 }
 
+function resolveUrl(base: string, path: string): string {
+  try {
+    return new URL(path, base).toString();
+  } catch {
+    return path;
+  }
+}
+
 export async function scrapeUrl(url: string): Promise<ScrapedData> {
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 8000);
+  const timeout = setTimeout(() => controller.abort(), 10000);
 
   try {
     const response = await fetch(url, {
       signal: controller.signal,
       headers: {
         "User-Agent":
-          "Mozilla/5.0 (compatible; AinomiqBot/1.0; +https://ainomiq.com)",
-        Accept: "text/html,application/xhtml+xml",
+          "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
+        Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
       },
       redirect: "follow",
     });
@@ -61,63 +71,166 @@ export async function scrapeUrl(url: string): Promise<ScrapedData> {
     });
 
     const links: string[] = [];
-    $('link[href], script[src], img[src], a[href]').each((_, el) => {
-      const href =
-        $(el).attr("href") || $(el).attr("src");
+    $("link[href], script[src], img[src], a[href]").each((_, el) => {
+      const href = $(el).attr("href") || $(el).attr("src");
       if (href) links.push(href);
     });
 
     const metas: Record<string, string> = {};
     $("meta").each((_, el) => {
-      const name =
-        $(el).attr("name") || $(el).attr("property") || "";
+      const name = $(el).attr("name") || $(el).attr("property") || "";
       const content = $(el).attr("content") || "";
       if (name && content) {
         metas[name.toLowerCase()] = content;
       }
     });
 
-    // Extract products
-    const prices: number[] = [];
-    const productNames: string[] = [];
-    // Common product selectors
-    $('[class*="product"] h2, [class*="product"] h3, [class*="product-title"], [class*="product-name"], .product-card h2, .product-card h3').each((_, el) => {
-      const name = $(el).text().trim();
-      if (name && name.length < 100 && productNames.length < 20) {
-        productNames.push(name);
+    // --- Product extraction ---
+    const products: ScrapedProduct[] = [];
+    const seenNames = new Set<string>();
+
+    // 1. JSON-LD structured data (most reliable)
+    $('script[type="application/ld+json"]').each((_, el) => {
+      try {
+        const data = JSON.parse($(el).text());
+        const items = Array.isArray(data) ? data : [data];
+        for (const item of items) {
+          // Handle @graph arrays
+          const entries = item["@graph"] ? item["@graph"] : [item];
+          for (const entry of entries) {
+            if (
+              entry["@type"] === "Product" ||
+              entry["@type"]?.includes?.("Product")
+            ) {
+              const name = entry.name?.trim();
+              if (name && !seenNames.has(name.toLowerCase())) {
+                seenNames.add(name.toLowerCase());
+                const offer = Array.isArray(entry.offers)
+                  ? entry.offers[0]
+                  : entry.offers;
+                products.push({
+                  name,
+                  price: offer?.price
+                    ? `${offer.priceCurrency || "EUR"} ${offer.price}`
+                    : null,
+                  image: Array.isArray(entry.image)
+                    ? entry.image[0]
+                    : entry.image || null,
+                  url: entry.url || null,
+                });
+              }
+            }
+            // Product listing pages
+            if (entry["@type"] === "ItemList" && entry.itemListElement) {
+              for (const li of entry.itemListElement) {
+                const prod = li.item || li;
+                const name = prod.name?.trim();
+                if (name && !seenNames.has(name.toLowerCase())) {
+                  seenNames.add(name.toLowerCase());
+                  products.push({
+                    name,
+                    price: null,
+                    image: Array.isArray(prod.image)
+                      ? prod.image[0]
+                      : prod.image || null,
+                    url: prod.url || null,
+                  });
+                }
+              }
+            }
+          }
+        }
+      } catch {
+        // skip invalid JSON-LD
       }
     });
-    // Price detection
+
+    // 2. Shopify-specific: product cards
+    $(
+      '.product-card, [class*="ProductCard"], [class*="product-item"], [class*="product-grid"] > *, .collection-product-card'
+    ).each((_, el) => {
+      if (products.length >= 30) return;
+      const $el = $(el);
+      const name = (
+        $el.find("h2, h3, [class*='title'], [class*='name']").first().text() ||
+        $el.find("a").first().attr("title") ||
+        ""
+      ).trim();
+      if (!name || name.length > 120 || seenNames.has(name.toLowerCase())) return;
+      seenNames.add(name.toLowerCase());
+
+      const imgSrc =
+        $el.find("img").first().attr("src") ||
+        $el.find("img").first().attr("data-src") ||
+        null;
+      const linkHref = $el.find("a").first().attr("href") || null;
+      const priceText =
+        $el.find('[class*="price"], [class*="Price"]').first().text().trim() || null;
+
+      products.push({
+        name,
+        price: priceText,
+        image: imgSrc ? resolveUrl(url, imgSrc) : null,
+        url: linkHref ? resolveUrl(url, linkHref) : null,
+      });
+    });
+
+    // 3. Generic product patterns (fallback)
+    if (products.length === 0) {
+      $(
+        '[data-product], [data-product-id], [class*="product"][class*="card"], [class*="product"][class*="item"]'
+      ).each((_, el) => {
+        if (products.length >= 30) return;
+        const $el = $(el);
+        const name = (
+          $el.find("h2, h3, h4, [class*='title'], [class*='name']").first().text() ||
+          ""
+        ).trim();
+        if (!name || name.length > 120 || seenNames.has(name.toLowerCase())) return;
+        seenNames.add(name.toLowerCase());
+
+        const imgSrc =
+          $el.find("img").first().attr("src") ||
+          $el.find("img").first().attr("data-src") ||
+          null;
+        const linkHref = $el.find("a").first().attr("href") || null;
+        const priceText =
+          $el.find('[class*="price"]').first().text().trim() || null;
+
+        products.push({
+          name,
+          price: priceText,
+          image: imgSrc ? resolveUrl(url, imgSrc) : null,
+          url: linkHref ? resolveUrl(url, linkHref) : null,
+        });
+      });
+    }
+
+    // Price range from all detected prices
+    const allPrices: number[] = [];
     const priceRegex = /(?:€|EUR|\$|USD|£|GBP)\s*(\d+[.,]\d{2})/g;
     const bodyText = $("body").text();
     let priceMatch;
-    while ((priceMatch = priceRegex.exec(bodyText)) !== null && prices.length < 50) {
+    while ((priceMatch = priceRegex.exec(bodyText)) !== null && allPrices.length < 100) {
       const price = parseFloat(priceMatch[1].replace(",", "."));
-      if (price > 0 && price < 100000) prices.push(price);
+      if (price > 0 && price < 100000) allPrices.push(price);
     }
-    // Currency detection
+
     let currency = "EUR";
     if (bodyText.includes("$") || bodyText.includes("USD")) currency = "USD";
     if (bodyText.includes("£") || bodyText.includes("GBP")) currency = "GBP";
     if (bodyText.includes("€") || bodyText.includes("EUR")) currency = "EUR";
 
-    const products: ProductInfo = {
-      count: productNames.length || (prices.length > 3 ? prices.length : 0),
-      sampleNames: productNames.slice(0, 10),
-      priceRange: prices.length >= 2
-        ? { min: Math.min(...prices), max: Math.max(...prices) }
-        : null,
-      currency,
-    };
-
     // Extract FAQ
     const faqItems: string[] = [];
-    $('[class*="faq"] h3, [class*="faq"] h4, [class*="accordion"] h3, [class*="accordion"] button, details summary, [itemtype*="FAQPage"] [itemprop="name"]').each((_, el) => {
-      const q = $(el).text().trim();
-      if (q && q.length > 10 && q.length < 200 && faqItems.length < 15) {
-        faqItems.push(q);
+    $('[class*="faq"] h3, [class*="faq"] h4, [class*="faq"] summary, [class*="accordion"] h3, [class*="accordion"] button, [class*="accordion"] summary, details summary, [itemtype*="FAQPage"] [itemprop="name"], [class*="question"]').each(
+      (_, el) => {
+        const q = $(el).text().trim();
+        if (q && q.length > 10 && q.length < 200 && faqItems.length < 20) {
+          faqItems.push(q);
+        }
       }
-    });
+    );
 
     // Extract page links (internal navigation)
     const pageLinks: string[] = [];
@@ -152,7 +265,9 @@ export async function scrapeUrl(url: string): Promise<ScrapedData> {
 
     // Contact info
     const emailMatch = bodyText.match(/[\w.-]+@[\w.-]+\.\w{2,}/);
-    const phoneMatch = bodyText.match(/(?:\+\d{1,3}[-.\s]?)?\(?\d{2,4}\)?[-.\s]?\d{3,4}[-.\s]?\d{3,4}/);
+    const phoneMatch = bodyText.match(
+      /(?:\+\d{1,3}[-.\s]?)?\(?\d{2,4}\)?[-.\s]?\d{3,4}[-.\s]?\d{3,4}/
+    );
 
     const contactInfo = {
       email: emailMatch ? emailMatch[0] : null,
@@ -160,9 +275,27 @@ export async function scrapeUrl(url: string): Promise<ScrapedData> {
     };
 
     // Truncated body text for AI analysis
-    const cleanText = bodyText.replace(/\s+/g, " ").trim().slice(0, 3000);
+    const cleanText = bodyText.replace(/\s+/g, " ").trim().slice(0, 4000);
 
-    return { title, description, html, scripts, links, metas, products, faqItems, pageLinks, socialLinks, contactInfo, bodyText: cleanText };
+    return {
+      title,
+      description,
+      html,
+      scripts,
+      links,
+      metas,
+      products,
+      priceRange:
+        allPrices.length >= 2
+          ? { min: Math.min(...allPrices), max: Math.max(...allPrices) }
+          : null,
+      currency,
+      faqItems,
+      pageLinks,
+      socialLinks,
+      contactInfo,
+      bodyText: cleanText,
+    };
   } finally {
     clearTimeout(timeout);
   }
