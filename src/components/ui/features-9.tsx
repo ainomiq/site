@@ -155,7 +155,7 @@ export function Features() {
                         </p>
                     </div>
                     <div className="relative">
-                        <div className="pointer-events-none absolute inset-0 z-10 bg-[radial-gradient(ellipse_at_center,transparent_20%,white_70%)]" />
+                        <div className="pointer-events-none absolute inset-0 z-10 bg-[radial-gradient(ellipse_at_center,transparent_60%,white_95%)]" />
                         <ActiveMap />
                     </div>
                 </div>
