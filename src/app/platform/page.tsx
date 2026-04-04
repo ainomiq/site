@@ -12,86 +12,84 @@ import {
   Gauge,
   Workflow,
   ArrowRight,
+  Check,
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "App",
+  title: "Ecommerce Application",
   description:
-    "The Ainomiq AI app: six modules working together to automate your business.",
+    "The Ainomiq AI app: intelligent modules working together to automate your e-commerce business.",
 };
 
-const modules = [
+const featuredModules = [
   {
+    id: "customer-service",
     icon: Bot,
     title: "AI Customer Service",
+    headline: "Your support team that never sleeps",
     description:
       "An intelligent agent that answers customer questions 24/7, handles returns, and identifies escalations. Trained on your products, tone of voice, and policies.",
     capabilities: [
-      "Multilingual support",
-      "Sentiment analysis",
-      "Auto-escalation",
-      "Knowledge base sync",
+      "Multilingual support across 30+ languages",
+      "Sentiment analysis and auto-escalation",
+      "Handles 200+ tickets per day",
+      "Trained on your brand voice and policies",
     ],
+    stat: "200+",
+    statLabel: "tickets handled daily",
   },
+  {
+    id: "smart-inventory",
+    icon: Package,
+    title: "Smart Inventory",
+    headline: "Predict demand before it happens",
+    description:
+      "AI-driven forecasting that prevents stockouts and minimizes overstock. Real-time tracking across all your warehouses and sales channels.",
+    capabilities: [
+      "Demand forecasting with AI",
+      "Automatic reorder alerts",
+      "Seasonal trend analysis",
+      "Multi-warehouse sync",
+    ],
+    stat: "30%",
+    statLabel: "less overstock",
+  },
+  {
+    id: "email-marketing",
+    icon: Mail,
+    title: "E-mail Marketing",
+    headline: "Automated flows that convert",
+    description:
+      "Personalized email flows from welcome to win-back. AI optimizes timing, subject lines, and content for maximum conversions.",
+    capabilities: [
+      "AI-optimized send times",
+      "Dynamic personalization",
+      "Automated A/B testing",
+      "Smart segmentation",
+    ],
+    stat: "3.2x",
+    statLabel: "higher conversion",
+  },
+];
+
+const moreModules = [
   {
     icon: BarChart3,
-    title: "Ads & Marketing Automation",
+    title: "Ads & Marketing",
     description:
-      "AI that optimizes your campaigns, tests creatives, and allocates budgets based on real-time performance data. ROAS up, CPA down.",
-    capabilities: [
-      "Creative testing",
-      "Budget allocation",
-      "ROAS optimization",
-      "Cross-channel",
-    ],
-  },
-  {
-    icon: Mail,
-    title: "Email & Flows",
-    description:
-      "Personalized email flows that convert. Welcome, abandoned cart, win-back, post-purchase — all AI-optimized.",
-    capabilities: [
-      "Personalization",
-      "A/B testing",
-      "Timing optimization",
-      "Segmentation",
-    ],
-  },
-  {
-    icon: Package,
-    title: "Inventory Intelligence",
-    description:
-      "Predict demand before it happens. AI-driven forecasting that prevents stockouts and minimizes overstock.",
-    capabilities: [
-      "Demand forecasting",
-      "Reorder alerts",
-      "Seasonal analysis",
-      "Supplier sync",
-    ],
+      "Automated campaigns, creative testing, and ROAS optimization on autopilot.",
   },
   {
     icon: Gauge,
     title: "Performance Analytics",
     description:
-      "A unified dashboard that brings all your data together. Real-time insights, automatic alerts, and AI-driven recommendations.",
-    capabilities: [
-      "Real-time data",
-      "Custom dashboards",
-      "Anomaly detection",
-      "Automated reports",
-    ],
+      "Real-time dashboards with actionable insights. See exactly what works and why.",
   },
   {
     icon: Workflow,
     title: "Workflow Automations",
     description:
-      "Connect your systems and eliminate manual work. Order processing, fulfillment triggers, inventory syncs — all automated.",
-    capabilities: [
-      "API integrations",
-      "Event triggers",
-      "Multi-step flows",
-      "Error handling",
-    ],
+      "Connect your systems and eliminate manual work. From order to fulfillment, automated.",
   },
 ];
 
@@ -101,41 +99,81 @@ export default function PlatformPage() {
       {/* Hero */}
       <PlatformHero />
 
-      {/* Modules */}
-      <Section className="bg-ainomiq-navy-light">
-        <div className="space-y-6">
-          {modules.map((mod, i) => (
+      {/* Featured Modules — scrollable sections */}
+      {featuredModules.map((mod, i) => (
+        <section
+          key={mod.id}
+          id={mod.id}
+          className={`scroll-mt-28 py-24 px-6 ${i % 2 === 0 ? "bg-ainomiq-navy-light" : ""}`}
+        >
+          <div className="mx-auto max-w-5xl">
+            <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${i % 2 !== 0 ? "lg:grid-flow-dense" : ""}`}>
+              <div className={i % 2 !== 0 ? "lg:col-start-2" : ""}>
+                <div className="mb-4 inline-flex items-center rounded-full bg-ainomiq-blue-glow px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">
+                  {String(i + 1).padStart(2, "0")} — {mod.title}
+                </div>
+                <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-4">
+                  {mod.headline}
+                </h2>
+                <p className="text-ainomiq-text-muted text-lg leading-relaxed mb-8">
+                  {mod.description}
+                </p>
+                <ul className="space-y-3">
+                  {mod.capabilities.map((cap) => (
+                    <li
+                      key={cap}
+                      className="flex items-center gap-3 text-sm text-ainomiq-text-muted"
+                    >
+                      <Check className="h-4 w-4 text-ainomiq-blue shrink-0" />
+                      {cap}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Stat card */}
+              <div className={`flex items-center justify-center ${i % 2 !== 0 ? "lg:col-start-1" : ""}`}>
+                <Card className="bg-white border-ainomiq-border w-full max-w-sm">
+                  <CardContent className="p-10 text-center">
+                    <div className="mb-4 mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-ainomiq-blue-glow">
+                      <mod.icon className="h-8 w-8 text-ainomiq-blue" />
+                    </div>
+                    <div className="text-5xl font-extrabold tracking-tight text-[#0f1b2d] mb-2">
+                      {mod.stat}
+                    </div>
+                    <p className="text-sm text-ainomiq-text-muted">
+                      {mod.statLabel}
+                    </p>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </div>
+        </section>
+      ))}
+
+      {/* More Modules */}
+      <Section label="And more" className="bg-ainomiq-navy-light">
+        <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">
+          Plus three more modules
+        </h2>
+        <p className="text-ainomiq-text-muted text-lg max-w-xl mb-12">
+          Everything working together to run your e-commerce on autopilot.
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {moreModules.map((mod) => (
             <Card
               key={mod.title}
-              className="bg-white border-ainomiq-border hover:border-ainomiq-border-hover transition-all"
+              className="bg-white border-ainomiq-border hover:border-ainomiq-border-hover transition-all hover:-translate-y-1"
             >
-              <CardContent className="p-8 md:p-10">
-                <div className="flex flex-col md:flex-row md:items-start gap-6 md:gap-10">
-                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-ainomiq-blue-glow">
-                    <mod.icon className="h-7 w-7 text-ainomiq-blue" />
-                  </div>
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3 mb-3">
-                      <span className="text-xs font-mono text-ainomiq-text-subtle">
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
-                      <h3 className="text-xl font-bold">{mod.title}</h3>
-                    </div>
-                    <p className="text-ainomiq-text-muted leading-relaxed mb-5 max-w-2xl">
-                      {mod.description}
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {mod.capabilities.map((cap) => (
-                        <span
-                          key={cap}
-                          className="rounded-full border border-ainomiq-border px-3 py-1 text-xs font-medium text-ainomiq-text-muted"
-                        >
-                          {cap}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
+              <CardContent className="p-8">
+                <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-ainomiq-blue-glow">
+                  <mod.icon className="h-6 w-6 text-ainomiq-blue" />
                 </div>
+                <h3 className="text-lg font-bold mb-2">{mod.title}</h3>
+                <p className="text-sm text-ainomiq-text-muted leading-relaxed">
+                  {mod.description}
+                </p>
               </CardContent>
             </Card>
           ))}
@@ -149,8 +187,8 @@ export default function PlatformPage() {
             Ready to automate?
           </h2>
           <p className="text-lg text-ainomiq-text-muted mb-10 max-w-lg mx-auto">
-            Start with one module, grow to the full app. We help
-            you with the right roadmap.
+            Start with one module, grow to the full app. We help you with the
+            right roadmap.
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Button
@@ -158,7 +196,7 @@ export default function PlatformPage() {
               size="lg"
               className="rounded-full bg-ainomiq-blue hover:bg-ainomiq-blue-hover text-white px-8 h-12"
             >
-              <Link href="/contact">Book a call</Link>
+              <Link href="/get-started">Get started free</Link>
             </Button>
             <Button
               asChild
@@ -166,8 +204,8 @@ export default function PlatformPage() {
               size="lg"
               className="rounded-full border-ainomiq-border hover:border-ainomiq-border-hover bg-white text-ainomiq-text px-8 h-12"
             >
-              <Link href="/#pricing">
-                View pricing <ArrowRight className="ml-2 h-4 w-4" />
+              <Link href="/contact">
+                Book a call <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
           </div>

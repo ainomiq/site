@@ -4,25 +4,80 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Section } from "@/components/section";
 import {
+  Layers,
+  MessageCircle,
+  Smartphone,
   Cog,
   Users,
   BarChart3,
   FileText,
-  Layers,
   Lightbulb,
   Lock,
   Code,
   Headphones,
   BadgeCheck,
+  ArrowRight,
+  Check,
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Enterprise",
+  title: "Custom Solutions",
   description:
-    "Enterprise AI solutions: process automation, AI agents, data analytics, and more.",
+    "Custom AI solutions: all-in-one automation, chatbots, mobile apps, and more. Built for your business.",
 };
 
-const solutions = [
+const customSolutions = [
+  {
+    id: "all-in-one",
+    icon: Layers,
+    title: "All-in-one",
+    headline: "One system to run your entire operation",
+    description:
+      "A fully integrated automation suite tailored to your business. From customer service to inventory, from marketing to analytics — everything connected in one platform.",
+    capabilities: [
+      "Custom-built for your workflows",
+      "All departments in one system",
+      "Real-time data across every touchpoint",
+      "Scales with your business",
+    ],
+    stat: "1",
+    statLabel: "platform, infinite possibilities",
+  },
+  {
+    id: "chatbot",
+    icon: MessageCircle,
+    title: "Chatbot",
+    headline: "Intelligent conversations, anywhere",
+    description:
+      "AI-powered chatbots for your website, WhatsApp, Instagram, and more. Trained on your knowledge base, answering questions and converting visitors into customers 24/7.",
+    capabilities: [
+      "Website, WhatsApp & social media",
+      "Trained on your products and FAQs",
+      "Seamless handoff to human agents",
+      "Multi-language support",
+    ],
+    stat: "24/7",
+    statLabel: "always available",
+  },
+  {
+    id: "app",
+    icon: Smartphone,
+    title: "App",
+    headline: "Your brand, in every pocket",
+    description:
+      "Custom iOS and Android apps built with AI at the core. From loyalty programs to real-time order tracking — a mobile experience your customers will love.",
+    capabilities: [
+      "iOS & Android (Playstore)",
+      "Push notifications & engagement",
+      "Integrated with your backend",
+      "AI-powered personalization",
+    ],
+    stat: "2",
+    statLabel: "platforms, one codebase",
+  },
+];
+
+const moreSolutions = [
   {
     icon: Cog,
     title: "Process Automation",
@@ -33,31 +88,25 @@ const solutions = [
     icon: Users,
     title: "AI Agents",
     description:
-      "Autonomous digital workers that independently execute tasks, make decisions, and collaborate with your team.",
+      "Autonomous digital workers that independently execute tasks and collaborate with your team.",
   },
   {
     icon: BarChart3,
-    title: "Data Analytics & Insights",
+    title: "Data Analytics",
     description:
-      "Real-time dashboards and predictive analytics. Make better decisions based on AI-driven insights.",
+      "Real-time dashboards and predictive analytics. Better decisions based on AI-driven insights.",
   },
   {
     icon: FileText,
     title: "Document Processing",
     description:
-      "Automatic processing of invoices, contracts, and reports. OCR, extraction, and classification with AI.",
-  },
-  {
-    icon: Layers,
-    title: "Custom AI Development",
-    description:
-      "Custom-built AI models for your specific use case. From concept to production.",
+      "Automatic processing of invoices, contracts, and reports. OCR, extraction, and classification.",
   },
   {
     icon: Lightbulb,
-    title: "AI Strategy Consulting",
+    title: "AI Strategy",
     description:
-      "Roadmap, feasibility analysis, and implementation strategy. We help make your AI vision concrete.",
+      "Roadmap, feasibility analysis, and implementation strategy to make your AI vision concrete.",
   },
 ];
 
@@ -82,14 +131,6 @@ const enterpriseFeatures = [
     title: "SLA Guarantee",
     subtitle: "99.9% uptime, contractually guaranteed",
   },
-];
-
-const industries = [
-  "Retail",
-  "Hospitality",
-  "Logistics",
-  "Finance",
-  "Healthcare",
 ];
 
 const steps = [
@@ -122,15 +163,15 @@ export default function EnterprisePage() {
       <section className="pt-40 pb-20 px-6">
         <div className="mx-auto max-w-4xl">
           <div className="mb-6 inline-flex items-center rounded-full bg-ainomiq-blue-glow px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">
-            Enterprise
+            Custom Solutions
           </div>
           <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight leading-[1.05] mb-6">
             Where automation meets{" "}
             <span className="gradient-text">ambition</span>
           </h1>
           <p className="text-lg text-ainomiq-text-muted max-w-2xl mb-10">
-            From process automation to autonomous AI agents — we build
-            enterprise-grade solutions that tackle complex business processes.
+            From all-in-one platforms to custom chatbots and mobile apps — we
+            build solutions that tackle your specific business challenges.
           </p>
           <div className="flex flex-wrap gap-4">
             <Button
@@ -146,23 +187,75 @@ export default function EnterprisePage() {
               size="lg"
               className="rounded-full border-ainomiq-border hover:border-ainomiq-border-hover bg-white text-ainomiq-text px-8 h-12"
             >
-              <Link href="#solutions">View solutions</Link>
+              <Link href="#all-in-one">View solutions</Link>
             </Button>
           </div>
         </div>
       </section>
 
-      {/* Solutions */}
-      <Section
-        label="Solutions"
-        id="solutions"
-        className="bg-ainomiq-navy-light"
-      >
-        <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-16">
-          Six enterprise AI modules
+      {/* Custom Solutions — scrollable sections */}
+      {customSolutions.map((sol, i) => (
+        <section
+          key={sol.id}
+          id={sol.id}
+          className={`scroll-mt-28 py-24 px-6 ${i % 2 === 0 ? "bg-ainomiq-navy-light" : ""}`}
+        >
+          <div className="mx-auto max-w-5xl">
+            <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${i % 2 !== 0 ? "lg:grid-flow-dense" : ""}`}>
+              <div className={i % 2 !== 0 ? "lg:col-start-2" : ""}>
+                <div className="mb-4 inline-flex items-center rounded-full bg-ainomiq-blue-glow px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">
+                  {String(i + 1).padStart(2, "0")} — {sol.title}
+                </div>
+                <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-4">
+                  {sol.headline}
+                </h2>
+                <p className="text-ainomiq-text-muted text-lg leading-relaxed mb-8">
+                  {sol.description}
+                </p>
+                <ul className="space-y-3">
+                  {sol.capabilities.map((cap) => (
+                    <li
+                      key={cap}
+                      className="flex items-center gap-3 text-sm text-ainomiq-text-muted"
+                    >
+                      <Check className="h-4 w-4 text-ainomiq-blue shrink-0" />
+                      {cap}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Stat card */}
+              <div className={`flex items-center justify-center ${i % 2 !== 0 ? "lg:col-start-1" : ""}`}>
+                <Card className="bg-white border-ainomiq-border w-full max-w-sm">
+                  <CardContent className="p-10 text-center">
+                    <div className="mb-4 mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-ainomiq-blue-glow">
+                      <sol.icon className="h-8 w-8 text-ainomiq-blue" />
+                    </div>
+                    <div className="text-5xl font-extrabold tracking-tight text-[#0f1b2d] mb-2">
+                      {sol.stat}
+                    </div>
+                    <p className="text-sm text-ainomiq-text-muted">
+                      {sol.statLabel}
+                    </p>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </div>
+        </section>
+      ))}
+
+      {/* More Solutions */}
+      <Section label="And more" className="bg-ainomiq-navy-light">
+        <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">
+          More enterprise solutions
         </h2>
+        <p className="text-ainomiq-text-muted text-lg max-w-xl mb-12">
+          From process automation to AI strategy — we build what your business needs.
+        </p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {solutions.map((s) => (
+          {moreSolutions.map((s) => (
             <Card
               key={s.title}
               className="bg-white border-ainomiq-border hover:border-ainomiq-border-hover transition-all hover:-translate-y-1"
@@ -201,25 +294,8 @@ export default function EnterprisePage() {
         </div>
       </Section>
 
-      {/* Industries */}
-      <Section label="Industries" className="bg-ainomiq-navy-light">
-        <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-10">
-          Industries where AI makes an impact
-        </h2>
-        <div className="flex flex-wrap gap-3">
-          {industries.map((ind) => (
-            <span
-              key={ind}
-              className="rounded-full border border-ainomiq-border px-5 py-2 text-sm font-medium text-ainomiq-text-muted"
-            >
-              {ind}
-            </span>
-          ))}
-        </div>
-      </Section>
-
       {/* Enterprise Features */}
-      <Section label="Enterprise-grade">
+      <Section label="Enterprise-grade" className="bg-ainomiq-navy-light">
         <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-16">
           Built for scale and security
         </h2>
@@ -242,22 +318,34 @@ export default function EnterprisePage() {
       </Section>
 
       {/* CTA */}
-      <section className="py-32 px-6 text-center bg-ainomiq-navy-light">
+      <section className="py-32 px-6 text-center">
         <div className="mx-auto max-w-2xl">
           <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-6">
             Book a strategy call
           </h2>
           <p className="text-lg text-ainomiq-text-muted mb-10 max-w-lg mx-auto">
-            Discover in 45 minutes how AI can transform your organization.
-            No obligations, completely confidential.
+            Discover in 45 minutes how AI can transform your organization. No
+            obligations, completely confidential.
           </p>
-          <Button
-            asChild
-            size="lg"
-            className="rounded-full bg-ainomiq-blue hover:bg-ainomiq-blue-hover text-white px-10 h-12"
-          >
-            <Link href="/contact">Book a call</Link>
-          </Button>
+          <div className="flex flex-wrap items-center justify-center gap-4">
+            <Button
+              asChild
+              size="lg"
+              className="rounded-full bg-ainomiq-blue hover:bg-ainomiq-blue-hover text-white px-10 h-12"
+            >
+              <Link href="/contact">Book a call</Link>
+            </Button>
+            <Button
+              asChild
+              variant="outline"
+              size="lg"
+              className="rounded-full border-ainomiq-border hover:border-ainomiq-border-hover bg-white text-ainomiq-text px-8 h-12"
+            >
+              <Link href="/platform">
+                See ecommerce app <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
         </div>
       </section>
     </>
