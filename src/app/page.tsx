@@ -137,9 +137,6 @@ export default function HomePage() {
                   src="/team/pim.jpg"
                   alt="Pim Smit"
                   className="h-full w-full object-cover"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).style.display = "none";
-                  }}
                 />
               </div>
               <h3 className="text-xl font-bold text-ainomiq-text">Pim Smit</h3>
@@ -157,9 +154,6 @@ export default function HomePage() {
                   src="/team/bink.jpg"
                   alt="Bink Sanders"
                   className="h-full w-full object-cover"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).style.display = "none";
-                  }}
                 />
               </div>
               <h3 className="text-xl font-bold text-ainomiq-text">Bink Sanders</h3>
