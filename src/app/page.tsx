@@ -69,6 +69,7 @@ const pricingPlans: {
   description: string;
   features: { label: string; icon: "check" | "plus" }[];
   cta: string;
+  href: string;
   featured: boolean;
 }[] = [
   {
@@ -83,6 +84,7 @@ const pricingPlans: {
       { label: "24/7 Support", icon: "plus" },
     ],
     cta: "Get started",
+    href: "/get-started",
     featured: true,
   },
   {
@@ -97,6 +99,7 @@ const pricingPlans: {
       { label: "White-Glove Service", icon: "check" },
     ],
     cta: "Contact us",
+    href: "/contact",
     featured: false,
   },
 ];
@@ -354,7 +357,7 @@ export default function HomePage() {
                       : "bg-ainomiq-navy-light border border-ainomiq-border hover:border-ainomiq-border-hover text-ainomiq-text"
                   }`}
                 >
-                  <Link href="/contact">{plan.cta}</Link>
+                  <Link href={plan.href}>{plan.cta}</Link>
                 </Button>
               </CardContent>
             </Card>
