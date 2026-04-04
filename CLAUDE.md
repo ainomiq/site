@@ -22,7 +22,7 @@
  - Plus Jakarta Sans
 
  ### Slogan
- - Always Ahead
+ - Building the Future
 
  ### Style
  - Apple/Linear/Cursor inspired

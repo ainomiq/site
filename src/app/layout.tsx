@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Ainomiq — Always Ahead",
+    default: "Ainomiq — Building the Future",
     template: "%s — Ainomiq",
   },
   description:
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     apple: "/logos/ainomiq-icon.png",
   },
   openGraph: {
-    title: "Ainomiq — Always Ahead",
+    title: "Ainomiq — Building the Future",
     description:
       "Automation app for e-commerce and enterprise. We build systems that work from day one.",
     siteName: "Ainomiq",

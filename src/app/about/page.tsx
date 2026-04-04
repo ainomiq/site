@@ -3,7 +3,6 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Section } from "@/components/section";
-import { TeamSection } from "@/components/team-section";
 import { Zap, BadgeCheck, Info, Clock } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -90,8 +89,69 @@ export default function AboutPage() {
         </p>
       </Section>
 
-      {/* Team — Marquee Section */}
-      <TeamSection />
+      {/* Founders */}
+      <section className="py-24 px-6">
+        <div className="mx-auto max-w-6xl">
+          <div className="text-center mb-16">
+            <div className="mb-6 inline-flex items-center rounded-full bg-ainomiq-blue-glow px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">
+              The Founders
+            </div>
+            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">
+              The people behind Ainomiq
+            </h2>
+            <p className="text-ainomiq-text-muted text-lg max-w-2xl mx-auto">
+              Two founders who were the customer first, and decided to build
+              what they couldn&apos;t find.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Pim */}
+            <div className="group relative aspect-[3/4] overflow-hidden rounded-3xl">
+              <img
+                src="/team/pim.jpg"
+                alt="Pim Smit"
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-8 md:p-10">
+                <p className="text-sm font-semibold uppercase tracking-wider text-ainomiq-blue mb-2">
+                  Co-Founder
+                </p>
+                <h3 className="text-3xl md:text-4xl font-extrabold text-white mb-3">
+                  Pim Smit
+                </h3>
+                <p className="text-white/80 text-base md:text-lg leading-relaxed max-w-sm">
+                  At the intersection of commerce and intelligence, translating
+                  what clients need into solutions that deliver.
+                </p>
+              </div>
+            </div>
+
+            {/* Bink */}
+            <div className="group relative aspect-[3/4] overflow-hidden rounded-3xl">
+              <img
+                src="/team/bink.jpg"
+                alt="Bink Sanders"
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-8 md:p-10">
+                <p className="text-sm font-semibold uppercase tracking-wider text-ainomiq-blue mb-2">
+                  Co-Founder
+                </p>
+                <h3 className="text-3xl md:text-4xl font-extrabold text-white mb-3">
+                  Bink Sanders
+                </h3>
+                <p className="text-white/80 text-base md:text-lg leading-relaxed max-w-sm">
+                  Sales, strategy and a deep understanding of automation.
+                  Converts complexity into growth.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Values */}
       <Section label="Our values" className="bg-ainomiq-navy-light">
