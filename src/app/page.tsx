@@ -113,7 +113,7 @@ export default function HomePage() {
       {/* Blog Posts Grid */}
       <BlogGrid
         title="Our Latest Insights"
-        description="Discover how automation is transforming businesses — from e-commerce automation to enterprise intelligence"
+        description="Meet the founders: discover how automation is transforming businesses — from e-commerce automation to enterprise intelligence."
         posts={[
           {
             id: 1,
