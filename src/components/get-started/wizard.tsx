@@ -242,6 +242,13 @@ export function GetStartedWizard() {
     setStep("results");
   }, []);
 
+  const handleReset = useCallback(() => {
+    setStep("input");
+    setAnalysis(null);
+    setManual(undefined);
+    setIsLoading(false);
+  }, []);
+
   return (
     <section className="relative overflow-hidden">
       {/* Animated beams background */}
@@ -270,10 +277,10 @@ export function GetStartedWizard() {
               />
             )}
             {step === "results" && (
-              <Results key="results" analysis={analysis} manual={manual} />
+              <Results key="results" analysis={analysis} manual={manual} onReset={handleReset} />
             )}
             {step === "fallback" && (
-              <FallbackForm key="fallback" onSubmit={handleFallbackSubmit} />
+              <FallbackForm key="fallback" onSubmit={handleFallbackSubmit} onReset={handleReset} />
             )}
           </AnimatePresence>
         </div>

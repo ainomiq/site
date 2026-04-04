@@ -8,6 +8,7 @@ import type { ManualAnswers } from "@/lib/analysis-types";
 
 interface FallbackFormProps {
   onSubmit: (answers: ManualAnswers) => void;
+  onReset?: () => void;
 }
 
 const platforms = ["Shopify", "WooCommerce", "Magento", "BigCommerce", "Other"];
@@ -34,7 +35,7 @@ const industries = [
 ];
 const teamSizes = ["1-5", "6-20", "21-50", "50+"];
 
-export function FallbackForm({ onSubmit }: FallbackFormProps) {
+export function FallbackForm({ onSubmit, onReset }: FallbackFormProps) {
   const [businessType, setBusinessType] = useState<"ecommerce" | "service" | "">("");
   const [platform, setPlatform] = useState("");
   const [orderVolume, setOrderVolume] = useState("");
@@ -81,9 +82,20 @@ export function FallbackForm({ onSubmit }: FallbackFormProps) {
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       className="flex flex-col items-center gap-8 px-4 w-full max-w-lg mx-auto"
     >
-      <div className="flex items-center gap-2 text-ainomiq-text-muted text-sm">
-        <AlertCircle className="size-4" />
-        <span>We couldn&apos;t scan your site. Answer a few questions instead.</span>
+      <div className="flex flex-col items-center gap-3">
+        <div className="flex items-center gap-2 text-ainomiq-text-muted text-sm">
+          <AlertCircle className="size-4" />
+          <span>We couldn&apos;t scan your site. Answer a few questions instead.</span>
+        </div>
+        {onReset && (
+          <button
+            type="button"
+            onClick={onReset}
+            className="text-xs text-ainomiq-blue hover:underline cursor-pointer"
+          >
+            Try a different URL
+          </button>
+        )}
       </div>
 
       <form onSubmit={handleSubmit} className="w-full flex flex-col gap-8">

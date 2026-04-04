@@ -2,13 +2,13 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "motion/react";
-import { Globe, Code, ShoppingCart, Sparkles, Check } from "lucide-react";
+import { Globe, Code, Search, Sparkles, Check } from "lucide-react";
 
 const steps = [
   { icon: Globe, label: "Connecting to site" },
   { icon: Code, label: "Scanning tech stack" },
-  { icon: ShoppingCart, label: "Finding products & prices" },
-  { icon: Sparkles, label: "Analyzing your business" },
+  { icon: Search, label: "Reading content & services" },
+  { icon: Sparkles, label: "Building your recommendation" },
 ];
 
 interface AnalysisProgressProps {

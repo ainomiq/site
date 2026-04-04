@@ -28,6 +28,7 @@ import {
   Workflow,
   Clock,
   Building2,
+  RotateCcw,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
@@ -36,6 +37,7 @@ import type { SiteAnalysis, ManualAnswers, ScrapedProduct } from "@/lib/analysis
 interface ResultsProps {
   analysis: SiteAnalysis | null;
   manual?: ManualAnswers;
+  onReset?: () => void;
 }
 
 interface EcommerceServiceData {
@@ -207,7 +209,7 @@ function isEcommerceService(service: ServiceData): service is EcommerceServiceDa
   return "savingsPercent" in service;
 }
 
-export function Results({ analysis, manual }: ResultsProps) {
+export function Results({ analysis, manual, onReset }: ResultsProps) {
   const [recommendation, setRecommendation] = useState<RecommendationData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -587,7 +589,7 @@ export function Results({ analysis, manual }: ResultsProps) {
           {!isCustom && <PromoCodePill />}
 
           {/* CTAs */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pb-8">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pb-4">
             {isCustom ? (
               <a
                 href="/contact"
@@ -614,6 +616,19 @@ export function Results({ analysis, manual }: ResultsProps) {
               Talk to our team
             </a>
           </div>
+
+          {/* Scan another site */}
+          {onReset && (
+            <div className="flex justify-center pb-8">
+              <button
+                onClick={onReset}
+                className="inline-flex items-center gap-2 text-xs text-ainomiq-text-muted hover:text-ainomiq-text transition-colors cursor-pointer"
+              >
+                <RotateCcw className="size-3" />
+                Analyze another website
+              </button>
+            </div>
+          )}
         </>
       )}
     </motion.div>
