@@ -121,7 +121,7 @@ export default function AboutPage() {
                 <h3 className="text-3xl md:text-4xl font-extrabold text-white mb-3">
                   Pim Smit
                 </h3>
-                <p className="text-white/80 text-base md:text-lg leading-relaxed max-w-sm">
+                <p className="text-white/80 text-base md:text-lg leading-relaxed max-w-md">
                   At the intersection of commerce and intelligence, translating
                   what clients need into solutions that deliver.
                 </p>
@@ -143,7 +143,7 @@ export default function AboutPage() {
                 <h3 className="text-3xl md:text-4xl font-extrabold text-white mb-3">
                   Bink Sanders
                 </h3>
-                <p className="text-white/80 text-base md:text-lg leading-relaxed max-w-sm">
+                <p className="text-white/80 text-base md:text-lg leading-relaxed max-w-md">
                   Sales, strategy and a deep understanding of automation.
                   Converts complexity into growth.
                 </p>
