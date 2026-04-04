@@ -114,18 +114,62 @@ export default function HomePage() {
 
       {/* Meet the Founders */}
       <section className="py-24 px-6">
-        <div className="mx-auto max-w-3xl text-center">
-          <div className="mb-6 inline-flex items-center rounded-full bg-ainomiq-blue-glow px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">
-            Our Latest Insights
+        <div className="mx-auto max-w-4xl">
+          <div className="text-center mb-16">
+            <div className="mb-6 inline-flex items-center rounded-full bg-ainomiq-blue-glow px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">
+              Our Latest Insights
+            </div>
+            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-6">
+              Meet the Founders
+            </h2>
+            <p className="text-ainomiq-text-muted text-lg leading-relaxed max-w-2xl mx-auto">
+              Discover how automation is transforming businesses — from e-commerce
+              automation to enterprise intelligence. Built by two founders who were
+              the customer first, and decided to build what they couldn&apos;t find.
+            </p>
           </div>
-          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-6">
-            Meet the Founders
-          </h2>
-          <p className="text-ainomiq-text-muted text-lg leading-relaxed max-w-2xl mx-auto">
-            Discover how automation is transforming businesses — from e-commerce
-            automation to enterprise intelligence. Built by two founders who were
-            the customer first, and decided to build what they couldn&apos;t find.
-          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Pim */}
+            <div className="flex flex-col items-center text-center">
+              <div className="mb-5 h-56 w-56 overflow-hidden rounded-2xl bg-ainomiq-navy-light">
+                <img
+                  src="/team/pim.jpg"
+                  alt="Pim Smit"
+                  className="h-full w-full object-cover"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).style.display = "none";
+                  }}
+                />
+              </div>
+              <h3 className="text-xl font-bold text-ainomiq-text">Pim Smit</h3>
+              <p className="text-sm text-ainomiq-blue font-medium mb-3">Co-Founder</p>
+              <p className="text-sm text-ainomiq-text-muted leading-relaxed max-w-xs">
+                At the intersection of commerce and intelligence, translating what
+                clients need into solutions that deliver.
+              </p>
+            </div>
+
+            {/* Bink */}
+            <div className="flex flex-col items-center text-center">
+              <div className="mb-5 h-56 w-56 overflow-hidden rounded-2xl bg-ainomiq-navy-light">
+                <img
+                  src="/team/bink.jpg"
+                  alt="Bink Sanders"
+                  className="h-full w-full object-cover"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).style.display = "none";
+                  }}
+                />
+              </div>
+              <h3 className="text-xl font-bold text-ainomiq-text">Bink Sanders</h3>
+              <p className="text-sm text-ainomiq-blue font-medium mb-3">Co-Founder</p>
+              <p className="text-sm text-ainomiq-text-muted leading-relaxed max-w-xs">
+                Sales, strategy and a deep understanding of automation. Converts
+                complexity into growth.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
