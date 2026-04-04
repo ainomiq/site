@@ -37,9 +37,9 @@ const productsCustom = [
 ];
 
 const industries = [
-  { href: "/platform#customer-service", label: "E-commerce", sub: "Webshops & DTC", icon: ShoppingCart },
-  { href: "/enterprise#all-in-one", label: "Franchise", sub: "Multi-location ops", icon: Building2 },
-  { href: "/enterprise#app", label: "Facility Services", sub: "Field & maintenance", icon: Wrench },
+  { href: "/platform#ecommerce", label: "E-commerce", sub: "Webshops & DTC", icon: ShoppingCart },
+  { href: "/enterprise#franchise", label: "Franchise", sub: "Multi-location ops", icon: Building2 },
+  { href: "/enterprise#facility-services", label: "Facility Services", sub: "Field & maintenance", icon: Wrench },
 ];
 
 const navLinks = [

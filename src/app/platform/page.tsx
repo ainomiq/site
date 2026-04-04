@@ -13,6 +13,7 @@ import {
   Workflow,
   ArrowRight,
   Check,
+  ShoppingCart,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -152,8 +153,55 @@ export default function PlatformPage() {
         </section>
       ))}
 
+      {/* Industry — E-commerce */}
+      <section id="ecommerce" className="scroll-mt-28 py-24 px-6 bg-ainomiq-navy-light">
+        <div className="mx-auto max-w-5xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <div className="mb-4 inline-flex items-center rounded-full bg-ainomiq-blue-glow px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">
+                Industry — E-commerce
+              </div>
+              <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-4">
+                Built for webshops that want to scale
+              </h2>
+              <p className="text-ainomiq-text-muted text-lg leading-relaxed mb-8">
+                Whether you sell 50 or 5,000 orders a day — our AI platform handles customer service, inventory, marketing, and analytics so you can focus on growing your brand.
+              </p>
+              <ul className="space-y-3">
+                {[
+                  "Shopify, WooCommerce & custom integrations",
+                  "AI handles returns, tracking, and FAQs",
+                  "Automated ad campaigns with ROAS optimization",
+                  "Real-time profit and performance dashboards",
+                ].map((cap) => (
+                  <li key={cap} className="flex items-center gap-3 text-sm text-ainomiq-text-muted">
+                    <Check className="h-4 w-4 text-ainomiq-blue shrink-0" />
+                    {cap}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="flex items-center justify-center">
+              <Card className="bg-white border-ainomiq-border w-full max-w-sm">
+                <CardContent className="p-10 text-center">
+                  <div className="mb-4 mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-ainomiq-blue-glow">
+                    <ShoppingCart className="h-8 w-8 text-ainomiq-blue" />
+                  </div>
+                  <div className="text-5xl font-extrabold tracking-tight text-[#0f1b2d] mb-2">
+                    5,000+
+                  </div>
+                  <p className="text-sm text-ainomiq-text-muted">
+                    orders per day, fully automated
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* More Modules */}
-      <Section label="And more" className="bg-ainomiq-navy-light">
+      <Section label="And more">
         <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">
           Plus three more modules
         </h2>

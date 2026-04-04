@@ -18,6 +18,8 @@ import {
   BadgeCheck,
   ArrowRight,
   Check,
+  Building2,
+  Wrench,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -246,8 +248,102 @@ export default function EnterprisePage() {
         </section>
       ))}
 
+      {/* Industries — Franchise */}
+      <section id="franchise" className="scroll-mt-28 py-24 px-6">
+        <div className="mx-auto max-w-5xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <div className="mb-4 inline-flex items-center rounded-full bg-ainomiq-blue-glow px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">
+                Industry — Franchise
+              </div>
+              <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-4">
+                Scale across locations, not complexity
+              </h2>
+              <p className="text-ainomiq-text-muted text-lg leading-relaxed mb-8">
+                Franchise operations need consistency at scale. Our AI solutions standardize customer service, marketing, and operations across every location — while giving headquarters full visibility.
+              </p>
+              <ul className="space-y-3">
+                {[
+                  "Centralized AI customer service for all locations",
+                  "Automated marketing localized per region",
+                  "Real-time performance dashboards per franchise",
+                  "Standardized workflows, zero manual overhead",
+                ].map((cap) => (
+                  <li key={cap} className="flex items-center gap-3 text-sm text-ainomiq-text-muted">
+                    <Check className="h-4 w-4 text-ainomiq-blue shrink-0" />
+                    {cap}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="flex items-center justify-center">
+              <Card className="bg-white border-ainomiq-border w-full max-w-sm">
+                <CardContent className="p-10 text-center">
+                  <div className="mb-4 mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-ainomiq-blue-glow">
+                    <Building2 className="h-8 w-8 text-ainomiq-blue" />
+                  </div>
+                  <div className="text-5xl font-extrabold tracking-tight text-[#0f1b2d] mb-2">
+                    50+
+                  </div>
+                  <p className="text-sm text-ainomiq-text-muted">
+                    locations managed from one platform
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Industries — Facility Services */}
+      <section id="facility-services" className="scroll-mt-28 py-24 px-6 bg-ainomiq-navy-light">
+        <div className="mx-auto max-w-5xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center lg:grid-flow-dense">
+            <div className="lg:col-start-2">
+              <div className="mb-4 inline-flex items-center rounded-full bg-ainomiq-blue-glow px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">
+                Industry — Facility Services
+              </div>
+              <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-4">
+                Automate the field, not just the office
+              </h2>
+              <p className="text-ainomiq-text-muted text-lg leading-relaxed mb-8">
+                From maintenance scheduling to field worker dispatch — AI that handles the operational complexity of facility services so your team can focus on delivering quality.
+              </p>
+              <ul className="space-y-3">
+                {[
+                  "Intelligent scheduling and dispatch",
+                  "Automated client communication",
+                  "Predictive maintenance alerts",
+                  "Real-time field worker tracking",
+                ].map((cap) => (
+                  <li key={cap} className="flex items-center gap-3 text-sm text-ainomiq-text-muted">
+                    <Check className="h-4 w-4 text-ainomiq-blue shrink-0" />
+                    {cap}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="flex items-center justify-center lg:col-start-1">
+              <Card className="bg-white border-ainomiq-border w-full max-w-sm">
+                <CardContent className="p-10 text-center">
+                  <div className="mb-4 mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-ainomiq-blue-glow">
+                    <Wrench className="h-8 w-8 text-ainomiq-blue" />
+                  </div>
+                  <div className="text-5xl font-extrabold tracking-tight text-[#0f1b2d] mb-2">
+                    80%
+                  </div>
+                  <p className="text-sm text-ainomiq-text-muted">
+                    less manual scheduling
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* More Solutions */}
-      <Section label="And more" className="bg-ainomiq-navy-light">
+      <Section label="And more">
         <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">
           More enterprise solutions
         </h2>
