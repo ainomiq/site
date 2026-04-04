@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 const values = [
   {
     icon: Zap,
-    title: "Always ahead",
+    title: "Building the future",
     body: "We run on the latest technology. What was cutting-edge yesterday is our baseline today.",
   },
   {

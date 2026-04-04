@@ -64,7 +64,7 @@ export function HeroSection() {
           >
             <RocketIcon className="size-3 text-ainomiq-blue" />
             <span className="text-xs font-medium text-ainomiq-text">
-              Always Ahead
+              Building the Future
             </span>
             <span className="block h-5 border-l border-ainomiq-border" />
             <ArrowRightIcon className="size-3 text-ainomiq-text-muted duration-150 ease-out group-hover:translate-x-1" />
@@ -72,8 +72,8 @@ export function HeroSection() {
 
           {/* Headline */}
           <h1 className="text-balance text-center text-5xl font-extrabold tracking-tight text-ainomiq-text animate-float-up delay-100 md:text-6xl lg:text-7xl">
-            Always{" "}
-            <span className="gradient-text">Ahead.</span>
+            Building the{" "}
+            <span className="gradient-text">Future.</span>
           </h1>
 
           {/* Subtitle */}

@@ -8,7 +8,7 @@ About Ainomiq:
 - Two young founders on the cutting edge of technology
 - Mission: "Automate everything that doesn't need a human touch"
 - Based in the Netherlands, active in 58+ countries
-- Slogan: "Always Ahead"
+- Slogan: "Building the Future"
 - Not a consultancy that writes reports — we build systems that run
 
 Ainomiq App (starts free):
