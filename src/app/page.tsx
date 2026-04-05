@@ -316,7 +316,7 @@ export default function HomePage() {
             variant="outline"
             className="rounded-full border-ainomiq-border hover:border-ainomiq-border-hover bg-white text-ainomiq-text"
           >
-            <Link href="/platform">
+            <Link href="/ecommerce">
               View full app <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>

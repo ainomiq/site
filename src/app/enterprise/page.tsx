@@ -437,7 +437,7 @@ export default function EnterprisePage() {
               size="lg"
               className="rounded-full border-ainomiq-border hover:border-ainomiq-border-hover bg-white text-ainomiq-text px-8 h-12"
             >
-              <Link href="/platform">
+              <Link href="/ecommerce">
                 See ecommerce app <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>

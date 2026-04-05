@@ -80,8 +80,8 @@ export function PlatformHero() {
               Smart{" "}
               <span className="gradient-text">Automations</span>
             </h1>
-            <p className="max-w-lg mx-auto text-base text-ainomiq-text-muted leading-relaxed">
-              Six intelligent modules that work together to automate your e-commerce. From customer service to inventory — everything on autopilot.
+            <p className="max-w-xl mx-auto text-base text-ainomiq-text-muted leading-relaxed">
+              Connects to your Shopify, Meta, Google, and Klaviyo stack — and takes over the manual work your team does by hand. Lower ops costs, fewer tools, one system.
             </p>
           </div>
 

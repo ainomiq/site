@@ -23,10 +23,10 @@ import {
 import { cn } from "@/lib/utils";
 
 const productsEcommerce = [
-  { href: "/platform#customer-service", label: "Customer Service", sub: "24/7 intelligent support", icon: Headset },
-  { href: "/platform#smart-inventory", label: "Smart Inventory", sub: "Real-time stock tracking", icon: Package },
-  { href: "/platform#email-marketing", label: "E-mail Marketing", sub: "Automated campaigns", icon: Mail },
-  { href: "/platform", label: "See More", sub: "All features", icon: ArrowRight },
+  { href: "/ecommerce#customer-service", label: "Customer Service", sub: "24/7 intelligent support", icon: Headset },
+  { href: "/ecommerce#smart-inventory", label: "Smart Inventory", sub: "Real-time stock tracking", icon: Package },
+  { href: "/ecommerce#email-marketing", label: "E-mail Marketing", sub: "Automated campaigns", icon: Mail },
+  { href: "/ecommerce", label: "See More", sub: "All features", icon: ArrowRight },
 ];
 
 const productsCustom = [
@@ -37,7 +37,7 @@ const productsCustom = [
 ];
 
 const industries = [
-  { href: "/platform#ecommerce", label: "E-commerce", sub: "Webshops & DTC", icon: ShoppingCart },
+  { href: "/ecommerce", label: "E-commerce", sub: "Webshops & DTC", icon: ShoppingCart },
   { href: "/enterprise#franchise", label: "Franchise", sub: "Multi-location ops", icon: Building2 },
   { href: "/enterprise#facility-services", label: "Facility Services", sub: "Field & maintenance", icon: Wrench },
 ];
