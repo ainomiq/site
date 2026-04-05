@@ -73,7 +73,7 @@ const integrations = [
 
 export function PlatformHero() {
   return (
-    <div className="relative min-h-[90vh] pt-28 pb-12">
+    <div className="relative min-h-[calc(75vh-4rem)] pt-28 pb-12">
       <div className="overflow-hidden flex flex-col px-6 items-center justify-center">
         <GradientWave className="absolute inset-0 opacity-15" />
 
@@ -120,10 +120,7 @@ export function PlatformHero() {
       </div>
 
       {/* Integration Modules Marquee */}
-      <div className="w-full z-10 relative flex flex-col items-center mt-8">
-        <p className="text-center text-ainomiq-text-muted mb-8 text-base z-10 relative">
-          Six intelligent modules working together as one app
-        </p>
+      <div className="w-full z-10 relative flex flex-col items-center">
         <Marquee className="w-full [--duration:50s] [--gap:2rem]">
           {integrations.map((item, index) => (
             <div key={index} className="h-full">
