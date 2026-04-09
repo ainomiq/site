@@ -20,6 +20,11 @@ export default function PrivacyPolicy() {
           our application is accessible at <a href="https://app.ainomiq.com">app.ainomiq.com</a>.
         </p>
         <p>Contact: <a href="mailto:info@ainomiq.com">info@ainomiq.com</a></p>
+        <p>
+          <strong>Note:</strong> Our application platform (app.ainomiq.com) has a separate privacy policy that covers
+          data processing for connected integrations and AI services.
+          Read it at <a href="https://app.ainomiq.com/privacy-policy">app.ainomiq.com/privacy-policy</a>.
+        </p>
 
         <h2>2. What Data We Collect</h2>
         <p>We may collect the following categories of personal data:</p>
