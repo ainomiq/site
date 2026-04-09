@@ -199,20 +199,42 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      {/* Hiring CTA */}
-      <div className="px-6 pb-8">
-        <div className="mx-auto max-w-6xl text-center">
-          <p className="text-sm text-ainomiq-text-subtle">
-            Our team is growing. Interested in working at Ainomiq?{" "}
-            <Link
-              href="/contact"
-              className="text-ainomiq-blue font-semibold hover:underline"
-            >
-              Get in touch
-            </Link>
-          </p>
+      {/* Careers */}
+      <Section label="Careers" className="bg-ainomiq-navy-light">
+        <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">
+          Build the future with us
+        </h2>
+        <p className="text-ainomiq-text-muted text-lg max-w-2xl leading-relaxed mb-8">
+          We&apos;re a small team with big ambitions. At Ainomiq, you won&apos;t sit in meetings about meetings. You&apos;ll ship real AI systems for real businesses — and see the impact from day one.
+        </p>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
+          <Card className="bg-white border-ainomiq-border">
+            <CardContent className="p-6">
+              <h3 className="font-bold mb-2">🚀 Move fast</h3>
+              <p className="text-sm text-ainomiq-text-muted leading-relaxed">No bureaucracy. Ideas ship in days, not quarters. You own your work end to end.</p>
+            </CardContent>
+          </Card>
+          <Card className="bg-white border-ainomiq-border">
+            <CardContent className="p-6">
+              <h3 className="font-bold mb-2">🧠 Stay sharp</h3>
+              <p className="text-sm text-ainomiq-text-muted leading-relaxed">Work with the latest AI tools every day. We don&apos;t just follow the industry — we live in it.</p>
+            </CardContent>
+          </Card>
+          <Card className="bg-white border-ainomiq-border">
+            <CardContent className="p-6">
+              <h3 className="font-bold mb-2">🌍 Work anywhere</h3>
+              <p className="text-sm text-ainomiq-text-muted leading-relaxed">Remote-first. Results matter, not where your desk is. Async communication, real autonomy.</p>
+            </CardContent>
+          </Card>
         </div>
-      </div>
+        <Button
+          asChild
+          size="lg"
+          className="rounded-full bg-ainomiq-blue hover:bg-ainomiq-blue-hover text-white px-10 h-12"
+        >
+          <Link href="/contact">Get in touch</Link>
+        </Button>
+      </Section>
 
       {/* CTA */}
       <section className="py-32 px-6 text-center bg-ainomiq-navy-light">
