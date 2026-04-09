@@ -165,40 +165,40 @@ export default function AboutPage() {
           We&apos;re a small team with big ambitions. At Ainomiq, you won&apos;t sit in meetings about meetings. You&apos;ll ship real AI systems for real businesses — and see the impact from day one.
         </p>
       </Section>
-      <section className="py-32">
-        <div className="container">
-          <div className="max-w-3xl">
-            <h2 className="text-left text-3xl font-medium md:text-4xl">Open positions</h2>
-            <div className="mx-auto mt-6 flex flex-col gap-16 md:mt-14">
-              <div className="grid">
-                <h3 className="border-b pb-4 text-xl font-bold">Engineering</h3>
-                {[
-                  { title: "AI Engineer", location: "Remote" },
-                  { title: "Full-Stack Developer", location: "Remote" },
-                  { title: "Backend Developer (Python)", location: "Remote" },
-                ].map((job) => (
-                  <div key={job.title} className="flex items-center justify-between border-b py-4">
-                    <Link href="/contact" className="font-semibold hover:underline">{job.title}</Link>
-                    <Button variant="outline" size="sm" className="pointer-events-none rounded-full">{job.location}</Button>
-                  </div>
-                ))}
+
+      {/* Open Positions */}
+      <Section label="Open positions">
+        <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-12">
+          Join our team
+        </h2>
+        <div className="flex flex-col gap-12 max-w-2xl">
+          <div>
+            <h3 className="text-lg font-bold border-b border-ainomiq-border pb-3 mb-0">Engineering</h3>
+            {[
+              { title: "AI Engineer", location: "Remote" },
+              { title: "Full-Stack Developer", location: "Remote" },
+              { title: "Backend Developer (Python)", location: "Remote" },
+            ].map((job) => (
+              <div key={job.title} className="flex items-center justify-between border-b border-ainomiq-border py-4">
+                <Link href="/contact" className="font-semibold hover:text-ainomiq-blue transition-colors">{job.title}</Link>
+                <span className="text-xs font-medium text-ainomiq-text-muted border border-ainomiq-border rounded-full px-3 py-1">{job.location}</span>
               </div>
-              <div className="grid">
-                <h3 className="border-b pb-4 text-xl font-bold">Growth</h3>
-                {[
-                  { title: "Sales & Partnerships", location: "Netherlands" },
-                  { title: "Marketing & Content", location: "Remote" },
-                ].map((job) => (
-                  <div key={job.title} className="flex items-center justify-between border-b py-4">
-                    <Link href="/contact" className="font-semibold hover:underline">{job.title}</Link>
-                    <Button variant="outline" size="sm" className="pointer-events-none rounded-full">{job.location}</Button>
-                  </div>
-                ))}
+            ))}
+          </div>
+          <div>
+            <h3 className="text-lg font-bold border-b border-ainomiq-border pb-3 mb-0">Growth</h3>
+            {[
+              { title: "Sales & Partnerships", location: "Netherlands" },
+              { title: "Marketing & Content", location: "Remote" },
+            ].map((job) => (
+              <div key={job.title} className="flex items-center justify-between border-b border-ainomiq-border py-4">
+                <Link href="/contact" className="font-semibold hover:text-ainomiq-blue transition-colors">{job.title}</Link>
+                <span className="text-xs font-medium text-ainomiq-text-muted border border-ainomiq-border rounded-full px-3 py-1">{job.location}</span>
               </div>
-            </div>
+            ))}
           </div>
         </div>
-      </section>
+      </Section>
 
       {/* CTA */}
       <section className="py-32 px-6 text-center bg-ainomiq-navy-light">
