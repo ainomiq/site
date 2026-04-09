@@ -15,7 +15,7 @@ export function Footer() {
   return (
     <footer className="border-t border-ainomiq-border">
       <div className="mx-auto max-w-6xl px-6 pt-16 pb-8">
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-4">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-5">
           {/* Brand */}
           <div className="md:col-span-1">
             <LogoMark className="mb-4 block text-xl" />
@@ -83,27 +83,38 @@ export function Footer() {
               </li>
             </ul>
           </div>
+
+          {/* Legal */}
+          <div>
+            <h4 className="mb-4 text-xs font-semibold uppercase tracking-wider text-ainomiq-text-muted">
+              Legal
+            </h4>
+            <ul className="space-y-2.5">
+              <li>
+                <Link
+                  href="/privacy"
+                  className="text-sm text-ainomiq-text-subtle transition-colors hover:text-ainomiq-text"
+                >
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/terms"
+                  className="text-sm text-ainomiq-text-subtle transition-colors hover:text-ainomiq-text"
+                >
+                  Terms of Service
+                </Link>
+              </li>
+            </ul>
+          </div>
         </div>
 
         {/* Bottom */}
-        <div className="mt-16 border-t border-ainomiq-border pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="mt-16 border-t border-ainomiq-border pt-6 text-center">
           <span className="text-xs text-ainomiq-text-subtle">
             &copy; {new Date().getFullYear()} Ainomiq. All rights reserved.
           </span>
-          <div className="flex items-center gap-4">
-            <Link
-              href="/privacy"
-              className="text-xs text-ainomiq-text-subtle transition-colors hover:text-ainomiq-text"
-            >
-              Privacy Policy
-            </Link>
-            <Link
-              href="/terms"
-              className="text-xs text-ainomiq-text-subtle transition-colors hover:text-ainomiq-text"
-            >
-              Terms of Service
-            </Link>
-          </div>
         </div>
       </div>
     </footer>
