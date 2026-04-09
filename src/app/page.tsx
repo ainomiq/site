@@ -123,9 +123,10 @@ export default function HomePage() {
               Meet the Founders
             </h2>
             <p className="text-ainomiq-text-muted text-lg leading-relaxed max-w-2xl mx-auto mb-8">
-              Discover how automation is transforming businesses — from e-commerce
-              automation to enterprise intelligence. Built by two founders who were
-              the customer first, and decided to build what they couldn&apos;t find.
+              Ainomiq started with two childhood friends who shared the same obsession: AI.
+              Bink came from years in IT. Pim from e-commerce. Different worlds, same fascination.
+              Both started small, automating parts of their own work. Over time, those small
+              automations turned into something bigger. Entire processes running on autopilot.
             </p>
             <Button
               asChild
