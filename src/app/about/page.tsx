@@ -35,28 +35,6 @@ const values = [
   },
 ];
 
-const timeline = [
-  {
-    year: "2025",
-    title: "Ainomiq founded",
-    body: "Bink Sanders starts Ainomiq from the conviction that automation can be faster, more practical, and more affordable.",
-  },
-  {
-    year: "2026",
-    title: "First client: Domino's",
-    body: "Ainomiq begins building automated store operations for Domino's franchisees.",
-  },
-  {
-    year: "2026",
-    title: "App in development",
-    body: "The Ainomiq app is being built — six intelligent modules for e-commerce and enterprise.",
-  },
-  {
-    year: "2026+",
-    title: "Growth and scale",
-    body: "More clients, more modules, international expansion. The story starts here.",
-  },
-];
 
 export default function AboutPage() {
   return (
@@ -178,36 +156,15 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      {/* Timeline */}
-      <Section label="Our story">
-        <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-12">
-          Just getting started — and that&apos;s our advantage
-        </h2>
-        <div className="relative max-w-xl pl-8 border-l-2 border-ainomiq-border space-y-10">
-          {timeline.map((item) => (
-            <div key={item.title} className="relative pl-6">
-              <div className="absolute -left-[calc(0.5rem+1px)] top-1 h-3 w-3 rounded-full bg-ainomiq-blue border-2 border-white" />
-              <span className="text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">
-                {item.year}
-              </span>
-              <h3 className="font-bold mt-1 mb-1">{item.title}</h3>
-              <p className="text-sm text-ainomiq-text-muted leading-relaxed">
-                {item.body}
-              </p>
-            </div>
-          ))}
-        </div>
-      </Section>
-
       {/* Careers */}
-      <Section label="Careers" className="bg-ainomiq-navy-light">
+      <Section label="Careers">
         <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">
           Build the future with us
         </h2>
-        <p className="text-ainomiq-text-muted text-lg max-w-2xl leading-relaxed mb-8">
+        <p className="text-ainomiq-text-muted text-lg max-w-2xl leading-relaxed mb-12">
           We&apos;re a small team with big ambitions. At Ainomiq, you won&apos;t sit in meetings about meetings. You&apos;ll ship real AI systems for real businesses — and see the impact from day one.
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <Card className="bg-white border-ainomiq-border">
             <CardContent className="p-6">
               <h3 className="font-bold mb-2">🚀 Move fast</h3>
@@ -227,13 +184,6 @@ export default function AboutPage() {
             </CardContent>
           </Card>
         </div>
-        <Button
-          asChild
-          size="lg"
-          className="rounded-full bg-ainomiq-blue hover:bg-ainomiq-blue-hover text-white px-10 h-12"
-        >
-          <Link href="/contact">Get in touch</Link>
-        </Button>
       </Section>
 
       {/* CTA */}
