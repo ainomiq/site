@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Section } from "@/components/section";
-import { Zap, BadgeCheck, Info, Clock } from "lucide-react";
+import { Careers4 } from "@/components/ui/careers-4";
 
 export const metadata: Metadata = {
   title: "About",
@@ -161,30 +161,30 @@ export default function AboutPage() {
         <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">
           Build the future with us
         </h2>
-        <p className="text-ainomiq-text-muted text-lg max-w-2xl leading-relaxed mb-12">
+        <p className="text-ainomiq-text-muted text-lg max-w-2xl leading-relaxed mb-4">
           We&apos;re a small team with big ambitions. At Ainomiq, you won&apos;t sit in meetings about meetings. You&apos;ll ship real AI systems for real businesses — and see the impact from day one.
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <Card className="bg-white border-ainomiq-border">
-            <CardContent className="p-6">
-              <h3 className="font-bold mb-2">🚀 Move fast</h3>
-              <p className="text-sm text-ainomiq-text-muted leading-relaxed">No bureaucracy. Ideas ship in days, not quarters. You own your work end to end.</p>
-            </CardContent>
-          </Card>
-          <Card className="bg-white border-ainomiq-border">
-            <CardContent className="p-6">
-              <h3 className="font-bold mb-2">🧠 Stay sharp</h3>
-              <p className="text-sm text-ainomiq-text-muted leading-relaxed">Work with the latest AI tools every day. We don&apos;t just follow the industry — we live in it.</p>
-            </CardContent>
-          </Card>
-          <Card className="bg-white border-ainomiq-border">
-            <CardContent className="p-6">
-              <h3 className="font-bold mb-2">🌍 Work anywhere</h3>
-              <p className="text-sm text-ainomiq-text-muted leading-relaxed">Remote-first. Results matter, not where your desk is. Async communication, real autonomy.</p>
-            </CardContent>
-          </Card>
-        </div>
       </Section>
+      <Careers4
+        heading="Open positions"
+        jobs={[
+          {
+            category: "Engineering",
+            openings: [
+              { title: "AI Engineer", location: "Remote", url: "/contact" },
+              { title: "Full-Stack Developer", location: "Remote", url: "/contact" },
+              { title: "Backend Developer (Python)", location: "Remote", url: "/contact" },
+            ],
+          },
+          {
+            category: "Growth",
+            openings: [
+              { title: "Sales & Partnerships", location: "Netherlands", url: "/contact" },
+              { title: "Marketing & Content", location: "Remote", url: "/contact" },
+            ],
+          },
+        ]}
+      />
 
       {/* CTA */}
       <section className="py-32 px-6 text-center bg-ainomiq-navy-light">
