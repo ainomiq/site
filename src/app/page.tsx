@@ -131,9 +131,6 @@ export default function HomePage() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
               <div className="absolute bottom-0 left-0 right-0 p-8 md:p-10">
-                <p className="text-sm font-semibold uppercase tracking-wider text-ainomiq-blue mb-2">
-                  Co-Founders
-                </p>
                 <h3 className="text-3xl md:text-4xl font-extrabold text-white">
                   Bink Sanders &amp; Pim Smit
                 </h3>
