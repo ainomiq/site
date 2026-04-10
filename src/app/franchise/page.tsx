@@ -125,72 +125,68 @@ export default function FranchisePage() {
             </h2>
           </div>
 
-          <div className="relative">
-
-            <div className="space-y-16">
-              {/* Level 3: Owner */}
-              <div className="relative pl-0">
-                <span className="text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">Franchise Owner</span>
-                <h3 className="text-2xl md:text-3xl font-bold mt-2 mb-3">Understand why stores succeed</h3>
-                <p className="text-ainomiq-text-muted leading-relaxed mb-6 max-w-xl">
-                  Connects your P&L to operational data. You don&apos;t just see revenue. you see exactly why a store performs well and how to replicate it across your network.
-                </p>
-                <div className="grid sm:grid-cols-2 gap-3">
-                  {["Success pattern analysis", "Expansion opportunity scoring", "Cross-store benchmarking", "Actionable growth recommendations"].map((item) => (
-                    <div key={item} className="flex items-center gap-3 text-sm">
-                      <div className="w-1.5 h-1.5 rounded-full bg-ainomiq-blue shrink-0" />
-                      <span className="text-ainomiq-text-muted">{item}</span>
-                    </div>
-                  ))}
-                </div>
+          <div className="grid md:grid-cols-3 gap-6">
+            {/* Owner */}
+            <div className="rounded-2xl p-8 text-white" style={{ background: "linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%)" }}>
+              <span className="inline-flex items-center rounded-full bg-white/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-sky-300 mb-4">
+                Franchise Owner
+              </span>
+              <h3 className="text-xl font-bold mb-2">Understand why stores succeed</h3>
+              <p className="text-sm text-white/60 leading-relaxed mb-5">
+                See exactly why a store performs well and replicate it across your network.
+              </p>
+              <div className="space-y-2">
+                {["Success pattern analysis", "Expansion scoring", "Cross-store benchmarking", "Growth recommendations"].map((item) => (
+                  <div key={item} className="flex items-center gap-2.5 text-sm text-white/80">
+                    <div className="w-1 h-1 rounded-full bg-sky-300 shrink-0" />
+                    {item}
+                  </div>
+                ))}
               </div>
+            </div>
 
-              {/* Level 2: Manager */}
-              <div className="relative pl-0">
-                <span className="text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">Store Manager</span>
-                <h3 className="text-2xl md:text-3xl font-bold mt-2 mb-3">Run your store on autopilot</h3>
-                <p className="text-ainomiq-text-muted leading-relaxed mb-6 max-w-xl">
-                  Handles scheduling, inventory, and quality. your managers focus on customers and team. Coaching tips tailored to each location.
-                </p>
-                <div className="grid sm:grid-cols-2 gap-3">
-                  {["Smart shift planning", "Real-time performance dashboards", "Inventory & waste alerts", "Quality control checklists", "Team management tools", "Personalized coaching tips"].map((item) => (
-                    <div key={item} className="flex items-center gap-3 text-sm">
-                      <div className="w-1.5 h-1.5 rounded-full bg-ainomiq-blue shrink-0" />
-                      <span className="text-ainomiq-text-muted">{item}</span>
-                    </div>
-                  ))}
-                </div>
+            {/* Manager */}
+            <div className="rounded-2xl border border-ainomiq-blue/20 p-8 bg-gradient-to-b from-blue-50 to-white">
+              <span className="inline-flex items-center rounded-full bg-ainomiq-blue/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-ainomiq-blue mb-4">
+                Store Manager
+              </span>
+              <h3 className="text-xl font-bold mb-2">Run your store on autopilot</h3>
+              <p className="text-sm text-ainomiq-text-muted leading-relaxed mb-5">
+                Scheduling, inventory, and quality handled. Managers focus on customers and team.
+              </p>
+              <div className="space-y-2">
+                {["Smart shift planning", "Performance dashboards", "Inventory & waste alerts", "Quality checklists", "Team tools", "Coaching tips"].map((item) => (
+                  <div key={item} className="flex items-center gap-2.5 text-sm text-ainomiq-text-muted">
+                    <div className="w-1 h-1 rounded-full bg-ainomiq-blue shrink-0" />
+                    {item}
+                  </div>
+                ))}
               </div>
+            </div>
 
-              {/* Level 1: Employee */}
-              <div className="relative pl-0">
-                <span className="text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">Employee</span>
-                <h3 className="text-2xl md:text-3xl font-bold mt-2 mb-3">Support on the floor, 24/7</h3>
-                <p className="text-ainomiq-text-muted leading-relaxed mb-6 max-w-xl">
-                  Every employee gets a smart assistant that speaks their language. Procedures, training, and answers. always one question away.
-                </p>
-                <div className="grid sm:grid-cols-2 gap-3">
-                  {["Smart assistant in any language", "Step-by-step procedures", "Interactive onboarding", "Shift schedules & tasks"].map((item) => (
-                    <div key={item} className="flex items-center gap-3 text-sm">
-                      <div className="w-1.5 h-1.5 rounded-full bg-ainomiq-blue shrink-0" />
-                      <span className="text-ainomiq-text-muted">{item}</span>
-                    </div>
-                  ))}
-                </div>
+            {/* Employee */}
+            <div className="rounded-2xl border border-ainomiq-border p-8 bg-white">
+              <span className="inline-flex items-center rounded-full bg-ainomiq-blue/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-ainomiq-blue mb-4">
+                Employee
+              </span>
+              <h3 className="text-xl font-bold mb-2">Support on the floor, 24/7</h3>
+              <p className="text-sm text-ainomiq-text-muted leading-relaxed mb-5">
+                A smart assistant in any language. Procedures, training, and answers always one question away.
+              </p>
+              <div className="space-y-2">
+                {["Any-language assistant", "Step-by-step procedures", "Interactive onboarding", "Shift schedules & tasks"].map((item) => (
+                  <div key={item} className="flex items-center gap-2.5 text-sm text-ainomiq-text-muted">
+                    <div className="w-1 h-1 rounded-full bg-ainomiq-blue shrink-0" />
+                    {item}
+                  </div>
+                ))}
               </div>
             </div>
           </div>
 
-          <div className="text-center mt-16">
-            <p className="text-sm text-ainomiq-text-muted max-w-md mx-auto">
-              Data flows up. Insights flow down. Every level gets exactly what they need.
-            </p>
-          </div>
-
-          {/* Visual graph */}
-          <div className="mt-20 rounded-2xl border border-ainomiq-border bg-white p-6 md:p-10">
-            <PlatformGraph />
-          </div>
+          <p className="text-center text-sm text-ainomiq-text-muted mt-10">
+            Data flows up. Insights flow down. Every level gets exactly what they need.
+          </p>
         </div>
       </section>
 
