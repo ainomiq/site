@@ -121,38 +121,34 @@ export default function HomePage() {
             </h2>
           </div>
 
-          {/* Photo */}
-          <div className="max-w-4xl mx-auto mb-12">
+          {/* Photo with text overlay */}
+          <div className="max-w-4xl mx-auto">
             <div className="group relative aspect-[16/9] overflow-hidden rounded-3xl">
               <img
                 src="/team/founders.jpg"
-                alt="Bink Sanders & Pim Smit — Co-Founders of Ainomiq"
+                alt="Pim Smit & Bink Sanders — Co-Founders of Ainomiq"
                 className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-8 md:p-10">
-                <h3 className="text-3xl md:text-4xl font-extrabold text-white">
-                  Bink Sanders &amp; Pim Smit
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10">
+                <h3 className="text-2xl md:text-4xl font-extrabold text-white mb-2 md:mb-4">
+                  Pim Smit &amp; Bink Sanders
                 </h3>
+                <p className="text-white/80 text-sm md:text-base leading-relaxed max-w-xl mb-4 md:mb-6">
+                  Ainomiq started with two childhood friends who shared the same obsession: AI.
+                  Bink came from years in IT. Pim from e-commerce. Different worlds, same fascination.
+                </p>
+                <Button
+                  asChild
+                  variant="outline"
+                  className="rounded-full border-white/30 hover:border-white/60 bg-white/10 backdrop-blur-sm text-white hover:bg-white/20"
+                >
+                  <Link href="/about">
+                    Read more <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
               </div>
             </div>
-          </div>
-
-          {/* Text + CTA */}
-          <div className="text-center">
-            <p className="text-ainomiq-text-muted text-lg leading-relaxed max-w-2xl mx-auto mb-8">
-              Ainomiq started with two childhood friends who shared the same obsession: AI.
-              Bink came from years in IT. Pim from e-commerce. Different worlds, same fascination.
-            </p>
-            <Button
-              asChild
-              variant="outline"
-              className="rounded-full border-ainomiq-border hover:border-ainomiq-border-hover bg-white text-ainomiq-text"
-            >
-              <Link href="/about">
-                Read more <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
           </div>
         </div>
       </section>
