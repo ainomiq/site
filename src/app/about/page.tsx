@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Section } from "@/components/section";
 import { Zap, BadgeCheck, Info, Clock } from "lucide-react";
+import { ValuesScroll } from "@/components/values-scroll";
 
 export const metadata: Metadata = {
   title: "About",
@@ -144,25 +145,8 @@ export default function AboutPage() {
         </p>
       </Section>
 
-      {/* Values — Decagon-style interactive */}
-      <section className="relative w-full bg-ainomiq-text py-24 px-6">
-        <div className="mx-auto max-w-6xl">
-          <span className="text-xs font-semibold uppercase tracking-wider text-white/50">Our values</span>
-          <div className="mt-16 grid md:grid-cols-2 gap-16">
-            <div className="space-y-6">
-              {values.map((v, i) => (
-                <div key={v.num} className="group cursor-default">
-                  <div className="flex items-center gap-4">
-                    <span className={`text-sm font-mono ${i === 0 ? 'text-white' : 'text-white/40'} group-hover:text-white transition-colors`}>{v.num}</span>
-                    <span className={`text-xl md:text-2xl font-bold tracking-tight ${i === 0 ? 'text-white' : 'text-white/40'} group-hover:text-white transition-colors`}>{v.title}</span>
-                  </div>
-                  <p className="mt-2 pl-10 text-sm text-white/0 group-hover:text-white/60 transition-colors max-w-md leading-relaxed">{v.body}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Values — scroll-driven */}
+      <ValuesScroll />
 
       {/* Benefits */}
       <Section label="Benefits">
