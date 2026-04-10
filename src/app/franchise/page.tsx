@@ -13,8 +13,8 @@ export const metadata: Metadata = {
 };
 
 const results = [
-  { icon: TrendingDown, value: "30%", label: "Labour cost reduction", desc: "AI identifies overspend patterns and optimizes scheduling across every shift." },
-  { icon: Clock, value: "2 weeks", label: "Up and running", desc: "No 6-month rollout. Your AI system is live and learning within 14 days." },
+  { icon: TrendingDown, value: "30%", label: "Labour cost reduction", desc: "Identifies overspend patterns and optimizes scheduling across every shift." },
+  { icon: Clock, value: "2 weeks", label: "Up and running", desc: "No 6-month rollout. Your system is live and learning within 14 days." },
   { icon: TrendingUp, value: "15%", label: "Revenue improvement", desc: "Smarter staffing + less waste = more profit per location, automatically." },
   { icon: DollarSign, value: "€8K+", label: "Saved per store per year", desc: "Across scheduling, inventory, and operational efficiency — measurable from month one." },
 ];
@@ -23,7 +23,7 @@ const accordionItems = [
   {
     num: "01",
     title: "Smarter scheduling, lower costs",
-    body: "AI analyzes sales patterns, weather, events, and historical data to predict exactly how many staff you need per shift. No more overstaffing during slow hours or panic-calling during rush.",
+    body: "Analyzes sales patterns, weather, events, and historical data to predict exactly how many staff you need per shift. No more overstaffing during slow hours or panic-calling during rush.",
   },
   {
     num: "02",
@@ -32,13 +32,13 @@ const accordionItems = [
   },
   {
     num: "03",
-    title: "AI assistant for every employee",
-    body: "New hire? Language barrier? No problem. An AI assistant answers operational questions, guides procedures, and handles training — in any language, 24/7.",
+    title: "Smart assistant for every employee",
+    body: "New hire? Language barrier? No problem. A smart assistant answers operational questions, guides procedures, and handles training — in any language, 24/7.",
   },
   {
     num: "04",
     title: "Inventory & waste management",
-    body: "AI predicts demand per product, per location. Automatically suggests optimal stock levels, flags expiring items, and reduces food waste by up to 40%.",
+    body: "Predicts demand per product, per location. Automatically suggests optimal stock levels, flags expiring items, and reduces food waste by up to 40%.",
   },
   {
     num: "05",
@@ -48,17 +48,17 @@ const accordionItems = [
   {
     num: "06",
     title: "Multi-language onboarding",
-    body: "Train new employees in their own language. AI-powered onboarding guides cover procedures, safety, and operations — no translator needed.",
+    body: "Train new employees in their own language. Intelligent onboarding guides cover procedures, safety, and operations — no translator needed.",
   },
   {
     num: "07",
     title: "Automated manager tasks",
-    body: "Daily reports, opening and closing checklists, escalation handling — AI takes care of the repetitive work so managers can focus on the floor.",
+    body: "Daily reports, opening and closing checklists, escalation handling — Automates the repetitive work so managers can focus on the floor.",
   },
   {
     num: "08",
     title: "Customer feedback analysis",
-    body: "AI analyzes reviews, complaints, and ratings across all platforms. Spots patterns per location so you can fix problems before they spread.",
+    body: "Analyzes reviews, complaints, and ratings across all platforms. Spots patterns per location so you can fix problems before they spread.",
   },
 ];
 
@@ -73,7 +73,7 @@ export default function FranchisePage() {
           </div>
           <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight leading-[1.05] mb-6">
             Your franchise,{" "}
-            <span className="gradient-text">powered by AI</span>
+            <span className="gradient-text">powered by intelligence</span>
           </h1>
           <p className="text-lg text-ainomiq-text-muted max-w-2xl mx-auto leading-relaxed mb-10">
             Empower your employees, unlock real-time insights, and scale your franchise — all from one intelligent platform.
@@ -103,7 +103,7 @@ export default function FranchisePage() {
         <div className="mx-auto max-w-4xl text-center">
           <Quote className="h-8 w-8 text-ainomiq-blue/30 mx-auto mb-6" />
           <blockquote className="text-xl md:text-2xl font-bold tracking-tight leading-snug mb-6 max-w-3xl mx-auto">
-            &ldquo;We reduced labour costs by 28% in the first three months. The AI scheduling alone paid for itself within weeks.&rdquo;
+            &ldquo;We reduced labour costs by 28% in the first three months. The smart scheduling alone paid for itself within weeks.&rdquo;
           </blockquote>
           <div className="flex items-center justify-center gap-3">
             <div className="w-10 h-10 rounded-full bg-ainomiq-blue/20 flex items-center justify-center text-sm font-bold text-ainomiq-blue">
@@ -153,7 +153,7 @@ export default function FranchisePage() {
                 <span className="text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">Franchise Owner</span>
                 <h3 className="text-2xl md:text-3xl font-bold mt-2 mb-3">Understand why stores succeed</h3>
                 <p className="text-ainomiq-text-muted leading-relaxed mb-6 max-w-xl">
-                  AI connects your P&L to operational data. You don&apos;t just see revenue — you see exactly why a store performs well and how to replicate it across your network.
+                  Connects your P&L to operational data. You don&apos;t just see revenue — you see exactly why a store performs well and how to replicate it across your network.
                 </p>
                 <div className="grid sm:grid-cols-2 gap-3">
                   {["Success pattern analysis", "Expansion opportunity scoring", "Cross-store benchmarking", "Actionable growth recommendations"].map((item) => (
@@ -171,10 +171,10 @@ export default function FranchisePage() {
                 <span className="text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">Store Manager</span>
                 <h3 className="text-2xl md:text-3xl font-bold mt-2 mb-3">Run your store on autopilot</h3>
                 <p className="text-ainomiq-text-muted leading-relaxed mb-6 max-w-xl">
-                  AI handles scheduling, inventory, and quality — your managers focus on customers and team. Coaching tips tailored to each location.
+                  Handles scheduling, inventory, and quality — your managers focus on customers and team. Coaching tips tailored to each location.
                 </p>
                 <div className="grid sm:grid-cols-2 gap-3">
-                  {["Smart shift planning", "Real-time performance dashboards", "Inventory & waste alerts", "Quality control checklists", "Team management tools", "AI-powered coaching tips"].map((item) => (
+                  {["Smart shift planning", "Real-time performance dashboards", "Inventory & waste alerts", "Quality control checklists", "Team management tools", "Personalized coaching tips"].map((item) => (
                     <div key={item} className="flex items-center gap-3 text-sm">
                       <div className="w-1.5 h-1.5 rounded-full bg-ainomiq-blue shrink-0" />
                       <span className="text-ainomiq-text-muted">{item}</span>
@@ -189,10 +189,10 @@ export default function FranchisePage() {
                 <span className="text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">Employee</span>
                 <h3 className="text-2xl md:text-3xl font-bold mt-2 mb-3">Support on the floor, 24/7</h3>
                 <p className="text-ainomiq-text-muted leading-relaxed mb-6 max-w-xl">
-                  Every employee gets an AI assistant that speaks their language. Procedures, training, and answers — always one question away.
+                  Every employee gets a smart assistant that speaks their language. Procedures, training, and answers — always one question away.
                 </p>
                 <div className="grid sm:grid-cols-2 gap-3">
-                  {["AI assistant in any language", "Step-by-step procedures", "Interactive onboarding", "Shift schedules & tasks"].map((item) => (
+                  {["Smart assistant in any language", "Step-by-step procedures", "Interactive onboarding", "Shift schedules & tasks"].map((item) => (
                     <div key={item} className="flex items-center gap-3 text-sm">
                       <div className="w-1.5 h-1.5 rounded-full bg-ainomiq-blue shrink-0" />
                       <span className="text-ainomiq-text-muted">{item}</span>
@@ -223,18 +223,18 @@ export default function FranchisePage() {
                 Every interaction makes your franchise smarter
               </h2>
               <p className="text-ainomiq-text-muted leading-relaxed mb-6">
-                The more your franchise operates, the more data flows in. AI turns that data into actionable recommendations — automatically. No analyst needed.
+                The more your franchise operates, the more data flows in. Our platform turns that data into actionable recommendations — automatically. No analyst needed.
               </p>
               <p className="text-ainomiq-text-muted leading-relaxed">
-                From predicting your busiest Tuesday to flagging a store that&apos;s underperforming — AI sees patterns humans miss and helps managers act on them before they become problems.
+                From predicting your busiest Tuesday to flagging a store that&apos;s underperforming — The system sees patterns humans miss and helps managers act on them before they become problems.
               </p>
             </div>
             <div className="space-y-4">
               {[
-                { title: "Predictive recommendations", body: "AI analyzes trends and suggests improvements — from staffing adjustments to new revenue opportunities." },
+                { title: "Predictive recommendations", body: "Analyzes trends and suggests improvements — from staffing adjustments to new revenue opportunities." },
                 { title: "Manager coaching", body: "Personalized tips per store manager based on their location's data, performance, and growth potential." },
                 { title: "Full-picture insights", body: "Sales, staffing, inventory, reviews, quality — all connected in one intelligent view." },
-                { title: "Expansion-ready", body: "AI identifies which locations are ready to scale, what's working best, and where to replicate success." },
+                { title: "Expansion-ready", body: "Identifies which locations are ready to scale, what's working best, and where to replicate success." },
               ].map((item) => (
                 <div
                   key={item.title}
@@ -255,7 +255,7 @@ export default function FranchisePage() {
           The numbers that matter
         </h2>
         <p className="text-ainomiq-text-muted text-lg max-w-2xl leading-relaxed mb-12">
-          Every franchise owner cares about one thing: the bottom line. Here&apos;s what AI delivers.
+          Every franchise owner cares about one thing: the bottom line. Here&apos;s what the platform delivers.
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {results.map((r) => (
@@ -282,12 +282,12 @@ export default function FranchisePage() {
             What we do
           </span>
           <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mt-4 mb-12">
-            AI that runs your stores — so you don&apos;t have to
+            A system that runs your stores — so you don&apos;t have to
           </h2>
           <div className="space-y-10">
             {[
               { num: "01", title: "We connect to your systems", body: "POS, planning tools, sales data — we plug into what you already have. No new hardware, no disruption." },
-              { num: "02", title: "AI takes over the busywork", body: "Scheduling, demand prediction, inventory — AI handles it 24/7. Your managers focus on customers, not spreadsheets." },
+              { num: "02", title: "Automation takes over the busywork", body: "Scheduling, demand prediction, inventory — The system handles it 24/7. Your managers focus on customers, not spreadsheets." },
               { num: "03", title: "You see the results immediately", body: "Lower labour costs, less waste, better shifts. Real-time dashboards show exactly where you're saving and earning more." },
             ].map((s) => (
               <div key={s.num} className="flex gap-6">
