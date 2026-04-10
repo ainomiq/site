@@ -131,9 +131,9 @@ export default function FranchisePage() {
       </section>
 
       {/* How we do it — 3-level visual flow */}
-      <section className="py-24 px-6 bg-ainomiq-navy-light">
-        <div className="mx-auto max-w-4xl">
-          <div className="text-center mb-16">
+      <section className="py-24 px-6">
+        <div className="mx-auto max-w-5xl">
+          <div className="text-center mb-20">
             <span className="text-xs font-semibold uppercase tracking-[0.2em] text-ainomiq-blue">
               How we do it
             </span>
@@ -142,63 +142,70 @@ export default function FranchisePage() {
             </h2>
           </div>
 
-          <div className="relative space-y-4">
-            {/* Connecting line */}
-            <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-sky-300 via-ainomiq-blue to-[#0f172a] hidden md:block" />
+          <div className="relative">
+            {/* Connecting gradient line */}
+            <div className="absolute left-8 md:left-12 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#0f172a] via-ainomiq-blue to-sky-200 rounded-full" />
 
-            {/* Level 3: Owner */}
-            <div className="relative rounded-2xl border border-white/20 p-8 md:p-10 text-white" style={{ background: "linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%)" }}>
-              <div className="relative z-10">
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="text-xs font-mono text-white/40">LEVEL 03</span>
-                  <span className="text-xs font-semibold uppercase tracking-wider text-sky-300">Franchise Owner</span>
-                </div>
-                <h3 className="text-xl md:text-2xl font-bold mb-3">Strategic decisions, powered by data</h3>
-                <div className="grid sm:grid-cols-3 gap-4 mt-6">
-                  {["P&L per location", "Expansion readiness scores", "Cross-store benchmarking", "Revenue forecasting", "Investment ROI tracking", "Portfolio health overview"].map((item) => (
-                    <div key={item} className="rounded-xl bg-white/10 backdrop-blur px-4 py-3 text-sm text-white/80">{item}</div>
+            <div className="space-y-16">
+              {/* Level 3: Owner */}
+              <div className="relative pl-20 md:pl-28">
+                <div className="absolute left-5 md:left-9 top-2 w-6 h-6 rounded-full bg-[#0f172a] border-4 border-white shadow-lg" />
+                <span className="text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">Franchise Owner</span>
+                <h3 className="text-2xl md:text-3xl font-bold mt-2 mb-3">Understand why stores succeed</h3>
+                <p className="text-ainomiq-text-muted leading-relaxed mb-6 max-w-xl">
+                  AI connects your P&L to operational data. You don&apos;t just see revenue — you see exactly why a store performs well and how to replicate it across your network.
+                </p>
+                <div className="grid sm:grid-cols-2 gap-3">
+                  {["Success pattern analysis", "Expansion opportunity scoring", "Cross-store benchmarking", "Actionable growth recommendations"].map((item) => (
+                    <div key={item} className="flex items-center gap-3 text-sm">
+                      <div className="w-1.5 h-1.5 rounded-full bg-ainomiq-blue shrink-0" />
+                      <span className="text-ainomiq-text-muted">{item}</span>
+                    </div>
                   ))}
                 </div>
               </div>
-            </div>
 
-            {/* Level 2: Manager */}
-            <div className="relative rounded-2xl border border-ainomiq-blue/30 p-8 md:p-10" style={{ background: "linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%)" }}>
-              <div className="relative z-10">
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="text-xs font-mono text-ainomiq-text-muted">LEVEL 02</span>
-                  <span className="text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">Store Manager</span>
-                </div>
-                <h3 className="text-xl md:text-2xl font-bold mb-3">Daily operations, fully optimized</h3>
-                <div className="grid sm:grid-cols-3 gap-4 mt-6">
-                  {["Smart shift planning", "Real-time performance", "Inventory alerts", "Quality checklists", "Team management", "AI coaching tips"].map((item) => (
-                    <div key={item} className="rounded-xl bg-white/80 border border-ainomiq-border px-4 py-3 text-sm text-ainomiq-text-muted">{item}</div>
+              {/* Level 2: Manager */}
+              <div className="relative pl-20 md:pl-28">
+                <div className="absolute left-5 md:left-9 top-2 w-6 h-6 rounded-full bg-ainomiq-blue border-4 border-white shadow-lg" />
+                <span className="text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">Store Manager</span>
+                <h3 className="text-2xl md:text-3xl font-bold mt-2 mb-3">Run your store on autopilot</h3>
+                <p className="text-ainomiq-text-muted leading-relaxed mb-6 max-w-xl">
+                  AI handles scheduling, inventory, and quality — your managers focus on customers and team. Coaching tips tailored to each location.
+                </p>
+                <div className="grid sm:grid-cols-2 gap-3">
+                  {["Smart shift planning", "Real-time performance dashboards", "Inventory & waste alerts", "Quality control checklists", "Team management tools", "AI-powered coaching tips"].map((item) => (
+                    <div key={item} className="flex items-center gap-3 text-sm">
+                      <div className="w-1.5 h-1.5 rounded-full bg-ainomiq-blue shrink-0" />
+                      <span className="text-ainomiq-text-muted">{item}</span>
+                    </div>
                   ))}
                 </div>
               </div>
-            </div>
 
-            {/* Level 1: Employee */}
-            <div className="relative rounded-2xl border border-ainomiq-border p-8 md:p-10 bg-white">
-              <div className="relative z-10">
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="text-xs font-mono text-ainomiq-text-muted">LEVEL 01</span>
-                  <span className="text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">Employee</span>
-                </div>
-                <h3 className="text-xl md:text-2xl font-bold mb-3">Support on the floor, 24/7</h3>
-                <div className="grid sm:grid-cols-3 gap-4 mt-6">
-                  {["AI assistant (any language)", "Step-by-step procedures", "Onboarding guides", "Shift schedules", "Task checklists", "Instant answers"].map((item) => (
-                    <div key={item} className="rounded-xl bg-ainomiq-navy-light border border-ainomiq-border px-4 py-3 text-sm text-ainomiq-text-muted">{item}</div>
+              {/* Level 1: Employee */}
+              <div className="relative pl-20 md:pl-28">
+                <div className="absolute left-5 md:left-9 top-2 w-6 h-6 rounded-full bg-sky-300 border-4 border-white shadow-lg" />
+                <span className="text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">Employee</span>
+                <h3 className="text-2xl md:text-3xl font-bold mt-2 mb-3">Support on the floor, 24/7</h3>
+                <p className="text-ainomiq-text-muted leading-relaxed mb-6 max-w-xl">
+                  Every employee gets an AI assistant that speaks their language. Procedures, training, and answers — always one question away.
+                </p>
+                <div className="grid sm:grid-cols-2 gap-3">
+                  {["AI assistant in any language", "Step-by-step procedures", "Interactive onboarding", "Shift schedules & tasks"].map((item) => (
+                    <div key={item} className="flex items-center gap-3 text-sm">
+                      <div className="w-1.5 h-1.5 rounded-full bg-ainomiq-blue shrink-0" />
+                      <span className="text-ainomiq-text-muted">{item}</span>
+                    </div>
                   ))}
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Flow description */}
-          <div className="text-center mt-12">
-            <p className="text-sm text-ainomiq-text-muted max-w-lg mx-auto">
-              Data flows up. Insights flow down. Every level gets exactly what they need — from an employee asking a question to an owner deciding where to expand next.
+          <div className="text-center mt-16">
+            <p className="text-sm text-ainomiq-text-muted max-w-md mx-auto">
+              Data flows up. Insights flow down. Every level gets exactly what they need.
             </p>
           </div>
         </div>
