@@ -130,6 +130,44 @@ export default function FranchisePage() {
         </div>
       </section>
 
+      {/* AI Intelligence — data drives improvements */}
+      <section className="py-24 px-6 bg-ainomiq-navy-light">
+        <div className="mx-auto max-w-6xl">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            <div>
+              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-ainomiq-blue">
+                Continuous improvement
+              </span>
+              <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight mt-4 mb-6">
+                Every interaction makes your franchise smarter
+              </h2>
+              <p className="text-ainomiq-text-muted leading-relaxed mb-6">
+                The more your franchise operates, the more data flows in. AI turns that data into actionable recommendations — automatically. No analyst needed.
+              </p>
+              <p className="text-ainomiq-text-muted leading-relaxed">
+                From predicting your busiest Tuesday to flagging a store that&apos;s underperforming — AI sees patterns humans miss and helps managers act on them before they become problems.
+              </p>
+            </div>
+            <div className="space-y-4">
+              {[
+                { title: "Predictive recommendations", body: "AI analyzes trends and suggests improvements before you even notice the problem." },
+                { title: "Manager coaching", body: "Personalized tips per store manager based on their location's data and performance." },
+                { title: "Full-picture insights", body: "Sales, staffing, inventory, reviews, quality — all connected in one intelligent view." },
+                { title: "Self-improving system", body: "The longer it runs, the better it gets. Every data point refines predictions and recommendations." },
+              ].map((item) => (
+                <div
+                  key={item.title}
+                  className="rounded-2xl border border-ainomiq-border bg-white p-6 hover:border-ainomiq-blue/30 transition-colors"
+                >
+                  <h3 className="font-bold mb-1">{item.title}</h3>
+                  <p className="text-sm text-ainomiq-text-muted leading-relaxed">{item.body}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Results / ROI */}
       <Section label="Real results" className="bg-ainomiq-navy-light">
         <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">
