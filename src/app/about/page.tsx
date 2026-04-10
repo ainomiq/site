@@ -198,21 +198,19 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Careers */}
-      <Section label="Careers">
-        <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">
-          Build the future with us
-        </h2>
-        <p className="text-ainomiq-text-muted text-lg max-w-2xl leading-relaxed mb-4">
-          We&apos;re a small team with big ambitions. At Ainomiq, you won&apos;t sit in meetings about meetings. You&apos;ll ship real AI systems for real businesses — and see the impact from day one.
-        </p>
-      </Section>
-
-      {/* Open Positions — Decagon-style with arrows */}
-      <section id="jobs" className="py-24 px-6 bg-ainomiq-navy-light">
+      {/* Careers at Ainomiq */}
+      <section id="jobs" className="py-24 px-6">
         <div className="mx-auto max-w-6xl">
-          <span className="text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">Open positions</span>
-          <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight mt-4 mb-12">We&apos;re hiring</h2>
+          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-ainomiq-blue">
+            Careers at Ainomiq
+          </span>
+          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mt-4 mb-4">
+            Build the future with us
+          </h2>
+          <p className="text-ainomiq-text-muted text-lg max-w-2xl leading-relaxed mb-16">
+            We&apos;re a small team with big ambitions. At Ainomiq, you won&apos;t sit in meetings about meetings. You&apos;ll ship real AI systems for real businesses — and see the impact from day one.
+          </p>
+
           <div className="space-y-12">
             {[
               {
