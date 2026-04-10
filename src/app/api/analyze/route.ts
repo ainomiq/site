@@ -22,16 +22,43 @@ export async function POST(request: NextRequest) {
     const data = await scrapeUrl(url);
     const technologies = detectTechnologies(data);
 
-    const hasEcommerce = technologies.some(
-      (t) =>
-        t.category === "platform" &&
-        ["Shopify", "WooCommerce", "Magento", "BigCommerce", "PrestaShop"].includes(t.name)
-    ) && (data.products.length > 0 || data.html.includes("add-to-cart") || data.html.includes("add_to_cart") || /cart|checkout|winkelwagen/i.test(data.bodyText.slice(0, 2000)));
+    const ecommercePlatforms = new Set([
+      "Shopify",
+      "WooCommerce",
+      "Magento",
+      "BigCommerce",
+      "PrestaShop",
+      "Lightspeed",
+      "CCV Shop",
+      "Mijnwebwinkel",
+      "Etsy",
+    ]);
+    const detectedEcommercePlatform = technologies.some(
+      (t) => t.category === "platform" && ecommercePlatforms.has(t.name)
+    );
+    const hasEcommerce =
+      data.ecommerceSignals.productCount > 0 ||
+      data.ecommerceSignals.sitemapCartOrCheckoutUrls > 0 ||
+      data.ecommerceSignals.hasAddToCartButtons ||
+      (detectedEcommercePlatform &&
+        data.ecommerceSignals.hasCartOrCheckoutLinks);
 
     const adCount = technologies.filter((t) => t.category === "ads").length;
     const emailCount = technologies.filter((t) => t.category === "email").length;
+    const analyticsCount = technologies.filter((t) => t.category === "analytics").length;
+    const otherTechCount = technologies.filter((t) => t.category === "other").length;
+    const pageCount = Math.max(data.pageCount, data.pageLinks.length);
+    const productCount = data.ecommerceSignals.productCount;
     const estimatedScale: SiteAnalysis["estimatedScale"] =
-      adCount >= 2 || emailCount >= 1 ? "large" : hasEcommerce ? "medium" : "small";
+      pageCount >= 1000 ||
+      productCount >= 100 ||
+      adCount >= 3 ||
+      (emailCount >= 2 && analyticsCount >= 2) ||
+      otherTechCount >= 8
+        ? "large"
+        : pageCount >= 50 || productCount >= 10 || hasEcommerce || adCount >= 1 || emailCount >= 1
+          ? "medium"
+          : "small";
 
     const analysis: SiteAnalysis = {
       url,
@@ -45,7 +72,7 @@ export async function POST(request: NextRequest) {
       priceRange: data.priceRange,
       currency: data.currency,
       faqItems: data.faqItems,
-      pageCount: data.pageLinks.length,
+      pageCount,
       pageLinks: data.pageLinks.slice(0, 50),
       socialPresence: Object.keys(data.socialLinks),
       socialLinks: data.socialLinks,
