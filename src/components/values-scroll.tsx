@@ -1,123 +1,72 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-
 const valuesData = [
   {
-    num: "01",
     title: "Just get it done",
-    body: "We value decisive action and speed over prolonged deliberation and planning. Every solution ships fast because our clients can't afford to wait.",
+    body: "\"Ship fast, learn faster\" We value decisive action and speed over prolonged deliberation. Every solution ships fast because our clients can't afford to wait.",
   },
   {
-    num: "02",
     title: "Invent what customers want",
-    body: "Our core identity is rooted in building for our customers. We listen, we test, we iterate — because the best products come from obsessing over real problems.",
+    body: "\"We've felt the pain we're solving\" Our core identity is rooted in building for our customers. Every feature must directly alleviate real customer pain. Revenue follows amazed customers.",
   },
   {
-    num: "03",
     title: "Winner's mindset",
-    body: "Fiercely competitive nature and fighting spirit are foundational. We play to win, learn from losses, and never settle for second best.",
+    body: "\"Compete to win, learn from losses\" Fiercely competitive nature and fighting spirit are foundational. We play to win and never settle for second best.",
   },
   {
-    num: "04",
     title: "The Polymath Principle",
-    body: "The best team members understand other functions deeply and promote cross-functional collaboration. Breadth of knowledge drives innovation.",
+    body: "\"Breadth drives innovation\" The best team members understand other functions deeply and promote cross-functional collaboration. Own your domain, collaborate across boundaries.",
   },
 ];
 
 export function ValuesScroll() {
-  const [active, setActive] = useState(0);
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const idx = itemRefs.current.indexOf(entry.target as HTMLDivElement);
-            if (idx !== -1) setActive(idx);
-          }
-        });
-      },
-      { threshold: 0.6 }
-    );
-
-    itemRefs.current.forEach((el) => {
-      if (el) observer.observe(el);
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <section
-      ref={sectionRef}
-      className="relative w-full bg-[#0f172a] text-white"
-    >
-      <div className="mx-auto max-w-6xl px-6 md:px-10">
-        {/* Sticky container */}
-        <div className="flex flex-col md:flex-row md:min-h-screen">
-          {/* Left: sticky labels */}
-          <div className="md:sticky md:top-0 md:h-screen md:w-1/2 flex flex-col justify-center py-16 md:py-0">
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-white/40 mb-12">
-              Our values
-            </span>
-            <div className="space-y-8">
-              {valuesData.map((v, i) => (
-                <button
-                  key={v.num}
-                  onClick={() => {
-                    setActive(i);
-                    itemRefs.current[i]?.scrollIntoView({
-                      behavior: "smooth",
-                      block: "center",
-                    });
-                  }}
-                  className="flex items-center gap-5 text-left transition-all duration-500 group cursor-pointer"
-                >
-                  <span
-                    className={`text-sm font-mono transition-colors duration-500 ${
-                      i === active ? "text-ainomiq-blue" : "text-white/25"
-                    } group-hover:text-ainomiq-blue`}
-                  >
-                    {v.num}
-                  </span>
-                  <span
-                    className={`text-xl md:text-2xl font-bold tracking-tight transition-colors duration-500 ${
-                      i === active ? "text-white" : "text-white/25"
-                    } group-hover:text-white`}
-                  >
-                    {v.title}
-                  </span>
-                </button>
-              ))}
-            </div>
-          </div>
+    <section className="relative w-full overflow-hidden py-24 px-6">
+      {/* Cosmic gradient background */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse at 50% 0%, #1e3a8a 0%, #0f172a 40%, #020617 70%, #000 100%)",
+        }}
+      />
+      {/* Subtle glow */}
+      <div
+        className="absolute inset-0 opacity-40"
+        style={{
+          background:
+            "radial-gradient(ellipse at 30% 80%, rgba(74,144,245,0.3) 0%, transparent 50%), radial-gradient(ellipse at 70% 20%, rgba(139,92,246,0.2) 0%, transparent 50%)",
+        }}
+      />
 
-          {/* Right: scrolling descriptions */}
-          <div className="md:w-1/2 flex flex-col">
-            {valuesData.map((v, i) => (
-              <div
-                key={v.num}
-                ref={(el) => { itemRefs.current[i] = el; }}
-                className="flex items-center min-h-[50vh] md:min-h-screen py-16 md:py-0"
-              >
-                <div
-                  className={`max-w-md transition-opacity duration-700 ${
-                    i === active ? "opacity-100" : "opacity-0 md:opacity-20"
-                  }`}
-                >
-                  <span className="text-xs font-semibold uppercase tracking-[0.2em] text-ainomiq-blue mb-4 block">
-                    Our values
-                  </span>
-                  <p className="text-lg md:text-xl leading-relaxed text-white/80">
-                    {v.body}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
+      <div className="relative z-10 mx-auto max-w-6xl">
+        <div className="text-center mb-16">
+          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-ainomiq-blue">
+            Our values
+          </span>
+          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-white mt-4">
+            What drives us forward
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {valuesData.map((v) => (
+            <div
+              key={v.title}
+              className="group relative rounded-2xl border border-white/10 backdrop-blur-xl p-8 transition-all duration-500 hover:border-ainomiq-blue/40 hover:shadow-[0_0_40px_rgba(74,144,245,0.15)]"
+              style={{
+                background:
+                  "linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%)",
+              }}
+            >
+              <h3 className="text-lg font-bold text-white mb-3 group-hover:text-ainomiq-blue transition-colors duration-300">
+                {v.title}
+              </h3>
+              <p className="text-sm leading-relaxed text-white/60 group-hover:text-white/80 transition-colors duration-300">
+                {v.body}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
     </section>
