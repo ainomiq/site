@@ -125,7 +125,7 @@ export default function HomePage() {
           <div className="max-w-4xl mx-auto">
             <div className="group relative aspect-[16/9] overflow-hidden rounded-3xl">
               <img
-                src="/team/founders.jpg"
+                src="/team/founders.jpg?v=2"
                 alt="Pim Smit & Bink Sanders — Co-Founders of Ainomiq"
                 className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
