@@ -148,26 +148,56 @@ export default function AboutPage() {
       {/* Values — scroll-driven */}
       <ValuesScroll />
 
-      {/* Benefits */}
-      <Section label="Benefits">
-        <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">
-          Great work deserves great benefits
-        </h2>
-        <p className="text-ainomiq-text-muted text-lg max-w-2xl leading-relaxed mb-12">
-          We take care of our team so they can focus on building.
-        </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {benefits.map((b) => (
-            <Card key={b.title} className="bg-white border-ainomiq-border">
-              <CardContent className="p-6">
-                <span className="text-2xl mb-3 block">{b.icon}</span>
-                <h3 className="font-bold mb-2">{b.title}</h3>
-                <p className="text-sm text-ainomiq-text-muted leading-relaxed">{b.body}</p>
-              </CardContent>
-            </Card>
-          ))}
+      {/* Benefits — Beam AI futuristic style */}
+      <section className="relative w-full overflow-hidden py-24 px-6">
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse at 50% 0%, #1e3a8a 0%, #0f172a 40%, #020617 70%, #000 100%)",
+          }}
+        />
+        <div
+          className="absolute inset-0 opacity-30"
+          style={{
+            background:
+              "radial-gradient(ellipse at 20% 80%, rgba(74,144,245,0.4) 0%, transparent 50%), radial-gradient(ellipse at 80% 20%, rgba(139,92,246,0.25) 0%, transparent 50%)",
+          }}
+        />
+        <div className="relative z-10 mx-auto max-w-6xl">
+          <div className="text-center mb-16">
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-ainomiq-blue">
+              Benefits
+            </span>
+            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-white mt-4">
+              Great work deserves great benefits
+            </h2>
+            <p className="text-white/50 text-lg mt-4 max-w-lg mx-auto">
+              We take care of our team so they can focus on building.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {benefits.map((b) => (
+              <div
+                key={b.title}
+                className="group relative rounded-2xl border border-white/10 backdrop-blur-xl p-8 transition-all duration-500 hover:border-ainomiq-blue/40 hover:shadow-[0_0_40px_rgba(74,144,245,0.15)]"
+                style={{
+                  background:
+                    "linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%)",
+                }}
+              >
+                <span className="text-3xl mb-4 block">{b.icon}</span>
+                <h3 className="text-lg font-bold text-white mb-2 group-hover:text-ainomiq-blue transition-colors duration-300">
+                  {b.title}
+                </h3>
+                <p className="text-sm leading-relaxed text-white/50 group-hover:text-white/70 transition-colors duration-300">
+                  {b.body}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
-      </Section>
+      </section>
 
       {/* Careers */}
       <Section label="Careers">
