@@ -38,7 +38,7 @@ const productsCustom = [
 
 const industries = [
   { href: "/ecommerce", label: "E-commerce", sub: "Webshops & DTC", icon: ShoppingCart },
-  { href: "/enterprise#franchise", label: "Franchise", sub: "Multi-location ops", icon: Building2 },
+  { href: "/franchise", label: "Franchise", sub: "Multi-location ops", icon: Building2 },
   { href: "/enterprise#facility-services", label: "Facility Services", sub: "Field & maintenance", icon: Wrench },
 ];
 
