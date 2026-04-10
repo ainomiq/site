@@ -102,7 +102,7 @@ export default function FranchisePage() {
       {/* Accordion — How we transform franchise ops */}
       <section className="py-24 px-6">
         <div className="mx-auto max-w-4xl">
-          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-ainomiq-blue">
+          <span className="inline-flex items-center rounded-full bg-ainomiq-blue-glow px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">
             How it works
           </span>
           <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mt-4 mb-12">
@@ -116,7 +116,7 @@ export default function FranchisePage() {
       <section className="py-24 px-6">
         <div className="mx-auto max-w-5xl">
           <div className="text-center mb-20">
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-ainomiq-blue">
+            <span className="inline-flex items-center rounded-full bg-ainomiq-blue-glow px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">
               The platform
             </span>
             <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mt-4">
@@ -193,7 +193,7 @@ export default function FranchisePage() {
         <div className="mx-auto max-w-6xl">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             <div>
-              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-ainomiq-blue">
+              <span className="inline-flex items-center rounded-full bg-ainomiq-blue-glow px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">
                 Continuous improvement
               </span>
               <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight mt-4 mb-6">
@@ -255,7 +255,7 @@ export default function FranchisePage() {
       {/* What we do — steps */}
       <section className="py-24 px-6">
         <div className="mx-auto max-w-4xl">
-          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-ainomiq-blue">
+          <span className="inline-flex items-center rounded-full bg-ainomiq-blue-glow px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">
             What we do
           </span>
           <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mt-4 mb-12">
@@ -283,7 +283,7 @@ export default function FranchisePage() {
       <section className="py-24 px-6 bg-ainomiq-navy-light">
         <div className="mx-auto max-w-6xl">
           <div className="text-center mb-16">
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-ainomiq-blue">
+            <span className="inline-flex items-center rounded-full bg-ainomiq-blue-glow px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">
               What they say
             </span>
             <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight mt-4">
