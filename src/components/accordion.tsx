@@ -17,7 +17,7 @@ export function Accordion({ items }: { items: AccordionItem[] }) {
       {items.map((item, i) => (
         <div
           key={item.num}
-          className={`border-t border-ainomiq-border ${i === items.length - 1 ? "border-b" : ""}`}
+          className=""
         >
           <button
             onClick={() => setActive(i === active ? -1 : i)}
