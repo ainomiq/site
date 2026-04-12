@@ -2,7 +2,7 @@ import Link from "next/link";
 import { LogoMark } from "@/components/logo";
 
 const services = [
-  { href: "/ecommerce", label: "App" },
+  { href: "https://app.ainomiq.com", label: "App" },
   { href: "/enterprise", label: "Enterprise" },
 ];
 
