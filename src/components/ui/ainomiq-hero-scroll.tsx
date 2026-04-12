@@ -9,12 +9,12 @@ export function AinomiqHeroScroll() {
       <ContainerScroll
         titleComponent={
           <>
-            <h1 className="text-4xl font-semibold text-black dark:text-white">
-              Scale your store with <br />
-              <span className="text-4xl md:text-[6rem] font-bold mt-1 leading-none text-[#4A90E2]">
-                ainomiq automations
-              </span>
+            <h1 className="text-lg md:text-2xl font-medium text-gray-700 dark:text-gray-300 mb-4">
+              Scale your store with
             </h1>
+            <h2 className="text-5xl md:text-[7rem] font-bold leading-none text-[#4A90E2]">
+              ainomiq automations
+            </h2>
           </>
         }
       >
