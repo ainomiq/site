@@ -77,7 +77,7 @@ export function ScaleWithoutLimits() {
   ];
 
   return (
-    <div className="relative w-full bg-[#0A0A0A] flex flex-col items-center justify-center py-24 px-8 md:px-16 overflow-hidden">
+    <div className="relative w-full bg-[#0A0A0A] flex flex-col items-center justify-center py-16 md:py-20 px-8 md:px-16 overflow-hidden">
       {/* Aurora background */}
       <div className="absolute inset-0 z-0 opacity-20">
         <div className="absolute inset-0" style={{ filter: "blur(100px)" }}>
