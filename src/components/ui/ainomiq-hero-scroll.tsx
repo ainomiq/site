@@ -5,19 +5,19 @@ import Image from "next/image";
 
 export function AinomiqHeroScroll() {
   return (
-    <div className="flex flex-col overflow-hidden">
-      <ContainerScroll
-        titleComponent={
-          <>
-            <h1 className="text-3xl md:text-5xl font-bold text-black dark:text-white mb-4">
-              Scale your store with
-            </h1>
-            <h2 className="text-5xl md:text-[7rem] font-bold leading-none text-[#4A90E2]">
-              smart automations
-            </h2>
-          </>
-        }
-      >
+    <div className="flex flex-col overflow-hidden bg-white dark:bg-black">
+      {/* Text section - outside scroll animation */}
+      <div className="flex flex-col items-center justify-center pt-20 pb-10 px-4">
+        <h1 className="text-3xl md:text-5xl font-bold text-black dark:text-white mb-4 text-center">
+          Scale your store with
+        </h1>
+        <h2 className="text-5xl md:text-[7rem] font-bold leading-none text-[#4A90E2] text-center">
+          smart automations
+        </h2>
+      </div>
+      
+      {/* Dashboard scroll animation */}
+      <ContainerScroll titleComponent={<></>}>
         <Image
           src="/dashboard-preview.png"
           alt="ainomiq dashboard"
