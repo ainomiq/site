@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { ContainerScroll } from "@/components/ui/container-scroll-animation";
-import Image from "next/image";
+import { InteractiveDashboard } from "@/components/ui/interactive-dashboard";
 
 export function AinomiqHeroScroll() {
   return (
@@ -18,14 +18,7 @@ export function AinomiqHeroScroll() {
           </>
         }
       >
-        <Image
-          src="/dashboard-preview.png"
-          alt="ainomiq dashboard"
-          height={720}
-          width={1400}
-          className="mx-auto rounded-2xl object-cover h-full object-left-top"
-          draggable={false}
-        />
+        <InteractiveDashboard />
       </ContainerScroll>
     </div>
   );
