@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Section } from "@/components/section";
-import { PlatformHero } from "@/components/ui/platform-hero";
+import { AinomiqHeroScroll } from "@/components/ui/ainomiq-hero-scroll";
 import {
   Bot,
   BarChart3,
@@ -98,7 +98,7 @@ export default function PlatformPage() {
   return (
     <>
       {/* Hero */}
-      <PlatformHero />
+      <AinomiqHeroScroll />
 
       {/* Featured Modules — scrollable sections */}
       {featuredModules.map((mod, i) => (
