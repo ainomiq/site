@@ -3,7 +3,6 @@ import React from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import {
   Bot,
   BarChart3,
@@ -12,6 +11,7 @@ import {
   Gauge,
   Workflow,
   ArrowRight,
+  X,
 } from "lucide-react";
 
 const features = [
@@ -53,6 +53,13 @@ const features = [
   },
 ];
 
+const mockStats = [
+  { label: "Revenue (30d)", value: "€47,329", change: "+23%" },
+  { label: "Orders", value: "1,847", change: "+18%" },
+  { label: "ROAS", value: "3.2x", change: "+0.4x" },
+  { label: "Active automations", value: "24", change: "6 new" },
+];
+
 export function InteractiveDashboard() {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -63,6 +70,7 @@ export function InteractiveDashboard() {
   // Only enable interaction when scroll is complete (tablet is flat)
   const isInteractive = useTransform(scrollYProgress, (latest) => latest >= 0.98);
   const [interactive, setInteractive] = React.useState(false);
+  const [showDashboard, setShowDashboard] = React.useState(false);
 
   React.useEffect(() => {
     const unsubscribe = isInteractive.on("change", (v) => setInteractive(v));
@@ -71,6 +79,84 @@ export function InteractiveDashboard() {
 
   const [hoveredModule, setHoveredModule] = React.useState<number | null>(null);
 
+  if (showDashboard) {
+    // Full mock dashboard view
+    return (
+      <div ref={containerRef} className="w-full h-full bg-white rounded-2xl p-6 md:p-10 overflow-auto">
+        {/* Header with close */}
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center text-white font-bold">
+              a
+            </div>
+            <span className="text-xl font-semibold">ainomiq</span>
+          </div>
+          <button
+            onClick={() => setShowDashboard(false)}
+            className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+          >
+            <X className="h-5 w-5 text-gray-500" />
+          </button>
+        </div>
+
+        {/* Stats grid */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+          {mockStats.map((stat) => (
+            <Card key={stat.label} className="border border-gray-200">
+              <CardContent className="p-4">
+                <p className="text-xs text-gray-600 mb-1">{stat.label}</p>
+                <p className="text-2xl font-bold mb-1">{stat.value}</p>
+                <p className="text-xs text-green-600 font-medium">{stat.change}</p>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+
+        {/* Active modules */}
+        <div>
+          <h2 className="text-lg font-bold mb-4">Active modules</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {features.map((feature, idx) => (
+              <Card key={idx} className="border border-gray-200 hover:border-blue-400 hover:shadow-md transition-all cursor-pointer">
+                <CardContent className="p-6">
+                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50">
+                    <feature.icon className="h-6 w-6 text-blue-500" />
+                  </div>
+                  <h3 className="text-base font-bold mb-2">{feature.title}</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed">
+                    {feature.description}
+                  </p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+
+        {/* Additional modules */}
+        <div className="mt-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {[
+              { title: "Onboarding System", desc: "Guides setup for new clients", icon: Workflow },
+              { title: "Performance & Profit", desc: "Full profit command center", icon: Gauge },
+              { title: "Account & Settings", desc: "Full control over integrations", icon: Bot },
+            ].map((module, idx) => (
+              <Card key={idx} className="border border-gray-200 hover:border-blue-400 hover:shadow-md transition-all cursor-pointer">
+                <CardContent className="p-6">
+                  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50">
+                    <module.icon className="h-6 w-6 text-blue-500" />
+                  </div>
+                  <h3 className="text-base font-bold mb-2">{module.title}</h3>
+                  <p className="text-sm text-gray-600 leading-relaxed">{module.desc}</p>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Landing view with "Get started" button
   return (
     <div ref={containerRef} className="w-full h-full bg-white rounded-2xl p-6 md:p-10 overflow-auto">
       {/* Title */}
@@ -83,10 +169,11 @@ export function InteractiveDashboard() {
           and data-driven marketing — one platform, zero manual work.
         </p>
         <div className="flex gap-3 justify-center">
-          <Button asChild className="rounded-full bg-blue-500 hover:bg-blue-600 text-white px-6">
-            <Link href="https://app.ainomiq.com">
-              Get started <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
+          <Button
+            onClick={() => setShowDashboard(true)}
+            className="rounded-full bg-blue-500 hover:bg-blue-600 text-white px-6"
+          >
+            Get started <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
         </div>
       </div>
