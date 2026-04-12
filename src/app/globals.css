@@ -21,6 +21,7 @@
 
   --animate-marquee: marquee var(--duration, 40s) infinite linear;
   --animate-marquee-vertical: marquee-vertical var(--duration, 40s) linear infinite;
+  --animate-spotlight: spotlight 2s ease 0.75s 1 forwards;
 }
 
 /* Base */
@@ -87,6 +88,17 @@ body {
   }
   to {
     opacity: 1;
+  }
+}
+
+@keyframes spotlight {
+  0% {
+    opacity: 0;
+    transform: translate(-72%, -62%) scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -40%) scale(1);
   }
 }
 
