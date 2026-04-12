@@ -18,7 +18,9 @@ export function AinomiqHeroScroll() {
           </>
         }
       >
-        <InteractiveDashboard />
+        <div className="w-full h-full bg-white rounded-2xl overflow-hidden">
+          <InteractiveDashboard />
+        </div>
       </ContainerScroll>
     </div>
   );
