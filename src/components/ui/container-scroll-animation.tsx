@@ -22,7 +22,7 @@ export const ContainerScroll = ({
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  const rotate = useTransform(scrollYProgress, [0, 0.4], [35, 0]);
+  const rotate = useTransform(scrollYProgress, [0, 0.4], [45, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.4], [1, 1.05]);
   const translate = useTransform(scrollYProgress, [0, 0.4], [-100, 0]);
   const textOpacity = useTransform(scrollYProgress, [0, 0.2, 0.4], [1, 1, 0]);
