@@ -22,7 +22,7 @@ export const ContainerScroll = ({
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  const rotate = useTransform(scrollYProgress, [0, 1], [20, 0]);
+  const rotate = useTransform(scrollYProgress, [0, 1], [35, 0]);
   const scale = useTransform(scrollYProgress, [0, 1], [1.05, 1]);
   const translate = useTransform(scrollYProgress, [0, 1], [0, -100]);
 
@@ -41,7 +41,11 @@ export const ContainerScroll = ({
       ref={containerRef}
     >
       <div className="py-20 md:py-24 w-full relative" style={{ perspective: "1000px" }}>
-        <Header translate={translate} titleComponent={titleComponent} />
+        {/* Text stays fixed at top */}
+        <div className="max-w-5xl mx-auto text-center mb-16">
+          {titleComponent}
+        </div>
+        {/* Tablet animates below */}
         <Card rotate={rotate} translate={translate} scale={scale}>
           {children}
         </Card>
