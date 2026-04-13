@@ -1,11 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import dynamic from "next/dynamic";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Section } from "@/components/section";
-import { AinomiqHeroScroll } from "@/components/ui/ainomiq-hero-scroll";
-import { SplineSceneBasic } from "@/components/ui/spline-scene-basic";
-import { WaitlistSection } from "@/components/ui/waitlist-section";
 import { ScaleWithoutLimits } from "@/components/ui/scale-without-limits";
 import {
   Bot,
@@ -18,7 +16,24 @@ import {
   Check,
   ShoppingCart,
 } from "lucide-react";
-import { FeaturedModulesScroll } from "@/components/ui/featured-modules-scroll";
+
+// Heavy components — lazy loaded, only rendered when JS reaches them
+const AinomiqHeroScroll = dynamic(
+  () => import("@/components/ui/ainomiq-hero-scroll").then(m => ({ default: m.AinomiqHeroScroll })),
+  { ssr: false }
+);
+const SplineSceneBasic = dynamic(
+  () => import("@/components/ui/spline-scene-basic").then(m => ({ default: m.SplineSceneBasic })),
+  { ssr: false, loading: () => <div className="w-full h-[500px]" /> }
+);
+const FeaturedModulesScroll = dynamic(
+  () => import("@/components/ui/featured-modules-scroll").then(m => ({ default: m.FeaturedModulesScroll })),
+  { ssr: false }
+);
+const WaitlistSection = dynamic(
+  () => import("@/components/ui/waitlist-section").then(m => ({ default: m.WaitlistSection })),
+  { ssr: false }
+);
 
 export const metadata: Metadata = {
   title: "Ecommerce Application",
