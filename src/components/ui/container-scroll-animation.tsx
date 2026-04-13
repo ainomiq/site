@@ -42,10 +42,10 @@ export const ContainerScroll = ({
       ref={containerRef}
     >
       <div className="py-2 w-full relative" style={{ perspective: "1000px" }}>
+        <Header translate={translate} titleComponent={titleComponent} opacity={textOpacity} />
         <Card rotate={rotate} translate={translate} scale={scale}>
           {children}
         </Card>
-        <Header translate={translate} titleComponent={titleComponent} opacity={textOpacity} />
       </div>
     </div>
   );
@@ -151,7 +151,7 @@ export const Header = ({ translate, titleComponent, opacity }: any) => {
   return (
     <motion.div
       style={{ translateY: translate, opacity }}
-      className="max-w-5xl mx-auto text-center relative z-10"
+      className="max-w-5xl mx-auto text-center absolute inset-0 z-10 flex items-center justify-center"
     >
       {titleComponent}
     </motion.div>
