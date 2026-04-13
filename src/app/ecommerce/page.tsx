@@ -18,63 +18,13 @@ import {
   Check,
   ShoppingCart,
 } from "lucide-react";
+import { FeaturedModulesScroll } from "@/components/ui/featured-modules-scroll";
 
 export const metadata: Metadata = {
   title: "Ecommerce Application",
   description:
     "The Ainomiq app: intelligent modules working together to automate your e-commerce business.",
 };
-
-const featuredModules = [
-  {
-    id: "customer-service",
-    icon: Bot,
-    title: "Intelligent Customer Service",
-    headline: "Your support team that never sleeps",
-    description:
-      "An intelligent agent that answers customer questions 24/7, handles returns, and identifies escalations. Trained on your products, tone of voice, and policies.",
-    capabilities: [
-      "Multilingual support across 30+ languages",
-      "Sentiment analysis and auto-escalation",
-      "Handles 200+ tickets per day",
-      "Trained on your brand voice and policies",
-    ],
-    stat: "200+",
-    statLabel: "tickets handled daily",
-  },
-  {
-    id: "smart-inventory",
-    icon: Package,
-    title: "Smart Inventory",
-    headline: "Predict demand before it happens",
-    description:
-      "Intelligent forecasting that prevents stockouts and minimizes overstock. Real-time tracking across all your warehouses and sales channels.",
-    capabilities: [
-      "Predictive demand forecasting",
-      "Automatic reorder alerts",
-      "Seasonal trend analysis",
-      "Multi-warehouse sync",
-    ],
-    stat: "30%",
-    statLabel: "less overstock",
-  },
-  {
-    id: "email-marketing",
-    icon: Mail,
-    title: "E-mail Marketing",
-    headline: "Automated flows that convert",
-    description:
-      "Personalized email flows from welcome to win-back. Intelligently optimizes timing, subject lines, and content for maximum conversions.",
-    capabilities: [
-      "Optimized send times",
-      "Dynamic personalization",
-      "Automated A/B testing",
-      "Smart segmentation",
-    ],
-    stat: "3.2x",
-    statLabel: "higher conversion",
-  },
-];
 
 const moreModules = [
   {
@@ -109,58 +59,8 @@ export default function PlatformPage() {
       {/* Robot — Meet Mark */}
       <SplineSceneBasic />
 
-      {/* Featured Modules — scrollable sections */}
-      {featuredModules.map((mod, i) => (
-        <section
-          key={mod.id}
-          id={mod.id}
-          className={`scroll-mt-28 py-24 px-6 ${i % 2 === 0 ? "bg-ainomiq-navy-light" : ""}`}
-        >
-          <div className="mx-auto max-w-5xl">
-            <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${i % 2 !== 0 ? "lg:grid-flow-dense" : ""}`}>
-              <div className={i % 2 !== 0 ? "lg:col-start-2" : ""}>
-                <div className="mb-4 inline-flex items-center rounded-full bg-ainomiq-blue-glow px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">
-                  {String(i + 1).padStart(2, "0")} — {mod.title}
-                </div>
-                <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-4">
-                  {mod.headline}
-                </h2>
-                <p className="text-ainomiq-text-muted text-lg leading-relaxed mb-8">
-                  {mod.description}
-                </p>
-                <ul className="space-y-3">
-                  {mod.capabilities.map((cap) => (
-                    <li
-                      key={cap}
-                      className="flex items-center gap-3 text-sm text-ainomiq-text-muted"
-                    >
-                      <Check className="h-4 w-4 text-ainomiq-blue shrink-0" />
-                      {cap}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Stat card */}
-              <div className={`flex items-center justify-center ${i % 2 !== 0 ? "lg:col-start-1" : ""}`}>
-                <Card className="bg-white border-ainomiq-border w-full max-w-sm">
-                  <CardContent className="p-10 text-center">
-                    <div className="mb-4 mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-ainomiq-blue-glow">
-                      <mod.icon className="h-8 w-8 text-ainomiq-blue" />
-                    </div>
-                    <div className="text-5xl font-extrabold tracking-tight text-[#0f1b2d] mb-2">
-                      {mod.stat}
-                    </div>
-                    <p className="text-sm text-ainomiq-text-muted">
-                      {mod.statLabel}
-                    </p>
-                  </CardContent>
-                </Card>
-              </div>
-            </div>
-          </div>
-        </section>
-      ))}
+      {/* Featured Modules — scroll animated */}
+      <FeaturedModulesScroll />
 
       {/* Industry — E-commerce */}
       <section id="ecommerce" className="scroll-mt-28 py-24 px-6 bg-ainomiq-navy-light">
