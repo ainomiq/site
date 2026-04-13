@@ -37,15 +37,11 @@ export const ContainerScroll = ({
 
   return (
     <div
-      className="h-[70rem] flex items-center justify-center relative p-8 md:p-12"
+      className="h-[80rem] flex items-center justify-center relative p-20"
       ref={containerRef}
     >
-      <div className="py-20 md:py-24 w-full relative" style={{ perspective: "1000px" }}>
-        {/* Text stays fixed at top */}
-        <div className="max-w-5xl mx-auto text-center mb-16">
-          {titleComponent}
-        </div>
-        {/* Tablet animates below */}
+      <div className="py-40 w-full relative" style={{ perspective: "1000px" }}>
+        <Header translate={translate} titleComponent={titleComponent} />
         <Card rotate={rotate} translate={translate} scale={scale}>
           {children}
         </Card>
