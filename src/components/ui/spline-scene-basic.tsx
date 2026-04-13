@@ -169,7 +169,7 @@ export function SplineSceneBasic() {
           ref={containerRef}
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
-          className="relative flex flex-col md:flex-row items-center gap-8 p-8 md:p-12 rounded-t-3xl border border-white/40 border-b-0 bg-gradient-to-br from-blue-950 via-blue-900 to-indigo-950 shadow-none overflow-visible"
+          className="relative flex flex-col md:flex-row items-center gap-8 p-8 md:p-12 rounded-3xl border border-white/40 bg-gradient-to-br from-blue-950 via-blue-900 to-indigo-950 shadow-none overflow-hidden"
         >
           {/* Mouse hover glow */}
           {mousePos && (
@@ -202,18 +202,14 @@ export function SplineSceneBasic() {
             <AskMark />
           </div>
 
-          {/* Right content — robot */}
-          <div className="flex-1 relative h-[300px] md:h-[500px] w-full">
+          {/* Right content — robot (taller so legs show within container) */}
+          <div className="flex-1 relative h-[400px] md:h-[600px] w-full">
             <SplineScene
               scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
-              className="w-full h-full scale-110"
+              className="w-full h-full scale-125 translate-y-[10%]"
             />
           </div>
         </div>
-      </div>
-      {/* Bottom band: continues the dark blue to the next section */}
-      <div className="max-w-6xl mx-auto">
-        <div className="h-16 bg-gradient-to-br from-blue-950 via-blue-900 to-indigo-950 rounded-b-3xl border border-t-0 border-white/40" />
       </div>
     </div>
   )
