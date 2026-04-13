@@ -79,7 +79,7 @@ function AskMark() {
   };
 
   return (
-    <div className="flex flex-col w-full max-w-sm h-[400px] md:h-[460px] rounded-2xl overflow-hidden bg-black/20 backdrop-blur-md border border-white/10">
+    <div className="flex flex-col w-full max-w-xs h-[340px] md:h-[360px] rounded-2xl overflow-hidden bg-black/20 backdrop-blur-md border border-white/10">
       {/* Header bar — iMessage style */}
       <div className="flex items-center gap-3 px-4 py-3 border-b border-white/10 bg-white/5">
         <div className="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-xs font-bold text-white">M</div>
@@ -163,7 +163,7 @@ export function SplineSceneBasic() {
 
   return (
     <div className="w-full px-4 md:px-8 py-20 bg-white relative overflow-hidden">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-6xl mx-auto flex flex-col gap-6">
         {/* Glassy container */}
         <div
           ref={containerRef}
@@ -191,22 +191,28 @@ export function SplineSceneBasic() {
           {/* Glass reflection overlay */}
           <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-white/[0.08] to-transparent pointer-events-none" />
 
-          {/* Left content — chat */}
-          <div className="flex-1 z-10 flex flex-col items-center md:items-start">
-            <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-2">
+          {/* Left content — text */}
+          <div className="flex-1 z-10 text-center md:text-left">
+            <h1 className="text-5xl md:text-6xl font-bold text-white leading-tight mb-4">
               Meet Mark
             </h1>
-            <p className="text-sm text-blue-200 mb-4">Your AI store operator. Ask him anything.</p>
-            <AskMark />
+            <p className="text-lg text-blue-200 leading-relaxed max-w-md">
+              Mark works 24/7 and never needs a break. Crazy, right?
+            </p>
           </div>
 
           {/* Right content — robot */}
-          <div className="flex-1 relative h-[400px] md:h-[500px] w-full -mb-8 md:-mb-12 hidden md:block">
+          <div className="flex-1 relative h-[300px] md:h-[500px] w-full -mb-8 md:-mb-12">
             <SplineScene
               scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
               className="w-full h-full scale-110"
             />
           </div>
+        </div>
+
+        {/* Chat box below container */}
+        <div className="flex justify-center md:justify-start">
+          <AskMark />
         </div>
       </div>
     </div>
