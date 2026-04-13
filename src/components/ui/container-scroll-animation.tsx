@@ -22,9 +22,9 @@ export const ContainerScroll = ({
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  const rotate = useTransform(scrollYProgress, [0, 1], [0, 35]);
-  const scale = useTransform(scrollYProgress, [0, 1], [1.05, 1]);
-  const translate = useTransform(scrollYProgress, [0, 1], [0, -100]);
+  const rotate = useTransform(scrollYProgress, [0, 0.6], [0, 35]);
+  const scale = useTransform(scrollYProgress, [0, 0.6], [1.05, 1]);
+  const translate = useTransform(scrollYProgress, [0, 0.6], [0, -100]);
 
   // Mobile: iPhone slides up from bottom with app inside
   if (isMobile) {
@@ -37,7 +37,7 @@ export const ContainerScroll = ({
 
   return (
     <div
-      className="h-[60rem] flex items-start justify-center relative p-8"
+      className="h-[60rem] flex items-center justify-center relative p-8"
       ref={containerRef}
     >
       <div className="py-2 w-full relative" style={{ perspective: "1000px" }}>
@@ -150,7 +150,7 @@ export const Header = ({ translate, titleComponent }: any) => {
   return (
     <motion.div
       style={{ translateY: translate }}
-      className="max-w-5xl mx-auto text-center"
+      className="max-w-5xl mx-auto text-center relative z-20"
     >
       {titleComponent}
     </motion.div>
