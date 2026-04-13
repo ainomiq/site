@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef } from 'react';
 import { motion, useInView, useSpring, useMotionValue, useTransform } from 'framer-motion';
-import { Bot, BarChart3, Zap, ShieldCheck } from 'lucide-react';
+import { Bot, Zap, ShieldCheck } from 'lucide-react';
 
 const AnimatedNumber = ({ value }: { value: number }) => {
   const ref = useRef<HTMLSpanElement>(null);
@@ -70,10 +70,10 @@ const StatCard = ({ stat, index }: { stat: { icon: React.ReactNode; value: numbe
 
 export function ScaleWithoutLimits() {
   const stats = [
-    { icon: <Bot className="h-8 w-8 text-[#4A90E2]" />, value: 10, unit: "K+", label: "Stores Automated", description: "E-commerce stores running on ainomiq automations." },
-    { icon: <BarChart3 className="h-8 w-8 text-purple-400" />, value: 3.2, unit: "x", label: "Average ROAS", description: "Return on ad spend for stores using our AI ad manager." },
-    { icon: <Zap className="h-8 w-8 text-yellow-400" />, value: 24, unit: "/7", label: "Always On", description: "Your AI operator never sleeps, never takes a break." },
-    { icon: <ShieldCheck className="h-8 w-8 text-green-400" />, value: 99.99, unit: "%", label: "Uptime", description: "Enterprise-grade reliability for your store operations." },
+    { icon: <Zap className="h-8 w-8 text-yellow-400" />, value: 2, unit: "min", label: "Setup Time", description: "Connect your Shopify store and go live in under 2 minutes." },
+    { icon: <Bot className="h-8 w-8 text-[#4A90E2]" />, value: 5, unit: "+", label: "AI Operators", description: "Ads, email, customer service, inventory, analytics — each handled by a specialist AI." },
+    { icon: <Zap className="h-8 w-8 text-yellow-400" />, value: 24, unit: "/7", label: "Always On", description: "Your AI team never sleeps, never takes a break, never calls in sick." },
+    { icon: <ShieldCheck className="h-8 w-8 text-green-400" />, value: 100, unit: "%", label: "Your Brand Voice", description: "Every email, ad, and reply matches your tone. No generic AI slop." },
   ];
 
   return (
