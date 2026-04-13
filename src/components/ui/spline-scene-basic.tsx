@@ -162,14 +162,14 @@ export function SplineSceneBasic() {
   const handleMouseLeave = () => setMousePos(null);
 
   return (
-    <div className="w-full px-4 md:px-8 py-20 bg-white relative overflow-hidden">
+    <div className="w-full px-4 md:px-8 pt-0 pb-0 bg-white relative">
       <div className="max-w-6xl mx-auto">
         {/* Glassy container */}
         <div
           ref={containerRef}
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
-          className="relative flex flex-col md:flex-row items-center gap-8 p-8 md:p-12 rounded-3xl border border-white/40 bg-gradient-to-br from-blue-950 via-blue-900 to-indigo-950 shadow-[0_8px_32px_rgba(0,0,0,0.12)] overflow-hidden"
+          className="relative flex flex-col md:flex-row items-center gap-8 p-8 md:p-12 rounded-t-3xl border border-white/40 border-b-0 bg-gradient-to-br from-blue-950 via-blue-900 to-indigo-950 shadow-none overflow-visible"
         >
           {/* Mouse hover glow */}
           {mousePos && (
@@ -203,13 +203,17 @@ export function SplineSceneBasic() {
           </div>
 
           {/* Right content — robot */}
-          <div className="flex-1 relative h-[300px] md:h-[500px] w-full -mb-8 md:-mb-12">
+          <div className="flex-1 relative h-[300px] md:h-[500px] w-full">
             <SplineScene
               scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
               className="w-full h-full scale-110"
             />
           </div>
         </div>
+      </div>
+      {/* Bottom band: continues the dark blue to the next section */}
+      <div className="max-w-6xl mx-auto">
+        <div className="h-16 bg-gradient-to-br from-blue-950 via-blue-900 to-indigo-950 rounded-b-3xl border border-t-0 border-white/40" />
       </div>
     </div>
   )
