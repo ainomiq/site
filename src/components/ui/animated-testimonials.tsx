@@ -87,7 +87,7 @@ export function AnimatedTestimonials({
   }
 
   return (
-    <section ref={sectionRef} id="testimonials" className={`py-24 overflow-hidden bg-gray-50/80 ${className || ""}`}>
+    <section ref={sectionRef} id="testimonials" className={`py-24 overflow-hidden bg-white ${className || ""}`}>
       <div className="px-6 md:px-8 max-w-6xl mx-auto">
         <motion.div
           initial="hidden"
@@ -139,7 +139,7 @@ export function AnimatedTestimonials({
                 transition={{ duration: 0.5, ease: "easeInOut" }}
                 style={{ zIndex: activeIndex === index ? 10 : 0 }}
               >
-                <div className="bg-white border border-gray-200 shadow-lg rounded-xl p-8 h-full flex flex-col">
+                <div className="bg-[#f3f3f3] border border-gray-200 shadow-lg rounded-xl p-8 h-full flex flex-col">
                   <div className="mb-6 flex gap-2">
                     {Array(testimonial.rating)
                       .fill(0)
