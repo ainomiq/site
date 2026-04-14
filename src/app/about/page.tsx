@@ -64,25 +64,27 @@ export default function AboutPage() {
             {/* Text */}
             <div className="flex flex-col">
               <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-6">
-                Two friends, one obsession
+                Two friends. One idea.
               </h2>
               <div className="space-y-4 text-ainomiq-text-muted text-lg leading-relaxed">
                 <p>
-                  Ainomiq started with two childhood friends who shared the same obsession: AI.
-                  Bink came from years in IT. Pim from e-commerce. Different worlds, same fascination.
-                  Both started small, automating parts of their own work. Over time, those small
-                  automations turned into something bigger. Entire processes running on autopilot.
-                  Teams getting smaller because the systems did the heavy lifting.
+                  Pim and Bink have been friends since they were kids. 
+                  Pim built e-commerce brands — successful ones. Bink's an IT specialist who knows systems inside out.
                 </p>
                 <p>
-                  That&apos;s when it clicked. If we can do this for ourselves, we can do this for others.
+                  Pim started building automation for his own stores. Customer emails, inventory alerts, campaigns — all handled automatically. 
+                  It worked so well he showed Bink.
                 </p>
                 <p>
-                  Ainomiq was born from that moment. Two friends, built on mutual respect and a shared
-                  belief that AI isn&apos;t just a tool, it&apos;s the foundation of how businesses will run.
-                  We started Ainomiq with one conviction: to build the next generation of AI systems.
-                  Not something you get delivered and is outdated in six months. We build alongside you
-                  and keep optimizing, every single day.
+                  They realized: if this works for one store, it works for every store. 
+                  Why should every founder rebuild the same systems?
+                </p>
+                <p>
+                  That's Ainomiq. The systems Pim built for himself, now available to everyone. 
+                  Plus custom solutions for businesses that need more than plug-and-play.
+                </p>
+                <p>
+                  No consultants. No reports. Just systems that work from day one.
                 </p>
               </div>
             </div>

@@ -64,7 +64,7 @@ export function HeroSection() {
           >
             <RocketIcon className="size-3 text-ainomiq-blue" />
             <span className="text-xs font-medium text-ainomiq-text">
-              Building the Future
+              Systems that work from day one
             </span>
             <span className="block h-5 border-l border-ainomiq-border" />
             <ArrowRightIcon className="size-3 text-ainomiq-text-muted duration-150 ease-out group-hover:translate-x-1" />
@@ -72,13 +72,13 @@ export function HeroSection() {
 
           {/* Headline */}
           <h1 className="text-balance text-center text-5xl font-extrabold tracking-tight text-ainomiq-text animate-float-up delay-100 md:text-6xl lg:text-7xl">
-            Building the{" "}
-            <span className="gradient-text">Future.</span>
+            Your store.{" "}
+            <span className="gradient-text">Always running.</span>
           </h1>
 
           {/* Subtitle */}
           <p className="mx-auto max-w-lg text-center text-base text-ainomiq-text-muted tracking-wider animate-float-up delay-200 sm:text-lg md:text-xl">
-            Built for businesses that refuse to wait.
+            Connect your store. Watch it handle emails, restocks, and campaigns while you focus on growth.
           </p>
 
           {/* CTAs */}

@@ -4,147 +4,69 @@ import React, { useRef, useState, useEffect } from 'react';
 import { SplineScene } from "@/components/ui/spline";
 import { Spotlight } from "@/components/ui/spotlight";
 
-// Predefined responses for demo — no API needed
-const MARK_RESPONSES: Record<string, string> = {
-  "default": "I can handle customer emails, run your ads, optimize email flows, and manage inventory — all automatically.",
-  "ads": "I'll analyze your best-performing creatives, kill underperformers, and scale winners. Your ROAS stays healthy while you sleep.",
-  "email": "Abandoned carts, post-purchase flows, win-back campaigns — I build and optimize them all in Klaviyo.",
-  "customer": "I respond to customer emails and DMs in your brand voice. Refunds, tracking, sizing — handled in seconds.",
-  "inventory": "I track stock levels, flag low inventory before you run out, and sync everything with your fulfillment partner.",
-  "price": "Plans start at €299/month. One AI operator replacing hours of manual work. Want to see the ROI math?",
-  "how": "Connect your Shopify store, and I learn your products, brand voice, and customer patterns. Then I get to work.",
+type Activity = {
+  time: string;
+  action: string;
+  detail: string;
+  status: 'done' | 'active' | 'pending';
 };
 
-function getMarkResponse(input: string): string {
-  const lower = input.toLowerCase();
-  if (lower.includes('ad') || lower.includes('meta') || lower.includes('facebook') || lower.includes('roas') || lower.includes('campaign')) return MARK_RESPONSES.ads;
-  if (lower.includes('email') || lower.includes('klaviyo') || lower.includes('flow') || lower.includes('abandon')) return MARK_RESPONSES.email;
-  if (lower.includes('customer') || lower.includes('support') || lower.includes('service') || lower.includes('ticket') || lower.includes('dm')) return MARK_RESPONSES.customer;
-  if (lower.includes('inventory') || lower.includes('stock') || lower.includes('fulfil') || lower.includes('ship')) return MARK_RESPONSES.inventory;
-  if (lower.includes('price') || lower.includes('cost') || lower.includes('plan') || lower.includes('€') || lower.includes('pricing')) return MARK_RESPONSES.price;
-  if (lower.includes('how') || lower.includes('start') || lower.includes('connect') || lower.includes('setup') || lower.includes('work')) return MARK_RESPONSES.how;
-  return MARK_RESPONSES.default;
-}
-
-type Message = { role: 'user' | 'mark'; text: string };
-
-const SUGGESTIONS = [
-  "What can you do?",
-  "How do you handle ads?",
-  "Tell me about email flows",
-  "How does it work?",
+const ACTIVITIES: Activity[] = [
+  { time: '2 min ago', action: 'Customer email', detail: 'Responded to 3 support tickets', status: 'done' },
+  { time: '8 min ago', action: 'Inventory alert', detail: 'Restock notification sent', status: 'done' },
+  { time: '14 min ago', action: 'Email campaign', detail: 'Sent to 2,418 subscribers', status: 'done' },
+  { time: 'Just now', action: 'Ad optimization', detail: 'Analyzing performance data', status: 'active' },
+  { time: 'In 15 min', action: 'Scheduled flow', detail: 'Cart abandonment sequence', status: 'pending' },
 ];
 
-function TypingBubble() {
-  return (
-    <div className="flex items-end gap-2">
-      <div className="w-6 h-6 rounded-full bg-blue-500 flex items-center justify-center text-[10px] font-bold text-white shrink-0">M</div>
-      <div className="px-4 py-2.5 rounded-2xl rounded-bl-md bg-white/10 backdrop-blur-sm">
-        <div className="flex gap-1">
-          <span className="w-1.5 h-1.5 rounded-full bg-blue-300 animate-bounce [animation-delay:0ms]" />
-          <span className="w-1.5 h-1.5 rounded-full bg-blue-300 animate-bounce [animation-delay:150ms]" />
-          <span className="w-1.5 h-1.5 rounded-full bg-blue-300 animate-bounce [animation-delay:300ms]" />
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function AskMark() {
-  const [messages, setMessages] = useState<Message[]>([
-    { role: 'mark', text: "Hey! I'm Mark, your AI store operator. Ask me anything." }
-  ]);
-  const [input, setInput] = useState('');
-  const [isTyping, setIsTyping] = useState(false);
-  const scrollRef = useRef<HTMLDivElement>(null);
+function ActivityFeed() {
+  const [visibleActivities, setVisibleActivities] = useState<Activity[]>([]);
 
   useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-    }
-  }, [messages, isTyping]);
-
-  const sendMessage = (text: string) => {
-    if (!text.trim() || isTyping) return;
-    const userMsg = text.trim();
-    setInput('');
-    setMessages(prev => [...prev, { role: 'user', text: userMsg }]);
-    setIsTyping(true);
-
-    // Simulate typing delay
-    setTimeout(() => {
-      setIsTyping(false);
-      setMessages(prev => [...prev, { role: 'mark', text: getMarkResponse(userMsg) }]);
-    }, 800 + Math.random() * 600);
-  };
+    // Stagger the activity reveals
+    ACTIVITIES.forEach((activity, i) => {
+      setTimeout(() => {
+        setVisibleActivities(prev => [...prev, activity]);
+      }, i * 600);
+    });
+  }, []);
 
   return (
-    <div className="flex flex-col w-full max-w-full md:max-w-xs h-[340px] md:h-[360px] rounded-2xl overflow-hidden bg-black/40 backdrop-blur-md border border-white/10">
-      {/* Header bar — iMessage style */}
-      <div className="flex items-center gap-3 px-4 py-3 border-b border-white/10 bg-white/5">
-        <div className="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-xs font-bold text-white">M</div>
+    <div className="flex flex-col w-full max-w-full md:max-w-md rounded-2xl overflow-hidden bg-black/40 backdrop-blur-md border border-white/10">
+      {/* Header */}
+      <div className="flex items-center justify-between px-5 py-4 border-b border-white/10 bg-white/5">
         <div>
-          <p className="text-white text-sm font-semibold leading-tight">Mark</p>
-          <p className="text-blue-200 text-[11px]">AI Store Operator</p>
+          <p className="text-white text-sm font-semibold">System Activity</p>
+          <p className="text-blue-200 text-xs">Running 24/7</p>
         </div>
-        <div className="ml-auto w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+        <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
       </div>
 
-      {/* Messages */}
-      <div ref={scrollRef} className="flex-1 overflow-y-auto px-4 py-3 space-y-3 scrollbar-hide">
-        {messages.map((msg, i) => (
-          <div key={i} className={`flex items-end gap-2 ${msg.role === 'user' ? 'justify-end' : ''}`}>
-            {msg.role === 'mark' && (
-              <div className="w-6 h-6 rounded-full bg-blue-500 flex items-center justify-center text-[10px] font-bold text-white shrink-0">M</div>
-            )}
-            <div className={`max-w-[80%] px-4 py-2.5 text-sm leading-relaxed ${
-              msg.role === 'user'
-                ? 'bg-blue-500 text-white rounded-2xl rounded-br-md'
-                : 'bg-white/15 text-white rounded-2xl rounded-bl-md backdrop-blur-sm'
-            }`}>
-              {msg.text}
+      {/* Activity list */}
+      <div className="flex-1 overflow-y-auto px-4 py-4 space-y-3 max-h-[320px] scrollbar-hide">
+        {visibleActivities.map((activity, i) => (
+          <div
+            key={i}
+            className="flex items-start gap-3 p-3 rounded-xl bg-white/5 border border-white/10 animate-fade-in"
+            style={{ animationDelay: `${i * 100}ms` }}
+          >
+            {/* Status indicator */}
+            <div className={`mt-1 w-2 h-2 rounded-full shrink-0 ${
+              activity.status === 'done' ? 'bg-green-400' :
+              activity.status === 'active' ? 'bg-blue-400 animate-pulse' :
+              'bg-gray-400'
+            }`} />
+            
+            {/* Content */}
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center justify-between gap-2 mb-1">
+                <p className="text-white text-sm font-medium truncate">{activity.action}</p>
+                <span className="text-blue-200 text-xs whitespace-nowrap shrink-0">{activity.time}</span>
+              </div>
+              <p className="text-blue-100/70 text-xs leading-relaxed">{activity.detail}</p>
             </div>
           </div>
         ))}
-        {isTyping && <TypingBubble />}
-
-        {/* Suggestion chips — only show at start */}
-        {messages.length === 1 && !isTyping && (
-          <div className="flex flex-wrap gap-2 pt-1">
-            {SUGGESTIONS.map(s => (
-              <button
-                key={s}
-                onClick={() => sendMessage(s)}
-                className="px-3 py-1.5 text-xs text-white bg-white/15 hover:bg-white/25 rounded-full border border-white/20 transition-colors"
-              >
-                {s}
-              </button>
-            ))}
-          </div>
-        )}
-      </div>
-
-      {/* Input bar */}
-      <div className="px-3 py-2.5 border-t border-white/10 bg-white/5">
-        <div className="flex items-center gap-2">
-          <input
-            type="text"
-            value={input}
-            onChange={e => setInput(e.target.value)}
-            onKeyDown={e => e.key === 'Enter' && sendMessage(input)}
-            placeholder="Ask Mark anything..."
-            className="flex-1 bg-white/15 text-white text-sm placeholder-white/40 rounded-full px-4 py-2 outline-none focus:ring-1 focus:ring-blue-400/50 border border-white/15"
-          />
-          <button
-            onClick={() => sendMessage(input)}
-            disabled={!input.trim() || isTyping}
-            className="w-8 h-8 rounded-full bg-blue-500 hover:bg-blue-400 disabled:opacity-40 flex items-center justify-center transition-colors shrink-0"
-          >
-            <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14M12 5l7 7-7 7" />
-            </svg>
-          </button>
-        </div>
       </div>
     </div>
   );
@@ -191,15 +113,15 @@ export function SplineSceneBasic() {
           {/* Glass reflection overlay */}
           <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-white/[0.08] to-transparent pointer-events-none" />
 
-          {/* Left content — text + chat */}
+          {/* Left content — heading + activity feed */}
           <div className="flex-1 z-10 flex flex-col items-center md:items-start">
-            <h1 className="text-5xl md:text-6xl font-bold text-white leading-tight mb-3">
-              Meet Mark
-            </h1>
-            <p className="text-lg text-blue-200 leading-relaxed max-w-md mb-5">
-              Mark works 24/7 and never needs a break. Crazy, right?
+            <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-3">
+              Your system.<br />Always running.
+            </h2>
+            <p className="text-lg text-blue-200 leading-relaxed max-w-md mb-6">
+              While you sleep, it handles customer emails, restocks inventory, and sends campaigns. No supervision needed.
             </p>
-            <AskMark />
+            <ActivityFeed />
           </div>
 
           {/* Right content — robot (taller so legs show within container) */}
