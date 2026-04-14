@@ -95,7 +95,7 @@ export function ScaleWithoutLimits() {
           transition={{ delay: 0.4, duration: 0.8, ease: "easeInOut" }}
           className="text-lg text-slate-700 max-w-2xl"
         >
-          Connect your store. Ainomiq handles customer service, emails, inventory, and reporting — so you can focus on growth.
+          Connect your store. We handle the rest.
         </motion.p>
       </div>
 
