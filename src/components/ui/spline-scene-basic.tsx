@@ -84,10 +84,8 @@ export function SplineSceneBasic() {
   const handleMouseLeave = () => setMousePos(null);
 
   return (
-    <div className="w-full px-4 md:px-8 pt-0 pb-0 relative">
-      {/* Gradient fade from white into section */}
-      <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-white via-slate-50 to-transparent pointer-events-none" />
-      <div className="max-w-6xl mx-auto pt-20">
+    <div className="w-full px-4 md:px-8 pt-0 pb-0 bg-white relative">
+      <div className="max-w-6xl mx-auto">
         {/* Glassy container */}
         <div
           ref={containerRef}
