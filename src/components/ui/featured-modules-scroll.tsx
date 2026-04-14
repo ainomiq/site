@@ -311,13 +311,7 @@ export function FeaturedModulesScroll() {
                       style={{ color: isActive ? mod.color : "#9CA3AF" }}
                     />
                   </motion.div>
-                  {/* Label below icon */}
-                  <motion.span
-                    animate={{ color: isActive ? mod.color : "#9CA3AF", opacity: isActive ? 1 : 0.6 }}
-                    className="text-[10px] md:text-xs font-medium mt-1 whitespace-nowrap"
-                  >
-                    {mod.name.split(" ")[0]}
-                  </motion.span>
+
                   {isActive && (
                     <motion.div
                       layoutId="activeDot"
