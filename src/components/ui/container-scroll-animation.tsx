@@ -187,14 +187,6 @@ export const Card = ({
           {children}
         </div>
       </motion.div>
-      {/* Gradient overlay that fades the shadow edge smoothly into white */}
-      <div
-        className="absolute left-0 right-0 bottom-0 h-80 pointer-events-none z-40"
-        style={{
-          background: "linear-gradient(to bottom, transparent 0%, rgba(255,255,255,0.3) 30%, rgba(255,255,255,0.7) 55%, rgba(255,255,255,0.95) 80%, white 100%)",
-          transform: "translateY(60%)",
-        }}
-      />
     </div>
   );
 };
