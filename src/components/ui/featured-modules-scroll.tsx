@@ -1,8 +1,8 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { Headphones, Package, Mail, BarChart3, ArrowRight, ChevronRight } from "lucide-react"
+import { Headphones, Package, Mail, BarChart3, ChevronRight, CheckCircle2, ArrowRight } from "lucide-react"
 
 interface ModuleFlow {
   id: string
@@ -11,6 +11,7 @@ interface ModuleFlow {
   color: string
   bgColor: string
   steps: { label: string; detail: string }[]
+  result: string
 }
 
 const modules: ModuleFlow[] = [
@@ -21,11 +22,12 @@ const modules: ModuleFlow[] = [
     color: "#3B82F6",
     bgColor: "#EFF6FF",
     steps: [
-      { label: "Customer sends email or DM", detail: "Gmail, Instagram, Facebook — all channels monitored 24/7" },
-      { label: "System reads and classifies", detail: "Order issue? Return? Question? Automatically categorized" },
-      { label: "Drafts personalized response", detail: "Using your brand voice, order data, and FAQ knowledge" },
-      { label: "Sends or escalates", detail: "Routine questions answered instantly. Complex issues routed to your team" },
+      { label: "Email or DM received", detail: "All channels monitored 24/7" },
+      { label: "Classified automatically", detail: "Order issue? Return? Question?" },
+      { label: "Response drafted", detail: "Your brand voice, your data" },
+      { label: "Sent or escalated", detail: "Instant reply or routed to team" },
     ],
+    result: "Avg. response time: 47 seconds",
   },
   {
     id: "inventory",
@@ -34,11 +36,12 @@ const modules: ModuleFlow[] = [
     color: "#10B981",
     bgColor: "#ECFDF5",
     steps: [
-      { label: "Tracks stock in real-time", detail: "Syncs with Shopify, warehouse, and supplier data" },
-      { label: "Predicts demand patterns", detail: "Analyzes sales velocity, seasonality, and trends" },
-      { label: "Sends restock alerts", detail: "Before you run out — not after" },
-      { label: "Suggests reorder quantities", detail: "Based on lead times, MOQ, and cash flow" },
+      { label: "Stock synced", detail: "Shopify + warehouse data" },
+      { label: "Demand predicted", detail: "Sales velocity & trends" },
+      { label: "Restock alert sent", detail: "Before you run out" },
+      { label: "Reorder suggested", detail: "Lead times & MOQ calculated" },
     ],
+    result: "Zero stockouts last quarter",
   },
   {
     id: "email",
@@ -47,11 +50,12 @@ const modules: ModuleFlow[] = [
     color: "#8B5CF6",
     bgColor: "#F5F3FF",
     steps: [
-      { label: "Customer triggers event", detail: "New signup, abandoned cart, purchase, delivery, birthday" },
-      { label: "Selects the right flow", detail: "Welcome series, win-back, post-purchase — all pre-built" },
-      { label: "Personalizes content", detail: "Name, product, segment-specific copy and offers" },
-      { label: "Sends at optimal time", detail: "Maximizing open rates and conversions automatically" },
+      { label: "Event triggered", detail: "Signup, cart, purchase, birthday" },
+      { label: "Flow selected", detail: "Welcome, win-back, post-purchase" },
+      { label: "Content personalized", detail: "Name, product, segment copy" },
+      { label: "Sent at optimal time", detail: "Max open rates automatically" },
     ],
+    result: "2,418 emails sent this week",
   },
   {
     id: "performance",
@@ -60,21 +64,42 @@ const modules: ModuleFlow[] = [
     color: "#F59E0B",
     bgColor: "#FFFBEB",
     steps: [
-      { label: "Collects all your data", detail: "Shopify, ads, email, analytics — one unified source" },
-      { label: "Calculates true profit", detail: "Revenue minus COGS, ads, shipping, returns, fees" },
-      { label: "Spots trends and anomalies", detail: "ROAS drops, conversion changes, traffic shifts" },
-      { label: "Delivers actionable insights", detail: "Not just charts — specific recommendations you can act on" },
+      { label: "Data collected", detail: "Shopify, ads, email, analytics" },
+      { label: "True profit calculated", detail: "Revenue minus all costs" },
+      { label: "Anomalies detected", detail: "ROAS drops, traffic shifts" },
+      { label: "Insights delivered", detail: "Specific recommendations" },
     ],
+    result: "Profit margin up 12% this month",
   },
 ]
 
 export function FeaturedModulesScroll() {
   const [activeModule, setActiveModule] = useState<string>("cs")
+  const [animatingStep, setAnimatingStep] = useState<number>(-1)
+  const [showResult, setShowResult] = useState(false)
   const current = modules.find(m => m.id === activeModule)!
+
+  // Auto-animate steps sequentially when module changes
+  useEffect(() => {
+    setAnimatingStep(-1)
+    setShowResult(false)
+
+    const timers: NodeJS.Timeout[] = []
+
+    // Animate each step with a delay
+    current.steps.forEach((_, i) => {
+      timers.push(setTimeout(() => setAnimatingStep(i), 400 + i * 600))
+    })
+
+    // Show result after all steps
+    timers.push(setTimeout(() => setShowResult(true), 400 + current.steps.length * 600 + 300))
+
+    return () => timers.forEach(clearTimeout)
+  }, [activeModule])
 
   return (
     <section className="py-24 md:py-32 px-6 bg-white overflow-hidden">
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
           <span className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-3 block">
@@ -88,8 +113,184 @@ export function FeaturedModulesScroll() {
           </p>
         </div>
 
-        {/* Dock */}
-        <div className="flex justify-center mb-16">
+        {/* Horizontal flow visualization */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeModule}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.25 }}
+            className="mb-16"
+          >
+            {/* Module title */}
+            <div className="flex items-center justify-center gap-3 mb-10">
+              <div
+                className="w-10 h-10 rounded-xl flex items-center justify-center"
+                style={{ backgroundColor: current.bgColor }}
+              >
+                <current.icon className="w-5 h-5" style={{ color: current.color }} />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900">{current.name}</h3>
+            </div>
+
+            {/* Horizontal steps */}
+            <div className="flex items-start justify-center gap-0 overflow-x-auto pb-4">
+              {current.steps.map((step, i) => {
+                const isActive = animatingStep >= i
+                const isAnimating = animatingStep === i
+
+                return (
+                  <div key={i} className="flex items-start shrink-0">
+                    {/* Step card */}
+                    <motion.div
+                      initial={{ opacity: 0.3, scale: 0.95 }}
+                      animate={{
+                        opacity: isActive ? 1 : 0.3,
+                        scale: isAnimating ? 1.03 : 1,
+                      }}
+                      transition={{ duration: 0.4, ease: "easeOut" }}
+                      className="relative flex flex-col items-center text-center w-[160px] md:w-[180px]"
+                    >
+                      {/* Step number circle */}
+                      <motion.div
+                        animate={{
+                          backgroundColor: isActive ? current.color : "#E5E7EB",
+                          scale: isAnimating ? [1, 1.2, 1] : 1,
+                        }}
+                        transition={{
+                          duration: 0.4,
+                          scale: { duration: 0.5, ease: "easeInOut" },
+                        }}
+                        className="w-12 h-12 rounded-full flex items-center justify-center text-white text-sm font-bold mb-3 shadow-sm"
+                        style={{
+                          boxShadow: isActive ? `0 4px 16px ${current.color}30` : "none",
+                        }}
+                      >
+                        {isActive ? (
+                          <motion.div
+                            initial={{ scale: 0 }}
+                            animate={{ scale: 1 }}
+                            transition={{ type: "spring", stiffness: 500, damping: 25 }}
+                          >
+                            {i + 1}
+                          </motion.div>
+                        ) : (
+                          <span className="text-gray-400">{i + 1}</span>
+                        )}
+                      </motion.div>
+
+                      {/* Pulse ring when animating */}
+                      {isAnimating && (
+                        <motion.div
+                          className="absolute top-0 w-12 h-12 rounded-full"
+                          style={{ border: `2px solid ${current.color}` }}
+                          initial={{ scale: 1, opacity: 0.6 }}
+                          animate={{ scale: 1.8, opacity: 0 }}
+                          transition={{ duration: 0.8, ease: "easeOut" }}
+                        />
+                      )}
+
+                      {/* Label */}
+                      <motion.p
+                        animate={{ color: isActive ? "#111827" : "#9CA3AF" }}
+                        className="font-semibold text-sm mb-1 leading-tight"
+                      >
+                        {step.label}
+                      </motion.p>
+
+                      {/* Detail */}
+                      <motion.p
+                        animate={{ color: isActive ? "#6B7280" : "#D1D5DB" }}
+                        className="text-xs leading-relaxed"
+                      >
+                        {step.detail}
+                      </motion.p>
+                    </motion.div>
+
+                    {/* Connector arrow */}
+                    {i < current.steps.length - 1 && (
+                      <div className="flex items-center pt-5 px-1 md:px-2">
+                        <motion.div
+                          animate={{
+                            opacity: animatingStep > i ? 1 : 0.2,
+                          }}
+                          transition={{ duration: 0.3 }}
+                          className="relative"
+                        >
+                          {/* Animated line */}
+                          <div className="w-8 md:w-12 h-0.5 bg-gray-200 relative overflow-hidden rounded-full">
+                            <motion.div
+                              className="absolute inset-y-0 left-0 rounded-full"
+                              style={{ backgroundColor: current.color }}
+                              initial={{ width: "0%" }}
+                              animate={{ width: animatingStep > i ? "100%" : "0%" }}
+                              transition={{ duration: 0.4, ease: "easeOut" }}
+                            />
+                          </div>
+                          <motion.div
+                            animate={{
+                              x: animatingStep > i ? 0 : -4,
+                              opacity: animatingStep > i ? 1 : 0.2,
+                            }}
+                            className="absolute -right-1 -top-[5px]"
+                          >
+                            <ChevronRight
+                              className="w-3 h-3"
+                              style={{ color: animatingStep > i ? current.color : "#D1D5DB" }}
+                            />
+                          </motion.div>
+                        </motion.div>
+                      </div>
+                    )}
+                  </div>
+                )
+              })}
+
+              {/* Result badge */}
+              <div className="flex items-center pt-5 px-1 md:px-2 shrink-0">
+                <motion.div
+                  animate={{ opacity: showResult ? 1 : 0.2 }}
+                  className="w-8 md:w-12 h-0.5 bg-gray-200 relative overflow-hidden rounded-full"
+                >
+                  <motion.div
+                    className="absolute inset-y-0 left-0 rounded-full"
+                    style={{ backgroundColor: current.color }}
+                    initial={{ width: "0%" }}
+                    animate={{ width: showResult ? "100%" : "0%" }}
+                    transition={{ duration: 0.4 }}
+                  />
+                </motion.div>
+              </div>
+
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{
+                  opacity: showResult ? 1 : 0,
+                  scale: showResult ? 1 : 0.8,
+                }}
+                transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                className="shrink-0 pt-1"
+              >
+                <div
+                  className="flex items-center gap-2 px-4 py-2.5 rounded-full border"
+                  style={{
+                    backgroundColor: current.bgColor,
+                    borderColor: `${current.color}30`,
+                  }}
+                >
+                  <CheckCircle2 className="w-4 h-4" style={{ color: current.color }} />
+                  <span className="text-xs font-semibold whitespace-nowrap" style={{ color: current.color }}>
+                    {current.result}
+                  </span>
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Dock — below the flow */}
+        <div className="flex justify-center">
           <div className="inline-flex items-end gap-2 p-2 rounded-2xl bg-gray-50 border border-gray-100">
             {modules.map((mod) => {
               const Icon = mod.icon
@@ -141,84 +342,6 @@ export function FeaturedModulesScroll() {
             })}
           </div>
         </div>
-
-        {/* Flow visualization */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeModule}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-            className="max-w-3xl mx-auto"
-          >
-            {/* Module title */}
-            <div className="flex items-center gap-3 mb-8">
-              <div
-                className="w-10 h-10 rounded-xl flex items-center justify-center"
-                style={{ backgroundColor: current.bgColor }}
-              >
-                <current.icon className="w-5 h-5" style={{ color: current.color }} />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900">{current.name}</h3>
-            </div>
-
-            {/* Flow steps */}
-            <div className="space-y-0">
-              {current.steps.map((step, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.1 + 0.1, duration: 0.3 }}
-                >
-                  <div className="flex gap-4">
-                    {/* Left: step indicator + connector line */}
-                    <div className="flex flex-col items-center">
-                      <div
-                        className="w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-bold shrink-0"
-                        style={{ backgroundColor: current.color }}
-                      >
-                        {i + 1}
-                      </div>
-                      {i < current.steps.length - 1 && (
-                        <div className="w-0.5 h-full min-h-[40px] my-1" style={{ backgroundColor: `${current.color}20` }} />
-                      )}
-                    </div>
-
-                    {/* Right: content */}
-                    <div className="pb-8 pt-1">
-                      <p className="font-semibold text-gray-900 mb-1">{step.label}</p>
-                      <p className="text-sm text-gray-500 leading-relaxed">{step.detail}</p>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-
-              {/* Result */}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: current.steps.length * 0.1 + 0.15, duration: 0.3 }}
-                className="flex gap-4"
-              >
-                <div className="flex flex-col items-center">
-                  <div
-                    className="w-8 h-8 rounded-full flex items-center justify-center shrink-0"
-                    style={{ backgroundColor: current.bgColor }}
-                  >
-                    <ChevronRight className="w-4 h-4" style={{ color: current.color }} />
-                  </div>
-                </div>
-                <div className="pt-1">
-                  <p className="text-sm font-medium" style={{ color: current.color }}>
-                    Fully automated — no manual work required.
-                  </p>
-                </div>
-              </motion.div>
-            </div>
-          </motion.div>
-        </AnimatePresence>
       </div>
     </section>
   )
