@@ -2,191 +2,194 @@
 
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { Bot, Package, Mail, Check } from 'lucide-react'
+import { Mail, MessageSquare, Package, BarChart3, Zap } from 'lucide-react'
 
-const modules = [
-  {
-    id: 'customer-service',
-    icon: Bot,
-    number: '01',
-    label: 'Intelligent Customer Service',
-    headline: 'Your support team that never sleeps',
-    description:
-      'An intelligent agent that answers customer questions 24/7, handles returns, and identifies escalations. Trained on your products, tone of voice, and policies.',
-    capabilities: [
-      'Multilingual support across 30+ languages',
-      'Sentiment analysis and auto-escalation',
-      'Handles 200+ tickets per day',
-      'Trained on your brand voice and policies',
-    ],
-    stat: '200+',
-    statLabel: 'tickets handled daily',
-    gradient: 'from-blue-600 to-cyan-500',
-    iconBg: 'bg-blue-500/20',
-    iconColor: 'text-blue-400',
-  },
-  {
-    id: 'smart-inventory',
-    icon: Package,
-    number: '02',
-    label: 'Smart Inventory',
-    headline: 'Predict demand before it happens',
-    description:
-      'Intelligent forecasting that prevents stockouts and minimizes overstock. Real-time tracking across all your warehouses and sales channels.',
-    capabilities: [
-      'Predictive demand forecasting',
-      'Automatic reorder alerts',
-      'Seasonal trend analysis',
-      'Multi-warehouse sync',
-    ],
-    stat: '30%',
-    statLabel: 'less overstock',
-    gradient: 'from-violet-600 to-purple-500',
-    iconBg: 'bg-violet-500/20',
-    iconColor: 'text-violet-400',
-  },
-  {
-    id: 'email-marketing',
-    icon: Mail,
-    number: '03',
-    label: 'E-mail Marketing',
-    headline: 'Automated flows that convert',
-    description:
-      'Personalized email flows from welcome to win-back. Intelligently optimizes timing, subject lines, and content for maximum conversions.',
-    capabilities: [
-      'Optimized send times',
-      'Dynamic personalization',
-      'Automated A/B testing',
-      'Smart segmentation',
-    ],
-    stat: '3.2x',
-    statLabel: 'higher conversion',
-    gradient: 'from-emerald-600 to-teal-500',
-    iconBg: 'bg-emerald-500/20',
-    iconColor: 'text-emerald-400',
-  },
-]
-
-function ModuleCard({ mod, index }: { mod: (typeof modules)[0]; index: number }) {
-  const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, margin: '-100px' })
-
+/* ---------- email preview (rendered as styled React, not iframe) ---------- */
+function EmailPreview() {
   return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 80, scale: 0.95 }}
-      animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 80, scale: 0.95 }}
-      transition={{ duration: 0.7, delay: index * 0.15, ease: [0.25, 0.4, 0.25, 1] }}
-      className="group relative"
-    >
-      {/* Card */}
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#0a1628] to-[#0f2038] border border-white/[0.08] p-8 md:p-10 h-full transition-all duration-500 hover:border-white/20 hover:shadow-2xl hover:shadow-blue-500/10">
-        {/* Gradient accent line at top */}
-        <div className={`absolute top-0 left-8 right-8 h-[2px] bg-gradient-to-r ${mod.gradient} opacity-60 group-hover:opacity-100 transition-opacity`} />
+    <div className="bg-white rounded-2xl shadow-2xl overflow-hidden max-w-[420px] w-full mx-auto text-left">
+      {/* Email chrome bar */}
+      <div className="bg-gray-100 px-4 py-2.5 flex items-center gap-2 border-b border-gray-200">
+        <div className="flex gap-1.5">
+          <div className="w-2.5 h-2.5 rounded-full bg-red-400" />
+          <div className="w-2.5 h-2.5 rounded-full bg-yellow-400" />
+          <div className="w-2.5 h-2.5 rounded-full bg-green-400" />
+        </div>
+        <div className="flex-1 text-center">
+          <span className="text-[10px] text-gray-400 font-medium">Klaviyo &mdash; Campaign Preview</span>
+        </div>
+      </div>
 
-        {/* Number + Label */}
-        <div className="flex items-center gap-3 mb-6">
-          <span className={`text-xs font-mono font-bold bg-gradient-to-r ${mod.gradient} bg-clip-text text-transparent`}>
-            {mod.number}
-          </span>
-          <span className="text-xs font-semibold uppercase tracking-wider text-white/40">
-            {mod.label}
-          </span>
+      <div className="p-5">
+        {/* Logo */}
+        <div className="text-center mb-4">
+          <div className="inline-block bg-gray-900 rounded-lg px-4 py-2">
+            <span className="text-white font-bold text-sm tracking-wide">BILLIE JEANS</span>
+          </div>
         </div>
 
-        {/* Icon */}
-        <motion.div
-          initial={{ scale: 0, rotate: -20 }}
-          animate={isInView ? { scale: 1, rotate: 0 } : { scale: 0, rotate: -20 }}
-          transition={{ duration: 0.5, delay: index * 0.15 + 0.3, ease: 'backOut' }}
-          className={`w-14 h-14 rounded-2xl ${mod.iconBg} flex items-center justify-center mb-6`}
-        >
-          <mod.icon className={`h-7 w-7 ${mod.iconColor}`} />
-        </motion.div>
+        {/* Nav */}
+        <div className="border-t border-b border-gray-200 py-2 mb-4 flex justify-center gap-4">
+          <span className="text-[10px] font-semibold tracking-widest text-gray-500">SHOP</span>
+          <span className="text-[10px] text-gray-300">|</span>
+          <span className="text-[10px] font-semibold tracking-widest text-gray-500">BESTSELLERS</span>
+          <span className="text-[10px] text-gray-300">|</span>
+          <span className="text-[10px] font-semibold tracking-widest text-gray-500">SUPPORT</span>
+        </div>
 
-        {/* Headline */}
-        <h3 className="text-2xl md:text-3xl font-bold text-white mb-3 leading-tight">
-          {mod.headline}
-        </h3>
+        {/* Tracker image placeholder */}
+        <div className="bg-gradient-to-r from-emerald-50 to-blue-50 rounded-xl p-4 mb-4 flex items-center gap-3">
+          <div className="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center shrink-0">
+            <Package className="w-5 h-5 text-emerald-600" />
+          </div>
+          <div>
+            <p className="text-xs font-semibold text-gray-800">Order Status: Delivered ✓</p>
+            <p className="text-[10px] text-gray-500">Tracking: NL48291034820</p>
+          </div>
+        </div>
 
-        {/* Description */}
-        <p className="text-white/50 text-sm leading-relaxed mb-6">
-          {mod.description}
-        </p>
+        {/* Body */}
+        <div className="mb-4 space-y-2">
+          <p className="text-sm text-gray-800">Hi Sarah,</p>
+          <p className="text-sm text-gray-800">Great news — your order has been delivered!</p>
+          <p className="text-sm text-gray-600">We hope you love it. If you have any questions, don&apos;t hesitate to reach out.</p>
+        </div>
 
-        {/* Capabilities */}
-        <ul className="space-y-2.5 mb-8">
-          {mod.capabilities.map((cap, i) => (
-            <motion.li
-              key={cap}
-              initial={{ opacity: 0, x: -20 }}
-              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-              transition={{ duration: 0.4, delay: index * 0.15 + 0.4 + i * 0.08 }}
-              className="flex items-center gap-2.5 text-sm text-white/60"
-            >
-              <Check className={`h-4 w-4 ${mod.iconColor} shrink-0`} />
-              {cap}
-            </motion.li>
-          ))}
-        </ul>
+        {/* CTA */}
+        <div className="mb-5">
+          <div className="inline-block bg-gray-900 text-white text-xs font-semibold tracking-wider uppercase px-6 py-2.5 rounded-full">
+            TRACK MY ORDER
+          </div>
+        </div>
 
-        {/* Stat */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-          transition={{ duration: 0.5, delay: index * 0.15 + 0.6, ease: 'backOut' }}
-          className="flex items-baseline gap-2 pt-6 border-t border-white/[0.06]"
-        >
-          <span className={`text-4xl font-extrabold bg-gradient-to-r ${mod.gradient} bg-clip-text text-transparent`}>
-            {mod.stat}
-          </span>
-          <span className="text-sm text-white/40">{mod.statLabel}</span>
-        </motion.div>
-
-        {/* Hover glow */}
-        <div className={`absolute -bottom-20 -right-20 w-60 h-60 bg-gradient-to-br ${mod.gradient} opacity-0 group-hover:opacity-[0.08] blur-3xl rounded-full transition-opacity duration-700 pointer-events-none`} />
+        {/* Sign off */}
+        <p className="text-xs text-gray-500">Thank you for shopping with us,<br /><strong className="text-gray-700">Billie Jeans</strong></p>
       </div>
-    </motion.div>
+
+      {/* Footer */}
+      <div className="bg-gray-900 px-5 py-4 flex items-center justify-between">
+        <div className="w-6 h-6 rounded bg-white/10 flex items-center justify-center">
+          <span className="text-[8px] font-bold text-white/60">BJ</span>
+        </div>
+        <div className="flex items-center gap-3">
+          <span className="text-[9px] text-gray-500">Shop</span>
+          <span className="text-[9px] text-gray-500">Bestsellers</span>
+          <span className="text-[9px] text-gray-500">Support</span>
+        </div>
+      </div>
+    </div>
   )
 }
 
+/* ---------- capability pills ---------- */
+const capabilities = [
+  { icon: MessageSquare, label: 'Customer Service', desc: 'Email, chat, DMs, comments' },
+  { icon: Package, label: 'Smart Inventory', desc: 'Forecasting & reorder alerts' },
+  { icon: Mail, label: 'Email Marketing', desc: 'Automated flows & campaigns' },
+  { icon: BarChart3, label: 'Performance Tracking', desc: 'Revenue, profit, growth — free' },
+]
+
 export function FeaturedModulesScroll() {
-  const headerRef = useRef<HTMLDivElement>(null)
-  const headerInView = useInView(headerRef, { once: true, margin: '-80px' })
+  const ref = useRef<HTMLDivElement>(null)
+  const inView = useInView(ref, { once: true, margin: '-80px' })
 
   return (
-    <section className="relative py-24 md:py-32 px-6 bg-[#060d19] overflow-hidden">
-      {/* Background grid pattern */}
+    <section ref={ref} className="relative py-24 md:py-32 px-6 bg-[#060d19] overflow-hidden">
+      {/* Subtle grid */}
       <div className="absolute inset-0 opacity-[0.03]" style={{
         backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
         backgroundSize: '60px 60px',
       }} />
 
       <div className="relative max-w-6xl mx-auto">
-        {/* Section header */}
-        <motion.div
-          ref={headerRef}
-          initial={{ opacity: 0, y: 40 }}
-          animate={headerInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16 md:mb-20"
-        >
-          <span className="inline-block text-xs font-semibold uppercase tracking-widest text-blue-400/80 mb-4">
-            Modules
-          </span>
-          <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-4">
-            Everything your store needs
-          </h2>
-          <p className="text-white/40 text-lg max-w-xl mx-auto">
-            Three powerful modules that work together to run your e-commerce on autopilot.
-          </p>
-        </motion.div>
+        {/* Two-column layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          
+          {/* Left: text + modules */}
+          <motion.div
+            initial={{ opacity: 0, x: -40 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.7 }}
+          >
+            <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-blue-400/80 mb-4">
+              <Zap className="w-3.5 h-3.5" />
+              What it does
+            </span>
+            <h2 className="text-3xl md:text-5xl font-extrabold text-white tracking-tight mb-4 leading-tight">
+              One system.<br />Every department.
+            </h2>
+            <p className="text-white/40 text-lg mb-10 max-w-md">
+              Connect your store and watch it handle customer service, inventory, email campaigns, and analytics — automatically.
+            </p>
 
-        {/* Cards grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {modules.map((mod, i) => (
-            <ModuleCard key={mod.id} mod={mod} index={i} />
-          ))}
+            {/* Module list */}
+            <div className="space-y-4">
+              {capabilities.map((cap, i) => (
+                <motion.div
+                  key={cap.label}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
+                  className="flex items-start gap-4 group"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-white/[0.06] border border-white/[0.08] flex items-center justify-center shrink-0 group-hover:bg-white/[0.1] transition-colors">
+                    <cap.icon className="w-5 h-5 text-blue-400" />
+                  </div>
+                  <div>
+                    <h4 className="text-white font-semibold text-sm">{cap.label}</h4>
+                    <p className="text-white/40 text-sm">{cap.desc}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Right: email preview */}
+          <motion.div
+            initial={{ opacity: 0, y: 40, scale: 0.95 }}
+            animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="relative"
+          >
+            {/* Glow behind */}
+            <div className="absolute -inset-10 bg-gradient-to-br from-blue-500/10 via-transparent to-purple-500/10 blur-3xl rounded-full pointer-events-none" />
+            
+            {/* Label */}
+            <div className="text-center mb-4">
+              <span className="text-[10px] font-semibold uppercase tracking-widest text-white/30">
+                Live output — Customer Service module
+              </span>
+            </div>
+
+            <div className="relative">
+              <EmailPreview />
+            </div>
+
+            {/* Activity badges */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={inView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.8 }}
+              className="absolute -right-4 top-1/4 hidden lg:block"
+            >
+              <div className="bg-[#0f2038] border border-white/[0.08] rounded-xl px-3 py-2 shadow-xl">
+                <p className="text-[10px] text-emerald-400 font-medium">✓ Auto-sent</p>
+                <p className="text-[9px] text-white/30">2 min ago</p>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              animate={inView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.6, delay: 1.0 }}
+              className="absolute -left-4 bottom-1/3 hidden lg:block"
+            >
+              <div className="bg-[#0f2038] border border-white/[0.08] rounded-xl px-3 py-2 shadow-xl">
+                <p className="text-[10px] text-blue-400 font-medium">↻ Flow triggered</p>
+                <p className="text-[9px] text-white/30">Order #4821</p>
+              </div>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
     </section>
