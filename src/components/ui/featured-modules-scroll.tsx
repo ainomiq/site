@@ -182,22 +182,13 @@ function StepNode({ step, index, isActive, isAnimating, color, glowColor, bgColo
       <div className="relative shrink-0">
         {/* Glow ring when animating */}
         {isAnimating && (
-          <>
-            <motion.div
-              className="absolute inset-0 rounded-full"
-              style={{ border: `2px solid rgba(${glowColor}, 0.5)` }}
-              initial={{ scale: 1, opacity: 0.8 }}
-              animate={{ scale: 2, opacity: 0 }}
-              transition={{ duration: 1, repeat: Infinity, ease: "easeOut" }}
-            />
-            <motion.div
-              className="absolute inset-0 rounded-full"
-              style={{ border: `2px solid rgba(${glowColor}, 0.3)` }}
-              initial={{ scale: 1, opacity: 0.6 }}
-              animate={{ scale: 2.5, opacity: 0 }}
-              transition={{ duration: 1, repeat: Infinity, ease: "easeOut", delay: 0.3 }}
-            />
-          </>
+          <motion.div
+            className="absolute inset-0 rounded-full"
+            style={{ border: `2px solid rgba(${glowColor}, 0.4)` }}
+            initial={{ scale: 1, opacity: 0.7 }}
+            animate={{ scale: 1.6, opacity: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          />
         )}
 
         <motion.div
