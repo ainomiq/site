@@ -150,7 +150,7 @@ export function AnimatedTestimonials({
 
                   <div className="relative mb-6 flex-1">
                     <Quote className="absolute -top-2 -left-2 h-8 w-8 text-gray-200 rotate-180" />
-                    <p className="relative z-10 text-lg font-medium leading-relaxed text-gray-800">&ldquo;{testimonial.content}&rdquo;</p>
+                    <p className="relative z-10 text-lg font-medium leading-relaxed text-gray-800">{testimonial.content}</p>
                   </div>
 
                   <Separator className="my-4" />
