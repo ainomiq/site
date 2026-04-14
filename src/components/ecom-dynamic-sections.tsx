@@ -23,6 +23,19 @@ export function EcomDynamicSections({ children }: { children?: React.ReactNode }
   return (
     <>
       <AinomiqHeroScroll />
+
+      {/* Breather — rust tussen drukke secties */}
+      <section className="py-28 md:py-36 px-6 bg-white">
+        <div className="mx-auto max-w-2xl text-center">
+          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-[#0f1b2d] mb-4">
+            Connect once.<br />Run forever.
+          </h2>
+          <p className="text-lg text-slate-500 max-w-md mx-auto">
+            Your store keeps working while you focus on what matters.
+          </p>
+        </div>
+      </section>
+
       <SplineSceneBasic />
       <FeaturedModulesScroll />
       {children}
