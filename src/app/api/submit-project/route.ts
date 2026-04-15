@@ -155,7 +155,7 @@ export async function POST(request: NextRequest) {
       estimateHours,
     });
 
-    const adminWebhook = process.env.DISCORD_WEBHOOK_ADMIN;
+    const adminWebhook = process.env.DISCORD_WEBHOOK_URL;
     if (!adminWebhook) {
       return NextResponse.json(
         { success: false, errors: ["Server configuration error."] },
