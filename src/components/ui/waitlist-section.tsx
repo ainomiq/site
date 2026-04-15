@@ -62,12 +62,10 @@ export function WaitlistSection() {
   return (
     <section className="py-20 md:py-28 px-6 bg-white">
       <div className="mx-auto max-w-xl text-center space-y-10">
-        <div className="space-y-4">
-          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-[#0f1b2d]">
-            Get early access.
-          </h2>
-          <p className="text-lg text-gray-500 max-w-md mx-auto">
-            Join the waitlist and be the first to automate your store.
+        <div className="space-y-2">
+          <h3 className="text-lg font-bold text-[#0f1b2d]">Never miss new products.</h3>
+          <p className="text-sm text-gray-500">
+            We&apos;re always working on automations to help you scale.
           </p>
         </div>
 
@@ -120,12 +118,7 @@ export function WaitlistSection() {
             <span className="text-sm font-medium text-gray-500">10,000+ people on the waitlist</span>
           </div>
 
-          <div className="border-t border-gray-100 pt-6">
-            <h3 className="text-lg font-bold text-[#0f1b2d] mb-1">Never miss new products.</h3>
-            <p className="text-sm text-gray-500">
-              We&apos;re always working on automations to help you scale.
-            </p>
-          </div>
+
         </div>
       </div>
     </section>
