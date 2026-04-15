@@ -5,7 +5,10 @@ import { ProjectRequestForm } from "@/components/get-started/project-request-for
 
 export function CustomHero() {
   return (
-    <section className="relative min-h-screen overflow-hidden bg-gradient-to-br from-blue-50 via-white to-blue-100/80 pt-24 pb-32 px-6">
+    <section className="relative min-h-screen overflow-hidden pt-24 pb-32 px-6">
+      {/* Smooth gradient background layer */}
+      <div className="absolute inset-0 bg-gradient-to-b from-blue-100/60 via-blue-50/40 to-white -z-20" />
+      
       <div className="mx-auto max-w-6xl">
         {/* Badge */}
         <div className="mb-6 flex justify-center">

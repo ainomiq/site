@@ -88,7 +88,10 @@ export default function CustomPage() {
       <BuildYourSolution />
 
       {/* Project Journey Timeline */}
-      <section className="relative bg-gradient-to-br from-blue-50 via-white to-blue-100/80">
+      <section className="relative">
+        {/* Smooth gradient background */}
+        <div className="absolute inset-0 bg-gradient-to-b from-blue-50/30 via-white to-blue-50/50 -z-20" />
+        
         <div className="py-32 px-6">
           <div className="text-center mb-16 relative z-20">
             <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-ainomiq-text mb-4">
