@@ -92,8 +92,8 @@ export default function CustomPage() {
         {/* Smooth gradient background */}
         <div className="absolute inset-0 bg-gradient-to-b from-blue-50/30 via-white to-blue-50/50 -z-20" />
         
-        <div className="py-32 px-6">
-          <div className="text-center mb-16 relative z-20">
+        <div className="py-16 px-6">
+          <div className="text-center mb-8 relative z-20">
             <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-ainomiq-text mb-4">
               Your project journey
             </h2>
