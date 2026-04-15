@@ -142,7 +142,7 @@ export function HeroSection() {
 
           {/* Subtitle */}
           <p className="mx-auto max-w-lg text-center text-base text-ainomiq-text-muted tracking-wider animate-float-up delay-200 sm:text-lg md:text-xl">
-            Connect your store. Watch it handle emails, restocks, and campaigns while you focus on growth.
+            For businesses that refuse to wait.
           </p>
 
           {/* CTAs */}
