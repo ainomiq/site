@@ -159,12 +159,14 @@ export function ProjectRequestForm() {
         });
         const stripeData = await stripeRes.json();
         if (stripeData.url) {
+          // Keep submitting=true so UI stays in loading state until redirect
           window.location.href = stripeData.url;
           return;
         }
       }
 
-      // Fallback if no estimate or Stripe fails
+      // Only show success if there's no estimate (shouldn't happen in normal flow)
+      // Payment success is handled via ?payment=success query param after Stripe redirect
       setSuccess(true);
     } catch {
       setErrors(["Network error. Please try again."]);
@@ -196,10 +198,10 @@ export function ProjectRequestForm() {
             <CheckCircle className="h-8 w-8 text-green-400" />
           </div>
           <h3 className="text-2xl font-bold text-white mb-2">
-            Thanks! We&apos;ll review your project and get back within 24h.
+            Project request submitted!
           </h3>
           <p className="text-gray-400">
-            Estimated total: <span className="text-white font-semibold">€{estimate?.total || "—"}</span>
+            Redirecting to payment...
           </p>
         </div>
       </section>
