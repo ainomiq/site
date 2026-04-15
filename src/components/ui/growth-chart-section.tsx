@@ -27,6 +27,7 @@ function AnimatedChart({
   const containerRef = useRef<HTMLDivElement>(null);
   const [len, setLen] = useState(600);
   const [done, setDone] = useState(false);
+  const firedRef = useRef(false);
 
   useEffect(() => {
     if (pathRef.current) {
@@ -37,15 +38,17 @@ function AnimatedChart({
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && !done) {
+        if (entry.isIntersecting && !firedRef.current) {
+          firedRef.current = true;
           setTimeout(() => setDone(true), delay);
+          observer.disconnect(); // never fire again
         }
       },
       { threshold: 0.2 }
     );
     if (containerRef.current) observer.observe(containerRef.current);
     return () => observer.disconnect();
-  }, [done, delay]);
+  }, [delay]);
 
   return (
     <div
