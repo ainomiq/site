@@ -229,6 +229,11 @@ export function ProjectRequestForm() {
   const canNext = steps[step]?.valid;
   const isLast = step === steps.length - 1;
 
+  function handleStepChange(newStep: number) {
+    setStep(newStep);
+    setErrors([]); // Clear errors when changing steps
+  }
+
   function resetForm() {
     setSuccess(false);
     setStep(0);
@@ -658,10 +663,7 @@ export function ProjectRequestForm() {
             {step > 0 ? (
               <button
                 type="button"
-                onClick={() => {
-                  setStep(step - 1);
-                  setErrors([]);
-                }}
+                onClick={() => handleStepChange(step - 1)}
                 className="flex items-center gap-2 text-sm text-gray-400 transition-colors hover:text-white"
               >
                 <ArrowLeft className="h-4 w-4" /> Back
@@ -691,10 +693,8 @@ export function ProjectRequestForm() {
               <button
                 type="button"
                 disabled={!canNext}
-                onClick={() => {
-                  setStep(step + 1);
-                  setErrors([]);
-                }}
+                onClick={() => handleStepChange(step + 1)}
+                onClick={() => handleStepChange(step + 1)}
                 className="flex items-center gap-2 rounded-xl bg-[#4A90F5] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#3a7de0] disabled:opacity-40"
               >
                 Continue <ArrowRight className="h-4 w-4" />
