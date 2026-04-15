@@ -26,6 +26,10 @@ const LiveCodeSection = dynamic(
   () => import("@/components/ui/live-code-section").then(m => ({ default: m.LiveCodeSection })),
   { ssr: false }
 );
+const GrowthChartSection = dynamic(
+  () => import("@/components/ui/growth-chart-section").then(m => ({ default: m.GrowthChartSection })),
+  { ssr: false }
+);
 
 
 export function EcomDynamicSections({ children }: { children?: React.ReactNode }) {
@@ -77,6 +81,7 @@ export function EcomDynamicSections({ children }: { children?: React.ReactNode }
       />
       {children}
       <LiveCodeSection />
+      <GrowthChartSection />
       <WaitlistSection />
     </>
   );
