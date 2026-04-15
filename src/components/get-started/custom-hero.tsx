@@ -5,7 +5,7 @@ import { ProjectRequestForm } from "@/components/get-started/project-request-for
 
 export function CustomHero() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-white via-white to-ainomiq-navy-light/20 pt-24 pb-32 px-6">
+    <section className="relative overflow-hidden bg-gradient-to-b from-white via-blue-50/30 to-white pt-24 pb-32 px-6">
       <div className="mx-auto max-w-6xl">
         {/* Badge */}
         <div className="mb-6 flex justify-center">
@@ -32,10 +32,10 @@ export function CustomHero() {
         {/* Glassmorphism elevated card with full wizard */}
         <div className="relative -mt-8">
           {/* Glow effect */}
-          <div className="absolute inset-0 bg-gradient-to-r from-ainomiq-blue/20 via-ainomiq-violet/20 to-ainomiq-blue/20 blur-3xl -z-10 scale-95" />
+          <div className="absolute inset-0 bg-gradient-to-r from-ainomiq-blue/30 via-blue-400/20 to-ainomiq-blue/30 blur-3xl -z-10 scale-95" />
           
           {/* Glass card */}
-          <div className="mx-auto max-w-5xl rounded-3xl bg-white/80 backdrop-blur-xl border border-ainomiq-border shadow-2xl p-1">
+          <div className="mx-auto max-w-5xl rounded-3xl bg-gradient-to-br from-white/90 via-blue-50/40 to-white/90 backdrop-blur-xl border border-blue-200/50 shadow-2xl p-1">
             <div className="rounded-[22px] bg-white p-2 md:p-4 border border-ainomiq-border/50">
               {/* Full wizard form */}
               <ProjectRequestForm />
