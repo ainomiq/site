@@ -88,8 +88,8 @@ export default function CustomPage() {
         <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-white to-black pointer-events-none z-10"></div>
         <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-white to-black pointer-events-none z-10"></div>
         
-        <div className="py-20 px-6">
-          <div className="text-center mb-12 relative z-20">
+        <div className="py-32 px-6">
+          <div className="text-center mb-16 relative z-20">
             <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-white mb-4">
               Your project journey
             </h2>
