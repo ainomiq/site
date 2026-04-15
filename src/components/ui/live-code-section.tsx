@@ -184,18 +184,18 @@ export function LiveCodeSection() {
   const active = SCRIPTS[activeIndex];
 
   return (
-    <section className="py-24 md:py-32 px-6 bg-[#0a0f1e] overflow-hidden">
+    <section className="py-24 md:py-32 px-6 bg-white overflow-hidden">
       <div className="mx-auto max-w-6xl">
         {/* Header */}
         <div className="text-center mb-14">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-semibold text-blue-400 uppercase tracking-widest mb-4">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-xs font-semibold text-blue-600 uppercase tracking-widest mb-4">
             <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
             Live
           </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
+          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#0f1b2d]">
             24/7 optimizing your systems.
           </h2>
-          <p className="text-gray-400 mt-3 max-w-lg mx-auto text-base">
+          <p className="text-gray-500 mt-3 max-w-lg mx-auto text-base">
             While you sleep, Ainomiq runs. Every module is always on, always learning.
           </p>
         </div>
@@ -209,8 +209,8 @@ export function LiveCodeSection() {
               className="px-4 py-1.5 rounded-full text-xs font-semibold transition-all duration-200 border"
               style={{
                 background: i === activeIndex ? active.color + "22" : "transparent",
-                borderColor: i === activeIndex ? active.color : "rgba(255,255,255,0.1)",
-                color: i === activeIndex ? active.color : "#9ca3af",
+                borderColor: i === activeIndex ? active.color : "rgba(0,0,0,0.12)",
+                color: i === activeIndex ? active.color : "#6b7280",
               }}
             >
               {s.label}

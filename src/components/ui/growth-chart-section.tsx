@@ -110,7 +110,7 @@ function GrowthScene() {
   const afterDot  = dotAt(afterPts, afterProgress, after.len);
 
   return (
-    <AbsoluteFill style={{ background: "#0a0f1e", fontFamily: "system-ui, sans-serif" }}>
+    <AbsoluteFill style={{ background: "#ffffff", fontFamily: "system-ui, sans-serif" }}>
       {/* Subtle grid */}
       <svg width={W} height={H} viewBox={`0 0 ${W} ${H}`}
         style={{ position: "absolute", left: "50%", top: "50%", transform: "translate(-50%,-50%)" }}>
@@ -118,7 +118,7 @@ function GrowthScene() {
         {/* Grid lines */}
         {[0,1,2,3,4].map(i => {
           const y = PAD + (i / 4) * IH;
-          return <line key={i} x1={PAD} x2={PAD+IW} y1={y} y2={y} stroke="#1e2a3a" strokeWidth={1} />;
+          return <line key={i} x1={PAD} x2={PAD+IW} y1={y} y2={y} stroke="#e5e7eb" strokeWidth={1} />;
         })}
 
         {/* Before line — red/chaotic */}
@@ -170,7 +170,7 @@ function GrowthScene() {
         )}
 
         {/* Baseline axis */}
-        <line x1={PAD} x2={PAD+IW} y1={PAD+IH} y2={PAD+IH} stroke="#1e2a3a" strokeWidth={2} />
+        <line x1={PAD} x2={PAD+IW} y1={PAD+IH} y2={PAD+IH} stroke="#d1d5db" strokeWidth={2} />
       </svg>
 
       {/* "Ainomiq Activated" label */}
@@ -184,8 +184,8 @@ function GrowthScene() {
         }}>
           <div style={{
             display: "flex", alignItems: "center", gap: 8,
-            background: "rgba(59,130,246,0.12)",
-            border: "1px solid rgba(59,130,246,0.3)",
+            background: "rgba(59,130,246,0.08)",
+            border: "1px solid rgba(59,130,246,0.2)",
             borderRadius: 100, padding: "6px 16px",
           }}>
             <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#3b82f6",
@@ -204,11 +204,11 @@ function GrowthScene() {
       }}>
         <div style={{ display: "flex", alignItems: "center", gap: 6, opacity: Math.min(1, beforeProgress * 3) }}>
           <div style={{ width: 24, height: 3, background: "#ef4444", borderRadius: 2 }} />
-          <span style={{ color: "#9ca3af", fontSize: 12 }}>Before</span>
+          <span style={{ color: "#6b7280", fontSize: 12 }}>Before</span>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: 6, opacity: Math.min(1, afterProgress * 3) }}>
           <div style={{ width: 24, height: 3, background: "#22c55e", borderRadius: 2 }} />
-          <span style={{ color: "#9ca3af", fontSize: 12 }}>With Ainomiq</span>
+          <span style={{ color: "#6b7280", fontSize: 12 }}>With Ainomiq</span>
         </div>
       </div>
     </AbsoluteFill>
@@ -219,13 +219,13 @@ function GrowthScene() {
 
 export function GrowthChartSection() {
   return (
-    <section className="py-20 md:py-28 px-6 bg-[#0a0f1e]">
+    <section className="py-20 md:py-28 px-6 bg-white">
       <div className="mx-auto max-w-4xl">
         <div className="text-center mb-10">
-          <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white">
+          <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-[#0f1b2d]">
             What consistent automation looks like.
           </h2>
-          <p className="text-gray-400 mt-2 text-sm max-w-md mx-auto">
+          <p className="text-gray-500 mt-2 text-sm max-w-md mx-auto">
             Erratic performance before. Steady growth after.
           </p>
         </div>
