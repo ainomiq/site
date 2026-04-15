@@ -62,9 +62,11 @@ export function WaitlistSection() {
   return (
     <section className="py-20 md:py-28 px-6 bg-white">
       <div className="mx-auto max-w-xl text-center space-y-10">
-        <div className="space-y-2">
-          <h3 className="text-lg font-bold text-[#0f1b2d]">Never miss new products.</h3>
-          <p className="text-sm text-gray-500">
+        <div className="space-y-3">
+          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#0f1b2d]">
+            Never miss new products.
+          </h2>
+          <p className="text-base text-gray-500 max-w-sm mx-auto">
             We&apos;re always working on automations to help you scale.
           </p>
         </div>
