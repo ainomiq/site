@@ -44,13 +44,6 @@ export function CustomHero() {
             </div>
           </div>
         </div>
-
-        {/* Trust line - below card, better readability */}
-        <div className="mt-16 text-center">
-          <p className="text-base text-ainomiq-text font-medium">
-            Trusted by businesses like yours
-          </p>
-        </div>
       </div>
     </section>
   );
