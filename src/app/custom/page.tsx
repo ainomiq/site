@@ -88,13 +88,13 @@ export default function CustomPage() {
       <CustomHero />
 
       {/* Project Journey Timeline */}
-      <section className="relative bg-gradient-to-b from-white via-gray-100 to-black">
+      <section className="relative bg-gradient-to-br from-blue-50 via-white to-blue-100/80">
         <div className="py-32 px-6">
           <div className="text-center mb-16 relative z-20">
-            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-white mb-4">
+            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-ainomiq-text mb-4">
               Your project journey
             </h2>
-            <p className="text-white/60 text-lg max-w-2xl mx-auto">
+            <p className="text-ainomiq-text-muted text-lg max-w-2xl mx-auto">
               Click any node to explore the process. Related steps light up.
             </p>
           </div>
