@@ -261,17 +261,17 @@ export function ProjectRequestForm() {
   if (success) {
     return (
       <section className="py-20 px-6">
-        <div className="mx-auto max-w-xl rounded-2xl border border-[#1e293b] bg-[#0f172a] p-10 text-center shadow-2xl">
+        <div className="mx-auto max-w-xl rounded-2xl border border-blue-200/60 bg-white/95 p-10 text-center shadow-2xl">
           <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-500/10">
             <CheckCircle className="h-8 w-8 text-green-400" />
           </div>
-          <h3 className="mb-2 text-2xl font-bold text-white">Project request submitted</h3>
+          <h3 className="mb-2 text-2xl font-bold text-ainomiq-text">Project request submitted</h3>
           <p className="mb-6 text-gray-400">
             Thanks! We&apos;ll prepare your project brief and get back within 24h.
           </p>
           <button
             onClick={resetForm}
-            className="text-sm font-medium text-[#4A90F5] transition-colors hover:text-white"
+            className="text-sm font-medium text-[#4A90F5] transition-colors hover:text-ainomiq-text"
           >
             ← Submit another request
           </button>
@@ -281,8 +281,8 @@ export function ProjectRequestForm() {
   }
 
   const inputCls =
-    "w-full rounded-xl border border-[#1e293b] bg-[#1e293b]/50 px-4 py-3 text-white placeholder:text-gray-500 focus:border-[#4A90F5] focus:outline-none focus:ring-1 focus:ring-[#4A90F5] transition-colors";
-  const labelCls = "mb-1.5 block text-sm font-medium text-gray-300";
+    "w-full rounded-xl border border-blue-200/60 bg-white/80 px-4 py-3 text-ainomiq-text placeholder:text-ainomiq-text-muted/60 focus:border-[#4A90F5] focus:outline-none focus:ring-1 focus:ring-[#4A90F5] transition-colors";
+  const labelCls = "mb-1.5 block text-sm font-medium text-ainomiq-text-muted";
 
   return (
     <section id="project-request" className="py-20 px-6">
@@ -292,17 +292,17 @@ export function ProjectRequestForm() {
             <div key={item.title} className="flex flex-1 flex-col items-center gap-1">
               <div
                 className={`h-1.5 w-full rounded-full transition-all duration-500 ${
-                  index < step ? "bg-[#4A90F5]" : index === step ? "bg-[#4A90F5]/60" : "bg-[#1e293b]"
+                  index < step ? "bg-[#4A90F5]" : index === step ? "bg-[#4A90F5]/60" : "bg-blue-100/50"
                 }`}
               />
-              <span className={`text-[10px] font-medium ${index <= step ? "text-gray-300" : "text-gray-600"}`}>
+              <span className={`text-[10px] font-medium ${index <= step ? "text-ainomiq-text-muted" : "text-gray-600"}`}>
                 {item.title}
               </span>
             </div>
           ))}
         </div>
 
-        <div className="flex min-h-[320px] flex-col rounded-2xl border border-[#1e293b] bg-[#0f172a] p-8 shadow-2xl">
+        <div className="flex min-h-[320px] flex-col rounded-2xl border border-blue-200/60 bg-white/95 p-8 shadow-2xl">
           <div className="pointer-events-none absolute opacity-0" aria-hidden>
             <input
               tabIndex={-1}
@@ -316,7 +316,7 @@ export function ProjectRequestForm() {
           <div className="flex-1">
             {step === 0 && (
               <div>
-                <h3 className="mb-1 text-lg font-semibold text-white">What are you building?</h3>
+                <h3 className="mb-1 text-lg font-semibold text-ainomiq-text">What are you building?</h3>
                 <p className="mb-6 text-sm text-gray-400">
                   Select the option that best describes your project.
                 </p>
@@ -329,11 +329,11 @@ export function ProjectRequestForm() {
                       className={`relative rounded-xl border p-4 text-left transition-all duration-200 hover:border-[#4A90F5]/50 ${
                         projectType === type.id
                           ? "border-[#4A90F5] bg-[#4A90F5]/10 shadow-lg shadow-[#4A90F5]/10"
-                          : "border-[#1e293b] bg-[#1e293b]/30 hover:bg-[#1e293b]/60"
+                          : "border-blue-200/60 bg-blue-50/60 hover:bg-blue-100/70"
                       }`}
                     >
                       <type.Icon className="h-6 w-6 text-[#4A90F5]" />
-                      <p className="mt-2 text-sm font-medium text-white">{type.label}</p>
+                      <p className="mt-2 text-sm font-medium text-ainomiq-text">{type.label}</p>
                       {projectType === type.id && (
                         <div className="absolute right-2 top-2 h-2 w-2 rounded-full bg-[#4A90F5]" />
                       )}
@@ -346,7 +346,7 @@ export function ProjectRequestForm() {
             {step === 1 && (
               <div className="space-y-5">
                 <div>
-                  <h3 className="mb-1 text-lg font-semibold text-white">Describe your project</h3>
+                  <h3 className="mb-1 text-lg font-semibold text-ainomiq-text">Describe your project</h3>
                   <p className="mb-6 text-sm text-gray-400">
                     The more detail you share here, the better the review brief will be.
                   </p>
@@ -358,7 +358,7 @@ export function ProjectRequestForm() {
                     autoFocus
                   />
                   <div className="mt-2 flex items-center justify-between">
-                    <p className={`text-xs ${description.trim().length >= 3 ? "text-green-400" : "text-gray-500"}`}>
+                    <p className={`text-xs ${description.trim().length >= 3 ? "text-green-400" : "text-ainomiq-text-muted/60"}`}>
                       {description.trim().length} chars
                     </p>
                     {description.trim().length >= 3 && (
@@ -403,18 +403,18 @@ export function ProjectRequestForm() {
                   </div>
                 </div>
 
-                <label className="flex items-start gap-3 rounded-xl border border-[#1e293b] bg-[#1e293b]/30 p-4 text-sm text-gray-300">
+                <label className="flex items-start gap-3 rounded-xl border border-blue-200/60 bg-blue-50/60 p-4 text-sm text-ainomiq-text-muted">
                   <input
                     type="checkbox"
                     checked={needsCredentials}
                     onChange={(event) => setNeedsCredentials(event.target.checked)}
-                    className="mt-1 h-4 w-4 rounded border-[#1e293b] bg-[#0f172a] text-[#4A90F5] focus:ring-[#4A90F5]"
+                    className="mt-1 h-4 w-4 rounded border-blue-200/60 bg-white/95 text-[#4A90F5] focus:ring-[#4A90F5]"
                   />
                   <span>Will the developer need access to existing systems?</span>
                 </label>
 
-                <div className="rounded-xl border border-[#1e293b] bg-[#1e293b]/20 p-5">
-                  <p className="mb-3 text-sm font-medium text-white">Preferred tech stack (optional)</p>
+                <div className="rounded-xl border border-blue-200/60 bg-blue-50/40 p-5">
+                  <p className="mb-3 text-sm font-medium text-ainomiq-text">Preferred tech stack (optional)</p>
                   <div className="flex flex-wrap gap-2">
                     {TECH_OPTIONS.map((option) => {
                       const active = techStack.includes(option);
@@ -426,7 +426,7 @@ export function ProjectRequestForm() {
                           className={`rounded-full border px-3 py-2 text-sm transition-colors ${
                             active
                               ? "border-[#4A90F5] bg-[#4A90F5]/10 text-[#4A90F5]"
-                              : "border-[#1e293b] bg-[#0f172a] text-gray-300 hover:border-[#4A90F5]/50"
+                              : "border-blue-200/60 bg-white/95 text-ainomiq-text-muted hover:border-[#4A90F5]/50"
                           }`}
                         >
                           {option}
@@ -458,9 +458,9 @@ export function ProjectRequestForm() {
 
                 <div>
                   <label className={labelCls}>File uploads (optional)</label>
-                  <label className="flex cursor-pointer flex-col items-center justify-center rounded-2xl border border-dashed border-[#1e293b] bg-[#1e293b]/20 px-6 py-8 text-center transition-colors hover:border-[#4A90F5]/50">
+                  <label className="flex cursor-pointer flex-col items-center justify-center rounded-2xl border border-dashed border-blue-200/60 bg-blue-50/40 px-6 py-8 text-center transition-colors hover:border-[#4A90F5]/50">
                     <FileUp className="mb-3 h-6 w-6 text-[#4A90F5]" />
-                    <span className="text-sm font-medium text-white">Upload briefs, designs, wireframes</span>
+                    <span className="text-sm font-medium text-ainomiq-text">Upload briefs, designs, wireframes</span>
                     <span className="mt-1 text-xs text-gray-400">Up to 5 files, max 10MB each</span>
                     <input type="file" multiple className="hidden" onChange={handleFileChange} />
                   </label>
@@ -469,7 +469,7 @@ export function ProjectRequestForm() {
                       {files.map((file) => (
                         <div
                           key={`${file.name}-${file.size}`}
-                          className="rounded-xl border border-[#1e293b] bg-[#1e293b]/30 px-4 py-3 text-sm text-gray-300"
+                          className="rounded-xl border border-blue-200/60 bg-blue-50/60 px-4 py-3 text-sm text-ainomiq-text-muted"
                         >
                           {file.name} · {(file.size / 1024 / 1024).toFixed(2)} MB
                         </div>
@@ -482,7 +482,7 @@ export function ProjectRequestForm() {
 
             {step === 2 && (
               <div>
-                <h3 className="mb-1 text-lg font-semibold text-white">When do you need it?</h3>
+                <h3 className="mb-1 text-lg font-semibold text-ainomiq-text">When do you need it?</h3>
                 <p className="mb-6 text-sm text-gray-400">Faster delivery means more pressure on scope and budget.</p>
                 <div className="space-y-3">
                   {TIMELINES.map((item) => (
@@ -493,12 +493,12 @@ export function ProjectRequestForm() {
                       className={`flex w-full items-center justify-between rounded-xl border p-4 transition-all duration-200 hover:border-[#4A90F5]/50 ${
                         timeline === item.id
                           ? "border-[#4A90F5] bg-[#4A90F5]/10 shadow-lg shadow-[#4A90F5]/10"
-                          : "border-[#1e293b] bg-[#1e293b]/30 hover:bg-[#1e293b]/60"
+                          : "border-blue-200/60 bg-blue-50/60 hover:bg-blue-100/70"
                       }`}
                     >
                       <div className="flex items-center gap-3">
                         <Clock className="h-4 w-4 text-gray-400" />
-                        <span className="text-sm font-medium text-white">{item.label}</span>
+                        <span className="text-sm font-medium text-ainomiq-text">{item.label}</span>
                       </div>
                       <span className={`text-xs font-semibold ${item.color}`}>{item.tag}</span>
                     </button>
@@ -509,7 +509,7 @@ export function ProjectRequestForm() {
 
             {step === 3 && (
               <div>
-                <h3 className="mb-1 text-lg font-semibold text-white">Your estimate</h3>
+                <h3 className="mb-1 text-lg font-semibold text-ainomiq-text">Your estimate</h3>
                 <p className="mb-6 text-sm text-gray-400">
                   Calculated from scope and timeline. Final pricing is confirmed after review.
                 </p>
@@ -520,40 +520,40 @@ export function ProjectRequestForm() {
                     <p className="text-sm text-gray-400">Calculating your estimate…</p>
                   </div>
                 ) : estimate ? (
-                  <div className="rounded-xl border border-[#1e293b] bg-gradient-to-br from-[#0f172a] to-[#1e293b]/50 p-6">
+                  <div className="rounded-xl border border-blue-200/60 bg-gradient-to-br from-[#0f172a] to-[#1e293b]/50 p-6">
                     <div className="mb-6 text-center">
                       <p className="mb-1 text-sm text-gray-400">Estimated total</p>
-                      <p className="text-5xl font-bold text-white">
+                      <p className="text-5xl font-bold text-ainomiq-text">
                         <span className="text-[#4A90F5]">€</span>
                         {estimate.total.toLocaleString()}
                       </p>
                     </div>
 
                     <div className="grid grid-cols-2 gap-4">
-                      <div className="rounded-lg bg-[#1e293b]/50 p-3">
-                        <p className="mb-0.5 text-[10px] uppercase tracking-wider text-gray-500">Project</p>
-                        <p className="text-sm font-medium text-white">{estimate.projectType}</p>
+                      <div className="rounded-lg bg-white/80 p-3">
+                        <p className="mb-0.5 text-[10px] uppercase tracking-wider text-ainomiq-text-muted/60">Project</p>
+                        <p className="text-sm font-medium text-ainomiq-text">{estimate.projectType}</p>
                       </div>
-                      <div className="rounded-lg bg-[#1e293b]/50 p-3">
-                        <p className="mb-0.5 text-[10px] uppercase tracking-wider text-gray-500">Complexity</p>
-                        <p className="text-sm font-medium text-white">{estimate.complexity}</p>
+                      <div className="rounded-lg bg-white/80 p-3">
+                        <p className="mb-0.5 text-[10px] uppercase tracking-wider text-ainomiq-text-muted/60">Complexity</p>
+                        <p className="text-sm font-medium text-ainomiq-text">{estimate.complexity}</p>
                       </div>
-                      <div className="rounded-lg bg-[#1e293b]/50 p-3">
-                        <p className="mb-0.5 text-[10px] uppercase tracking-wider text-gray-500">Est. Hours</p>
-                        <p className="text-sm font-medium text-white">{estimate.hours}h</p>
+                      <div className="rounded-lg bg-white/80 p-3">
+                        <p className="mb-0.5 text-[10px] uppercase tracking-wider text-ainomiq-text-muted/60">Est. Hours</p>
+                        <p className="text-sm font-medium text-ainomiq-text">{estimate.hours}h</p>
                       </div>
-                      <div className="rounded-lg bg-[#1e293b]/50 p-3">
-                        <p className="mb-0.5 text-[10px] uppercase tracking-wider text-gray-500">Delivery</p>
-                        <p className="text-sm font-medium text-white">~{estimate.deliveryDays} days</p>
+                      <div className="rounded-lg bg-white/80 p-3">
+                        <p className="mb-0.5 text-[10px] uppercase tracking-wider text-ainomiq-text-muted/60">Delivery</p>
+                        <p className="text-sm font-medium text-ainomiq-text">~{estimate.deliveryDays} days</p>
                       </div>
                     </div>
 
-                    <p className="mt-4 text-center text-xs text-gray-500">
+                    <p className="mt-4 text-center text-xs text-ainomiq-text-muted/60">
                       This request goes straight to review. No checkout step.
                     </p>
                   </div>
                 ) : (
-                  <div className="rounded-xl border border-[#1e293b] bg-[#1e293b]/20 p-6 text-center text-sm text-gray-400">
+                  <div className="rounded-xl border border-blue-200/60 bg-blue-50/40 p-6 text-center text-sm text-gray-400">
                     Could not calculate an estimate automatically. You can still submit the project.
                   </div>
                 )}
@@ -562,7 +562,7 @@ export function ProjectRequestForm() {
 
             {step === 4 && (
               <div>
-                <h3 className="mb-1 text-lg font-semibold text-white">Almost there — who are you?</h3>
+                <h3 className="mb-1 text-lg font-semibold text-ainomiq-text">Almost there — who are you?</h3>
                 <p className="mb-6 text-sm text-gray-400">We&apos;ll prepare your project brief and reply within 24h.</p>
 
                 <div className="space-y-5">
@@ -649,12 +649,12 @@ export function ProjectRequestForm() {
             </div>
           )}
 
-          <div className="mt-8 flex items-center justify-between border-t border-[#1e293b] pt-6">
+          <div className="mt-8 flex items-center justify-between border-t border-blue-200/60 pt-6">
             {step > 0 ? (
               <button
                 type="button"
                 onClick={() => handleStepChange(step - 1)}
-                className="flex items-center gap-2 text-sm text-gray-400 transition-colors hover:text-white"
+                className="flex items-center gap-2 text-sm text-gray-400 transition-colors hover:text-ainomiq-text"
               >
                 <ArrowLeft className="h-4 w-4" /> Back
               </button>
@@ -667,7 +667,7 @@ export function ProjectRequestForm() {
                 type="button"
                 disabled={!canNext || submitting}
                 onClick={() => void handleSubmit()}
-                className="flex items-center gap-2 rounded-xl bg-[#4A90F5] px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-[#4A90F5]/25 transition-colors hover:bg-[#3a7de0] disabled:opacity-40"
+                className="flex items-center gap-2 rounded-xl bg-[#4A90F5] px-6 py-3 text-sm font-semibold text-ainomiq-text shadow-lg shadow-[#4A90F5]/25 transition-colors hover:bg-[#3a7de0] disabled:opacity-40"
               >
                 {submitting ? (
                   <>
@@ -684,7 +684,7 @@ export function ProjectRequestForm() {
                 type="button"
                 disabled={!canNext}
                 onClick={() => handleStepChange(step + 1)}
-                className="flex items-center gap-2 rounded-xl bg-[#4A90F5] px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[#3a7de0] disabled:opacity-40"
+                className="flex items-center gap-2 rounded-xl bg-[#4A90F5] px-6 py-3 text-sm font-semibold text-ainomiq-text transition-colors hover:bg-[#3a7de0] disabled:opacity-40"
               >
                 Continue <ArrowRight className="h-4 w-4" />
               </button>
