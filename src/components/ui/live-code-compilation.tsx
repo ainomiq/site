@@ -333,7 +333,7 @@ export function LiveCodeCompilation({
           </div>
         </div>
 
-        {/* Robot image - replaces button */}
+        {/* Animated robot - builds as code is typed */}
         <div
           style={{
             position: "relative",
@@ -345,73 +345,190 @@ export function LiveCodeCompilation({
             justifyContent: "center",
           }}
         >
-          {/* Placeholder robot - for now show a styled box, Pim can replace with actual robot image */}
+          {/* Build progress - robot grows from 0% to 100% */}
           <div
             style={{
-              width: 200,
-              height: 300,
-              background: "linear-gradient(135deg, #1f1f1f 0%, #0a0a0a 100%)",
-              borderRadius: "50px 50px 20px 20px",
+              width: 220,
+              height: 340,
               position: "relative",
-              boxShadow: "0 20px 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1)",
-              border: "2px solid rgba(255,255,255,0.1)",
+              transform: `scale(${Math.min(1, frame / TIMELINE_END)})`,
+              transition: "transform 0.3s ease-out",
             }}
           >
-            {/* Robot head */}
+            {/* Robot body */}
             <div
               style={{
-                width: 80,
-                height: 80,
-                background: "linear-gradient(135deg, #2a2a2a 0%, #0f0f0f 100%)",
-                borderRadius: "40px",
-                position: "absolute",
-                top: -40,
-                left: "50%",
-                transform: "translateX(-50%)",
-                border: "2px solid rgba(255,255,255,0.15)",
-                boxShadow: "0 10px 30px rgba(0,0,0,0.6)",
+                width: 220,
+                height: 280,
+                background: "linear-gradient(145deg, #1a1a1c 0%, #0a0a0a 100%)",
+                borderRadius: "60px 60px 30px 30px",
+                position: "relative",
+                boxShadow: "0 30px 80px rgba(0,0,0,0.7), inset 0 2px 4px rgba(255,255,255,0.08)",
+                border: "2px solid rgba(255,255,255,0.12)",
+                opacity: frame >= TIMELINE[2]?.start ? 1 : 0.3,
               }}
             >
-              {/* Eyes */}
+              {/* Robot head */}
               <div
                 style={{
-                  width: 15,
-                  height: 15,
-                  background: accentColor,
-                  borderRadius: "50%",
+                  width: 100,
+                  height: 100,
+                  background: "linear-gradient(145deg, #2d2d30 0%, #121214 100%)",
+                  borderRadius: "50px",
                   position: "absolute",
-                  top: 30,
-                  left: 20,
-                  boxShadow: `0 0 10px ${accentColor}`,
+                  top: -50,
+                  left: "50%",
+                  transform: "translateX(-50%)",
+                  border: "2px solid rgba(255,255,255,0.15)",
+                  boxShadow: "0 15px 40px rgba(0,0,0,0.8), inset 0 -2px 8px rgba(0,0,0,0.5)",
+                  opacity: frame >= TIMELINE[0]?.start ? 1 : 0,
+                }}
+              >
+                {/* Eyes - glow when code is complete */}
+                <div
+                  style={{
+                    width: 18,
+                    height: 18,
+                    background: frame >= TIMELINE_END ? accentColor : "#333",
+                    borderRadius: "50%",
+                    position: "absolute",
+                    top: 38,
+                    left: 24,
+                    boxShadow: frame >= TIMELINE_END ? `0 0 16px ${accentColor}, 0 0 4px ${accentColor}` : "none",
+                    transition: "all 0.4s ease",
+                  }}
+                />
+                <div
+                  style={{
+                    width: 18,
+                    height: 18,
+                    background: frame >= TIMELINE_END ? accentColor : "#333",
+                    borderRadius: "50%",
+                    position: "absolute",
+                    top: 38,
+                    right: 24,
+                    boxShadow: frame >= TIMELINE_END ? `0 0 16px ${accentColor}, 0 0 4px ${accentColor}` : "none",
+                    transition: "all 0.4s ease",
+                  }}
+                />
+                
+                {/* Antenna */}
+                <div
+                  style={{
+                    width: 3,
+                    height: 20,
+                    background: "linear-gradient(180deg, rgba(255,255,255,0.3), rgba(255,255,255,0.05))",
+                    position: "absolute",
+                    top: -18,
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    borderRadius: 2,
+                  }}
+                >
+                  <div
+                    style={{
+                      width: 8,
+                      height: 8,
+                      background: frame >= TIMELINE_END ? accentColor : "#444",
+                      borderRadius: "50%",
+                      position: "absolute",
+                      top: -6,
+                      left: "50%",
+                      transform: "translateX(-50%)",
+                      boxShadow: frame >= TIMELINE_END ? `0 0 12px ${accentColor}` : "none",
+                    }}
+                  />
+                </div>
+              </div>
+
+              {/* Body chest panel - appears with code progress */}
+              <div
+                style={{
+                  width: 140,
+                  height: 100,
+                  background: "linear-gradient(145deg, rgba(59,130,246,0.08), rgba(147,51,234,0.05))",
+                  borderRadius: 20,
+                  position: "absolute",
+                  top: 80,
+                  left: "50%",
+                  transform: "translateX(-50%)",
+                  border: "1px solid rgba(255,255,255,0.08)",
+                  opacity: frame >= TIMELINE[4]?.start ? 1 : 0.2,
+                  transition: "opacity 0.3s ease",
+                }}
+              >
+                {/* Inner glow when complete */}
+                <div
+                  style={{
+                    position: "absolute",
+                    top: "50%",
+                    left: "50%",
+                    transform: "translate(-50%, -50%)",
+                    width: 80,
+                    height: 80,
+                    background: accentColor,
+                    borderRadius: "50%",
+                    opacity: frame >= TIMELINE_END ? 0.25 : 0,
+                    filter: "blur(30px)",
+                    transition: "opacity 0.6s ease",
+                  }}
+                />
+              </div>
+
+              {/* Arms */}
+              <div
+                style={{
+                  width: 50,
+                  height: 140,
+                  background: "linear-gradient(90deg, #1a1a1c 0%, #0f0f10 100%)",
+                  borderRadius: "25px 10px 10px 25px",
+                  position: "absolute",
+                  top: 80,
+                  left: -30,
+                  border: "2px solid rgba(255,255,255,0.1)",
+                  opacity: frame >= TIMELINE[5]?.start ? 1 : 0.3,
                 }}
               />
               <div
                 style={{
-                  width: 15,
-                  height: 15,
-                  background: accentColor,
-                  borderRadius: "50%",
+                  width: 50,
+                  height: 140,
+                  background: "linear-gradient(90deg, #0f0f10 0%, #1a1a1c 100%)",
+                  borderRadius: "10px 25px 25px 10px",
                   position: "absolute",
-                  top: 30,
-                  right: 20,
-                  boxShadow: `0 0 10px ${accentColor}`,
+                  top: 80,
+                  right: -30,
+                  border: "2px solid rgba(255,255,255,0.1)",
+                  opacity: frame >= TIMELINE[5]?.start ? 1 : 0.3,
                 }}
               />
             </div>
-            
-            {/* Body glow */}
+
+            {/* Legs */}
             <div
               style={{
-                position: "absolute",
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%)",
                 width: 60,
-                height: 60,
-                background: accentColor,
-                borderRadius: "50%",
-                opacity: 0.2,
-                filter: "blur(20px)",
+                height: 90,
+                background: "linear-gradient(180deg, #1a1a1c 0%, #0a0a0a 100%)",
+                borderRadius: "15px 15px 20px 20px",
+                position: "absolute",
+                bottom: -10,
+                left: 40,
+                border: "2px solid rgba(255,255,255,0.1)",
+                opacity: frame >= TIMELINE[6]?.start ? 1 : 0.3,
+              }}
+            />
+            <div
+              style={{
+                width: 60,
+                height: 90,
+                background: "linear-gradient(180deg, #1a1a1c 0%, #0a0a0a 100%)",
+                borderRadius: "15px 15px 20px 20px",
+                position: "absolute",
+                bottom: -10,
+                right: 40,
+                border: "2px solid rgba(255,255,255,0.1)",
+                opacity: frame >= TIMELINE[6]?.start ? 1 : 0.3,
               }}
             />
           </div>
