@@ -1,6 +1,8 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { useRef, useEffect } from "react";
+import type { PlayerRef } from "@remotion/player";
 import { AnimatedLineChart } from "@/components/ui/animated-line-chart";
 
 // Remotion Player — SSR off
@@ -9,7 +11,8 @@ const Player = dynamic(
   { ssr: false }
 );
 
-// Two scenes: chaotic (before) and smooth (after)
+const FRAMES = 180;
+
 function ChaoticScene() {
   return (
     <AnimatedLineChart
@@ -36,11 +39,54 @@ function GrowthScene() {
   );
 }
 
+function FreezePlayer({ component, label, labelColor }: {
+  component: React.ComponentType;
+  label: string;
+  labelColor: string;
+}) {
+  const ref = useRef<PlayerRef>(null);
+
+  useEffect(() => {
+    const player = ref.current;
+    if (!player) return;
+    const handler = () => {
+      player.seekTo(FRAMES - 1);
+      player.pause();
+    };
+    player.addEventListener("ended", handler);
+    return () => player.removeEventListener("ended", handler);
+  }, []);
+
+  return (
+    <div className="rounded-2xl overflow-hidden border border-gray-100 bg-white p-4"
+      style={{ boxShadow: "0 1px 3px rgba(0,0,0,0.06)" }}>
+      <p className={`text-xs font-semibold uppercase tracking-widest mb-3 text-center ${labelColor}`}>
+        {label}
+      </p>
+      <div className="w-full rounded-xl overflow-hidden" style={{ height: 220 }}>
+        <Player
+          ref={ref}
+          component={component}
+          durationInFrames={FRAMES}
+          fps={30}
+          compositionWidth={800}
+          compositionHeight={400}
+          style={{ width: "100%", height: "100%" }}
+          controls={false}
+          autoPlay
+          loop={false}
+          clickToPlay={false}
+          acknowledgeRemotionLicense
+        />
+      </div>
+    </div>
+  );
+}
+
 export function GrowthChartSection() {
   return (
     <section className="py-10 md:py-16 px-6 bg-white">
       <div className="mx-auto max-w-4xl">
-        {/* Header */}
         <div className="text-center mb-10">
           <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-[#0f1b2d]">
             What consistent automation looks like.
@@ -50,53 +96,9 @@ export function GrowthChartSection() {
           </p>
         </div>
 
-        {/* Side-by-side charts */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Before */}
-          <div className="rounded-2xl overflow-hidden border border-gray-100 bg-white p-4"
-            style={{ boxShadow: "0 1px 3px rgba(0,0,0,0.06)" }}>
-            <p className="text-xs font-semibold text-red-400 uppercase tracking-widest mb-3 text-center">
-              Before
-            </p>
-            <div className="w-full rounded-xl overflow-hidden" style={{ height: 220 }}>
-              <Player
-                component={ChaoticScene}
-                durationInFrames={180}
-                fps={30}
-                compositionWidth={800}
-                compositionHeight={400}
-                style={{ width: "100%", height: "100%" }}
-                controls={false}
-                autoPlay
-                loop={false}
-                clickToPlay={false}
-                acknowledgeRemotionLicense
-              />
-            </div>
-          </div>
-
-          {/* After */}
-          <div className="rounded-2xl overflow-hidden border border-gray-100 bg-white p-4"
-            style={{ boxShadow: "0 1px 3px rgba(0,0,0,0.06)" }}>
-            <p className="text-xs font-semibold text-[#0f1b2d] uppercase tracking-widest mb-3 text-center">
-              With Ainomiq
-            </p>
-            <div className="w-full rounded-xl overflow-hidden" style={{ height: 220 }}>
-              <Player
-                component={GrowthScene}
-                durationInFrames={180}
-                fps={30}
-                compositionWidth={800}
-                compositionHeight={400}
-                style={{ width: "100%", height: "100%" }}
-                controls={false}
-                autoPlay
-                loop={false}
-                clickToPlay={false}
-                acknowledgeRemotionLicense
-              />
-            </div>
-          </div>
+          <FreezePlayer component={ChaoticScene} label="Before" labelColor="text-red-400" />
+          <FreezePlayer component={GrowthScene} label="After" labelColor="text-[#0f1b2d]" />
         </div>
       </div>
     </section>
