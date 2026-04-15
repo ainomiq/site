@@ -190,6 +190,22 @@ export function ProjectRequestForm() {
 
   /* ─── Success ────────────────────────────────────────────── */
 
+  function resetForm() {
+    setSuccess(false);
+    setStep(0);
+    setProjectType("");
+    setDescription("");
+    setTimeline("");
+    setCompany("");
+    setContact("");
+    setEmail("");
+    setPhone("");
+    setReferences("");
+    setFoundVia("");
+    setEstimate(null);
+    setErrors([]);
+  }
+
   if (success) {
     return (
       <section className="py-20 px-6">
@@ -200,9 +216,15 @@ export function ProjectRequestForm() {
           <h3 className="text-2xl font-bold text-white mb-2">
             Project request submitted!
           </h3>
-          <p className="text-gray-400">
+          <p className="text-gray-400 mb-6">
             Redirecting to payment...
           </p>
+          <button
+            onClick={resetForm}
+            className="text-[#4A90F5] hover:text-white text-sm font-medium transition-colors"
+          >
+            ← Submit another request
+          </button>
         </div>
       </section>
     );
