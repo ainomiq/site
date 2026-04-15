@@ -22,6 +22,10 @@ const WaitlistSection = dynamic(
   () => import("@/components/ui/waitlist-section").then(m => ({ default: m.WaitlistSection })),
   { ssr: false }
 );
+const LiveCodeSection = dynamic(
+  () => import("@/components/ui/live-code-section").then(m => ({ default: m.LiveCodeSection })),
+  { ssr: false }
+);
 
 
 export function EcomDynamicSections({ children }: { children?: React.ReactNode }) {
@@ -72,6 +76,7 @@ export function EcomDynamicSections({ children }: { children?: React.ReactNode }
         ]}
       />
       {children}
+      <LiveCodeSection />
       <WaitlistSection />
     </>
   );
