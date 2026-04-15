@@ -1,9 +1,18 @@
 "use client";
 import { useState, useEffect, useRef } from "react";
-import { ArrowRight, Link, Zap } from "lucide-react";
+import { ArrowRight, Link, Zap, Calendar, Code, FileText, User, Rocket, MessageCircle } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+
+const ICON_MAP = {
+  Calendar,
+  Code,
+  FileText,
+  User,
+  Rocket,
+  MessageCircle,
+};
 
 interface TimelineItem {
   id: number;
@@ -11,7 +20,7 @@ interface TimelineItem {
   date: string;
   content: string;
   category: string;
-  icon: React.ElementType;
+  icon: keyof typeof ICON_MAP;
   relatedIds: number[];
   status: "completed" | "in-progress" | "pending";
   energy: number;
@@ -183,7 +192,7 @@ export default function RadialOrbitalTimeline({
             const isExpanded = expandedItems[item.id];
             const isRelated = isRelatedToActive(item.id);
             const isPulsing = pulseEffect[item.id];
-            const Icon = item.icon;
+            const Icon = ICON_MAP[item.icon];
 
             const nodeStyle = {
               transform: `translate(${position.x}px, ${position.y}px)`,

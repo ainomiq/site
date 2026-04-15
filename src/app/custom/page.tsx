@@ -1,14 +1,6 @@
 import type { Metadata } from "next";
 import { CustomHero } from "@/components/get-started/custom-hero";
 import RadialOrbitalTimeline from "@/components/ui/radial-orbital-timeline";
-import {
-  Calendar,
-  Code,
-  FileText,
-  User,
-  Rocket,
-  MessageCircle,
-} from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Custom Solutions - Ainomiq",
@@ -23,7 +15,7 @@ const PROJECT_TIMELINE = [
     date: "Day 1",
     content: "You fill out the brief. We calculate cost, scope, and timeline instantly.",
     category: "Planning",
-    icon: MessageCircle,
+    icon: "MessageCircle",
     relatedIds: [2],
     status: "completed" as const,
     energy: 100,
@@ -34,7 +26,7 @@ const PROJECT_TIMELINE = [
     date: "Day 1-2",
     content: "Our team reviews your project, refines the scope, and confirms tech stack.",
     category: "Planning",
-    icon: FileText,
+    icon: "FileText",
     relatedIds: [1, 3],
     status: "completed" as const,
     energy: 90,
@@ -45,7 +37,7 @@ const PROJECT_TIMELINE = [
     date: "Day 2-3",
     content: "We connect you with a dedicated builder. You'll meet them before work starts.",
     category: "Team",
-    icon: User,
+    icon: "User",
     relatedIds: [2, 4],
     status: "in-progress" as const,
     energy: 70,
@@ -56,7 +48,7 @@ const PROJECT_TIMELINE = [
     date: "Week 1-N",
     content: "Builder starts working. Weekly updates, live demos, continuous feedback.",
     category: "Build",
-    icon: Code,
+    icon: "Code",
     relatedIds: [3, 5],
     status: "in-progress" as const,
     energy: 60,
@@ -67,7 +59,7 @@ const PROJECT_TIMELINE = [
     date: "Final Week",
     content: "Thorough testing, bug fixes, and final polish before handoff.",
     category: "Quality",
-    icon: Calendar,
+    icon: "Calendar",
     relatedIds: [4, 6],
     status: "pending" as const,
     energy: 40,
@@ -78,7 +70,7 @@ const PROJECT_TIMELINE = [
     date: "Delivery",
     content: "We deploy your project. Post-launch support included for 30 days.",
     category: "Delivery",
-    icon: Rocket,
+    icon: "Rocket",
     relatedIds: [5],
     status: "pending" as const,
     energy: 20,
