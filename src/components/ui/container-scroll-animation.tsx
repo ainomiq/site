@@ -27,12 +27,13 @@ export const ContainerScroll = ({
     return isMobile ? [0.7, 0.9] : [1.05, 1];
   };
 
-  // scrollYProgress 0 = container top hits bottom of viewport (start scrolling in)
-  // scrollYProgress 1 = container bottom hits top of viewport
-  // Tablet tilt: starts at 35° when section enters, opens to 0° by 40% scroll
-  const rotate = useTransform(scrollYProgress, [0, 0.4], [35, 0]);
+  // scrollYProgress 0 = container top hits bottom of viewport
+  // Tablet starts at 55° (steep tilt), opens to flat by 40% scroll
+  // Text fades out as tablet opens (0% → 25% scroll)
+  const rotate = useTransform(scrollYProgress, [0, 0.4], [55, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.4], isMobile ? [0.7, 0.9] : [1.05, 1]);
   const translate = useTransform(scrollYProgress, [0, 0.4], [0, -100]);
+  const titleOpacity = useTransform(scrollYProgress, [0, 0.25], [1, 0]);
 
   // Mobile: iPhone slides up from bottom with app inside
   if (isMobile) {
@@ -49,7 +50,7 @@ export const ContainerScroll = ({
       ref={containerRef}
     >
       <div className="py-10 md:py-40 w-full relative" style={{ perspective: "1000px" }}>
-        <Header translate={translate} titleComponent={titleComponent} />
+        <Header translate={translate} titleComponent={titleComponent} opacity={titleOpacity} />
         <Card rotate={rotate} translate={translate} scale={scale}>
           {children}
         </Card>
@@ -158,11 +159,12 @@ function MobilePhoneScroll({
   );
 }
 
-export const Header = ({ translate, titleComponent }: any) => {
+export const Header = ({ translate, titleComponent, opacity }: any) => {
   return (
     <motion.div
       style={{
         translateY: translate,
+        opacity: opacity ?? 1,
       }}
       className="div max-w-5xl mx-auto text-center"
     >
