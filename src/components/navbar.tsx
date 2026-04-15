@@ -40,6 +40,7 @@ const industries = [
   { href: "/ecommerce", label: "E-commerce", sub: "Webshops & DTC", icon: ShoppingCart },
   { href: "/franchise", label: "Franchise", sub: "Multi-location ops", icon: Building2 },
   { href: "/enterprise#facility-services", label: "Facility Services", sub: "Field & maintenance", icon: Wrench },
+  { href: "/get-started", label: "Custom Solutions", sub: "Need a custom solution?", icon: Layers },
 ];
 
 const navLinks = [
@@ -223,7 +224,7 @@ export function Navbar() {
                 <h3 className="text-xs font-semibold uppercase tracking-wider text-ainomiq-text-muted mb-3">
                   Specialised in
                 </h3>
-                <div className="grid grid-cols-3 gap-1">
+                <div className="grid grid-cols-2 gap-1">
                   {industries.map((item) => (
                     <Link
                       key={item.label}
