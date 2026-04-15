@@ -11,6 +11,7 @@ import {
   Zap,
   Clock,
   Euro,
+  CreditCard,
 } from "lucide-react";
 
 /* ─── Data ─────────────────────────────────────────────────── */
@@ -112,7 +113,9 @@ export function ProjectRequestForm() {
     try {
       const typeLabel = PROJECT_TYPES.find((t) => t.id === projectType)?.label || projectType;
       const timelineLabel = TIMELINES.find((t) => t.id === timeline)?.label || timeline;
-      const res = await fetch("/api/submit-project", {
+
+      // 1. Send to Discord webhook
+      await fetch("/api/submit-project", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -126,9 +129,32 @@ export function ProjectRequestForm() {
           _hp: hp,
         }),
       });
-      const data = await res.json();
-      if (data.success) setSuccess(true);
-      else setErrors(data.errors || ["Something went wrong."]);
+
+      // 2. Create Stripe checkout session
+      if (estimate?.total) {
+        const stripeRes = await fetch("/api/checkout", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            amount: estimate.total,
+            projectType: typeLabel,
+            company,
+            contact,
+            email,
+            description,
+            timeline: timelineLabel,
+            estimateHours: estimate.hours,
+          }),
+        });
+        const stripeData = await stripeRes.json();
+        if (stripeData.url) {
+          window.location.href = stripeData.url;
+          return;
+        }
+      }
+
+      // Fallback if no estimate or Stripe fails
+      setSuccess(true);
     } catch {
       setErrors(["Network error. Please try again."]);
     } finally {
@@ -446,9 +472,9 @@ export function ProjectRequestForm() {
                 className="flex items-center gap-2 rounded-xl bg-[#4A90F5] px-6 py-3 text-sm font-semibold text-white hover:bg-[#3a7de0] disabled:opacity-40 transition-colors shadow-lg shadow-[#4A90F5]/25"
               >
                 {submitting ? (
-                  <><Loader2 className="h-4 w-4 animate-spin" /> Submitting…</>
+                  <><Loader2 className="h-4 w-4 animate-spin" /> Processing…</>
                 ) : (
-                  <><Send className="h-4 w-4" /> Submit Request</>
+                  <><CreditCard className="h-4 w-4" /> Pay & Submit — €{estimate?.total || "—"}</>
                 )}
               </button>
             ) : (
