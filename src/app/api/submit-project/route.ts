@@ -18,7 +18,7 @@ interface ProjectForm {
 
 // Budget range → builder fee (20%) based on midpoint
 function calcFees(budget: string): { builderFee: string; margin: string; clientBudget: string } {
-  const map: Record<string, { fee: number; mid: number }> = {
+  const rangeMap: Record<string, { fee: number; mid: number }> = {
     "< €500":      { fee: 75,    mid: 375 },
     "€500-€1K":    { fee: 150,   mid: 750 },
     "€1K-€2.5K":   { fee: 350,   mid: 1750 },
@@ -27,17 +27,29 @@ function calcFees(budget: string): { builderFee: string; margin: string; clientB
     "€10K+":       { fee: 2000,  mid: 12500 },
   };
 
-  const entry = map[budget];
-  if (!entry) {
-    return { builderFee: "TBD", margin: "TBD", clientBudget: budget };
+  const entry = rangeMap[budget];
+  if (entry) {
+    const margin = entry.mid - entry.fee;
+    return {
+      builderFee: `€${entry.fee.toLocaleString("nl-NL")}`,
+      margin: `€${margin.toLocaleString("nl-NL")}`,
+      clientBudget: budget,
+    };
   }
 
-  const margin = entry.mid - entry.fee;
-  return {
-    builderFee: `€${entry.fee.toLocaleString("nl-NL")}`,
-    margin: `€${margin.toLocaleString("nl-NL")}`,
-    clientBudget: budget,
-  };
+  // Parse numeric value (e.g. "€6250" or "6250")
+  const num = parseFloat(budget.replace(/[^0-9.]/g, ""));
+  if (!isNaN(num) && num > 0) {
+    const fee = Math.round(num * 0.2);
+    const margin = num - fee;
+    return {
+      builderFee: `€${fee.toLocaleString("nl-NL")}`,
+      margin: `€${Math.round(margin).toLocaleString("nl-NL")}`,
+      clientBudget: `€${num.toLocaleString("nl-NL")}`,
+    };
+  }
+
+  return { builderFee: "TBD", margin: "TBD", clientBudget: budget };
 }
 
 export async function POST(req: NextRequest) {
