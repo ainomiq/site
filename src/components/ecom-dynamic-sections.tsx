@@ -22,10 +22,7 @@ const WaitlistSection = dynamic(
   () => import("@/components/ui/waitlist-section").then(m => ({ default: m.WaitlistSection })),
   { ssr: false }
 );
-const AinomiqBento = dynamic(
-  () => import("@/components/ui/ainomiq-bento").then(m => ({ default: m.AinomiqBento })),
-  { ssr: false }
-);
+
 
 export function EcomDynamicSections({ children }: { children?: React.ReactNode }) {
   return (
@@ -75,7 +72,6 @@ export function EcomDynamicSections({ children }: { children?: React.ReactNode }
         ]}
       />
       {children}
-      <AinomiqBento />
       <WaitlistSection />
     </>
   );
