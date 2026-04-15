@@ -81,11 +81,11 @@ const PROJECT_TIMELINE = [
 export default function CustomPage() {
   return (
     <>
-      {/* Build Your Solution section - code + robot */}
-      <BuildYourSolution />
-
       {/* Hero with wizard */}
       <CustomHero />
+
+      {/* Build Your Solution section - code + robot */}
+      <BuildYourSolution />
 
       {/* Project Journey Timeline */}
       <section className="relative bg-gradient-to-br from-blue-50 via-white to-blue-100/80">

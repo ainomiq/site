@@ -333,28 +333,26 @@ export function LiveCodeCompilation({
           </div>
         </div>
 
-        <button
-          type="button"
+        {/* Robot iframe - replaces button */}
+        <div
           style={{
-            background: ui.background ?? "rgba(255,255,255,0.06)",
-            color: ui.color ?? "rgba(255,255,255,0.4)",
-            padding: ui.padding ?? "10px 20px",
-            borderRadius: ui.borderRadius ?? "4px",
-            fontWeight: ui.fontWeight ?? 400,
-            fontSize: 18,
-            fontFamily: FONT_FAMILY,
-            border: ui.background
-              ? "none"
-              : "1px dashed rgba(255,255,255,0.15)",
-            cursor: "pointer",
-            transition: "none",
-            boxShadow: ui.background
-              ? `0 10px 30px ${ui.background}55, 0 0 0 1px rgba(255,255,255,0.08)`
-              : "none",
+            position: "absolute",
+            inset: 0,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
           }}
         >
-          {buttonLabel}
-        </button>
+          <iframe
+            src="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+            style={{
+              width: "100%",
+              height: "100%",
+              border: "none",
+              pointerEvents: "none",
+            }}
+          />
+        </div>
       </div>
     </div>
   );
