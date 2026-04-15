@@ -5,6 +5,7 @@ import { Section } from "@/components/section";
 import WireframeGlobe from "@/components/ui/wireframe-dotted-globe";
 import { AnimatedCounter } from "@/components/animated-counter";
 import { ProjectRequestForm } from "@/components/get-started/project-request-form";
+import { GetStartedWizard } from "@/components/get-started/wizard";
 import {
   Bot,
   BarChart3,
@@ -19,7 +20,6 @@ import {
   Check,
   Plus,
 } from "lucide-react";
-import { HeroSection, LogosSection } from "@/components/ui/hero-1";
 import { LocalizedPrice } from "@/components/localized-price";
 
 const features = [
@@ -107,11 +107,8 @@ const pricingPlans: {
 export default function HomePage() {
   return (
     <>
-      {/* Hero */}
-      <HeroSection />
-
-      {/* Logo Cloud */}
-      <LogosSection />
+      {/* Hero - Get Started Wizard */}
+      <GetStartedWizard />
 
       {/* Meet the Founders */}
       <section className="py-24 px-6">
