@@ -190,12 +190,69 @@ export const Card = ({
         rotateX: rotate,
         scale,
         boxShadow:
-          "0 0 #0000004d, 0 9px 20px #0000004a, 0 37px 37px #00000042, 0 84px 50px #00000026, 0 149px 60px #0000000a, 0 233px 65px #00000003",
+          "0 40px 80px rgba(0,0,0,0.35), 0 20px 40px rgba(0,0,0,0.2), 0 0 0 1px rgba(255,255,255,0.15), inset 0 0 0 1px rgba(255,255,255,0.05)",
       }}
-      className="max-w-5xl -mt-12 mx-auto h-[30rem] md:h-[40rem] w-full border-4 border-[#6C6C6C] p-0 bg-[#222222] rounded-[30px] shadow-2xl overflow-hidden"
+      className="max-w-5xl -mt-12 mx-auto w-full"
     >
-      <div className="h-full w-full overflow-hidden rounded-[26px]">
-        {children}
+      {/* iPad Pro outer shell — silver aluminium */}
+      <div
+        className="relative w-full mx-auto"
+        style={{
+          background: "linear-gradient(145deg, #e8e8e8 0%, #d0d0d0 40%, #c8c8c8 60%, #d8d8d8 100%)",
+          borderRadius: "28px",
+          padding: "12px 10px 12px 10px",
+          boxShadow: "inset 0 1px 0 rgba(255,255,255,0.6), inset 0 -1px 0 rgba(0,0,0,0.15), inset 1px 0 0 rgba(255,255,255,0.4), inset -1px 0 0 rgba(0,0,0,0.1)",
+        }}
+      >
+        {/* Top bar with front camera */}
+        <div className="relative flex items-center justify-center mb-0" style={{ height: "18px" }}>
+          {/* Front camera */}
+          <div className="relative flex items-center gap-1">
+            <div className="w-2 h-2 rounded-full" style={{ background: "#1a1a1a", boxShadow: "inset 0 1px 2px rgba(0,0,0,0.8), 0 0 0 1px rgba(0,0,0,0.3)" }}>
+              <div className="w-1 h-1 rounded-full mx-auto mt-0.5" style={{ background: "#2a4a8a", opacity: 0.7 }} />
+            </div>
+          </div>
+        </div>
+
+        {/* Screen bezel — thin black border */}
+        <div
+          className="relative overflow-hidden"
+          style={{
+            borderRadius: "18px",
+            background: "#000",
+            padding: "1px",
+          }}
+        >
+          {/* Screen content */}
+          <div
+            className="relative overflow-hidden"
+            style={{
+              borderRadius: "17px",
+              height: "min(40rem, 55vw)",
+            }}
+          >
+            {children}
+
+            {/* Screen glare */}
+            <div
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                borderRadius: "17px",
+                background: "linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 50%)",
+                zIndex: 10,
+              }}
+            />
+          </div>
+        </div>
+
+        {/* Bottom bar */}
+        <div className="flex items-center justify-center" style={{ height: "16px" }} />
+
+        {/* Side volume buttons — left */}
+        <div className="absolute left-0 top-[28%] w-[3px] h-8 rounded-l-sm" style={{ background: "linear-gradient(90deg, #b0b0b0, #c8c8c8)", marginLeft: "-3px" }} />
+        <div className="absolute left-0 top-[38%] w-[3px] h-8 rounded-l-sm" style={{ background: "linear-gradient(90deg, #b0b0b0, #c8c8c8)", marginLeft: "-3px" }} />
+        {/* Power button — right */}
+        <div className="absolute right-0 top-[30%] w-[3px] h-12 rounded-r-sm" style={{ background: "linear-gradient(270deg, #b0b0b0, #c8c8c8)", marginRight: "-3px" }} />
       </div>
     </motion.div>
   );
