@@ -113,6 +113,13 @@ export function LiveCodeCompilation({
 }: LiveCodeCompilationProps) {
   const frame = useCurrentFrame() * speed;
 
+  // Helper: smooth fade-in opacity based on frame range
+  const fadeIn = (startFrame: number, duration = 15) => {
+    if (frame < startFrame) return 0;
+    if (frame >= startFrame + duration) return 1;
+    return (frame - startFrame) / duration;
+  };
+
   let visibleCode = "";
   const ui: UIState = {};
   for (const t of TIMELINE) {
@@ -365,7 +372,7 @@ export function LiveCodeCompilation({
                 position: "relative",
                 boxShadow: "0 30px 80px rgba(0,0,0,0.7), inset 0 2px 4px rgba(255,255,255,0.08)",
                 border: "2px solid rgba(255,255,255,0.12)",
-                opacity: frame >= TIMELINE[2]?.start ? 1 : 0.3,
+                opacity: fadeIn(TIMELINE[2]?.start ?? 40, 20),
               }}
             >
               {/* Robot head */}
@@ -381,7 +388,7 @@ export function LiveCodeCompilation({
                   transform: "translateX(-50%)",
                   border: "2px solid rgba(255,255,255,0.15)",
                   boxShadow: "0 15px 40px rgba(0,0,0,0.8), inset 0 -2px 8px rgba(0,0,0,0.5)",
-                  opacity: frame >= TIMELINE[0]?.start ? 1 : 0,
+                  opacity: fadeIn(TIMELINE[0]?.start ?? 8, 20),
                 }}
               >
                 {/* Eyes - glow when code is complete */}
@@ -453,8 +460,7 @@ export function LiveCodeCompilation({
                   left: "50%",
                   transform: "translateX(-50%)",
                   border: "1px solid rgba(255,255,255,0.08)",
-                  opacity: frame >= TIMELINE[4]?.start ? 1 : 0.2,
-                  transition: "opacity 0.3s ease",
+                  opacity: fadeIn(TIMELINE[4]?.start ?? 80, 20),
                 }}
               >
                 {/* Inner glow when complete */}
@@ -486,7 +492,7 @@ export function LiveCodeCompilation({
                   top: 80,
                   left: -30,
                   border: "2px solid rgba(255,255,255,0.1)",
-                  opacity: frame >= TIMELINE[5]?.start ? 1 : 0.3,
+                  opacity: fadeIn(TIMELINE[5]?.start ?? 100, 20),
                 }}
               />
               <div
@@ -499,7 +505,7 @@ export function LiveCodeCompilation({
                   top: 80,
                   right: -30,
                   border: "2px solid rgba(255,255,255,0.1)",
-                  opacity: frame >= TIMELINE[5]?.start ? 1 : 0.3,
+                  opacity: fadeIn(TIMELINE[5]?.start ?? 100, 20),
                 }}
               />
             </div>
@@ -515,7 +521,7 @@ export function LiveCodeCompilation({
                 bottom: -10,
                 left: 40,
                 border: "2px solid rgba(255,255,255,0.1)",
-                opacity: frame >= TIMELINE[6]?.start ? 1 : 0.3,
+                opacity: fadeIn(TIMELINE[6]?.start ?? 120, 20),
               }}
             />
             <div
@@ -528,7 +534,7 @@ export function LiveCodeCompilation({
                 bottom: -10,
                 right: 40,
                 border: "2px solid rgba(255,255,255,0.1)",
-                opacity: frame >= TIMELINE[6]?.start ? 1 : 0.3,
+                opacity: fadeIn(TIMELINE[6]?.start ?? 120, 20),
               }}
             />
           </div>
