@@ -287,16 +287,6 @@ export function ProjectRequestForm() {
   return (
     <section id="project-request" className="py-20 px-6">
       <div className="mx-auto max-w-3xl">
-        <div className="mb-10 text-center">
-          <span className="mb-4 inline-flex items-center gap-1.5 rounded-full bg-[#4A90F5]/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-[#4A90F5]">
-            <Sparkles className="h-3.5 w-3.5" /> Custom Projects
-          </span>
-          <h2 className="text-3xl font-bold text-white sm:text-4xl">Need a custom solution?</h2>
-          <p className="mx-auto mt-3 max-w-md text-gray-400">
-            Tell us what you need. We&apos;ll calculate the cost, prepare a project brief, and connect you with a builder.
-          </p>
-        </div>
-
         <div className="mb-8 flex items-center gap-1">
           {steps.map((item, index) => (
             <div key={item.title} className="flex flex-1 flex-col items-center gap-1">
