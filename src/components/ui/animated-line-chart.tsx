@@ -1,6 +1,6 @@
 "use client";
 
-import { spring, useCurrentFrame, useVideoConfig } from "remotion";
+import { useEffect, useRef, useState } from "react";
 
 export interface AnimatedLineChartProps {
   data?: number[];
@@ -11,7 +11,7 @@ export interface AnimatedLineChartProps {
   background?: string;
   gridColor?: string;
   showDot?: boolean;
-  speed?: number;
+  durationMs?: number;
   className?: string;
 }
 
@@ -24,12 +24,9 @@ export function AnimatedLineChart({
   background = "#0a0a0a",
   gridColor = "#27272a",
   showDot = true,
-  speed = 1,
+  durationMs = 2600,
   className,
 }: AnimatedLineChartProps) {
-  const frame = useCurrentFrame() * speed;
-  const { fps, durationInFrames } = useVideoConfig();
-
   const padding = 60;
   const innerWidth = width - padding * 2;
   const innerHeight = height - padding * 2;
@@ -44,26 +41,65 @@ export function AnimatedLineChart({
     return { x, y };
   });
 
+  // Analytical path length
   let pathLength = 0;
+  const segLengths: number[] = [];
   for (let i = 1; i < points.length; i++) {
     const dx = points[i].x - points[i - 1].x;
     const dy = points[i].y - points[i - 1].y;
-    pathLength += Math.sqrt(dx * dx + dy * dy);
+    const l = Math.sqrt(dx * dx + dy * dy);
+    segLengths.push(l);
+    pathLength += l;
   }
 
   const d = points
     .map((p, i) => `${i === 0 ? "M" : "L"}${p.x.toFixed(2)},${p.y.toFixed(2)}`)
     .join(" ");
 
-  const progress = spring({
-    frame,
-    fps,
-    durationInFrames: Math.round(durationInFrames * 0.85),
-    config: { damping: 200 },
-  });
+  const gridRows = 4;
+  const gridCols = data.length - 1;
+
+  // Animation state
+  const [progress, setProgress] = useState(0);
+  const firedRef = useRef(false);
+  const startRef = useRef<number | null>(null);
+  const rafRef = useRef<number | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function animate(ts: number) {
+      if (startRef.current === null) startRef.current = ts;
+      const elapsed = ts - startRef.current;
+      // ease-in-out cubic
+      const t = Math.min(elapsed / durationMs, 1);
+      const eased = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+      setProgress(eased);
+      if (t < 1) {
+        rafRef.current = requestAnimationFrame(animate);
+      }
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !firedRef.current) {
+          firedRef.current = true;
+          observer.disconnect();
+          rafRef.current = requestAnimationFrame(animate);
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    if (containerRef.current) observer.observe(containerRef.current);
+    return () => {
+      observer.disconnect();
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
+  }, [durationMs]);
 
   const dashOffset = pathLength * (1 - progress);
 
+  // Dot position along path at current progress
   const targetLen = pathLength * progress;
   let traveled = 0;
   let dotX = points[0].x;
@@ -71,7 +107,7 @@ export function AnimatedLineChart({
   for (let i = 1; i < points.length; i++) {
     const dx = points[i].x - points[i - 1].x;
     const dy = points[i].y - points[i - 1].y;
-    const segLen = Math.sqrt(dx * dx + dy * dy);
+    const segLen = segLengths[i - 1];
     if (traveled + segLen >= targetLen) {
       const t = (targetLen - traveled) / segLen;
       dotX = points[i - 1].x + dx * t;
@@ -83,33 +119,46 @@ export function AnimatedLineChart({
     dotY = points[i].y;
   }
 
-  const gridRows = 4;
-  const gridCols = data.length - 1;
-
   return (
     <div
+      ref={containerRef}
       className={className}
       style={{
-        position: "absolute",
-        inset: 0,
+        position: "relative",
+        width: "100%",
+        height: "100%",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         background,
-        fontFamily: "var(--font-geist-sans), -apple-system, BlinkMacSystemFont, sans-serif",
       }}
     >
-      <svg width={width} height={height} viewBox={`0 0 ${width} ${height}`} style={{ overflow: "visible" }}>
+      <svg
+        width="100%"
+        height="100%"
+        viewBox={`0 0 ${width} ${height}`}
+        style={{ overflow: "visible" }}
+        preserveAspectRatio="xMidYMid meet"
+      >
+        {/* Horizontal grid */}
         {Array.from({ length: gridRows + 1 }).map((_, i) => {
           const y = padding + (i / gridRows) * innerHeight;
-          return <line key={`h-${i}`} x1={padding} x2={padding + innerWidth} y1={y} y2={y} stroke={gridColor} strokeWidth={1} />;
+          return (
+            <line key={`h-${i}`} x1={padding} x2={padding + innerWidth} y1={y} y2={y} stroke={gridColor} strokeWidth={1} />
+          );
         })}
+        {/* Vertical grid */}
         {Array.from({ length: gridCols + 1 }).map((_, i) => {
           const x = padding + (i / gridCols) * innerWidth;
-          return <line key={`v-${i}`} x1={x} x2={x} y1={padding} y2={padding + innerHeight} stroke={gridColor} strokeWidth={1} />;
+          return (
+            <line key={`v-${i}`} x1={x} x2={x} y1={padding} y2={padding + innerHeight} stroke={gridColor} strokeWidth={1} />
+          );
         })}
+        {/* Axes */}
         <line x1={padding} x2={padding} y1={padding} y2={padding + innerHeight} stroke={gridColor} strokeWidth={2} />
         <line x1={padding} x2={padding + innerWidth} y1={padding + innerHeight} y2={padding + innerHeight} stroke={gridColor} strokeWidth={2} />
+
+        {/* Animated line */}
         <path
           d={d}
           fill="none"
@@ -121,8 +170,16 @@ export function AnimatedLineChart({
           strokeDashoffset={dashOffset}
           style={{ filter: `drop-shadow(0 0 12px ${strokeColor}55)` }}
         />
+
+        {/* Moving dot — only while animating */}
         {showDot && progress > 0 && progress < 1 && (
-          <circle cx={dotX} cy={dotY} r={strokeWidth * 2} fill={strokeColor} style={{ filter: `drop-shadow(0 0 8px ${strokeColor})` }} />
+          <circle
+            cx={dotX}
+            cy={dotY}
+            r={strokeWidth * 2}
+            fill={strokeColor}
+            style={{ filter: `drop-shadow(0 0 8px ${strokeColor})` }}
+          />
         )}
       </svg>
     </div>
