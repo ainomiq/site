@@ -333,25 +333,88 @@ export function LiveCodeCompilation({
           </div>
         </div>
 
-        {/* Robot iframe - replaces button */}
+        {/* Robot image - replaces button */}
         <div
           style={{
-            position: "absolute",
-            inset: 0,
+            position: "relative",
+            width: "100%",
+            maxWidth: 400,
+            height: 400,
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
           }}
         >
-          <iframe
-            src="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+          {/* Placeholder robot - for now show a styled box, Pim can replace with actual robot image */}
+          <div
             style={{
-              width: "100%",
-              height: "100%",
-              border: "none",
-              pointerEvents: "none",
+              width: 200,
+              height: 300,
+              background: "linear-gradient(135deg, #1f1f1f 0%, #0a0a0a 100%)",
+              borderRadius: "50px 50px 20px 20px",
+              position: "relative",
+              boxShadow: "0 20px 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1)",
+              border: "2px solid rgba(255,255,255,0.1)",
             }}
-          />
+          >
+            {/* Robot head */}
+            <div
+              style={{
+                width: 80,
+                height: 80,
+                background: "linear-gradient(135deg, #2a2a2a 0%, #0f0f0f 100%)",
+                borderRadius: "40px",
+                position: "absolute",
+                top: -40,
+                left: "50%",
+                transform: "translateX(-50%)",
+                border: "2px solid rgba(255,255,255,0.15)",
+                boxShadow: "0 10px 30px rgba(0,0,0,0.6)",
+              }}
+            >
+              {/* Eyes */}
+              <div
+                style={{
+                  width: 15,
+                  height: 15,
+                  background: accentColor,
+                  borderRadius: "50%",
+                  position: "absolute",
+                  top: 30,
+                  left: 20,
+                  boxShadow: `0 0 10px ${accentColor}`,
+                }}
+              />
+              <div
+                style={{
+                  width: 15,
+                  height: 15,
+                  background: accentColor,
+                  borderRadius: "50%",
+                  position: "absolute",
+                  top: 30,
+                  right: 20,
+                  boxShadow: `0 0 10px ${accentColor}`,
+                }}
+              />
+            </div>
+            
+            {/* Body glow */}
+            <div
+              style={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                width: 60,
+                height: 60,
+                background: accentColor,
+                borderRadius: "50%",
+                opacity: 0.2,
+                filter: "blur(20px)",
+              }}
+            />
+          </div>
         </div>
       </div>
     </div>
