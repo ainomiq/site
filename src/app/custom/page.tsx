@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { CustomProjectsHero } from "@/components/get-started/custom-projects-hero";
+import { CustomHero } from "@/components/get-started/custom-hero";
 import { ProjectRequestForm } from "@/components/get-started/project-request-form";
 import { Features } from "@/components/ui/features-9";
 import { Testimonials } from "@/components/ui/unique-testimonial";
@@ -97,7 +97,7 @@ export default function CustomPage() {
   return (
     <>
       {/* Hero */}
-      <CustomProjectsHero />
+      <CustomHero />
 
       {/* What we build */}
       <section className="py-20 px-6 bg-white">
