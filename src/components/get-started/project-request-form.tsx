@@ -163,11 +163,13 @@ export function ProjectRequestForm() {
           window.location.href = stripeData.url;
           return;
         }
+        // Stripe failed to return a URL
+        setErrors(["Payment setup failed. Your project was submitted — we'll contact you to arrange payment."]);
+        return;
       }
 
-      // Only show success if there's no estimate (shouldn't happen in normal flow)
-      // Payment success is handled via ?payment=success query param after Stripe redirect
-      setSuccess(true);
+      // No estimate available — show error, don't fake success
+      setErrors(["Could not calculate estimate. Please try again or contact us directly."]);
     } catch {
       setErrors(["Network error. Please try again."]);
     } finally {
