@@ -3,20 +3,21 @@
 import { Sparkles } from "lucide-react";
 import { ProjectRequestForm } from "@/components/get-started/project-request-form";
 import { GlassFilter } from "@/components/ui/liquid-glass";
+import { EtherealShadow } from "@/components/ui/ethereal-shadow";
 
 export function CustomHero() {
   return (
-    <section
-      className="relative min-h-screen overflow-hidden pt-24 pb-16 px-6"
-      style={{
-        background: `
-          linear-gradient(135deg, rgba(59, 130, 246, 0.35) 0%, rgba(37, 99, 235, 0.2) 30%, rgba(96, 165, 250, 0.25) 60%, rgba(59, 130, 246, 0.3) 100%),
-          url("https://images.unsplash.com/photo-1432251407527-504a6b4174a2?q=80&w=2400&auto=format&fit=crop") center center
-        `,
-        backgroundSize: "cover",
-        animation: "moveBackground 60s linear infinite",
-      }}
-    >
+    <section className="relative min-h-screen overflow-hidden pt-24 pb-16 px-6">
+      {/* Ethereal shadow background - ainomiq blue/white */}
+      <div className="absolute inset-0 -z-10 bg-white">
+        <EtherealShadow
+          color="rgba(59, 130, 246, 0.6)"
+          animation={{ scale: 60, speed: 40 }}
+          noise={{ opacity: 0.3, scale: 1 }}
+          sizing="fill"
+        />
+      </div>
+
       <GlassFilter />
 
       <div className="mx-auto max-w-6xl relative z-10">
@@ -39,7 +40,7 @@ export function CustomHero() {
             <div className="absolute inset-0 z-10 rounded-3xl" style={{ background: "rgba(255, 255, 255, 0.25)" }} />
             <div
               className="absolute inset-0 z-20 rounded-3xl overflow-hidden"
-              style={{ boxShadow: "inset 2px 2px 1px 0 rgba(255, 255, 255, 0.5), inset -1px -1px 1px 1px rgba(255, 255, 255, 0.5)" }}
+              style={{ boxShadow: "inset 2px 2px 1px 0 rgba(255,255,255,0.5), inset -1px -1px 1px 1px rgba(255,255,255,0.5)" }}
             />
             <Sparkles className="h-3.5 w-3.5 relative z-30" />
             <span className="relative z-30">Custom Projects</span>
@@ -47,21 +48,21 @@ export function CustomHero() {
         </div>
 
         {/* Heading */}
-        <h1 className="text-center text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-4 text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.3)]">
+        <h1 className="text-center text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-4 text-gray-900">
           Need a custom solution?
         </h1>
 
         {/* Subtext */}
-        <p className="text-center text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-4 drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]">
+        <p className="text-center text-lg md:text-xl text-gray-700 max-w-2xl mx-auto mb-4">
           Tell us what you need. We&apos;ll calculate the cost, prepare a project brief, and connect you with a builder.
         </p>
 
         {/* Trust line */}
-        <p className="text-center text-sm text-white/70 mb-12">
+        <p className="text-center text-sm text-gray-500 mb-12">
           From concept to deployment - transparent pricing, clear timelines.
         </p>
 
-        {/* Liquid Glass card - full SVG filter distortion */}
+        {/* Liquid Glass card */}
         <div className="relative mx-auto max-w-5xl">
           <div
             className="relative flex flex-col overflow-hidden rounded-3xl p-6 md:p-8 transition-all duration-700"
@@ -70,7 +71,6 @@ export function CustomHero() {
               transitionTimingFunction: "cubic-bezier(0.175, 0.885, 0.32, 2.2)",
             }}
           >
-            {/* Glass distortion layer */}
             <div
               className="absolute inset-0 z-0 overflow-hidden rounded-3xl"
               style={{
@@ -79,20 +79,11 @@ export function CustomHero() {
                 isolation: "isolate",
               }}
             />
-            {/* White tint layer */}
-            <div
-              className="absolute inset-0 z-10 rounded-3xl"
-              style={{ background: "rgba(255, 255, 255, 0.25)" }}
-            />
-            {/* Inner highlight edges */}
+            <div className="absolute inset-0 z-10 rounded-3xl" style={{ background: "rgba(255, 255, 255, 0.25)" }} />
             <div
               className="absolute inset-0 z-20 rounded-3xl overflow-hidden"
-              style={{
-                boxShadow: "inset 2px 2px 1px 0 rgba(255, 255, 255, 0.5), inset -1px -1px 1px 1px rgba(255, 255, 255, 0.5)",
-              }}
+              style={{ boxShadow: "inset 2px 2px 1px 0 rgba(255,255,255,0.5), inset -1px -1px 1px 1px rgba(255,255,255,0.5)" }}
             />
-
-            {/* Form content */}
             <div className="relative z-30">
               <ProjectRequestForm />
             </div>
