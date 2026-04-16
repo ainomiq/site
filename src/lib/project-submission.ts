@@ -87,43 +87,68 @@ export function toDiscordList(items: string[]): string {
 
 export function buildAdminSubmissionEmbed(project: ProjectRecord) {
   const split = calculateBudgetSplit(project.budget);
+  
+  // Clean summary line
+  const summaryParts = [
+    project.projectType,
+    project.timeline,
+    split.amountLabel !== "TBD" ? split.amountLabel : null,
+  ].filter(Boolean);
+
+  // Truncate description smartly
+  const desc = project.description.length > 300 
+    ? project.description.slice(0, 297) + "..." 
+    : project.description;
+
   return {
-    username: "Ainomiq Admin",
+    username: "Ainomiq",
     embeds: [
       {
-        title: "🆕 New Project Request (ADMIN)",
-        color: 15158332,
+        title: `New Project - ${project.id}`,
+        color: 0x4A90F5,
+        description: `**${project.company}** - ${project.contact} (${project.email})${project.phone ? ` - ${project.phone}` : ""}\n\n> ${desc}`,
         fields: [
-          { name: "🆔 Project", value: project.id, inline: true },
-          { name: "🏢 Company", value: project.company, inline: true },
-          { name: "👤 Contact", value: project.contact, inline: true },
-          { name: "📧 Email", value: project.email, inline: true },
-          { name: "📱 Phone", value: project.phone || "N/A", inline: true },
-          { name: "🔍 Found via", value: project.foundVia || "N/A", inline: true },
-          { name: "📋 Type", value: project.projectType, inline: true },
-          { name: "⏰ Timeline", value: project.timeline, inline: true },
-          { name: "💰 Client Budget", value: split.amountLabel, inline: true },
-          { name: "💵 Builder Fee (20%)", value: split.builderFeeLabel, inline: true },
-          { name: "📊 Margin (80%)", value: split.marginLabel, inline: true },
-          { name: "👥 Target Audience", value: project.targetAudience || "N/A", inline: false },
-          { name: "🌐 Existing URL", value: project.existingUrl || "N/A", inline: false },
-          {
-            name: "🔐 Needs Credentials",
-            value: project.needsCredentials ? "Yes" : "No",
-            inline: true,
-          },
-          {
-            name: "🛠 Preferred Tech",
-            value: project.techStack.length > 0 ? project.techStack.join(", ") : "N/A",
-            inline: true,
-          },
-          { name: "📝 Description", value: project.description.slice(0, 1024), inline: false },
-          { name: "✨ Must-have Features", value: project.features || "N/A", inline: false },
-          { name: "🎨 Design Preferences", value: project.designPrefs || "N/A", inline: false },
-          { name: "🔗 References", value: project.referencesText || "N/A", inline: false },
-          { name: "📎 Files", value: formatProjectFiles(project.files), inline: false },
+          { name: "Type", value: summaryParts[0] || "N/A", inline: true },
+          { name: "Timeline", value: project.timeline || "N/A", inline: true },
+          { name: "Budget", value: split.amountLabel, inline: true },
+          { name: "Builder Fee (20%)", value: split.builderFeeLabel, inline: true },
+          { name: "Margin (80%)", value: split.marginLabel, inline: true },
+          { name: "Credentials", value: project.needsCredentials ? "Needed" : "No", inline: true },
+          ...(project.existingUrl ? [{ name: "Website", value: project.existingUrl, inline: false }] : []),
+          ...(project.techStack.length > 0 ? [{ name: "Tech", value: project.techStack.join(", "), inline: false }] : []),
+          ...(project.features ? [{ name: "Features", value: project.features.slice(0, 500), inline: false }] : []),
+          ...(project.targetAudience ? [{ name: "Audience", value: project.targetAudience, inline: false }] : []),
+          ...(project.files.length > 0 ? [{ name: "Files", value: formatProjectFiles(project.files), inline: false }] : []),
         ],
-        footer: { text: "ADMIN - Ainomiq" },
+        footer: { text: "Admin" },
+        timestamp: new Date().toISOString(),
+      },
+    ],
+  };
+}
+
+export function buildProjectsChannelEmbed(project: ProjectRecord) {
+  // Builder/team version - NO pricing, NO margin, NO budget
+  const desc = project.description.length > 400 
+    ? project.description.slice(0, 397) + "..." 
+    : project.description;
+
+  return {
+    username: "Ainomiq Projects",
+    embeds: [
+      {
+        title: `New Project - ${project.projectType}`,
+        color: 0x22C55E,
+        description: `> ${desc}`,
+        fields: [
+          { name: "Type", value: project.projectType, inline: true },
+          { name: "Timeline", value: project.timeline || "TBD", inline: true },
+          { name: "Credentials", value: project.needsCredentials ? "Needed" : "No", inline: true },
+          ...(project.existingUrl ? [{ name: "Website", value: project.existingUrl, inline: false }] : []),
+          ...(project.techStack.length > 0 ? [{ name: "Tech", value: project.techStack.join(", "), inline: false }] : []),
+          ...(project.features ? [{ name: "Features", value: project.features.slice(0, 500), inline: false }] : []),
+        ],
+        footer: { text: project.id },
         timestamp: new Date().toISOString(),
       },
     ],

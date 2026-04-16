@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { buildAdminSubmissionEmbed, calculateBudgetSplit, isValidEmail, isValidUrl } from "@/lib/project-submission";
+import { buildAdminSubmissionEmbed, buildProjectsChannelEmbed, calculateBudgetSplit, isValidEmail, isValidUrl } from "@/lib/project-submission";
 import { createProject, type ProjectFile } from "@/lib/projects";
 
 const RATE_LIMIT_MAX = 5;
@@ -206,8 +206,9 @@ export async function POST(request: NextRequest) {
       estimateHours,
     });
 
-    // Send Discord notification (non-blocking - DB write is the important part)
-    const adminWebhook = process.env.DISCORD_WEBHOOK_URL;
+    // Send Discord notifications (non-blocking - DB write is the important part)
+    // 1. Admin webhook - full details with pricing
+    const adminWebhook = process.env.DISCORD_WEBHOOK_ADMIN;
     if (adminWebhook) {
       try {
         const payload = buildAdminSubmissionEmbed(project);
@@ -216,22 +217,45 @@ export async function POST(request: NextRequest) {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload),
         });
-
         if (!webhookResponse.ok) {
-          const split = calculateBudgetSplit(project.budget);
-          console.error("Admin webhook failed", {
-            status: webhookResponse.status,
-            projectId: project.id,
-            builderFee: split.builderFeeLabel,
-            margin: split.marginLabel,
-            response: await webhookResponse.text(),
-          });
+          console.error("Admin webhook failed", webhookResponse.status);
         }
       } catch (webhookError) {
-        console.error("Admin webhook error (project saved successfully):", webhookError);
+        console.error("Admin webhook error:", webhookError);
       }
-    } else {
-      console.warn("DISCORD_WEBHOOK_URL not set - skipping notification");
+    }
+
+    // 2. Projects channel webhook - NO pricing, for builders/team
+    const projectsWebhook = process.env.DISCORD_WEBHOOK_PROJECTS;
+    if (projectsWebhook) {
+      try {
+        const payload = buildProjectsChannelEmbed(project);
+        const webhookResponse = await fetch(projectsWebhook, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+        if (!webhookResponse.ok) {
+          console.error("Projects webhook failed", webhookResponse.status);
+        }
+      } catch (webhookError) {
+        console.error("Projects webhook error:", webhookError);
+      }
+    }
+
+    // Legacy fallback
+    const legacyWebhook = !adminWebhook && process.env.DISCORD_WEBHOOK_URL;
+    if (legacyWebhook) {
+      try {
+        const payload = buildAdminSubmissionEmbed(project);
+        await fetch(legacyWebhook, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+      } catch (e) {
+        console.error("Legacy webhook error:", e);
+      }
     }
 
     return NextResponse.json({ success: true, projectId: project.id });
