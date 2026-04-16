@@ -395,7 +395,7 @@ export function ProjectRequestForm() {
           ))}
         </div>
 
-        <div className="flex min-h-[320px] flex-col rounded-2xl border border-blue-200/60 bg-white/95 p-8 shadow-2xl">
+        <div className="flex min-h-[320px] flex-col p-2">
           <div className="pointer-events-none absolute opacity-0" aria-hidden>
             <input
               tabIndex={-1}
