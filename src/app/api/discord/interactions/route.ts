@@ -1,6 +1,34 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getProject, updateProject } from "@/lib/projects";
 
+const KLAVIYO_KEY = process.env.KLAVIYO_PRIVATE_API_KEY ?? "";
+
+async function trackKlaviyoEvent(email: string, firstName: string, metricName: string, properties: Record<string, unknown>) {
+  if (!KLAVIYO_KEY) return;
+  try {
+    await fetch("https://a.klaviyo.com/api/events/", {
+      method: "POST",
+      headers: {
+        Authorization: `Klaviyo-API-Key ${KLAVIYO_KEY}`,
+        "Content-Type": "application/json",
+        revision: "2025-04-15",
+      },
+      body: JSON.stringify({
+        data: {
+          type: "event",
+          attributes: {
+            metric: { data: { type: "metric", attributes: { name: metricName } } },
+            profile: { data: { type: "profile", attributes: { email, first_name: firstName } } },
+            properties,
+          },
+        },
+      }),
+    });
+  } catch (e) {
+    console.error(`Klaviyo ${metricName} event failed:`, e);
+  }
+}
+
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
@@ -223,6 +251,19 @@ export async function POST(request: NextRequest) {
         data: { content: `✅ ${username} heeft de opdracht geclaimd!`, flags: 64 },
       });
       await moveProject(projectId, messageId, channelId, "ongoing", username);
+
+      // Trigger "Project Accepted" Klaviyo flow
+      const proj = await getProject(projectId);
+      if (proj?.email) {
+        trackKlaviyoEvent(proj.email, proj.contact?.split(" ")[0] ?? "", "Project Accepted", {
+          project_id: projectId,
+          project_type: proj.projectType ?? "",
+          company: proj.company ?? "",
+          timeline: proj.timeline ?? "",
+          estimate: proj.estimateTotal ? `EUR ${proj.estimateTotal}` : "",
+          assigned_to: username,
+        });
+      }
     } else if (customId === "done") {
       // Only the person who claimed can mark done
       const project = await getProject(projectId);
@@ -257,6 +298,16 @@ export async function POST(request: NextRequest) {
         data: { content: `✅ Goedgekeurd door ${username}!`, flags: 64 },
       });
       await moveProject(projectId, messageId, channelId, "finished");
+
+      // Trigger "Project Completed" Klaviyo flow
+      const projDone = await getProject(projectId);
+      if (projDone?.email) {
+        trackKlaviyoEvent(projDone.email, projDone.contact?.split(" ")[0] ?? "", "Project Completed", {
+          project_id: projectId,
+          project_type: projDone.projectType ?? "",
+          company: projDone.company ?? "",
+        });
+      }
     } else if (customId === "reject") {
       const MANAGER_IDS = ["1182272543139315735"]; // pimecom
       const userId = user?.id;
