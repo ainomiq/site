@@ -193,11 +193,35 @@ export function ProjectRequestForm() {
         body: formData,
       });
 
-      const data = (await response.json()) as { success?: boolean; errors?: string[] };
+      const data = (await response.json()) as { success?: boolean; errors?: string[]; projectId?: string };
 
       if (!response.ok || !data.success) {
         setErrors(data.errors ?? ["Could not submit your request. Please try again."]);
         return;
+      }
+
+      // Redirect to Stripe Checkout if we have an estimate
+      if (estimate && estimate.total > 0 && data.projectId) {
+        try {
+          const checkoutRes = await fetch("/api/checkout", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              projectId: data.projectId,
+              amount: estimate.total,
+              company,
+              projectType: PROJECT_TYPES.find((t) => t.id === projectType)?.label || projectType,
+              email,
+            }),
+          });
+          const checkoutData = (await checkoutRes.json()) as { url?: string };
+          if (checkoutData.url) {
+            window.location.href = checkoutData.url;
+            return;
+          }
+        } catch (e) {
+          console.error("Checkout redirect failed, showing success:", e);
+        }
       }
 
       setSuccess(true);
