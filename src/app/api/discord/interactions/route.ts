@@ -1,5 +1,29 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getProject, updateProject } from "@/lib/projects";
+import * as ed from "@noble/ed25519";
+import { sha512 } from "@noble/hashes/sha512";
+
+// Required for @noble/ed25519 in Node/Edge
+ed.etc.sha512Sync = (...m) => sha512(...m);
+
+const PUBLIC_KEY = process.env.DISCORD_PUBLIC_KEY ?? "";
+
+async function verifyDiscordRequest(request: NextRequest, rawBody: string): Promise<boolean> {
+  if (!PUBLIC_KEY) return true; // skip in dev
+  const signature = request.headers.get("x-signature-ed25519");
+  const timestamp = request.headers.get("x-signature-timestamp");
+  if (!signature || !timestamp) return false;
+  try {
+    const isValid = await ed.verifyAsync(
+      signature,
+      Buffer.from(timestamp + rawBody),
+      PUBLIC_KEY
+    );
+    return isValid;
+  } catch {
+    return false;
+  }
+}
 
 const BOT_TOKEN = process.env.DISCORD_BOT_TOKEN;
 const GUILD_ID = "1493968257860767926";
@@ -151,7 +175,12 @@ async function moveProject(
 }
 
 export async function POST(request: NextRequest) {
-  const body = await request.json();
+  const rawBody = await request.text();
+  const isValid = await verifyDiscordRequest(request, rawBody);
+  if (!isValid) {
+    return new NextResponse("Invalid signature", { status: 401 });
+  }
+  const body = JSON.parse(rawBody);
 
   // Discord ping verification
   if (body.type === 1) {
