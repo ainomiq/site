@@ -108,13 +108,15 @@ function buildEmbed(projectId: string, data: Record<string, unknown>, status: st
     { name: "Bedrijf", value: String(data.company || "?"), inline: true },
     { name: "Contact", value: String(data.contact || "?"), inline: true },
     { name: "Type", value: String(data.projectType || "?"), inline: true },
-    { name: "Dev Budget", value: data.estimateTotal
-      ? `€${Math.round(Number(data.estimateTotal) * 0.2).toLocaleString("nl-NL")}`
-      : "TBD", inline: true },
+    { name: "Budget", value: String(data.budget || "Niet opgegeven"), inline: true },
     { name: "Timeline", value: String(data.timeline || "?"), inline: true },
-    { name: "Estimate", value: data.estimateTotal
-      ? `~${Math.round(Number(data.estimateTotal) * 0.2 / 50)}u`
-      : "?", inline: true },
+    {
+      name: "Estimate",
+      value: data.estimateTotal
+        ? `€${Number(data.estimateTotal).toLocaleString("nl-NL")} (~${data.estimateHours}u)`
+        : "?",
+      inline: true,
+    },
     {
       name: "Beschrijving",
       value: String(data.description || "?").slice(0, 500),

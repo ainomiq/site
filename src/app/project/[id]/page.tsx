@@ -33,8 +33,8 @@ function statusBadge(status: string) {
 }
 
 function formatBudget(budget: string | null, estimateTotal: number | null) {
-  if (estimateTotal) return `EUR ${Math.round(estimateTotal * 0.2).toLocaleString()}`;
-  if (budget) return `EUR ${Math.round(Number(budget.replace(/[^0-9]/g, '')) * 0.2).toLocaleString()}`;
+  if (estimateTotal) return `EUR ${estimateTotal.toLocaleString()}`;
+  if (budget) return budget;
   return null;
 }
 
@@ -95,7 +95,7 @@ export default async function ProjectBriefPage({
             <Detail label="Email" value={project.email} />
             {project.phone && <Detail label="Phone" value={project.phone} />}
             <Detail label="Timeline" value={project.timeline} />
-            {budget && <Detail label="Dev Budget (20%)" value={budget} />}
+            {budget && <Detail label="Budget" value={budget} />}
             {project.estimateHours && (
               <Detail label="Est. Hours" value={`${project.estimateHours}h`} />
             )}
