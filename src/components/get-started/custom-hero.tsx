@@ -79,10 +79,10 @@ export function CustomHero() {
                 isolation: "isolate",
               }}
             />
-            <div className="absolute inset-0 z-10 rounded-3xl" style={{ background: "rgba(255, 255, 255, 0.25)" }} />
+            <div className="absolute inset-0 z-10 rounded-3xl" style={{ background: "rgba(255, 255, 255, 0.45)" }} />
             <div
               className="absolute inset-0 z-20 rounded-3xl overflow-hidden"
-              style={{ boxShadow: "inset 2px 2px 1px 0 rgba(255,255,255,0.5), inset -1px -1px 1px 1px rgba(255,255,255,0.5)" }}
+              style={{ boxShadow: "inset 2px 2px 1px 0 rgba(255,255,255,0.6), inset -1px -1px 1px 1px rgba(255,255,255,0.6)" }}
             />
             <div className="relative z-30">
               <ProjectRequestForm />
