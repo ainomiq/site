@@ -2,31 +2,48 @@
 
 import { Sparkles } from "lucide-react";
 import { ProjectRequestForm } from "@/components/get-started/project-request-form";
+import { GlassFilter } from "@/components/ui/liquid-glass";
 
 export function CustomHero() {
   return (
     <section
       className="relative min-h-screen overflow-hidden pt-24 pb-16 px-6"
       style={{
-        backgroundImage: `url("https://images.unsplash.com/photo-1432251407527-504a6b4174a2?q=80&w=2400&auto=format&fit=crop")`,
+        background: `
+          linear-gradient(135deg, rgba(59, 130, 246, 0.35) 0%, rgba(37, 99, 235, 0.2) 30%, rgba(96, 165, 250, 0.25) 60%, rgba(59, 130, 246, 0.3) 100%),
+          url("https://images.unsplash.com/photo-1432251407527-504a6b4174a2?q=80&w=2400&auto=format&fit=crop") center center
+        `,
         backgroundSize: "cover",
-        backgroundPosition: "center",
+        animation: "moveBackground 60s linear infinite",
       }}
     >
+      <GlassFilter />
+
       <div className="mx-auto max-w-6xl relative z-10">
         {/* Badge */}
         <div className="mb-6 flex justify-center">
-          <span
-            className="inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-white/90"
+          <div
+            className="relative flex items-center gap-1.5 rounded-3xl px-5 py-2 text-xs font-semibold uppercase tracking-wider text-white overflow-hidden cursor-default"
             style={{
-              background: "rgba(255, 255, 255, 0.15)",
-              backdropFilter: "blur(12px)",
-              WebkitBackdropFilter: "blur(12px)",
-              border: "1px solid rgba(255, 255, 255, 0.3)",
+              boxShadow: "0 6px 6px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 0, 0, 0.1)",
             }}
           >
-            <Sparkles className="h-3.5 w-3.5" /> Custom Projects
-          </span>
+            <div
+              className="absolute inset-0 z-0 overflow-hidden rounded-3xl"
+              style={{
+                backdropFilter: "blur(3px)",
+                filter: "url(#glass-distortion)",
+                isolation: "isolate",
+              }}
+            />
+            <div className="absolute inset-0 z-10 rounded-3xl" style={{ background: "rgba(255, 255, 255, 0.25)" }} />
+            <div
+              className="absolute inset-0 z-20 rounded-3xl overflow-hidden"
+              style={{ boxShadow: "inset 2px 2px 1px 0 rgba(255, 255, 255, 0.5), inset -1px -1px 1px 1px rgba(255, 255, 255, 0.5)" }}
+            />
+            <Sparkles className="h-3.5 w-3.5 relative z-30" />
+            <span className="relative z-30">Custom Projects</span>
+          </div>
         </div>
 
         {/* Heading */}
@@ -35,7 +52,7 @@ export function CustomHero() {
         </h1>
 
         {/* Subtext */}
-        <p className="text-center text-lg md:text-xl text-white/85 max-w-2xl mx-auto mb-4 drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]">
+        <p className="text-center text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-4 drop-shadow-[0_1px_2px_rgba(0,0,0,0.2)]">
           Tell us what you need. We&apos;ll calculate the cost, prepare a project brief, and connect you with a builder.
         </p>
 
@@ -44,28 +61,39 @@ export function CustomHero() {
           From concept to deployment - transparent pricing, clear timelines.
         </p>
 
-        {/* Apple-style liquid glass card */}
+        {/* Liquid Glass card - full SVG filter distortion */}
         <div className="relative mx-auto max-w-5xl">
           <div
-            className="relative overflow-hidden rounded-3xl p-6 md:p-8"
+            className="relative flex flex-col overflow-hidden rounded-3xl p-6 md:p-8 transition-all duration-700"
             style={{
-              background: "rgba(255, 255, 255, 0.18)",
-              backdropFilter: "blur(14px) saturate(1.4)",
-              WebkitBackdropFilter: "blur(14px) saturate(1.4)",
-              border: "1px solid rgba(255, 255, 255, 0.35)",
-              boxShadow: "0 4px 24px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.4)",
+              boxShadow: "0 6px 6px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 0, 0, 0.1)",
+              transitionTimingFunction: "cubic-bezier(0.175, 0.885, 0.32, 2.2)",
             }}
           >
-            {/* Top edge highlight - subtle light refraction */}
+            {/* Glass distortion layer */}
             <div
-              className="absolute inset-x-0 top-0 h-px rounded-t-3xl"
+              className="absolute inset-0 z-0 overflow-hidden rounded-3xl"
               style={{
-                background: "linear-gradient(90deg, transparent 10%, rgba(255,255,255,0.6) 30%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0.6) 70%, transparent 90%)",
+                backdropFilter: "blur(3px)",
+                filter: "url(#glass-distortion)",
+                isolation: "isolate",
+              }}
+            />
+            {/* White tint layer */}
+            <div
+              className="absolute inset-0 z-10 rounded-3xl"
+              style={{ background: "rgba(255, 255, 255, 0.25)" }}
+            />
+            {/* Inner highlight edges */}
+            <div
+              className="absolute inset-0 z-20 rounded-3xl overflow-hidden"
+              style={{
+                boxShadow: "inset 2px 2px 1px 0 rgba(255, 255, 255, 0.5), inset -1px -1px 1px 1px rgba(255, 255, 255, 0.5)",
               }}
             />
 
             {/* Form content */}
-            <div className="relative z-10">
+            <div className="relative z-30">
               <ProjectRequestForm />
             </div>
           </div>
