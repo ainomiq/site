@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getProject, updateProject } from "@/lib/projects";
 
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
 const PUBLIC_KEY = process.env.DISCORD_PUBLIC_KEY ?? "";
 
 async function verifyDiscordRequest(request: NextRequest, rawBody: string): Promise<boolean> {
