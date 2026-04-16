@@ -133,6 +133,57 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ success: false, errors }, { status: 400 });
     }
 
+    // Subscribe to Klaviyo list (non-blocking)
+    const klaviyoKey = process.env.KLAVIYO_PRIVATE_API_KEY;
+    if (klaviyoKey) {
+      try {
+        // Create/update profile and subscribe to list
+        await fetch('https://a.klaviyo.com/api/v3/profile-subscription-bulk-create-jobs/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Klaviyo-API-Key ${klaviyoKey}`,
+            'revision': '2024-10-15',
+          },
+          body: JSON.stringify({
+            data: {
+              type: 'profile-subscription-bulk-create-job',
+              attributes: {
+                profiles: {
+                  data: [{
+                    type: 'profile',
+                    attributes: {
+                      email,
+                      first_name: contact.split(' ')[0] || contact,
+                      last_name: contact.split(' ').slice(1).join(' ') || undefined,
+                      organization: company,
+                      phone_number: phone || undefined,
+                      properties: {
+                        project_type: projectType,
+                        timeline,
+                        source: 'custom_project_form',
+                        found_via: foundVia || undefined,
+                      },
+                    },
+                  }],
+                },
+              },
+              relationships: {
+                list: {
+                  data: {
+                    type: 'list',
+                    id: process.env.KLAVIYO_LIST_ID || 'VKRNwY',
+                  },
+                },
+              },
+            },
+          }),
+        });
+      } catch (klaviyoError) {
+        console.error('Klaviyo subscribe error (non-blocking):', klaviyoError);
+      }
+    }
+
     const project = await createProject({
       company,
       contact,
