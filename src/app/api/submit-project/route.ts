@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { buildAdminSubmissionEmbed, buildProjectsChannelEmbed, calculateBudgetSplit, isValidEmail, isValidUrl } from "@/lib/project-submission";
-import { createProject, type ProjectFile } from "@/lib/projects";
+import { createProject, updateProject, type ProjectFile } from "@/lib/projects";
+import { postProjectToDiscord } from "@/app/api/discord/interactions/route";
 
 const RATE_LIMIT_MAX = 5;
 const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000;
@@ -225,21 +226,32 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // 2. Projects channel webhook - NO pricing, for builders/team
-    const projectsWebhook = process.env.DISCORD_WEBHOOK_PROJECTS;
-    if (projectsWebhook) {
-      try {
-        const payload = buildProjectsChannelEmbed(project);
-        const webhookResponse = await fetch(projectsWebhook, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        });
-        if (!webhookResponse.ok) {
-          console.error("Projects webhook failed", webhookResponse.status);
-        }
-      } catch (webhookError) {
-        console.error("Projects webhook error:", webhookError);
+    // 2. Post to #available-projects via bot with interactive buttons
+    try {
+      const msgId = await postProjectToDiscord(project.id, {
+        company: project.company,
+        contact: project.contact,
+        email: project.email,
+        projectType: project.projectType,
+        budget: project.budget,
+        timeline: project.timeline,
+        description: project.description,
+        estimateTotal: project.estimateTotal,
+        estimateHours: project.estimateHours,
+        driveFolderUrl: project.driveFolderUrl,
+      }, "available");
+      if (msgId) {
+        await updateProject(project.id, { discordMessageId: msgId });
+      }
+    } catch (botError) {
+      console.error("Discord bot post error:", botError);
+      // Fallback to webhook
+      const projectsWebhook = process.env.DISCORD_WEBHOOK_PROJECTS;
+      if (projectsWebhook) {
+        try {
+          const payload = buildProjectsChannelEmbed(project);
+          await fetch(projectsWebhook, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
+        } catch (e) { console.error("Webhook fallback error:", e); }
       }
     }
 
