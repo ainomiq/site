@@ -31,7 +31,7 @@ const TICK_MS = 35;
 
 export function BuildYourSolution() {
   const [charCount, setCharCount] = useState(0);
-  const intervalRef = useRef<ReturnType<typeof setInterval>>();
+  const intervalRef = useRef<ReturnType<typeof setInterval>>(undefined);
   const totalChars = CODE_LINES.reduce((sum, l) => sum + l.text.length + 1, 0);
 
   useEffect(() => {
