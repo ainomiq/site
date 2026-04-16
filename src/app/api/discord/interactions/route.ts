@@ -239,12 +239,37 @@ export async function POST(request: NextRequest) {
       });
       await moveProject(projectId, messageId, channelId, "review");
     } else if (customId === "approve") {
+      // Only manager (pimecom) or server admins can approve/reject
+      const MANAGER_IDS = ["1182272543139315735"]; // pimecom
+      const userId = user?.id;
+      const memberPerms = BigInt(body.member?.permissions ?? "0");
+      const isAdmin = (memberPerms & BigInt(0x8)) !== BigInt(0); // ADMINISTRATOR
+      const isManager = MANAGER_IDS.includes(userId);
+      if (!isManager && !isAdmin) {
+        await discordApi("POST", `/interactions/${body.id}/${body.token}/callback`, {
+          type: 4,
+          data: { content: `❌ Alleen managers kunnen projecten goedkeuren.`, flags: 64 },
+        });
+        return NextResponse.json({});
+      }
       await discordApi("POST", `/interactions/${body.id}/${body.token}/callback`, {
         type: 4,
         data: { content: `✅ Goedgekeurd door ${username}!`, flags: 64 },
       });
       await moveProject(projectId, messageId, channelId, "finished");
     } else if (customId === "reject") {
+      const MANAGER_IDS = ["1182272543139315735"]; // pimecom
+      const userId = user?.id;
+      const memberPerms = BigInt(body.member?.permissions ?? "0");
+      const isAdmin = (memberPerms & BigInt(0x8)) !== BigInt(0);
+      const isManager = MANAGER_IDS.includes(userId);
+      if (!isManager && !isAdmin) {
+        await discordApi("POST", `/interactions/${body.id}/${body.token}/callback`, {
+          type: 4,
+          data: { content: `❌ Alleen managers kunnen projecten terugsturen.`, flags: 64 },
+        });
+        return NextResponse.json({});
+      }
       await discordApi("POST", `/interactions/${body.id}/${body.token}/callback`, {
         type: 4,
         data: { content: `🔄 Teruggestuurd naar ongoing door ${username}.`, flags: 64 },
