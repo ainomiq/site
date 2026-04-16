@@ -62,6 +62,8 @@ export function ProjectRequestForm() {
 
   const [projectType, setProjectType] = useState("");
   const [description, setDescription] = useState("");
+  const [isEnhancing, setIsEnhancing] = useState(false);
+  const [wasEnhanced, setWasEnhanced] = useState(false);
   const [timeline, setTimeline] = useState("");
   const [company, setCompany] = useState("");
   const [contact, setContact] = useState("");
@@ -388,11 +390,47 @@ export function ProjectRequestForm() {
                     <p className={`text-xs ${description.trim().length >= 3 ? "text-green-400" : "text-ainomiq-text-muted/60"}`}>
                       {description.trim().length} chars
                     </p>
-                    {description.trim().length >= 3 && (
-                      <span className="flex items-center gap-1 text-xs text-[#4A90F5]">
-                        <Zap className="h-3 w-3" /> Ready for estimate
-                      </span>
-                    )}
+                    <div className="flex items-center gap-3">
+                      {description.trim().length >= 10 && !wasEnhanced && (
+                        <button
+                          type="button"
+                          disabled={isEnhancing}
+                          onClick={async () => {
+                            setIsEnhancing(true);
+                            try {
+                              const res = await fetch("/api/enhance-description", {
+                                method: "POST",
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify({ description, projectType }),
+                              });
+                              const data = await res.json();
+                              if (data.enhanced) {
+                                setDescription(data.enhanced);
+                                setWasEnhanced(true);
+                              }
+                            } catch {}
+                            setIsEnhancing(false);
+                          }}
+                          className="flex items-center gap-1.5 rounded-full bg-gradient-to-r from-[#4A90F5] to-[#6C5CE7] px-3 py-1 text-xs font-medium text-white transition-all hover:opacity-90 disabled:opacity-50"
+                        >
+                          {isEnhancing ? (
+                            <><Loader2 className="h-3 w-3 animate-spin" /> Enhancing...</>
+                          ) : (
+                            <><Sparkles className="h-3 w-3" /> Enhance with AI</>
+                          )}
+                        </button>
+                      )}
+                      {wasEnhanced && (
+                        <span className="flex items-center gap-1 text-xs text-[#6C5CE7]">
+                          <Sparkles className="h-3 w-3" /> AI enhanced
+                        </span>
+                      )}
+                      {description.trim().length >= 3 && (
+                        <span className="flex items-center gap-1 text-xs text-[#4A90F5]">
+                          <Zap className="h-3 w-3" /> Ready for estimate
+                        </span>
+                      )}
+                    </div>
                   </div>
                 </div>
 
