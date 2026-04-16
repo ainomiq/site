@@ -39,7 +39,7 @@ const TIMELINES = [
 ];
 
 const SOURCES = ["Google", "Social media", "Referral", "Other"];
-const TECH_OPTIONS = ["React/Next.js", "Vue", "Python", "Node.js", "Shopify", "WordPress", "No preference"];
+const DEFAULT_TECH_OPTIONS = ["React/Next.js", "Vue", "Python", "Node.js", "Shopify", "WordPress", "WooCommerce", "Magento", "No preference"];
 
 interface Estimate {
   hours: number;
@@ -69,6 +69,7 @@ export function ProjectRequestForm() {
   const [isPrefilling, setIsPrefilling] = useState(false);
   const [prefilled, setPrefilled] = useState(false);
   const [siteUrl, setSiteUrl] = useState("");
+  const [detectedTech, setDetectedTech] = useState<string[]>([]);
   const [isScanning, setIsScanning] = useState(false);
   const [siteData, setSiteData] = useState<Record<string, unknown> | null>(null);
   const [recommendations, setRecommendations] = useState<string[]>([]);
@@ -118,7 +119,12 @@ export function ProjectRequestForm() {
     if (step === 3) {
       void fetchEstimate();
     }
-  }, [step, fetchEstimate]);
+    // Pre-fill existingUrl from siteUrl when advancing past step 0
+    if (step >= 1 && siteUrl.trim() && !existingUrl.trim()) {
+      const u = siteUrl.trim();
+      setExistingUrl(u.startsWith("http") ? u : "https://" + u);
+    }
+  }, [step, fetchEstimate, siteUrl, existingUrl]);
 
   async function handleAiPrefill() {
     if (isPrefilling || aiInput.trim().length < 3) return;
@@ -160,6 +166,15 @@ export function ProjectRequestForm() {
       if (siteUrl.trim()) {
         const u = siteUrl.trim();
         setExistingUrl(u.startsWith("http") ? u : "https://" + u);
+      }
+      // Detect tech stack from scraped data
+      if (scraped?.tech && Array.isArray(scraped.tech)) {
+        setDetectedTech(scraped.tech);
+        // Auto-select detected tech
+        scraped.tech.forEach((t: string) => {
+          const match = DEFAULT_TECH_OPTIONS.find((o) => o.toLowerCase() === t.toLowerCase() || t.toLowerCase().includes(o.toLowerCase()) || o.toLowerCase().includes(t.toLowerCase()));
+          if (match && !techStack.includes(match)) toggleTechStack(match);
+        });
       }
       setPrefilled(true);
       // Auto-advance to next step
@@ -611,7 +626,10 @@ export function ProjectRequestForm() {
                 <div className="rounded-xl border border-blue-200/60 bg-blue-50/40 p-5">
                   <p className="mb-3 text-sm font-medium text-ainomiq-text">Preferred tech stack (optional)</p>
                   <div className="flex flex-wrap gap-2">
-                    {TECH_OPTIONS.map((option) => {
+                    {(detectedTech.length > 0
+                      ? [...new Set([...detectedTech.filter(t => DEFAULT_TECH_OPTIONS.some(o => o.toLowerCase().includes(t.toLowerCase()) || t.toLowerCase().includes(o.toLowerCase()))).map(t => DEFAULT_TECH_OPTIONS.find(o => o.toLowerCase().includes(t.toLowerCase()) || t.toLowerCase().includes(o.toLowerCase()))!), ...DEFAULT_TECH_OPTIONS])]
+                      : DEFAULT_TECH_OPTIONS
+                    ).map((option) => {
                       const active = techStack.includes(option);
                       return (
                         <button
