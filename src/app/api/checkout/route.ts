@@ -52,6 +52,7 @@ export async function POST(request: NextRequest) {
         projectId: body.projectId,
         company: body.company,
       },
+      allow_promotion_codes: true,
       success_url: `${process.env.APP_BASE_URL || "https://ainomiq.com"}/payment/success?session_id={CHECKOUT_SESSION_ID}&project=${body.projectId}`,
       cancel_url: `${process.env.APP_BASE_URL || "https://ainomiq.com"}/custom?cancelled=true`,
     });
