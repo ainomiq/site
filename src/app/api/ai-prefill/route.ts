@@ -1,15 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 
 const PROJECT_TYPE_IDS = [
-  "website-landing",
-  "webapp-dashboard",
-  "ai-chatbot",
-  "automation-workflow",
-  "ecommerce",
-  "api-development",
+  "simple-automation",
+  "website",
+  "chatbot",
+  "dashboard",
+  "webshop",
   "mobile-app",
-  "data-analytics",
-  "other",
+  "enterprise",
 ];
 
 const TIMELINE_IDS = ["asap", "1-2-weeks", "2-4-weeks", "1-2-months", "flexible"];
@@ -77,6 +75,21 @@ Use this data to:
             role: "system",
             content: `You help clients fill in a project request form for Ainomiq, an AI automation agency.
 
+Ainomiq pricing (use this to classify correctly):
+- simple-automation (EUR 1,750): simple workflows, zapier-like automations, basic scripts
+- website (EUR 5,000): marketing sites, landing pages, portfolios
+- chatbot (EUR 10,000): AI chatbots, conversational AI, customer service bots
+- dashboard (EUR 7,500): admin panels, data dashboards, portals
+- webshop (EUR 15,000): full e-commerce stores with backend, inventory, checkout
+- mobile-app (EUR 12,500): native iOS/Android apps
+- enterprise (EUR 25,000+): large-scale systems, multi-tenant SaaS, complex custom projects
+
+IMPORTANT RULES:
+- If the client wants e-commerce integrations (Shopify + Klaviyo + Meta etc), recommend our Ecommerce App (app.ainomiq.com) in recommendations instead of custom build
+- Website vs Webshop: a website is informational/marketing. A webshop needs product catalog, cart, checkout, order management - that's "webshop"
+- Classify UP when in doubt (e.g. if it could be simple-automation or chatbot, pick chatbot)
+- Be specific in the description - never vague, never ask questions back
+
 Given a short description of what the client wants${siteData ? " and data scraped from their current website" : ""}, return a JSON object with:
 - "projectType": one of ${JSON.stringify(PROJECT_TYPE_IDS)}
 - "description": a concrete, specific project brief (100-200 words, bullet points for features). Be specific, make reasonable assumptions, NEVER ask questions back or say "further details needed". Write in the SAME LANGUAGE as the input.${siteData ? ' Reference their actual business, brand, and existing tools where relevant.' : ''}
@@ -103,7 +116,7 @@ Return ONLY valid JSON, no markdown, no commentary.${siteContext}`,
     try {
       const parsed = JSON.parse(content);
       if (!PROJECT_TYPE_IDS.includes(parsed.projectType)) {
-        parsed.projectType = "other";
+        parsed.projectType = "dashboard";
       }
       if (!TIMELINE_IDS.includes(parsed.timeline)) {
         parsed.timeline = "2-4-weeks";

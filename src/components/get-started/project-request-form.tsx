@@ -14,24 +14,20 @@ import {
   LayoutDashboard,
   Bot,
   ShoppingCart,
-  Plug,
   Smartphone,
-  BarChart3,
   Star,
   FileUp,
   Lightbulb,
 } from "lucide-react";
 
 const PROJECT_TYPES = [
-  { id: "website-landing", label: "Website / Landing page", Icon: Globe },
-  { id: "webapp-dashboard", label: "Web app / Dashboard", Icon: LayoutDashboard },
-  { id: "ai-chatbot", label: "AI Integration / Chatbot", Icon: Bot },
-  { id: "automation-workflow", label: "Automation / Workflow", Icon: Zap },
-  { id: "ecommerce", label: "E-commerce", Icon: ShoppingCart },
-  { id: "api-development", label: "API Development", Icon: Plug },
-  { id: "mobile-app", label: "Mobile App", Icon: Smartphone },
-  { id: "data-analytics", label: "Data & Analytics", Icon: BarChart3 },
-  { id: "other", label: "Other", Icon: Star },
+  { id: "simple-automation", label: "Simple Automation", Icon: Zap },
+  { id: "website", label: "Website", Icon: Globe },
+  { id: "chatbot", label: "AI Chatbot", Icon: Bot },
+  { id: "dashboard", label: "Dashboard / Portal", Icon: LayoutDashboard },
+  { id: "webshop", label: "Webshop", Icon: ShoppingCart },
+  { id: "mobile-app", label: "iOS / Android App", Icon: Smartphone },
+  { id: "enterprise", label: "Enterprise / Full Custom", Icon: Star },
 ];
 
 const TIMELINES = [
@@ -50,7 +46,11 @@ interface Estimate {
   total: number;
   complexity: string;
   deliveryDays: number;
+  deliveryWeeks?: string;
   projectType: string;
+  monthlyCost?: number | null;
+  detectedComplexity?: string[];
+  basePrice?: number;
 }
 
 export function ProjectRequestForm() {
@@ -734,12 +734,12 @@ export function ProjectRequestForm() {
                         <p className="text-sm font-medium text-white">{estimate.complexity}</p>
                       </div>
                       <div className="rounded-lg bg-white/20 p-3 backdrop-blur-sm">
-                        <p className="mb-0.5 text-[10px] uppercase tracking-wider text-white/60">Est. Hours</p>
-                        <p className="text-sm font-medium text-white">{estimate.hours}h</p>
+                        <p className="mb-0.5 text-[10px] uppercase tracking-wider text-white/60">Delivery</p>
+                        <p className="text-sm font-medium text-white">{estimate.deliveryWeeks || `~${estimate.deliveryDays} days`}{estimate.deliveryWeeks ? " weeks" : ""}</p>
                       </div>
                       <div className="rounded-lg bg-white/20 p-3 backdrop-blur-sm">
-                        <p className="mb-0.5 text-[10px] uppercase tracking-wider text-white/60">Delivery</p>
-                        <p className="text-sm font-medium text-white">~{estimate.deliveryDays} days</p>
+                        <p className="mb-0.5 text-[10px] uppercase tracking-wider text-white/60">{estimate.monthlyCost ? "Monthly costs" : "One-time"}</p>
+                        <p className="text-sm font-medium text-white">{estimate.monthlyCost ? `+ \u20AC${estimate.monthlyCost}/mo` : "No recurring fees"}</p>
                       </div>
                     </div>
 
