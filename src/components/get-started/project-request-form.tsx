@@ -64,6 +64,9 @@ export function ProjectRequestForm() {
   const [description, setDescription] = useState("");
   const [isEnhancing, setIsEnhancing] = useState(false);
   const [wasEnhanced, setWasEnhanced] = useState(false);
+  const [aiInput, setAiInput] = useState("");
+  const [isPrefilling, setIsPrefilling] = useState(false);
+  const [prefilled, setPrefilled] = useState(false);
   const [timeline, setTimeline] = useState("");
   const [company, setCompany] = useState("");
   const [contact, setContact] = useState("");
@@ -111,7 +114,32 @@ export function ProjectRequestForm() {
   }, [step, fetchEstimate]);
 
   function toggleTechStack(option: string) {
-    setTechStack((current) => {
+    setTechStack((current) =>
+      current.includes(option)
+        ? current.filter((o) => o !== option)
+        : [...current, option]
+    );
+  }
+
+  async function handleAiPrefill() {
+    if (isPrefilling || aiInput.trim().length < 5) return;
+    setIsPrefilling(true);
+    try {
+      const res = await fetch("/api/ai-prefill", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ input: aiInput }),
+      });
+      const data = await res.json();
+      if (data.projectType) setProjectType(data.projectType);
+      if (data.description) { setDescription(data.description); setWasEnhanced(true); }
+      if (data.timeline) setTimeline(data.timeline);
+      if (data.targetAudience) setTargetAudience(data.targetAudience);
+      if (data.needsCredentials) setNeedsCredentials(data.needsCredentials);
+      setPrefilled(true);
+    } catch {}
+    setIsPrefilling(false);
+  } {
       if (option === "No preference") {
         return current.includes(option) ? [] : [option];
       }
@@ -345,7 +373,55 @@ export function ProjectRequestForm() {
           <div className="flex-1">
             {step === 0 && (
               <div>
-                <h3 className="mb-1 text-lg font-semibold text-ainomiq-text">What are you building?</h3>
+                {/* AI Magic Prefill */}
+                <div className="mb-8 rounded-2xl border border-[#4A90F5]/20 bg-gradient-to-br from-[#4A90F5]/5 to-[#6C5CE7]/5 p-5">
+                  <div className="mb-3 flex items-center gap-2">
+                    <Sparkles className="h-5 w-5 text-[#6C5CE7]" />
+                    <h3 className="text-base font-semibold text-ainomiq-text">Describe what you need</h3>
+                  </div>
+                  <p className="mb-3 text-sm text-ainomiq-text-muted">
+                    Tell us in your own words — our AI will fill in the form for you.
+                  </p>
+                  <div className="flex gap-2">
+                    <input
+                      type="text"
+                      className={`${inputCls} flex-1`}
+                      placeholder="e.g. I need a chatbot for my webshop that handles returns and FAQs"
+                      value={aiInput}
+                      onChange={(e) => { setAiInput(e.target.value); setPrefilled(false); }}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" && aiInput.trim().length >= 5 && !isPrefilling) {
+                          e.preventDefault();
+                          handleAiPrefill();
+                        }
+                      }}
+                    />
+                    <button
+                      type="button"
+                      disabled={isPrefilling || aiInput.trim().length < 5}
+                      onClick={handleAiPrefill}
+                      className="flex items-center gap-1.5 whitespace-nowrap rounded-xl bg-gradient-to-r from-[#4A90F5] to-[#6C5CE7] px-4 py-2.5 text-sm font-medium text-white transition-all hover:opacity-90 disabled:opacity-50"
+                    >
+                      {isPrefilling ? (
+                        <><Loader2 className="h-4 w-4 animate-spin" /> Working...</>
+                      ) : prefilled ? (
+                        <><CheckCircle className="h-4 w-4" /> Done!</>
+                      ) : (
+                        <><Sparkles className="h-4 w-4" /> Fill form</>
+                      )}
+                    </button>
+                  </div>
+                  {prefilled && (
+                    <p className="mt-2 text-xs text-[#6C5CE7]">Form filled! Review the selections below and adjust anything you like.</p>
+                  )}
+                </div>
+
+                <div className="mb-1 flex items-center gap-2">
+                  <p className="text-xs font-medium uppercase tracking-wider text-ainomiq-text-muted/60">or select manually</p>
+                  <div className="h-px flex-1 bg-blue-200/40" />
+                </div>
+
+                <h3 className="mb-1 mt-4 text-lg font-semibold text-ainomiq-text">What are you building?</h3>
                 <p className="mb-6 text-sm text-ainomiq-text-muted">
                   Select the option that best describes your project.
                 </p>
