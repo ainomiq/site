@@ -171,7 +171,7 @@ export function AnimatedLineChart({
           style={{ filter: `drop-shadow(0 0 12px ${strokeColor}55)` }}
         />
 
-        {/* Moving dot — only while animating */}
+        {/* Moving dot - only while animating */}
         {showDot && progress > 0 && progress < 1 && (
           <circle
             cx={dotX}

@@ -9,7 +9,7 @@ About Ainomiq:
 - Mission: "Automate everything that doesn't need a human touch"
 - Based in the Netherlands, active in 58+ countries
 - Slogan: "Building the Future"
-- Not a consultancy that writes reports — we build systems that run
+- Not a consultancy that writes reports - we build systems that run
 
 Ainomiq App (starts free):
 - Precise Performance: Real-time analytics dashboard with actionable insights

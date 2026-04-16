@@ -35,7 +35,7 @@ const customSolutions = [
     title: "All-in-one",
     headline: "One system to run your entire operation",
     description:
-      "A fully integrated automation suite tailored to your business. From customer service to inventory, from marketing to analytics — everything connected in one platform.",
+      "A fully integrated automation suite tailored to your business. From customer service to inventory, from marketing to analytics - everything connected in one platform.",
     capabilities: [
       "Custom-built for your workflows",
       "All departments in one system",
@@ -67,7 +67,7 @@ const customSolutions = [
     title: "App",
     headline: "Your brand, in every pocket",
     description:
-      "Custom iOS and Android apps built with intelligence at the core. From loyalty programs to real-time order tracking — a mobile experience your customers will love.",
+      "Custom iOS and Android apps built with intelligence at the core. From loyalty programs to real-time order tracking - a mobile experience your customers will love.",
     capabilities: [
       "iOS & Android (Playstore)",
       "Push notifications & engagement",
@@ -84,7 +84,7 @@ const moreSolutions = [
     icon: Cog,
     title: "Process Automation",
     description:
-      "Eliminate repetitive tasks. From data entry to reporting — automate what slows people down.",
+      "Eliminate repetitive tasks. From data entry to reporting - automate what slows people down.",
   },
   {
     icon: Users,
@@ -172,7 +172,7 @@ export default function EnterprisePage() {
             <span className="gradient-text">ambition</span>
           </h1>
           <p className="text-lg text-ainomiq-text-muted max-w-2xl mb-10">
-            From all-in-one platforms to custom chatbots and mobile apps — we
+            From all-in-one platforms to custom chatbots and mobile apps - we
             build solutions that tackle your specific business challenges.
           </p>
           <div className="flex flex-wrap gap-4">
@@ -195,7 +195,7 @@ export default function EnterprisePage() {
         </div>
       </section>
 
-      {/* Custom Solutions — scrollable sections */}
+      {/* Custom Solutions - scrollable sections */}
       {customSolutions.map((sol, i) => (
         <section
           key={sol.id}
@@ -206,7 +206,7 @@ export default function EnterprisePage() {
             <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${i % 2 !== 0 ? "lg:grid-flow-dense" : ""}`}>
               <div className={i % 2 !== 0 ? "lg:col-start-2" : ""}>
                 <div className="mb-4 inline-flex items-center rounded-full bg-ainomiq-blue-glow px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">
-                  {String(i + 1).padStart(2, "0")} — {sol.title}
+                  {String(i + 1).padStart(2, "0")} - {sol.title}
                 </div>
                 <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-4">
                   {sol.headline}
@@ -248,7 +248,7 @@ export default function EnterprisePage() {
         </section>
       ))}
 
-      {/* Industries — Franchise */}
+      {/* Industries - Franchise */}
       <section id="franchise" className="scroll-mt-28 py-24 px-6">
         <div className="mx-auto max-w-5xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -260,7 +260,7 @@ export default function EnterprisePage() {
                 Scale across locations, not complexity
               </h2>
               <p className="text-ainomiq-text-muted text-lg leading-relaxed mb-8">
-                Franchise operations need consistency at scale. Our solutions standardize customer service, marketing, and operations across every location — while giving headquarters full visibility.
+                Franchise operations need consistency at scale. Our solutions standardize customer service, marketing, and operations across every location - while giving headquarters full visibility.
               </p>
               <ul className="space-y-3">
                 {[
@@ -295,7 +295,7 @@ export default function EnterprisePage() {
         </div>
       </section>
 
-      {/* Industries — Facility Services */}
+      {/* Industries - Facility Services */}
       <section id="facility-services" className="scroll-mt-28 py-24 px-6 bg-ainomiq-navy-light">
         <div className="mx-auto max-w-5xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center lg:grid-flow-dense">
@@ -307,7 +307,7 @@ export default function EnterprisePage() {
                 Automate the field, not just the office
               </h2>
               <p className="text-ainomiq-text-muted text-lg leading-relaxed mb-8">
-                From maintenance scheduling to field worker dispatch — automation that handles the operational complexity of facility services so your team can focus on delivering quality.
+                From maintenance scheduling to field worker dispatch - automation that handles the operational complexity of facility services so your team can focus on delivering quality.
               </p>
               <ul className="space-y-3">
                 {[
@@ -348,7 +348,7 @@ export default function EnterprisePage() {
           More enterprise solutions
         </h2>
         <p className="text-ainomiq-text-muted text-lg max-w-xl mb-12">
-          From process automation to strategy — we build what your business needs.
+          From process automation to strategy - we build what your business needs.
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {moreSolutions.map((s) => (

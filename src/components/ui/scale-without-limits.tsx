@@ -71,7 +71,7 @@ const StatCard = ({ stat, index }: { stat: { icon: React.ReactNode; value: numbe
 export function ScaleWithoutLimits() {
   const stats = [
     { icon: <Clock className="h-8 w-8 text-yellow-400" />, value: 2, unit: "min", label: "Setup Time", description: "Connect your store. Go live in under 2 minutes." },
-    { icon: <Bot className="h-8 w-8 text-[#4A90E2]" />, value: 80, unit: "%", label: "Less Busywork", description: "Customer service, emails, reporting — handled automatically." },
+    { icon: <Bot className="h-8 w-8 text-[#4A90E2]" />, value: 80, unit: "%", label: "Less Busywork", description: "Customer service, emails, reporting - handled automatically." },
     { icon: <Zap className="h-8 w-8 text-yellow-400" />, value: 24, unit: "/7", label: "Always On", description: "Your system never sleeps. Never takes a break." },
     { icon: <ShieldCheck className="h-8 w-8 text-green-400" />, value: 100, unit: "%", label: "On Brand", description: "Every reply sounds like you wrote it." },
   ];

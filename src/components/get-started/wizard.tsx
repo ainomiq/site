@@ -175,7 +175,7 @@ export function GetStartedWizard() {
           const pushX = dx * force * 0.15;
           const pushY = dy * force * 0.08;
 
-          // Draw with offset position — don't permanently move the beam
+          // Draw with offset position - don't permanently move the beam
           const origX = beam.x;
           const origY = beam.y;
           const origWidth = beam.width;
@@ -286,7 +286,7 @@ export function GetStartedWizard() {
         </div>
       </div>
 
-      {/* Client logos marquee — matches homepage LogosSection format */}
+      {/* Client logos marquee - matches homepage LogosSection format */}
       <section className="relative overflow-hidden border-y border-ainomiq-border bg-ainomiq-navy-light py-8">
         <div
           aria-hidden="true"

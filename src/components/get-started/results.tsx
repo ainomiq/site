@@ -191,7 +191,7 @@ function PromoCodePill() {
         onClick={handleCopy}
         className="group inline-flex items-center gap-3 rounded-full border border-ainomiq-blue/20 bg-ainomiq-blue/5 px-5 py-2.5 transition-all hover:border-ainomiq-blue/40 hover:bg-ainomiq-blue/10 cursor-pointer"
       >
-        <span className="text-xs text-ainomiq-text-muted">You&apos;re early — get 25% off</span>
+        <span className="text-xs text-ainomiq-text-muted">You&apos;re early - get 25% off</span>
         <span className="inline-flex items-center gap-1.5 rounded-full bg-ainomiq-blue/10 px-3 py-1 text-xs font-bold tracking-wider text-ainomiq-blue">
           OPTIMIZEE25
           {copied ? (
@@ -377,7 +377,7 @@ export function Results({ analysis, manual, onReset }: ResultsProps) {
             Products we found ({products.length})
             {analysis?.priceRange && (
               <span className="text-xs font-normal text-ainomiq-text-muted ml-auto">
-                {analysis.currency} {analysis.priceRange.min.toFixed(2)} — {analysis.priceRange.max.toFixed(2)}
+                {analysis.currency} {analysis.priceRange.min.toFixed(2)} - {analysis.priceRange.max.toFixed(2)}
               </span>
             )}
           </h3>
@@ -486,8 +486,8 @@ export function Results({ analysis, manual, onReset }: ResultsProps) {
             </h3>
             <p className="text-xs text-ainomiq-text-muted mb-5">
               {isCustom
-                ? "Based on your business — here's how Ainomiq can automate your operations."
-                : "Based on everything we found on your site — here's what Ainomiq can save you."}
+                ? "Based on your business - here's how Ainomiq can automate your operations."
+                : "Based on everything we found on your site - here's what Ainomiq can save you."}
             </p>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -575,8 +575,8 @@ export function Results({ analysis, manual, onReset }: ResultsProps) {
                 <h3 className="text-base font-semibold text-ainomiq-text">Our recommendation</h3>
                 <Badge className="mt-0.5">
                   {isCustom
-                    ? "Custom Solutions — tailored to your business"
-                    : "App — start free"}
+                    ? "Custom Solutions - tailored to your business"
+                    : "App - start free"}
                 </Badge>
               </div>
             </div>
@@ -585,7 +585,7 @@ export function Results({ analysis, manual, onReset }: ResultsProps) {
             </p>
           </motion.div>
 
-          {/* Promo Code — only for App */}
+          {/* Promo Code - only for App */}
           {!isCustom && <PromoCodePill />}
 
           {/* CTAs */}

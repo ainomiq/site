@@ -126,7 +126,7 @@ export default function HomePage() {
             <div className="group relative aspect-[16/9] overflow-hidden rounded-3xl">
               <img
                 src="/team/founders.jpg?v=2"
-                alt="Pim Smit & Bink Sanders — Co-Founders of Ainomiq"
+                alt="Pim Smit & Bink Sanders - Co-Founders of Ainomiq"
                 className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent md:from-black/70 md:via-black/20" />
@@ -174,7 +174,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Globe — Social Proof */}
+      {/* Globe - Social Proof */}
       <section className="py-24 px-6 overflow-hidden bg-ainomiq-navy-light">
         <div className="mx-auto max-w-6xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -187,7 +187,7 @@ export default function HomePage() {
               </h2>
               <p className="text-ainomiq-text-muted text-lg leading-relaxed mb-8 max-w-lg">
                 Our solutions run for businesses worldwide. From
-                Amsterdam to Berlin, from London to Madrid — optimized
+                Amsterdam to Berlin, from London to Madrid - optimized
                 for local markets.
               </p>
               <div className="grid grid-cols-2 gap-6">

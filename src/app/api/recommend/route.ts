@@ -5,27 +5,27 @@ import type { SiteAnalysis, ManualAnswers } from "@/lib/analysis-types";
 
 const SYSTEM_PROMPT = `You are Ainomiq's advisor. You analyze a business website and recommend the RIGHT Ainomiq product line.
 
-STEP 1 — CLASSIFY THE BUSINESS:
+STEP 1 - CLASSIFY THE BUSINESS:
 Read the site title, description, body text, technologies, and products carefully. Determine what type of business this is:
-- "ecommerce" — Online store selling physical/digital products (webshop, DTC brand, marketplace seller). Must have products, a cart, or an e-commerce platform.
-- "service" — Service company (cleaning, catering, facility management, consulting, hospitality, healthcare, education, logistics, construction, real estate, etc.)
-- "hybrid" — Both products AND services
+- "ecommerce" - Online store selling physical/digital products (webshop, DTC brand, marketplace seller). Must have products, a cart, or an e-commerce platform.
+- "service" - Service company (cleaning, catering, facility management, consulting, hospitality, healthcare, education, logistics, construction, real estate, etc.)
+- "hybrid" - Both products AND services
 
-STEP 2 — RECOMMEND THE RIGHT PRODUCT LINE:
+STEP 2 - RECOMMEND THE RIGHT PRODUCT LINE:
 
 IF businessType is "ecommerce" → recommend plan "App" with these 4 services:
-1. id: "support", name: "24/7 Support" — Automated customer service handling returns, tracking, FAQs.
-2. id: "performance", name: "Precise Performance" — Automated ad management across channels.
-3. id: "email", name: "Mail Engine" — Automated email marketing flows and campaigns.
-4. id: "inventory", name: "Smart Inventory" — Stock predictions and reorder alerts.
+1. id: "support", name: "24/7 Support" - Automated customer service handling returns, tracking, FAQs.
+2. id: "performance", name: "Precise Performance" - Automated ad management across channels.
+3. id: "email", name: "Mail Engine" - Automated email marketing flows and campaigns.
+4. id: "inventory", name: "Smart Inventory" - Stock predictions and reorder alerts.
 
 IF businessType is "service" or "hybrid" → recommend plan "Custom Solutions" with these 4 services:
-1. id: "automation", name: "All-in-one" — Complete automation suite tailored to operations.
-2. id: "chatbot", name: "Chatbot" — Website and WhatsApp chatbot for customer communication.
-3. id: "app", name: "Custom App" — Branded iOS and Android app.
-4. id: "process", name: "Process Automation" — Automate scheduling, invoicing, reporting, workflows.
+1. id: "automation", name: "All-in-one" - Complete automation suite tailored to operations.
+2. id: "chatbot", name: "Chatbot" - Website and WhatsApp chatbot for customer communication.
+3. id: "app", name: "Custom App" - Branded iOS and Android app.
+4. id: "process", name: "Process Automation" - Automate scheduling, invoicing, reporting, workflows.
 
-REALISTIC DATA — THIS IS CRITICAL:
+REALISTIC DATA - THIS IS CRITICAL:
 For E-COMMERCE savingsPercent:
 - Base your estimates on what you ACTUALLY know about the business from the scan.
 - A small webshop with 10 products and no ad pixels → lower savings (20-35%).
@@ -43,7 +43,7 @@ For CUSTOM SOLUTIONS hoursPerWeek:
 CRITICAL RULES:
 - ONLY mention technologies that appear in the scan data. Never fabricate.
 - If no products were found, don't name specific products.
-- Descriptions must be 1 sentence, SPECIFIC to their business type and industry — not generic.
+- Descriptions must be 1 sentence, SPECIFIC to their business type and industry - not generic.
 - businessSummary: 1 sentence about what the business does based on what you read.
 - summary: 2-3 sentences explaining WHY you recommend this plan for them specifically.
 - Respond with ONLY valid JSON, no markdown, no code fences.
@@ -69,7 +69,7 @@ export async function POST(request: NextRequest) {
 
       const productList = analysis.products
         .slice(0, 15)
-        .map((p) => `${p.name}${p.price ? ` — ${p.price}` : ""}`)
+        .map((p) => `${p.name}${p.price ? ` - ${p.price}` : ""}`)
         .join(", ");
 
       const hasAds = analysis.technologies.some((t) => t.category === "ads");
@@ -77,21 +77,21 @@ export async function POST(request: NextRequest) {
       const adTechs = analysis.technologies.filter((t) => t.category === "ads").map((t) => t.name).join(", ");
       const emailTechs = analysis.technologies.filter((t) => t.category === "email").map((t) => t.name).join(", ");
 
-      userPrompt = `SCAN RESULTS — only reference data listed here, nothing else:
+      userPrompt = `SCAN RESULTS - only reference data listed here, nothing else:
 
 Site: ${analysis.url}
 Title: ${analysis.title}
 Description: ${analysis.description}
 
-DETECTED TECHNOLOGIES (only these exist — do not mention others):
-${techList || "NONE — no technologies were detected on this site"}
+DETECTED TECHNOLOGIES (only these exist - do not mention others):
+${techList || "NONE - no technologies were detected on this site"}
 
-AD PLATFORMS DETECTED: ${hasAds ? adTechs : "NONE — no ad pixels or ad platforms were found"}
-EMAIL TOOLS DETECTED: ${hasEmail ? emailTechs : "NONE — no email marketing tools were found"}
+AD PLATFORMS DETECTED: ${hasAds ? adTechs : "NONE - no ad pixels or ad platforms were found"}
+EMAIL TOOLS DETECTED: ${hasEmail ? emailTechs : "NONE - no email marketing tools were found"}
 E-COMMERCE PLATFORM: ${analysis.hasEcommerce ? "Yes" : "No e-commerce platform detected"}
 Scale estimate: ${analysis.estimatedScale}
 
-PRODUCTS FOUND (${analysis.products.length}): ${productList || "NONE — no products were found on the scanned page"}
+PRODUCTS FOUND (${analysis.products.length}): ${productList || "NONE - no products were found on the scanned page"}
 Price range: ${analysis.priceRange ? `${analysis.currency} ${analysis.priceRange.min} - ${analysis.priceRange.max}` : "Unknown"}
 
 FAQ items (${analysis.faqItems.length}): ${analysis.faqItems.slice(0, 5).join(" | ") || "None"}

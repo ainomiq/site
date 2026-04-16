@@ -17,7 +17,7 @@ import {
 } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Demos — AiNomiq",
+  title: "Demos - AiNomiq",
   description:
     "See Ainomiq in action. Watch demos of Precise Performance, 24/7 Support, Mail Engine, Smart Inventory, and Enterprise solutions.",
 };
@@ -27,7 +27,7 @@ const demos = [
     icon: Gauge,
     title: "Precise Performance",
     description:
-      "A unified view of your entire business. Real-time metrics, anomaly detection, and actionable recommendations — all in one dashboard.",
+      "A unified view of your entire business. Real-time metrics, anomaly detection, and actionable recommendations - all in one dashboard.",
     duration: "2 min",
     rating: 4.9,
     tags: ["Analytics", "Real-time", "Free tier"],
@@ -40,7 +40,7 @@ const demos = [
     icon: Headset,
     title: "24/7 Support",
     description:
-      "Watch how 200+ customer tickets per day get resolved automatically — processing returns, answering questions, and escalating edge cases. All in your brand voice.",
+      "Watch how 200+ customer tickets per day get resolved automatically - processing returns, answering questions, and escalating edge cases. All in your brand voice.",
     duration: "3 min",
     rating: 4.9,
     tags: ["Live demo", "Shopify", "Multilingual"],
@@ -53,7 +53,7 @@ const demos = [
     icon: Mail,
     title: "Mail Engine",
     description:
-      "From welcome sequences to win-back campaigns — see how flows and campaigns get optimized and sent automatically. Integrated with Klaviyo.",
+      "From welcome sequences to win-back campaigns - see how flows and campaigns get optimized and sent automatically. Integrated with Klaviyo.",
     duration: "2 min",
     rating: 4.7,
     tags: ["Klaviyo", "A/B testing", "Campaigns"],
@@ -66,7 +66,7 @@ const demos = [
     icon: Package,
     title: "Smart Inventory",
     description:
-      "Predict demand before it happens. See how stockouts are prevented, reorders are triggered, and inventory stays optimized — automatically.",
+      "Predict demand before it happens. See how stockouts are prevented, reorders are triggered, and inventory stays optimized - automatically.",
     duration: "2 min",
     rating: 4.8,
     tags: ["Forecasting", "Reorder alerts", "Multi-warehouse"],
@@ -79,7 +79,7 @@ const demos = [
     icon: Cog,
     title: "Tailored Systems",
     description:
-      "See how we build custom automation systems for enterprise clients — from scoping to deployment in weeks, not months.",
+      "See how we build custom automation systems for enterprise clients - from scoping to deployment in weeks, not months.",
     duration: "4 min",
     rating: 4.9,
     tags: ["Enterprise", "Custom build", "End-to-end"],
@@ -92,7 +92,7 @@ const demos = [
     icon: Workflow,
     title: "Operations on Autopilot",
     description:
-      "Watch how entire business processes run without manual intervention — from order intake to fulfillment, fully automated.",
+      "Watch how entire business processes run without manual intervention - from order intake to fulfillment, fully automated.",
     duration: "3 min",
     rating: 4.8,
     tags: ["Enterprise", "Workflows", "Integrations"],
@@ -118,7 +118,7 @@ export default function DemosPage() {
           </h1>
           <p className="text-lg text-ainomiq-text-muted max-w-xl mx-auto">
             No slides, no promises. Watch exactly how Ainomiq works for
-            real businesses — from setup to results.
+            real businesses - from setup to results.
           </p>
         </div>
       </section>

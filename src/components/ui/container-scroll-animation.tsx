@@ -56,13 +56,13 @@ export const ContainerScroll = ({
           {children}
         </Card>
       </div>
-      {/* Bottom gradient fade — smooth transition to next section */}
+      {/* Bottom gradient fade - smooth transition to next section */}
       <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-white to-transparent pointer-events-none z-40" />
     </div>
   );
 };
 
-// Mobile: sticky section — phone rises up as you scroll
+// Mobile: sticky section - phone rises up as you scroll
 function MobilePhoneScroll({
   titleComponent,
   children,
@@ -140,7 +140,7 @@ function MobilePhoneScroll({
                 </div>
               </div>
 
-              {/* App content — pushed down past status bar */}
+              {/* App content - pushed down past status bar */}
               <div className="absolute inset-0 pt-12 pb-0">
                 {children}
               </div>
@@ -154,7 +154,7 @@ function MobilePhoneScroll({
         {/* Phone shadow */}
         <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 w-2/3 h-4 bg-black/20 blur-xl rounded-full" />
       </motion.div>
-      {/* Bottom gradient fade — smooth transition to next section */}
+      {/* Bottom gradient fade - smooth transition to next section */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent pointer-events-none z-40" />
     </div>
   );

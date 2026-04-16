@@ -99,7 +99,7 @@ function computeDots() {
     return false;
   };
 
-  const stepSize = 0.9; // degrees — lower = more dots
+  const stepSize = 0.9; // degrees - lower = more dots
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   (landData as any).features.forEach((feature: any) => {
     const bounds = geoBounds(feature);

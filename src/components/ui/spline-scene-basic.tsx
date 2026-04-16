@@ -113,7 +113,7 @@ export function SplineSceneBasic() {
           {/* Glass reflection overlay */}
           <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-white/[0.08] to-transparent pointer-events-none" />
 
-          {/* Left content — heading + activity feed */}
+          {/* Left content - heading + activity feed */}
           <div className="flex-1 z-10 flex flex-col items-center md:items-start">
             <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-3">
               Your system.<br />Always running.
@@ -124,7 +124,7 @@ export function SplineSceneBasic() {
             <ActivityFeed />
           </div>
 
-          {/* Right content — robot (taller so legs show within container) */}
+          {/* Right content - robot (taller so legs show within container) */}
           <div className="flex-1 relative h-[400px] md:h-[600px] w-full">
             <SplineScene
               scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"

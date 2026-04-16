@@ -57,7 +57,7 @@ export function TeamSection() {
           </h2>
           <p className="max-w-2xl text-ainomiq-text-muted">
             A small, agile team that builds automation solutions every day that
-            actually work. No overhead, no meetings — just results.
+            actually work. No overhead, no meetings - just results.
           </p>
         </div>
 

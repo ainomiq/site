@@ -12,7 +12,7 @@ const valuesData = [
   {
     num: "02",
     title: "Invent what customers want",
-    body: "Our core identity is rooted in building for our customers. We listen, we test, we iterate — because the best products come from obsessing over real problems.",
+    body: "Our core identity is rooted in building for our customers. We listen, we test, we iterate - because the best products come from obsessing over real problems.",
     color: "#38bdf8", // sky-400
   },
   {
@@ -30,10 +30,10 @@ const valuesData = [
 ];
 
 const bgColors = [
-  "rgb(224, 242, 254)", // sky-100 — fresh start
+  "rgb(224, 242, 254)", // sky-100 - fresh start
   "rgb(147, 197, 253)", // blue-300
   "rgb(96, 165, 250)",  // blue-400
-  "rgb(59, 130, 246)",  // blue-500 — ainomiq blue territory
+  "rgb(59, 130, 246)",  // blue-500 - ainomiq blue territory
 ];
 
 export function ValuesScroll() {

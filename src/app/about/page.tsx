@@ -44,10 +44,10 @@ const values = [
 const benefits = [
   { title: "Remote-first", body: "Work from anywhere. Results matter, not where your desk is." },
   { title: "Competitive pay", body: "We hire the best and compensate accordingly." },
-  { title: "Latest AI tools", body: "Work with cutting-edge AI every single day. We don't just follow — we build." },
+  { title: "Latest AI tools", body: "Work with cutting-edge AI every single day. We don't just follow - we build." },
   { title: "Flexible PTO", body: "Take what you need. We trust you to manage your time." },
   { title: "Equity", body: "Share in the upside. Early team members get meaningful ownership." },
-  { title: "Growth budget", body: "Courses, conferences, books — invest in yourself on us." },
+  { title: "Growth budget", body: "Courses, conferences, books - invest in yourself on us." },
 ];
 
 
@@ -69,10 +69,10 @@ export default function AboutPage() {
               <div className="space-y-4 text-ainomiq-text-muted text-lg leading-relaxed">
                 <p>
                   Pim and Bink have been friends since they were kids. 
-                  Pim built e-commerce brands — successful ones. Bink's an IT specialist who knows systems inside out.
+                  Pim built e-commerce brands - successful ones. Bink's an IT specialist who knows systems inside out.
                 </p>
                 <p>
-                  Pim started building automation for his own stores. Customer emails, inventory alerts, campaigns — all handled automatically. 
+                  Pim started building automation for his own stores. Customer emails, inventory alerts, campaigns - all handled automatically. 
                   It worked so well he showed Bink.
                 </p>
                 <p>
@@ -148,10 +148,10 @@ export default function AboutPage() {
         </p>
       </Section>
 
-      {/* Values — scroll-driven */}
+      {/* Values - scroll-driven */}
       <ValuesScroll />
 
-      {/* Benefits — with shader background */}
+      {/* Benefits - with shader background */}
       <section className="relative w-full overflow-hidden py-24 px-6">
         <ShaderBackground />
         <div
@@ -205,7 +205,7 @@ export default function AboutPage() {
             Build the future with us
           </h2>
           <p className="text-ainomiq-text-muted text-lg max-w-2xl leading-relaxed mb-16">
-            We&apos;re a small team with big ambitions. At Ainomiq, you won&apos;t sit in meetings about meetings. You&apos;ll ship real AI systems for real businesses — and see the impact from day one.
+            We&apos;re a small team with big ambitions. At Ainomiq, you won&apos;t sit in meetings about meetings. You&apos;ll ship real AI systems for real businesses - and see the impact from day one.
           </p>
 
           <div className="space-y-12">

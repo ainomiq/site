@@ -37,7 +37,7 @@ export function EcomDynamicSections({ children }: { children?: React.ReactNode }
     <>
       <AinomiqHeroScroll />
 
-      {/* Breather — rust tussen drukke secties */}
+      {/* Breather - rust tussen drukke secties */}
       <section className="py-16 md:py-20 px-6 bg-white">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-[#0f1b2d]">
@@ -73,7 +73,7 @@ export function EcomDynamicSections({ children }: { children?: React.ReactNode }
             name: "Sophie Dubois",
             role: "E-commerce Manager",
             company: "Atelier Bloom",
-            content: "Our email flows used to take a full day to set up. Now they run on autopilot — welcome series, abandoned carts, post-purchase, all personalized. Conversion is up 40%.",
+            content: "Our email flows used to take a full day to set up. Now they run on autopilot - welcome series, abandoned carts, post-purchase, all personalized. Conversion is up 40%.",
             rating: 5,
             avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face",
           },

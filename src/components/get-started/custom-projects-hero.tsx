@@ -32,7 +32,7 @@ export function CustomProjectsHero() {
           </p>
 
           <div className="mt-4 text-center text-sm text-ainomiq-text-muted">
-            From concept to deployment — transparent pricing, clear timelines.
+            From concept to deployment - transparent pricing, clear timelines.
           </div>
         </div>
       </div>

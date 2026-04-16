@@ -265,7 +265,7 @@ const ActiveMap = () => {
 
                 const elapsed = timestamp - arc.startTime - arc.delay
                 if (elapsed < 0) {
-                    // Still waiting for delay — hide dot
+                    // Still waiting for delay - hide dot
                     const dot = dotRefs.current[i]
                     if (dot) dot.setAttribute('opacity', '0')
                     const trail = trailRefs.current[i]

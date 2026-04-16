@@ -11,7 +11,7 @@ const SCRIPTS = [
     title: "cs-bot.ts",
     label: "Customer Service",
     color: "#3b82f6",
-    code: `// Ainomiq — Auto-reply incoming emails
+    code: `// Ainomiq - Auto-reply incoming emails
 import { classify } from "@ainomiq/cs";
 import { sendReply } from "@ainomiq/email";
 
@@ -38,7 +38,7 @@ export async function handleTicket(email: Email) {
     title: "inventory.ts",
     label: "Inventory",
     color: "#10b981",
-    code: `// Ainomiq — Smart restock alerts
+    code: `// Ainomiq - Smart restock alerts
 import { getStockLevels } from "@ainomiq/inventory";
 import { notify } from "@ainomiq/alerts";
 
@@ -67,7 +67,7 @@ export async function checkInventory(storeId: string) {
     title: "email-flow.ts",
     label: "Email Marketing",
     color: "#8b5cf6",
-    code: `// Ainomiq — Abandoned cart recovery flow
+    code: `// Ainomiq - Abandoned cart recovery flow
 import { getAbandonedCarts } from "@ainomiq/klaviyo";
 import { sendCampaign } from "@ainomiq/email";
 
@@ -98,7 +98,7 @@ export async function runAbandonedCartFlow() {
     title: "analytics.ts",
     label: "Performance",
     color: "#f59e0b",
-    code: `// Ainomiq — Daily performance snapshot
+    code: `// Ainomiq - Daily performance snapshot
 import { getMetrics } from "@ainomiq/analytics";
 import { report } from "@ainomiq/reporting";
 
@@ -126,7 +126,7 @@ export async function dailySnapshot(storeId: string) {
     title: "social.ts",
     label: "Social Replies",
     color: "#ec4899",
-    code: `// Ainomiq — Auto-respond IG comments
+    code: `// Ainomiq - Auto-respond IG comments
 import { getComments } from "@ainomiq/instagram";
 import { replyComment } from "@ainomiq/social";
 import { classify } from "@ainomiq/cs";

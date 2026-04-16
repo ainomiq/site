@@ -78,7 +78,7 @@ export function AnimatedTestimonials({
     const interval = setInterval(() => {
       setActiveIndex((current) => {
         const next = current + 1
-        // Clamp to valid range — never exceed last index
+        // Clamp to valid range - never exceed last index
         return next >= testimonials.length ? 0 : next
       })
     }, autoRotateInterval)

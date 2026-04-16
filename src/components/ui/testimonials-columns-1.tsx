@@ -81,19 +81,19 @@ const testimonials = [
     text: "Ainomiq saved us 76% on monthly costs. What used to take a full team now runs on autopilot.",
     image: "https://randomuser.me/api/portraits/men/1.jpg",
     name: "Pim Smit",
-    role: "Billie Jeans — App",
+    role: "Billie Jeans - App",
   },
   {
-    text: "Our customer service responds 24/7 — email, phone, and social media. It's incredible.",
+    text: "Our customer service responds 24/7 - email, phone, and social media. It's incredible.",
     image: "https://randomuser.me/api/portraits/men/2.jpg",
     name: "Teis",
-    role: "Schoolregister — Enterprise",
+    role: "Schoolregister - Enterprise",
   },
   {
     text: "We dropped our email marketing agency and saved 3K a month. Ainomiq's automation actually performs better too.",
     image: "https://randomuser.me/api/portraits/men/3.jpg",
     name: "Jens",
-    role: "Button Amsterdam — App",
+    role: "Button Amsterdam - App",
   },
   {
     text: "The real-time dashboard changed how we make decisions. No more guessing, just data that actually makes sense.",

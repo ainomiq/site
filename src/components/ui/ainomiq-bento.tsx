@@ -26,7 +26,7 @@ export function AinomiqBento() {
     {
       id: "1",
       title: "One platform. Every channel.",
-      description: "Email, chat, Instagram DMs, Facebook — all customer conversations in one inbox, handled automatically.",
+      description: "Email, chat, Instagram DMs, Facebook - all customer conversations in one inbox, handled automatically.",
       content: (
         <div className="mt-6 flex flex-wrap gap-2">
           <ModuleTag icon={MessageSquare} label="Live chat" color="bg-blue-50 text-blue-700" />
@@ -40,7 +40,7 @@ export function AinomiqBento() {
               </div>
               <div>
                 <p className="text-xs font-semibold text-[#0f1b2d]">Where is my order?</p>
-                <p className="text-xs text-gray-500 mt-0.5">Your order is on its way — expected delivery Thursday. <span className="text-blue-600 underline">Track here →</span></p>
+                <p className="text-xs text-gray-500 mt-0.5">Your order is on its way - expected delivery Thursday. <span className="text-blue-600 underline">Track here →</span></p>
                 <p className="text-xs text-gray-400 mt-1">Replied in 4 seconds · Automated</p>
               </div>
             </div>
@@ -76,7 +76,7 @@ export function AinomiqBento() {
     {
       id: "3",
       title: "Emails that convert.",
-      description: "Flows built and sent automatically — welcome, abandoned cart, post-purchase. All personalized.",
+      description: "Flows built and sent automatically - welcome, abandoned cart, post-purchase. All personalized.",
       content: (
         <div className="mt-6 space-y-2">
           {[
@@ -172,7 +172,7 @@ export function AinomiqBento() {
             One system. Fully automated.
           </h2>
           <p className="text-gray-500 mt-3 max-w-lg mx-auto">
-            From first click to repeat customer — Ainomiq handles it.
+            From first click to repeat customer - Ainomiq handles it.
           </p>
         </div>
         <BentoGridWithFeatures features={features} />

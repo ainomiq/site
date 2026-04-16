@@ -80,10 +80,10 @@ Use this data to:
 Given a short description of what the client wants${siteData ? " and data scraped from their current website" : ""}, return a JSON object with:
 - "projectType": one of ${JSON.stringify(PROJECT_TYPE_IDS)}
 - "description": a concrete, specific project brief (100-200 words, bullet points for features). Be specific, make reasonable assumptions, NEVER ask questions back or say "further details needed". Write in the SAME LANGUAGE as the input.${siteData ? ' Reference their actual business, brand, and existing tools where relevant.' : ''}
-- "timeline": one of ${JSON.stringify(TIMELINE_IDS)} — estimate based on complexity
-- "targetAudience": who this is for (short, 5-15 words)${siteData ? " — infer from their site content" : ""} or "" if unclear
-- "needsCredentials": boolean — true if they mention existing systems/integrations that need access${siteData ? " or if their site uses integrations (Shopify, Klaviyo, etc.)" : ""}
-- "recommendations": array of 2-4 short actionable suggestions${siteData ? " based on their site. Reference the CLIENT's detected platforms by name (e.g. 'Connect to your Shopify store for real-time order data', 'Sync with your Klaviyo for automated emails'). Ainomiq is the agency — always say 'your [platform]', never 'Ainomiq data' or 'our data'." : " (e.g. 'Add analytics dashboard', 'Automate order notifications')"}
+- "timeline": one of ${JSON.stringify(TIMELINE_IDS)} - estimate based on complexity
+- "targetAudience": who this is for (short, 5-15 words)${siteData ? " - infer from their site content" : ""} or "" if unclear
+- "needsCredentials": boolean - true if they mention existing systems/integrations that need access${siteData ? " or if their site uses integrations (Shopify, Klaviyo, etc.)" : ""}
+- "recommendations": array of 2-4 short actionable suggestions${siteData ? " based on their site. Reference the CLIENT's detected platforms by name (e.g. 'Connect to your Shopify store for real-time order data', 'Sync with your Klaviyo for automated emails'). Ainomiq is the agency - always say 'your [platform]', never 'Ainomiq data' or 'our data'." : " (e.g. 'Add analytics dashboard', 'Automate order notifications')"}
 
 Return ONLY valid JSON, no markdown, no commentary.${siteContext}`,
           },

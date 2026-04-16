@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 export default function PlatformPage() {
   return (
     <>
-      {/* Stats — Scale Without Limits */}
+      {/* Stats - Scale Without Limits */}
       <ScaleWithoutLimits />
 
       {/* Heavy dynamic sections (client component wrapper) */}

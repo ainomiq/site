@@ -206,7 +206,7 @@ export async function POST(request: NextRequest) {
       estimateHours,
     });
 
-    // Send Discord notification (non-blocking — DB write is the important part)
+    // Send Discord notification (non-blocking - DB write is the important part)
     const adminWebhook = process.env.DISCORD_WEBHOOK_URL;
     if (adminWebhook) {
       try {
@@ -231,7 +231,7 @@ export async function POST(request: NextRequest) {
         console.error("Admin webhook error (project saved successfully):", webhookError);
       }
     } else {
-      console.warn("DISCORD_WEBHOOK_URL not set — skipping notification");
+      console.warn("DISCORD_WEBHOOK_URL not set - skipping notification");
     }
 
     return NextResponse.json({ success: true, projectId: project.id });

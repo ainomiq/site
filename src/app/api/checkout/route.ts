@@ -40,7 +40,7 @@ export async function POST(request: NextRequest) {
           price_data: {
             currency: "eur",
             product_data: {
-              name: `${body.projectType} — ${body.company}`,
+              name: `${body.projectType} - ${body.company}`,
               description: `Project ${body.projectId}`,
             },
             unit_amount: amountCents,

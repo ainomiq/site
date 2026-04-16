@@ -23,7 +23,7 @@ const CODE_LINES = [
   { text: "await bot.train(shopifyData);", tokens: [["await", "#c084fc"], [" bot", "#e4e4e7"], [".train", "#3b82f6"], ["(shopifyData);", "#71717a"]] },
   { text: "await bot.connect();", tokens: [["await", "#c084fc"], [" bot", "#e4e4e7"], [".connect", "#3b82f6"], ["();", "#71717a"]] },
   { text: "", tokens: [] },
-  { text: "// 🤖 Bot is live — handling customers 24/7", tokens: [["// 🤖 Bot is live — handling customers 24/7", "#6b7280"]] },
+  { text: "// 🤖 Bot is live - handling customers 24/7", tokens: [["// 🤖 Bot is live - handling customers 24/7", "#6b7280"]] },
 ];
 
 const CHARS_PER_TICK = 2;
@@ -91,13 +91,13 @@ export function BuildYourSolution() {
             <span className="text-ainomiq-blue">You get the solution.</span>
           </h2>
           <p className="text-lg text-ainomiq-text-muted max-w-lg mx-auto">
-            From concept to deployment — our team builds exactly what you need.
+            From concept to deployment - our team builds exactly what you need.
           </p>
         </div>
 
         {/* Split: code left, robot right */}
         <div className="flex flex-col md:flex-row items-stretch gap-0 rounded-3xl overflow-hidden shadow-2xl border border-gray-200/60">
-          {/* LEFT — Code editor */}
+          {/* LEFT - Code editor */}
           <div className="flex-1 bg-[#0a0a0b] p-0">
             {/* Title bar */}
             <div className="flex items-center gap-2 px-4 h-10 border-b border-white/[0.06]">
@@ -132,7 +132,7 @@ export function BuildYourSolution() {
             </div>
           </div>
 
-          {/* RIGHT — Spline robot */}
+          {/* RIGHT - Spline robot */}
           <div className="flex-1 relative min-h-[380px] md:min-h-[460px] bg-gradient-to-br from-blue-50 via-white to-blue-100/50">
             {/* Status badge */}
             <div className="absolute top-5 right-5 z-10 flex items-center gap-2 bg-white/80 backdrop-blur-sm rounded-full px-3 py-1.5 shadow-sm border border-gray-200/60">

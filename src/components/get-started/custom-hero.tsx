@@ -27,7 +27,7 @@ export function CustomHero() {
 
         {/* Trust line */}
         <p className="text-center text-sm text-ainomiq-text-muted mb-12">
-          From concept to deployment — transparent pricing, clear timelines.
+          From concept to deployment - transparent pricing, clear timelines.
         </p>
 
         {/* Glassmorphism elevated card with full wizard */}

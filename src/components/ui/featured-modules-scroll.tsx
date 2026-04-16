@@ -159,7 +159,7 @@ function GlowConnector({ active, color, glowColor, isVertical }: {
   )
 }
 
-// Step node — the circle + text for each step
+// Step node - the circle + text for each step
 function StepNode({ step, index, isActive, isAnimating, color, glowColor, bgColor, isVertical }: {
   step: { label: string; detail: string; icon: React.ElementType }
   index: number; isActive: boolean; isAnimating: boolean
@@ -280,11 +280,11 @@ export function FeaturedModulesScroll() {
             See the automation in action.
           </h2>
           <p className="text-gray-500 text-base md:text-lg max-w-xl mx-auto">
-            Pick a module. Watch it run — from trigger to result.
+            Pick a module. Watch it run - from trigger to result.
           </p>
         </div>
 
-        {/* Module selector dock — TOP on mobile for easy switching */}
+        {/* Module selector dock - TOP on mobile for easy switching */}
         <div className="flex justify-center mb-10 md:mb-14">
           <div className="inline-flex items-center gap-1.5 md:gap-2 p-1.5 md:p-2 rounded-2xl bg-gray-50/80 border border-gray-100 backdrop-blur-sm">
             {modules.map((mod) => {

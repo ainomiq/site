@@ -93,7 +93,7 @@ export function ProjectRequestForm() {
     ? `Describe your ${PROJECT_TYPES.find((t) => t.id === projectType)?.label?.toLowerCase() || "project"}. What should it do? Any integrations or specific features?`
     : "Select a project type first…";
 
-  const budgetLabel = estimate ? `€${estimate.total}` : "—";
+  const budgetLabel = estimate ? `€${estimate.total}` : "-";
 
   const fetchEstimate = useCallback(async () => {
     if (!projectType || description.trim().length < 3 || !timeline) return;
@@ -416,7 +416,7 @@ export function ProjectRequestForm() {
                     <h3 className="text-base font-semibold text-ainomiq-text">Describe what you need</h3>
                   </div>
                   <p className="mb-3 text-sm text-ainomiq-text-muted">
-                    Tell us in your own words — our AI will fill in the form for you.
+                    Tell us in your own words - our AI will fill in the form for you.
                   </p>
                   <div className="flex gap-2">
                     <input
@@ -454,7 +454,7 @@ export function ProjectRequestForm() {
                     <input
                       type="text"
                       className={`${inputCls} flex-1 text-sm`}
-                      placeholder="yourwebsite.com (optional — we'll analyze your brand)"
+                      placeholder="yourwebsite.com (optional - we'll analyze your brand)"
                       value={siteUrl}
                       onChange={(e) => { setSiteUrl(e.target.value); setSiteData(null); }}
                     />
@@ -757,7 +757,7 @@ export function ProjectRequestForm() {
 
             {step === 4 && (
               <div>
-                <h3 className="mb-1 text-lg font-semibold text-ainomiq-text">Almost there — who are you?</h3>
+                <h3 className="mb-1 text-lg font-semibold text-ainomiq-text">Almost there - who are you?</h3>
                 <p className="mb-6 text-sm text-ainomiq-text-muted">We&apos;ll prepare your project brief and reply within 24h.</p>
 
                 <div className="space-y-5">
@@ -869,7 +869,7 @@ export function ProjectRequestForm() {
                     <Loader2 className="h-4 w-4 animate-spin" /> Sending…
                   </>
                 ) : (
-                  <>Go to checkout {estimate ? `— €${estimate.total.toLocaleString()}` : ''} →</>
+                  <>Go to checkout {estimate ? `- €${estimate.total.toLocaleString()}` : ''} →</>
                 )}
               </button>
             ) : (

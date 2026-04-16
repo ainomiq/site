@@ -6,7 +6,7 @@ import RadialOrbitalTimeline from "@/components/ui/radial-orbital-timeline";
 export const metadata: Metadata = {
   title: "Custom Solutions - Ainomiq",
   description:
-    "Need a custom automation solution? From chatbots to full dashboards — we build what you need.",
+    "Need a custom automation solution? From chatbots to full dashboards - we build what you need.",
 };
 
 const PROJECT_TIMELINE = [

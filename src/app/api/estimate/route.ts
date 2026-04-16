@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 /**
- * Pricing matrix — market-rate estimates at €50/hr
+ * Pricing matrix - market-rate estimates at €50/hr
  * Each project type has base hours, and modifiers for complexity/timeline
  */
 

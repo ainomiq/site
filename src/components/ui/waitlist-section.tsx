@@ -21,7 +21,7 @@ export function WaitlistSection() {
     setStatus("loading")
 
     try {
-      // Klaviyo Client API v3 — Subscribe to list
+      // Klaviyo Client API v3 - Subscribe to list
       const res = await fetch(
         `https://a.klaviyo.com/client/subscriptions/?company_id=${KLAVIYO_COMPANY_ID}`,
         {
