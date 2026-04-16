@@ -96,9 +96,8 @@ function buildEmbed(projectId: string, data: Record<string, unknown>, status: st
     },
   ];
 
-  if (data.driveFolderUrl) {
-    fields.push({ name: "Brief & Assets", value: `[Open Drive folder](${data.driveFolderUrl})`, inline: false });
-  }
+  const briefUrl = data.driveFolderUrl || `https://ainomiq.com/project/${projectId}`;
+  fields.push({ name: "Full Brief", value: `[View project brief](${briefUrl})`, inline: false });
 
   if (data.assignedTo) {
     fields.push({ name: "Toegewezen aan", value: String(data.assignedTo), inline: true });

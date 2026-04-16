@@ -172,7 +172,7 @@ export async function POST(request: NextRequest) {
                 list: {
                   data: {
                     type: 'list',
-                    id: process.env.KLAVIYO_LIST_ID || 'VKRNwY',
+                    id: process.env.NEXT_PUBLIC_KLAVIYO_LIST_ID || 'VKRNwY',
                   },
                 },
               },
