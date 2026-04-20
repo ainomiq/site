@@ -1,80 +1,82 @@
 import { NextRequest, NextResponse } from "next/server";
 
 /**
- * Ainomiq Pricing Calculator - waterdicht systeem
- * 
- * Basisprijzen per type (bevestigd door Pim 2026-04-16):
- * - Simple automation: EUR 1.750
- * - Website: EUR 5.000
- * - Chatbot: EUR 10.000
- * - Dashboard / portal: EUR 7.500
- * - Webshop: EUR 15.000
- * - iOS / Android app: EUR 12.500
- * - Enterprise / full custom: EUR 25.000
- * 
- * Regels:
- * - Spoed (ASAP): +25%
- * - Liever meer berekenen dan te weinig
- * - AI analyseert complexity en past prijs aan
- * - Minimum: EUR 1.750
+ * Ainomiq Pricing Calculator
+ * Gebaseerd op Pim's pricing config (April 2026)
+ *
+ * Structuur:
+ * - Basisprijs per projecttype
+ * - Feature toeslagen (vast bedrag per feature)
+ * - Integratie toeslagen (vast bedrag per integratie)
+ * - Design toeslag
+ * - Schaal toeslag (aantal pagina's)
+ * - Content toeslag
+ * - Timeline toeslag (%)
+ * - Enterprise users toeslag (%)
+ * - Marge buffer: 15%
+ * - Minimum: €2.500
  */
 
-const BASE_PRICES: Record<string, { base: number; label: string }> = {
-  "simple-automation":  { base: 1750,  label: "Simple Automation" },
-  "website":            { base: 5000,  label: "Website" },
-  "chatbot":            { base: 10000, label: "AI Chatbot" },
-  "dashboard":          { base: 7500,  label: "Dashboard / Portal" },
-  "webshop":            { base: 15000, label: "Webshop" },
-  "mobile-app":         { base: 12500, label: "iOS / Android App" },
-  "enterprise":         { base: 25000, label: "Enterprise / Full Custom" },
+const BASE_PRICES: Record<string, { price: number; label: string }> = {
+  "simple-automation": { price: 2500,  label: "Simple Automation" },
+  "website":           { price: 5000,  label: "Website" },
+  "chatbot":           { price: 12500, label: "AI Chatbot" },
+  "dashboard":         { price: 7500,  label: "Dashboard / Portal" },
+  "webshop":           { price: 15000, label: "Webshop (Shopify)" },
+  "mobile-app":        { price: 20000, label: "iOS / Android App" },
+  "enterprise":        { price: 25000, label: "Enterprise / Full Custom" },
 };
 
-// Complexity keywords that increase price (scored by weight)
-const COMPLEXITY_SIGNALS: { keywords: string[]; weight: number; label: string }[] = [
-  // Heavy complexity (+40-60%)
-  { keywords: ["machine learning", "ml model", "training data", "neural network", "computer vision"], weight: 0.6, label: "ML/AI training" },
-  { keywords: ["real-time", "realtime", "websocket", "live data", "streaming"], weight: 0.4, label: "Real-time features" },
-  { keywords: ["multi-tenant", "saas", "white-label", "whitelabel"], weight: 0.5, label: "Multi-tenant/SaaS" },
-  { keywords: ["payment", "payments", "stripe", "ideal", "checkout", "billing", "subscription"], weight: 0.35, label: "Payment processing" },
-  
-  // Medium complexity (+20-35%)
-  { keywords: ["user management", "roles", "permissions", "admin panel", "rbac"], weight: 0.3, label: "User management & roles" },
-  { keywords: ["notifications", "push notifications", "email notifications", "sms", "alerts"], weight: 0.2, label: "Notification system" },
-  { keywords: ["reporting", "reports", "analytics", "charts", "graphs", "dashboard"], weight: 0.25, label: "Reporting & analytics" },
-  { keywords: ["search", "filtering", "filters", "faceted search", "elasticsearch"], weight: 0.2, label: "Advanced search" },
-  { keywords: ["multi-language", "multilingual", "i18n", "translations", "localization"], weight: 0.25, label: "Multi-language" },
-  { keywords: ["file upload", "image upload", "media management", "cdn", "storage"], weight: 0.2, label: "Media management" },
-  
-  // Integration complexity (+15-25%)
-  { keywords: ["shopify", "woocommerce", "magento"], weight: 0.2, label: "E-commerce integration" },
-  { keywords: ["klaviyo", "mailchimp", "sendgrid", "email marketing"], weight: 0.15, label: "Email platform integration" },
-  { keywords: ["meta", "facebook", "instagram", "social media api"], weight: 0.2, label: "Social media integration" },
-  { keywords: ["google ads", "google analytics", "ga4", "gtm"], weight: 0.15, label: "Google integration" },
-  { keywords: ["crm", "hubspot", "salesforce", "pipedrive"], weight: 0.2, label: "CRM integration" },
-  { keywords: ["erp", "sap", "exact", "twinfield", "accounting"], weight: 0.25, label: "ERP/Accounting" },
-  { keywords: ["scraping", "scrape", "crawler", "web scraping"], weight: 0.25, label: "Web scraping" },
-  { keywords: ["google sheets", "airtable", "spreadsheet", "notion"], weight: 0.15, label: "Spreadsheet sync" },
-  { keywords: ["bol.com", "amazon", "marketplace", "etsy"], weight: 0.25, label: "Marketplace integration" },
-  
-  // Scale complexity (+15-30%)
-  { keywords: ["10000 users", "high traffic", "scalable", "load balancing", "caching"], weight: 0.3, label: "High-scale architecture" },
-  { keywords: ["automated pricing", "pricing formula", "dynamic pricing"], weight: 0.2, label: "Dynamic pricing" },
-  { keywords: ["inventory", "stock", "warehouse", "fulfillment"], weight: 0.2, label: "Inventory management" },
-  { keywords: ["booking", "reservation", "calendar", "scheduling", "appointments"], weight: 0.25, label: "Booking system" },
-  { keywords: ["custom design", "figma", "branded", "design system"], weight: 0.15, label: "Custom design" },
-];
-
-// Rush multipliers
-const TIMELINE_MULTIPLIERS: Record<string, number> = {
-  "asap":       1.25,  // +25% spoed
-  "1-2-weeks":  1.15,  // +15%
-  "2-4-weeks":  1.0,   // standaard
-  "1-2-months": 1.0,   // geen korting
-  "flexible":   1.0,   // geen korting
+const FEATURE_PRICES: Record<string, { price: number; keywords: string[] }> = {
+  "payment":              { price: 750,  keywords: ["payment", "stripe", "mollie", "ideal", "checkout", "billing", "subscription"] },
+  "login":                { price: 750,  keywords: ["login", "user account", "authentication", "auth", "sign in", "register"] },
+  "admin":                { price: 1500, keywords: ["admin panel", "admin dashboard", "beheer", "backoffice"] },
+  "rbac":                 { price: 1000, keywords: ["rbac", "roles", "permissions", "access control", "role-based"] },
+  "email-notifs":         { price: 500,  keywords: ["email notification", "email notif", "transactional email", "email alert"] },
+  "sms-push":             { price: 500,  keywords: ["sms", "push notification", "push notif"] },
+  "search":               { price: 500,  keywords: ["search", "filtering", "faceted search", "elasticsearch", "algolia"] },
+  "file-uploads-basic":   { price: 400,  keywords: ["file upload", "image upload", "document upload"] },
+  "file-uploads-large":   { price: 1400, keywords: ["video upload", "large file", "s3", "media management", "cdn"] },
+  "analytics":            { price: 1500, keywords: ["analytics dashboard", "reporting", "reports", "charts", "graphs", "statistics"] },
+  "booking":              { price: 2000, keywords: ["booking", "reservation", "calendar", "scheduling", "appointments"] },
+  "multilang-small":      { price: 750,  keywords: ["multi-language", "multilingual", "i18n", "translations", "2 talen", "3 talen"] },
+  "multilang-large":      { price: 1500, keywords: ["4 talen", "5 talen", "meerdere talen", "localization"] },
+  "chat":                 { price: 1500, keywords: ["chat", "messaging", "chatroom", "live chat", "support chat"] },
+  "ai-chatbot-basic":     { price: 2500, keywords: ["ai chatbot", "gpt chatbot", "ai agent", "virtual assistant", "faq bot"] },
+  "rag":                  { price: 5000, keywords: ["rag", "knowledge base", "retrieval", "document search", "vector", "embeddings"] },
+  "custom-ai-agent":      { price: 7500, keywords: ["custom ai agent", "autonomous agent", "langgraph", "openai assistant", "custom gpt"] },
+  "api-external":         { price: 2000, keywords: ["api voor derden", "public api", "api docs", "rest api external", "third party api"] },
+  "realtime":             { price: 1500, keywords: ["real-time", "realtime", "websocket", "live data", "streaming", "socket"] },
+  "saas":                 { price: 7500, keywords: ["saas", "multi-tenant", "white-label", "whitelabel", "multi tenant"] },
 };
 
-// Minimum price
-const MIN_PRICE = 1750;
+const INTEGRATION_PRICES: Record<string, { price: number; keywords: string[] }> = {
+  "shopify":      { price: 1000, keywords: ["shopify"] },
+  "magento":      { price: 1500, keywords: ["magento", "woocommerce", "woo"] },
+  "klaviyo":      { price: 300,  keywords: ["klaviyo", "mailchimp", "sendgrid", "email marketing"] },
+  "meta":         { price: 500,  keywords: ["meta", "facebook", "instagram api", "tiktok"] },
+  "google":       { price: 400,  keywords: ["google ads", "ga4", "google analytics", "gtm"] },
+  "hubspot":      { price: 750,  keywords: ["hubspot"] },
+  "salesforce":   { price: 2500, keywords: ["salesforce"] },
+  "erp":          { price: 2500, keywords: ["erp", "exact", "twinfield", "sap", "accounting"] },
+  "marketplace":  { price: 1000, keywords: ["bol.com", "amazon", "etsy", "marketplace"] },
+  "whatsapp":     { price: 500,  keywords: ["whatsapp", "slack", "teams", "discord integration"] },
+  "custom-api":   { price: 1500, keywords: ["custom api", "api koppeling", "webhook", "zapier", "make.com"] },
+};
+
+const TIMELINE_SURCHARGE: Record<string, number> = {
+  "asap":       0.25,
+  "1-2-weeks":  0.15,
+  "2-4-weeks":  0.0,
+  "1-2-months": 0.0,
+  "flexible":   0.0,
+};
+
+const MARGIN_BUFFER = 0.15;
+const MIN_PRICE = 2500;
+const HOURLY_RATE_EXTERN = 125;
+const HOURLY_RATE_INTERN = 20;
+const DEV_PAYOUT_PCT = 0.20;
 
 interface EstimateRequest {
   projectType: string;
@@ -87,103 +89,125 @@ interface EstimateRequest {
 export async function POST(req: NextRequest) {
   try {
     const body: EstimateRequest = await req.json();
+    const descLower = (body.description || "").toLowerCase();
 
-    const typeInfo = BASE_PRICES[body.projectType];
-    if (!typeInfo) {
-      // Fallback: find closest match or use dashboard as default
-      const fallback = BASE_PRICES["dashboard"];
-      return calculateEstimate(body, fallback, "Dashboard / Portal");
+    // Basisprijs
+    const typeInfo = BASE_PRICES[body.projectType] || BASE_PRICES["dashboard"];
+
+    // Features — keyword scan op description
+    let featureTotal = 0;
+    const detectedFeatures: string[] = [];
+    for (const [, feature] of Object.entries(FEATURE_PRICES)) {
+      if (feature.keywords.some((kw) => descLower.includes(kw))) {
+        featureTotal += feature.price;
+        // Find label from key
+        detectedFeatures.push(`+€${feature.price.toLocaleString()}`);
+      }
     }
 
-    return calculateEstimate(body, typeInfo, typeInfo.label);
+    // Integraties — keyword scan
+    let integrationTotal = 0;
+    const detectedIntegrations: string[] = [];
+    for (const [, integ] of Object.entries(INTEGRATION_PRICES)) {
+      if (integ.keywords.some((kw) => descLower.includes(kw))) {
+        integrationTotal += integ.price;
+        detectedIntegrations.push(`+€${integ.price.toLocaleString()}`);
+      }
+    }
+
+    // Design toeslag (standaard: klant levert design)
+    const designSurcharge = 0;
+
+    // Schaal (standaard: 1-5 pagina's)
+    const scaleSurcharge = 0;
+
+    // Content (standaard: klant levert content)
+    const contentSurcharge = 0;
+
+    // Subtotaal
+    const subtotal = typeInfo.price + featureTotal + integrationTotal + designSurcharge + scaleSurcharge + contentSurcharge;
+
+    // Enterprise users toeslag
+    const enterpriseSurcharge = 0;
+
+    // Timeline toeslag
+    const timelinePct = TIMELINE_SURCHARGE[body.timeline] ?? 0;
+    const timelineSurcharge = Math.round(subtotal * timelinePct);
+
+    // Marge buffer
+    const marginBase = subtotal + enterpriseSurcharge + timelineSurcharge;
+    const marginAmount = Math.round(marginBase * MARGIN_BUFFER);
+
+    // Totaal
+    let total = marginBase + marginAmount;
+
+    // Rond af op €250
+    total = Math.ceil(total / 250) * 250;
+
+    // Minimum
+    total = Math.max(total, MIN_PRICE);
+
+    // Complexity label (voor UX display)
+    const complexityRatio = total / typeInfo.price;
+    const complexity =
+      complexityRatio <= 1.2 ? "Standard"
+      : complexityRatio <= 1.6 ? "Moderate"
+      : complexityRatio <= 2.0 ? "Complex"
+      : "Highly Complex";
+
+    // Delivery estimate
+    const deliveryWeeks =
+      total <= 5000  ? "1-2"
+      : total <= 10000 ? "2-3"
+      : total <= 20000 ? "3-5"
+      : total <= 35000 ? "4-8"
+      : "6-12";
+
+    // Recurring kosten
+    // AI chatbot type → AI credits
+    const hasAI = body.projectType === "chatbot" || descLower.includes("ai") || descLower.includes("chatbot") || descLower.includes("automation");
+    const hasHosting = ["dashboard", "webshop", "mobile-app", "enterprise"].includes(body.projectType);
+    const monthlyCost = (hasAI ? 49 : 0) + (hasHosting ? 150 : 0);
+
+    // Intern (niet voor klant)
+    const estimatedHours = Math.ceil(total / HOURLY_RATE_EXTERN);
+    const devPayout = Math.round(total * DEV_PAYOUT_PCT);
+    const buildCost = estimatedHours * HOURLY_RATE_INTERN;
+    const grossMargin = total - devPayout - buildCost;
+
+    return NextResponse.json({
+      estimate: {
+        total,
+        basePrice: typeInfo.price,
+        featureTotal,
+        integrationTotal,
+        subtotal,
+        timelineSurcharge,
+        marginAmount,
+        complexity,
+        complexityMultiplier: Math.round((total / typeInfo.price) * 100) / 100,
+        detectedComplexity: [...detectedFeatures, ...detectedIntegrations],
+        timelineMultiplier: 1 + timelinePct,
+        timeline: body.timeline,
+        deliveryWeeks,
+        projectType: typeInfo.label,
+        monthlyCost: monthlyCost > 0 ? monthlyCost : null,
+        // Legacy compat (voor bestaande UI)
+        hours: estimatedHours,
+        hourlyRate: HOURLY_RATE_EXTERN,
+        baseCost: total,
+        margin: MARGIN_BUFFER,
+        // Intern
+        _intern: {
+          hours: estimatedHours,
+          devPayout,
+          buildCost,
+          grossMargin,
+          grossMarginPct: Math.round((grossMargin / total) * 100),
+        },
+      },
+    });
   } catch {
     return NextResponse.json({ error: "Invalid request" }, { status: 400 });
   }
-}
-
-function calculateEstimate(
-  body: EstimateRequest,
-  typeInfo: { base: number; label: string },
-  label: string
-) {
-  const descLower = (body.description || "").toLowerCase();
-  
-  // Calculate complexity multiplier from keyword analysis
-  let complexityMultiplier = 1.0;
-  const detectedComplexity: string[] = [];
-  
-  for (const signal of COMPLEXITY_SIGNALS) {
-    if (signal.keywords.some((kw) => descLower.includes(kw))) {
-      complexityMultiplier += signal.weight;
-      detectedComplexity.push(signal.label);
-    }
-  }
-
-  // Description length signals more work needed
-  const descLen = (body.description || "").trim().length;
-  if (descLen > 500) complexityMultiplier += 0.15;
-  if (descLen > 800) complexityMultiplier += 0.15;
-
-  // Selected recommendations add work
-  const recCount = (body.recommendations || []).length;
-  if (recCount > 0) complexityMultiplier += recCount * 0.08;
-
-  // Cap complexity multiplier at 2.5x (enterprise territory auto-upgrades)
-  complexityMultiplier = Math.min(complexityMultiplier, 2.5);
-
-  // Timeline multiplier
-  const timelineMult = TIMELINE_MULTIPLIERS[body.timeline] || 1.0;
-
-  // Calculate total
-  let total = Math.ceil(typeInfo.base * complexityMultiplier * timelineMult);
-
-  // Round to nearest EUR 250 (professional quoting)
-  total = Math.ceil(total / 250) * 250;
-
-  // Enforce minimum
-  total = Math.max(total, MIN_PRICE);
-
-  // Estimated delivery weeks
-  const deliveryWeeks = total <= 5000 ? "1-2" : total <= 10000 ? "2-3" : total <= 15000 ? "3-5" : total <= 25000 ? "4-8" : "6-12";
-
-  // Estimate monthly costs (AI credits, hosting, support)
-  let monthlyCost = 0;
-  if (descLower.includes("ai") || descLower.includes("chatbot") || descLower.includes("automation") || descLower.includes("gpt") || descLower.includes("openai")) {
-    monthlyCost += 49; // AI credits
-  }
-  if (descLower.includes("hosting") || descLower.includes("server") || body.projectType === "webshop" || body.projectType === "dashboard" || body.projectType === "mobile-app") {
-    monthlyCost += 29; // Hosting
-  }
-  if (descLower.includes("support") || descLower.includes("maintenance") || descLower.includes("updates")) {
-    monthlyCost += 99; // Support contract
-  }
-
-  // Complexity label
-  const complexityLabel = complexityMultiplier <= 1.1 
-    ? "Standard" 
-    : complexityMultiplier <= 1.4 
-      ? "Moderate" 
-      : complexityMultiplier <= 1.8 
-        ? "Complex" 
-        : "Highly Complex";
-
-  return NextResponse.json({
-    estimate: {
-      total,
-      basePrice: typeInfo.base,
-      complexityMultiplier: Math.round(complexityMultiplier * 100) / 100,
-      complexity: complexityLabel,
-      detectedComplexity,
-      timelineMultiplier: timelineMult,
-      timeline: body.timeline,
-      deliveryWeeks,
-      projectType: label,
-      monthlyCost: monthlyCost > 0 ? monthlyCost : null,
-      // Legacy compat
-      hours: Math.ceil(total / 50),
-      hourlyRate: 50,
-      baseCost: total,
-      margin: 0,
-    },
-  });
 }
