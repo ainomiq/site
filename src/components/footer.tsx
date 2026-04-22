@@ -1,13 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { useTheme } from "next-themes";
-import { Sun, Moon, ArrowUp, Mail, Linkedin, Instagram } from "lucide-react";
 import { LogoMark } from "@/components/logo";
-
-function scrollToTop() {
-  window.scrollTo({ top: 0, behavior: "smooth" });
-}
+import { ArrowUp, Mail, Linkedin, Instagram } from "lucide-react";
 
 const services = [
   { href: "https://app.ainomiq.com", label: "App" },
@@ -83,37 +78,22 @@ const PaymentIcons = () => (
   </div>
 );
 
-function ThemeToggle() {
-  const { setTheme } = useTheme();
+function ScrollToTop() {
   return (
     <div className="flex items-center justify-center">
-      <div className="flex items-center rounded-full border border-dotted border-ainomiq-border px-1 py-1 gap-1">
-        <button
-          onClick={() => setTheme("light")}
-          className="rounded-full p-1.5 text-ainomiq-text-subtle hover:text-ainomiq-text hover:bg-ainomiq-navy-light transition-colors"
-          aria-label="Light mode"
-        >
-          <Sun className="h-4 w-4" strokeWidth={1.5} />
-        </button>
+      <div className="flex items-center rounded-full border border-dotted border-ainomiq-border px-3 py-2">
         <button
           type="button"
-          onClick={scrollToTop}
+          onClick={() => typeof window !== 'undefined' && window.scrollTo({ top: 0, behavior: 'smooth' })}
           className="rounded-full p-1.5 text-ainomiq-text-subtle hover:text-ainomiq-text hover:bg-ainomiq-navy-light transition-colors"
           aria-label="Back to top"
         >
-          <ArrowUp className="h-3 w-3" />
-        </button>
-        <button
-          onClick={() => setTheme("dark")}
-          className="rounded-full p-1.5 text-ainomiq-text-subtle hover:text-ainomiq-text hover:bg-ainomiq-navy-light transition-colors"
-          aria-label="Dark mode"
-        >
-          <Moon className="h-4 w-4" strokeWidth={1.5} />
+          <ArrowUp className="h-4 w-4" />
         </button>
       </div>
     </div>
   );
-}
+}}
 
 export function Footer() {
   return (
@@ -208,7 +188,7 @@ export function Footer() {
           <a href="https://www.instagram.com/ainomiq" target="_blank" rel="noreferrer" aria-label="Instagram" className="hover:-translate-y-1 border border-dotted border-ainomiq-border rounded-xl p-2.5 transition-transform text-ainomiq-text-subtle hover:text-ainomiq-text">
             <Instagram className="h-5 w-5" strokeWidth={1.5} />
           </a>
-          <ThemeToggle />
+          <ScrollToTop />
         </div>
 
         <div className="border-b border-dotted border-ainomiq-border" />
