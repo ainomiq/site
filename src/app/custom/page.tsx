@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { BuildYourSolution } from "@/components/get-started/build-your-solution";
 import { CustomHero } from "@/components/get-started/custom-hero";
 import RadialOrbitalTimeline from "@/components/ui/radial-orbital-timeline";
+import { MessageCircle, Package, Megaphone, ShoppingBag, BarChart2, Bot } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Custom Solutions - Ainomiq",
@@ -102,41 +103,43 @@ export default function CustomPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               {
-                icon: "💬",
+                Icon: MessageCircle,
                 title: "AI customer support",
-                desc: "Handles returns, FAQs, order status, and complaints — 24/7, across email, chat, and DMs. Escalates to humans when needed.",
+                desc: "Handles returns, FAQs, order status, and complaints - 24/7, across email, chat, and DMs. Escalates to humans when needed.",
               },
               {
-                icon: "📦",
+                Icon: Package,
                 title: "Inventory & order automation",
-                desc: "Auto-reorder triggers, supplier notifications, low-stock alerts, and fulfillment sync — without manual spreadsheets.",
+                desc: "Auto-reorder triggers, supplier notifications, low-stock alerts, and fulfillment sync - without manual spreadsheets.",
               },
               {
-                icon: "📣",
+                Icon: Megaphone,
                 title: "Marketing automation",
-                desc: "Email flows, ad performance triggers, post-purchase sequences, and review requests — all automated based on customer behavior.",
+                desc: "Email flows, ad performance triggers, post-purchase sequences, and review requests - all automated based on customer behavior.",
               },
               {
-                icon: "🛒",
+                Icon: ShoppingBag,
                 title: "Shopify integrations",
                 desc: "Custom Shopify apps, theme logic, checkout flows, metafield syncs, and third-party API connections tailored to your store.",
               },
               {
-                icon: "📊",
+                Icon: BarChart2,
                 title: "Reporting dashboards",
-                desc: "Live dashboards that pull from Shopify, Meta, Google, and Klaviyo — so you always know what's working and what isn't.",
+                desc: "Live dashboards that pull from Shopify, Meta, Google, and Klaviyo - so you always know what's working and what isn't.",
               },
               {
-                icon: "🤖",
+                Icon: Bot,
                 title: "Custom AI agents",
-                desc: "Agents that monitor, decide, and act — from ad budget pacing to review moderation to supplier communication.",
+                desc: "Agents that monitor, decide, and act - from ad budget pacing to review moderation to supplier communication.",
               },
             ].map((uc) => (
               <div
                 key={uc.title}
                 className="rounded-2xl border border-ainomiq-border bg-white/60 backdrop-blur-sm p-6 flex flex-col gap-3 hover:border-ainomiq-blue/40 hover:shadow-md transition-all"
               >
-                <span className="text-3xl">{uc.icon}</span>
+                <div className="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-ainomiq-blue-glow">
+                  <uc.Icon className="h-5 w-5 text-ainomiq-blue" />
+                </div>
                 <h3 className="text-lg font-bold text-ainomiq-text">{uc.title}</h3>
                 <p className="text-sm text-ainomiq-text-muted leading-relaxed">{uc.desc}</p>
               </div>
