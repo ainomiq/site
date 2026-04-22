@@ -22,70 +22,70 @@ const FEATURES = [
     id: "cs",
     label: "AI Customer Service",
     icon: CustomerService01Icon,
-    image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?q=80&w=1200",
+    image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=900&auto=format&fit=crop",
     description: "24/7 autonomous support that resolves tickets before your team wakes up.",
   },
   {
     id: "analytics",
     label: "Real-time Analytics",
     icon: DashboardSquare01Icon,
-    image: "https://images.unsplash.com/photo-1551288049-bbda38a10ad5?q=80&w=1200",
+    image: "https://images.unsplash.com/photo-1543286386-713bdd548da4?w=900&auto=format&fit=crop",
     description: "Live dashboards and AI insights across every channel you operate.",
   },
   {
     id: "automation",
     label: "Process Automation",
     icon: MagicWandIcon,
-    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?q=80&w=1200",
+    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=900&auto=format&fit=crop",
     description: "Let AI handle the repetitive tasks so your team focuses on what matters.",
   },
   {
     id: "global",
     label: "Global Scale",
     icon: GlobalSearchIcon,
-    image: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?q=80&w=1200",
+    image: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=900&auto=format&fit=crop",
     description: "Deploy across markets worldwide with localized intelligence built in.",
   },
   {
     id: "cloud",
     label: "Cloud Native",
     icon: AiCloudIcon,
-    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200",
+    image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=900&auto=format&fit=crop",
     description: "Scales with your business. No servers, no maintenance, no limits.",
   },
   {
     id: "email",
     label: "Email Automation",
     icon: MailSend01Icon,
-    image: "https://images.unsplash.com/photo-1596526131083-e8c633c948d2?q=80&w=1200",
+    image: "https://images.unsplash.com/photo-1596526131083-e8c633c948d2?w=900&auto=format&fit=crop",
     description: "Campaigns that write, schedule, and optimize themselves.",
   },
   {
     id: "ecom",
     label: "E-Commerce AI",
     icon: ShoppingCart01Icon,
-    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=1200",
+    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=900&auto=format&fit=crop",
     description: "From product recommendations to cart recovery - fully automated.",
   },
   {
     id: "mobile",
     label: "Mobile First",
     icon: SmartPhone01Icon,
-    image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?q=80&w=1200",
+    image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=900&auto=format&fit=crop",
     description: "A world-class experience on every device, every platform.",
   },
   {
     id: "reporting",
     label: "Smart Reporting",
     icon: ChartAverageIcon,
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1200",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&auto=format&fit=crop",
     description: "AI-generated reports that surface what actually matters.",
   },
   {
     id: "uptime",
     label: "99.9% Uptime",
     icon: CheckmarkCircle01Icon,
-    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1200",
+    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=900&auto=format&fit=crop",
     description: "Enterprise-grade reliability. Your automation never sleeps.",
   },
 ];
@@ -243,7 +243,7 @@ export function FeatureCarousel() {
                         exit={{ opacity: 0, y: 10 }}
                         className="absolute inset-x-0 bottom-0 p-10 pt-32 bg-gradient-to-t from-black/90 via-black/40 to-transparent flex flex-col justify-end pointer-events-none"
                       >
-                        <div className="bg-background text-foreground px-4 py-1.5 rounded-full text-[11px] font-normal uppercase tracking-[0.2em] w-fit shadow-lg mb-3 border border-border/50">
+                        <div className="bg-white text-[#0f172a] px-4 py-1.5 rounded-full text-[11px] font-semibold uppercase tracking-[0.2em] w-fit shadow-lg mb-3 border border-black/10">
                           {index + 1} - {feature.label}
                         </div>
                         <p className="text-white font-normal text-xl md:text-2xl leading-tight drop-shadow-md tracking-tight">
