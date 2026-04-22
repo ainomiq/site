@@ -265,7 +265,7 @@ export function DemoBooking() {
         <h3 className="text-lg font-bold text-ainomiq-text mb-1">Your details</h3>
         <p className="text-sm text-ainomiq-text-muted mb-5">Fill in your info to confirm the demo</p>
 
-        <form onSubmit={handleSubmit} className="space-y-4 flex-1 flex flex-col">
+        <form onSubmit={handleSubmit} noValidate className="space-y-4 flex-1 flex flex-col">
           <div className="grid grid-cols-2 gap-4">
             <div>
               <label className="mb-1.5 block text-xs font-medium text-ainomiq-text-muted">First name *</label>
