@@ -20,18 +20,6 @@ import {
   Lightbulb,
 } from "lucide-react";
 
-const TOP_SOLUTIONS = [
-  { label: "AI chatbot", prompt: "I need an AI chatbot for my webshop that handles customer support via email, chat, and WhatsApp" },
-  { label: "WhatsApp bot", prompt: "I need a WhatsApp chatbot for sales, support, and automated follow-ups" },
-  { label: "Website chatbot", prompt: "I need an embedded chatbot widget on my website that answers visitor questions 24/7" },
-  { label: "iOS / Android app", prompt: "I need a custom branded mobile app for iOS and Android" },
-  { label: "Inventory system", prompt: "I need an inventory management system with real-time stock tracking and low-stock alerts" },
-  { label: "Email automation", prompt: "I need an email marketing automation system with flows, campaigns, and segmentation" },
-  { label: "CRM integration", prompt: "I need a CRM integration connecting my tools with HubSpot, Salesforce, or similar" },
-  { label: "Review management", prompt: "I need a review and reputation management system with auto-reply and monitoring" },
-  { label: "Analytics dashboard", prompt: "I need a real-time analytics dashboard showing my key KPIs and performance metrics" },
-  { label: "Shopify integration", prompt: "I need a full Shopify or WooCommerce e-commerce automation integration" },
-];
 
 const PROJECT_TYPES = [
   { id: "website", label: "Website", Icon: Globe },
