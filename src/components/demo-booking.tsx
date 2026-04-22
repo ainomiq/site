@@ -23,8 +23,18 @@ const ALL_SLOTS = [
   "19:00", "19:30", "20:00",
 ];
 
-// No hardcoded unavailable slots — filter past times dynamically
-const UNAVAILABLE_SLOTS: string[] = [];
+// Generate deterministically "booked" slots for a given date (~40% occupancy)
+// Same date always returns same slots (seeded by date string)
+function getBookedSlots(date: Date): Set<string> {
+  const seed = date.getFullYear() * 10000 + (date.getMonth() + 1) * 100 + date.getDate();
+  const booked = new Set<string>();
+  ALL_SLOTS.forEach((slot, i) => {
+    // Simple LCG hash: mix seed + index
+    const hash = ((seed * 1103515245 + i * 12345) >>> 0) % 100;
+    if (hash < 40) booked.add(slot);
+  });
+  return booked;
+}
 
 function getDaysInMonth(year: number, month: number) {
   return new Date(year, month + 1, 0).getDate();
@@ -223,7 +233,8 @@ export function DemoBooking() {
                 const slotMinutes = slotH * 60 + slotM;
                 const nowMinutes = today.getHours() * 60 + today.getMinutes();
                 const isPastSlot = isSelectedToday && slotMinutes <= nowMinutes;
-                const unavail = UNAVAILABLE_SLOTS.includes(slot) || isPastSlot;
+                const bookedSlots = selectedDate ? getBookedSlots(selectedDate) : new Set<string>();
+                const unavail = bookedSlots.has(slot) || isPastSlot;
                 const sel = selectedTime === slot;
                 return (
                   <button
