@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { Icon } from "@iconify/react";
 import { LogoMark } from "@/components/logo";
-import { ArrowUp } from "lucide-react";
 
 const nav = [
   {
@@ -99,20 +98,39 @@ export function Footer() {
         {/* Divider */}
         <div className="border-t border-ainomiq-border" />
 
-        {/* Payment icons */}
-        <div className="flex flex-wrap items-center justify-start gap-2 py-5">
-          {paymentIcons.map((p) => (
-            <div
-              key={p.label}
-              title={p.label}
-              className="flex h-7 w-10 items-center justify-center rounded border border-ainomiq-border bg-white/5"
-            >
-              <Icon icon={p.icon} className="h-4 w-auto max-w-[28px]" />
+        {/* Payment icons + socials on same row */}
+        <div className="flex items-center justify-between py-5">
+          {/* Payment icons - left */}
+          <div className="flex flex-wrap items-center gap-2">
+            {paymentIcons.map((p) => (
+              <div
+                key={p.label}
+                title={p.label}
+                className="flex h-7 w-10 items-center justify-center rounded border border-ainomiq-border bg-white/5"
+              >
+                <Icon icon={p.icon} className="h-4 w-auto max-w-[28px]" />
+              </div>
+            ))}
+            <div title="iDEAL" className="flex h-7 items-center justify-center rounded border border-ainomiq-border bg-white/5 overflow-hidden px-1.5">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/payment/ideal.png" alt="iDEAL" className="h-6 w-auto object-contain" />
             </div>
-          ))}
-          <div title="iDEAL" className="flex h-7 items-center justify-center rounded border border-ainomiq-border bg-white/5 overflow-hidden px-1.5">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/payment/ideal.png" alt="iDEAL" className="h-6 w-auto object-contain" />
+          </div>
+
+          {/* Socials - right */}
+          <div className="flex items-center gap-2">
+            {socials.map((s) => (
+              <a
+                key={s.label}
+                href={s.href}
+                aria-label={s.label}
+                target={s.href.startsWith("http") ? "_blank" : undefined}
+                rel={s.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                className="flex h-7 w-7 items-center justify-center rounded-full border border-ainomiq-border text-ainomiq-text-subtle hover:text-ainomiq-text hover:border-ainomiq-border-hover transition-colors"
+              >
+                {s.icon}
+              </a>
+            ))}
           </div>
         </div>
 
@@ -125,34 +143,6 @@ export function Footer() {
           <p className="text-xs text-ainomiq-text-subtle">
             &copy; {new Date().getFullYear()} Ainomiq B.V. &mdash; KVK: 42032616 &mdash; All rights reserved.
           </p>
-
-          {/* Socials + scroll top */}
-          <div className="flex items-center gap-2">
-            {socials.map((s) => (
-              <a
-                key={s.label}
-                href={s.href}
-                aria-label={s.label}
-                target={s.href.startsWith("http") ? "_blank" : undefined}
-                rel={s.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                className="flex h-8 w-8 items-center justify-center rounded-full border border-ainomiq-border text-ainomiq-text-subtle hover:text-ainomiq-text hover:border-ainomiq-border-hover transition-colors"
-              >
-                {s.icon}
-              </a>
-            ))}
-
-            <div className="mx-2 h-4 w-px bg-ainomiq-border" />
-
-            <button
-              type="button"
-              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              aria-label="Back to top"
-              className="flex h-8 w-8 items-center justify-center rounded-full border border-ainomiq-border text-ainomiq-text-subtle hover:text-ainomiq-text hover:border-ainomiq-border-hover transition-colors"
-            >
-              <ArrowUp className="h-3.5 w-3.5" />
-            </button>
-          </div>
-
           {/* Trust badges */}
           <div className="flex items-center gap-3">
             <span className="flex items-center gap-1 text-xs text-ainomiq-text-subtle">
