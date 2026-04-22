@@ -335,16 +335,6 @@ export function DemoBooking() {
             <p className="mt-1 text-xs text-ainomiq-text-subtle">e.g. www.yourstore.com or yourstore.com</p>
           </div>
 
-          <div>
-            <label className="mb-1.5 block text-xs font-medium text-ainomiq-text-muted">Any specific questions? (optional)</label>
-            <Textarea
-              value={form.question}
-              onChange={e => setForm(f => ({ ...f, question: e.target.value }))}
-              placeholder="Tell us what you want to know..."
-              rows={3}
-              className="bg-ainomiq-navy-light border-ainomiq-border text-ainomiq-text placeholder:text-ainomiq-text-subtle focus-visible:ring-ainomiq-blue resize-none"
-            />
-          </div>
 
           {error && <p className="text-sm text-red-500">{error}</p>}
 
