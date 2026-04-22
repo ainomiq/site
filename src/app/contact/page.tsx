@@ -15,7 +15,7 @@ export default function ContactPage() {
     <>
       {/* Hero */}
       <section className="pt-40 pb-20 px-6">
-        <div className="mx-auto max-w-4xl">
+        <div className="mx-auto max-w-6xl">
           <div className="mb-6 inline-flex items-center rounded-full bg-ainomiq-blue-glow px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">
             Contact
           </div>
@@ -32,7 +32,7 @@ export default function ContactPage() {
 
       {/* Demo Booking */}
       <Section id="book-demo" className="bg-ainomiq-navy-light">
-        <div className="max-w-5xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <div className="mb-10">
             <div className="mb-3 inline-flex items-center rounded-full bg-ainomiq-blue-glow px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">
               Book a demo
