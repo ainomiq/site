@@ -128,7 +128,7 @@ export async function POST(req: NextRequest) {
     // Basisprijs
     const typeInfo = BASE_PRICES[body.projectType] || BASE_PRICES["dashboard"];
 
-    // Features — gebruik gestructureerde keys van ai-prefill als beschikbaar,
+    // Features - gebruik gestructureerde keys van ai-prefill als beschikbaar,
     // anders keyword scan als fallback
     let featureTotal = 0;
     const detectedFeatures: string[] = [];
@@ -216,7 +216,7 @@ export async function POST(req: NextRequest) {
       : complexityRatio <= 2.0 ? "Complex"
       : "Highly Complex";
 
-    // Delivery estimate — op basis van projecttype + feature count, niet prijs
+    // Delivery estimate - op basis van projecttype + feature count, niet prijs
     const totalFeatureCount = structuredFeatures.length + structuredIntegrations.length;
     let deliveryWeeks = BASE_DELIVERY[body.projectType] ?? "2-4";
     // Veel features/integraties → een stap hoger

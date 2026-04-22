@@ -206,7 +206,7 @@ export async function POST(request: NextRequest) {
       estimateHours,
     });
 
-    // Send admin webhook only — Discord #available-projects post happens after Stripe payment
+    // Send admin webhook only - Discord #available-projects post happens after Stripe payment
     // 1. Admin webhook - full details with pricing
     const adminWebhook = process.env.DISCORD_WEBHOOK_ADMIN;
     if (adminWebhook) {

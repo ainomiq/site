@@ -44,41 +44,41 @@ interface SiteData {
 
 const SYSTEM_PROMPT = `You help clients fill in a project request form for Ainomiq, an AI automation agency.
 
-## Pricing config (exact — use this to classify and select features)
+## Pricing config (exact - use this to classify and select features)
 
 ### Base prices per project type:
-- simple-automation: €2,500 — scrapers, data pipelines, file parsers (Excel/CSV/PDF), translation scripts, Zapier-like workflows, image processing, email automations, scheduled jobs
-- website: €5,000 — marketing sites, landing pages, portfolios (no backend logic)
-- chatbot-basic: €3,500 — simple embedded website chatbot, FAQ/product info only, text-only, no voice, no hardware, no staff training. Example: product FAQ bot for a webshop
-- chatbot-standard: €7,500 — chatbot with integrations (CRM/Shopify/email), multi-channel (web+email), basic knowledge base. Example: customer service bot that checks orders
-- chatbot-advanced: €12,500 — RAG/knowledge base, complex integrations, multi-language, learns from data. Example: smart support bot with full knowledge base
-- chatbot-enterprise: €18,000 — voice capability, hardware deployment, staff training, complex multi-system integrations. Example: Domino's staff training bot with voice + hardware
-- dashboard: €7,500 — admin panels, data portals, internal tools with user management
-- webshop: €15,000 — full e-commerce with catalog, cart, checkout, order management
-- mobile-app: €20,000 — native iOS/Android apps
-- enterprise: €25,000 — multi-tenant SaaS, full system replacements, 6+ month projects
+- simple-automation: €2,500 - scrapers, data pipelines, file parsers (Excel/CSV/PDF), translation scripts, Zapier-like workflows, image processing, email automations, scheduled jobs
+- website: €5,000 - marketing sites, landing pages, portfolios (no backend logic)
+- chatbot-basic: €3,500 - simple embedded website chatbot, FAQ/product info only, text-only, no voice, no hardware, no staff training. Example: product FAQ bot for a webshop
+- chatbot-standard: €7,500 - chatbot with integrations (CRM/Shopify/email), multi-channel (web+email), basic knowledge base. Example: customer service bot that checks orders
+- chatbot-advanced: €12,500 - RAG/knowledge base, complex integrations, multi-language, learns from data. Example: smart support bot with full knowledge base
+- chatbot-enterprise: €18,000 - voice capability, hardware deployment, staff training, complex multi-system integrations. Example: Domino's staff training bot with voice + hardware
+- dashboard: €7,500 - admin panels, data portals, internal tools with user management
+- webshop: €15,000 - full e-commerce with catalog, cart, checkout, order management
+- mobile-app: €20,000 - native iOS/Android apps
+- enterprise: €25,000 - multi-tenant SaaS, full system replacements, 6+ month projects
 
 ### Feature add-ons (only include if genuinely needed):
-- payment: €750 — Stripe/Mollie/iDEAL payment processing
-- login: €750 — user accounts, authentication
-- admin: €1,500 — admin panel / backoffice
-- rbac: €1,000 — role-based access control
-- email-notifs: €500 — transactional email notifications
-- sms-push: €500 — SMS or push notifications
-- search: €500 — search & filtering
-- file-uploads-basic: €400 — basic file/image uploads
-- file-uploads-large: €1,400 — video/large file uploads, S3/CDN
-- analytics: €1,500 — analytics dashboard, charts, reporting
-- booking: €2,000 — booking/scheduling/calendar
-- multilang-small: €750 — 2-3 languages
-- multilang-large: €1,500 — 4+ languages
-- chat: €1,500 — real-time messaging/chat
-- ai-chatbot-basic: €2,500 — basic AI chatbot feature
-- rag: €5,000 — RAG / knowledge base / vector search
-- custom-ai-agent: €7,500 — custom autonomous AI agent
-- api-external: €2,000 — public API for third parties (with docs, auth, versioning)
-- realtime: €1,500 — real-time/websockets/live data
-- saas: €7,500 — multi-tenant / SaaS architecture
+- payment: €750 - Stripe/Mollie/iDEAL payment processing
+- login: €750 - user accounts, authentication
+- admin: €1,500 - admin panel / backoffice
+- rbac: €1,000 - role-based access control
+- email-notifs: €500 - transactional email notifications
+- sms-push: €500 - SMS or push notifications
+- search: €500 - search & filtering
+- file-uploads-basic: €400 - basic file/image uploads
+- file-uploads-large: €1,400 - video/large file uploads, S3/CDN
+- analytics: €1,500 - analytics dashboard, charts, reporting
+- booking: €2,000 - booking/scheduling/calendar
+- multilang-small: €750 - 2-3 languages
+- multilang-large: €1,500 - 4+ languages
+- chat: €1,500 - real-time messaging/chat
+- ai-chatbot-basic: €2,500 - basic AI chatbot feature
+- rag: €5,000 - RAG / knowledge base / vector search
+- custom-ai-agent: €7,500 - custom autonomous AI agent
+- api-external: €2,000 - public API for third parties (with docs, auth, versioning)
+- realtime: €1,500 - real-time/websockets/live data
+- saas: €7,500 - multi-tenant / SaaS architecture
 
 ### Integration add-ons (only include if explicitly mentioned):
 - shopify: €1,000

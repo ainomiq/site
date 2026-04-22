@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "Privacy Policy — Ainomiq",
+  title: "Privacy Policy - Ainomiq",
   description: "How Ainomiq collects, uses, and protects your personal data.",
 };
 
@@ -29,7 +29,7 @@ export default function PrivacyPolicy() {
             Privacy Policy
           </h1>
           <p className="text-ainomiq-text-muted text-lg">
-            Version 1.0 — April 9, 2026
+            Version 1.0 - April 9, 2026
           </p>
         </div>
 
@@ -111,15 +111,15 @@ export default function PrivacyPolicy() {
         <PolicySection title="5. Third Parties and Sub-Processors">
           <div className="space-y-4">
             <div className="rounded-xl border border-ainomiq-border p-4">
-              <p className="font-medium text-ainomiq-text text-sm">Vercel — Hosting</p>
+              <p className="font-medium text-ainomiq-text text-sm">Vercel - Hosting</p>
               <p className="text-sm mt-1">Processes technical request data (IP address, headers) for serving the website. US-based; Standard Contractual Clauses (SCCs).</p>
             </div>
             <div className="rounded-xl border border-ainomiq-border p-4">
-              <p className="font-medium text-ainomiq-text text-sm">Anthropic — AI</p>
+              <p className="font-medium text-ainomiq-text text-sm">Anthropic - AI</p>
               <p className="text-sm mt-1">Provision of AI language models used on the website. US-based; Standard Contractual Clauses (SCCs).</p>
             </div>
             <div className="rounded-xl border border-ainomiq-border p-4">
-              <p className="font-medium text-ainomiq-text text-sm">GitHub — Code Hosting</p>
+              <p className="font-medium text-ainomiq-text text-sm">GitHub - Code Hosting</p>
               <p className="text-sm mt-1">Hosting of website source code. No direct processing of visitor data. US-based; Standard Contractual Clauses (SCCs).</p>
             </div>
           </div>
@@ -164,13 +164,13 @@ export default function PrivacyPolicy() {
         <PolicySection title="9. Your Rights">
           <p>Under the GDPR, you have the following rights:</p>
           <ul className="list-disc pl-6 space-y-1.5">
-            <li><strong className="text-ainomiq-text">Right of access (Art. 15)</strong> — request information about your personal data.</li>
-            <li><strong className="text-ainomiq-text">Right to rectification (Art. 16)</strong> — request correction of inaccurate data.</li>
-            <li><strong className="text-ainomiq-text">Right to erasure (Art. 17)</strong> — request deletion of your personal data.</li>
-            <li><strong className="text-ainomiq-text">Right to restriction (Art. 18)</strong> — request restriction of processing.</li>
-            <li><strong className="text-ainomiq-text">Right to data portability (Art. 20)</strong> — receive your data in a machine-readable format.</li>
-            <li><strong className="text-ainomiq-text">Right to object (Art. 21)</strong> — object to processing based on legitimate interest.</li>
-            <li><strong className="text-ainomiq-text">Right to withdraw consent</strong> — withdraw consent at any time.</li>
+            <li><strong className="text-ainomiq-text">Right of access (Art. 15)</strong> - request information about your personal data.</li>
+            <li><strong className="text-ainomiq-text">Right to rectification (Art. 16)</strong> - request correction of inaccurate data.</li>
+            <li><strong className="text-ainomiq-text">Right to erasure (Art. 17)</strong> - request deletion of your personal data.</li>
+            <li><strong className="text-ainomiq-text">Right to restriction (Art. 18)</strong> - request restriction of processing.</li>
+            <li><strong className="text-ainomiq-text">Right to data portability (Art. 20)</strong> - receive your data in a machine-readable format.</li>
+            <li><strong className="text-ainomiq-text">Right to object (Art. 21)</strong> - object to processing based on legitimate interest.</li>
+            <li><strong className="text-ainomiq-text">Right to withdraw consent</strong> - withdraw consent at any time.</li>
           </ul>
           <p>
             Exercise your rights via{" "}

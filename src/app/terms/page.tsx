@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 export const metadata = {
-  title: "Terms and Conditions — Ainomiq",
+  title: "Terms and Conditions - Ainomiq",
   description: "Terms and conditions for using Ainomiq services and platform.",
 };
 
@@ -48,12 +48,12 @@ export default function TermsOfService() {
 
         <Section title="1. Definitions">
           <ul className="list-disc pl-6 space-y-1.5">
-            <li><strong className="text-ainomiq-text">&quot;User&quot;</strong> — any natural or legal person who visits the Website, uses the Platform, or purchases Services.</li>
-            <li><strong className="text-ainomiq-text">&quot;Platform&quot;</strong> — the Ainomiq e-commerce platform, including AI agents, dashboards, integrations, and associated functionality.</li>
-            <li><strong className="text-ainomiq-text">&quot;Services&quot;</strong> — all services provided by Ainomiq, including AI automation, platform access, custom projects, and consultancy.</li>
-            <li><strong className="text-ainomiq-text">&quot;Subscription&quot;</strong> — a recurring payment plan for access to the Platform.</li>
-            <li><strong className="text-ainomiq-text">&quot;Custom Project&quot;</strong> — a project-based engagement with a defined scope and fee.</li>
-            <li><strong className="text-ainomiq-text">&quot;Content&quot;</strong> — all text, images, data, configurations, AI models, and other materials made available through the Website or Platform.</li>
+            <li><strong className="text-ainomiq-text">&quot;User&quot;</strong> - any natural or legal person who visits the Website, uses the Platform, or purchases Services.</li>
+            <li><strong className="text-ainomiq-text">&quot;Platform&quot;</strong> - the Ainomiq e-commerce platform, including AI agents, dashboards, integrations, and associated functionality.</li>
+            <li><strong className="text-ainomiq-text">&quot;Services&quot;</strong> - all services provided by Ainomiq, including AI automation, platform access, custom projects, and consultancy.</li>
+            <li><strong className="text-ainomiq-text">&quot;Subscription&quot;</strong> - a recurring payment plan for access to the Platform.</li>
+            <li><strong className="text-ainomiq-text">&quot;Custom Project&quot;</strong> - a project-based engagement with a defined scope and fee.</li>
+            <li><strong className="text-ainomiq-text">&quot;Content&quot;</strong> - all text, images, data, configurations, AI models, and other materials made available through the Website or Platform.</li>
           </ul>
         </Section>
 

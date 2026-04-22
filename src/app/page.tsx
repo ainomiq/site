@@ -227,7 +227,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-      {/* Why we're different — CTA strip above footer */}
+      {/* Why we're different - CTA strip above footer */}
       <section className="border-t border-ainomiq-border bg-ainomiq-navy">
         <div className="mx-auto max-w-6xl px-6 py-20 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
@@ -238,7 +238,7 @@ export default function HomePage() {
               Built different.<br />Works differently.
             </h2>
             <p className="text-ainomiq-text-muted text-lg leading-relaxed mb-8 max-w-md">
-              Most automation tools bolt AI on top of old software. We built Ainomiq from the ground up — one platform, every channel, fully autonomous.
+              Most automation tools bolt AI on top of old software. We built Ainomiq from the ground up - one platform, every channel, fully autonomous.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button asChild size="lg" className="rounded-full bg-ainomiq-blue hover:bg-ainomiq-blue-hover text-white">
@@ -252,9 +252,9 @@ export default function HomePage() {
           <div className="grid grid-cols-1 gap-4">
             {[
               { title: "No legacy software", body: "Built from scratch for AI-first operations. No retrofitting, no workarounds." },
-              { title: "One platform, everything", body: "Automation, analytics, and AI agents — one login, one dashboard, full control across your entire operation." },
-              { title: "Truly autonomous", body: "Not just suggestions. Ainomiq acts: executes tasks, makes decisions, and delivers results — 24/7." },
-              { title: "Fits your stack", body: "We integrate with the tools you already use — from CRMs and ERPs to e-commerce platforms and marketing tools." },
+              { title: "One platform, everything", body: "Automation, analytics, and AI agents - one login, one dashboard, full control across your entire operation." },
+              { title: "Truly autonomous", body: "Not just suggestions. Ainomiq acts: executes tasks, makes decisions, and delivers results - 24/7." },
+              { title: "Fits your stack", body: "We integrate with the tools you already use - from CRMs and ERPs to e-commerce platforms and marketing tools." },
             ].map((item) => (
               <div key={item.title} className="flex gap-4 p-5 rounded-xl border border-ainomiq-border bg-ainomiq-surface">
                 <div className="mt-0.5 h-2 w-2 rounded-full bg-ainomiq-blue shrink-0" />
