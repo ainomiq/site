@@ -90,7 +90,7 @@ function IPhoneMockup() {
     <div className="relative flex-shrink-0" style={{ width: 260, marginBottom: 44 }}>
       {/* iPhone body */}
       <div
-        className="relative rounded-[36px] overflow-hidden shadow-2xl"
+        className="relative rounded-[36px] shadow-2xl"
         style={{
           background: 'linear-gradient(180deg, #2a2a2c 0%, #1c1c1e 100%)',
           padding: '10px',
@@ -130,11 +130,12 @@ function IPhoneMockup() {
         </div>
         {/* Screen */}
         <div
-          className="rounded-[28px] overflow-y-auto h-full"
+          className="rounded-[28px] overflow-hidden h-full"
           style={{ background: '#0f1923', position: 'relative' }}
         >
-          {/* Mobile-optimized dashboard layout */}
-          <MobileDashboard />
+          <div className="h-full overflow-y-auto">
+            <MobileDashboard />
+          </div>
         </div>
       </div>
       {/* Side buttons */}
