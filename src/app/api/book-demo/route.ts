@@ -30,7 +30,7 @@ async function createCalendarEvent(
   }
 ) {
   const res = await fetch(
-    `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(calendarId)}/events?sendUpdates=all`,
+    `https://www.googleapis.com/calendar/v3/calendars/${encodeURIComponent(calendarId)}/events?sendUpdates=all&conferenceDataVersion=1`,
     {
       method: "POST",
       headers: {
@@ -104,7 +104,12 @@ async function sendConfirmationEmail(params: {
           <div style="background: #f0f5ff; border-radius: 12px; padding: 20px; margin-bottom: 24px;">
             <p style="margin: 0; font-weight: 600; font-size: 16px;">${dateFormatted}</p>
             <p style="margin: 4px 0 0; color: #4b5563;">${params.time} (Amsterdam time)</p>
-            ${params.meetLink ? `<p style="margin: 12px 0 0;"><a href="${params.meetLink}" style="color: #3b82f6; font-weight: 600;">Join Google Meet</a></p>` : ""}
+            ${params.meetLink ? `
+            <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid #dbeafe;">
+              <p style="margin: 0 0 8px; font-size: 13px; color: #6b7280;">Join via Google Meet:</p>
+              <a href="${params.meetLink}" style="display: inline-block; background: #3b82f6; color: white; font-weight: 600; font-size: 14px; padding: 10px 20px; border-radius: 8px; text-decoration: none;">Join Google Meet →</a>
+              <p style="margin: 8px 0 0; font-size: 11px; color: #9ca3af;">${params.meetLink}</p>
+            </div>` : ""}
           </div>
           
           <p style="color: #6b7280; font-size: 14px;">A Google Calendar invite has been sent to your email. If you need to reschedule, reply to this email.</p>
