@@ -12,16 +12,19 @@ const MONTHS = [
   "juli", "augustus", "september", "oktober", "november", "december",
 ];
 
-// Available time slots (09:00–16:30, 30-min intervals)
+// Available time slots (08:00–20:00, 30-min intervals, 7 days/week)
 const ALL_SLOTS = [
+  "08:00", "08:30",
   "09:00", "09:30", "10:00", "10:30",
   "11:00", "11:30", "12:00", "12:30",
   "13:00", "13:30", "14:00", "14:30",
   "15:00", "15:30", "16:00", "16:30",
+  "17:00", "17:30", "18:00", "18:30",
+  "19:00", "19:30", "20:00",
 ];
 
-// Slots that are grayed out / unavailable (for demo — in production these come from Google Calendar freebusy)
-const UNAVAILABLE_SLOTS = ["11:00", "12:00", "12:30", "14:00", "14:30"];
+// No hardcoded unavailable slots — filter past times dynamically
+const UNAVAILABLE_SLOTS: string[] = [];
 
 function getDaysInMonth(year: number, month: number) {
   return new Date(year, month + 1, 0).getDate();
@@ -71,10 +74,8 @@ export function DemoBooking() {
     const t = new Date(); t.setHours(0, 0, 0, 0);
     return d < t;
   };
-  const isWeekend = (day: number) => {
-    const dow = new Date(viewYear, viewMonth, day).getDay();
-    return dow === 0 || dow === 6;
-  };
+  // No weekend blocking — 7 days/week
+  const isWeekend = (_day: number) => false;
   const isSelected = (day: number) => {
     return (
       selectedDate?.getFullYear() === viewYear &&
@@ -213,7 +214,16 @@ export function DemoBooking() {
             </div>
             <div className="grid grid-cols-4 gap-2">
               {ALL_SLOTS.map(slot => {
-                const unavail = UNAVAILABLE_SLOTS.includes(slot);
+                // Filter past times when today is selected
+                const isSelectedToday = selectedDate &&
+                  selectedDate.getFullYear() === today.getFullYear() &&
+                  selectedDate.getMonth() === today.getMonth() &&
+                  selectedDate.getDate() === today.getDate();
+                const [slotH, slotM] = slot.split(":").map(Number);
+                const slotMinutes = slotH * 60 + slotM;
+                const nowMinutes = today.getHours() * 60 + today.getMinutes();
+                const isPastSlot = isSelectedToday && slotMinutes <= nowMinutes;
+                const unavail = UNAVAILABLE_SLOTS.includes(slot) || isPastSlot;
                 const sel = selectedTime === slot;
                 return (
                   <button
