@@ -7,8 +7,27 @@ import { Button } from '@/components/ui/button';
 import { FranchiseDashboard } from '@/components/ui/franchise-dashboard';
 
 function MobileDashboard() {
+  const locationColors = [
+    '#00d4aa', '#3b82f6', '#6366f1', '#818cf8', '#ec4899',
+    '#f59e0b', '#10b981', '#8b5cf6', '#ef4444', '#06b6d4',
+  ];
+
   return (
     <div className="p-4 pt-12 space-y-3 text-white">
+      {/* Location icon bar */}
+      <div className="flex items-center gap-1 overflow-x-auto pb-1 scrollbar-none -mx-1 px-1" style={{ scrollbarWidth: 'none' }}>
+        {['AMS-C','AMS-Z','ROT','UTR','DH','EHV','GRN','HLM','TLB','BRD'].map((loc, i) => (
+          <div
+            key={loc}
+            className="flex-shrink-0 flex items-center gap-1 rounded-full px-2 py-1"
+            style={{ background: `${locationColors[i]}22`, border: `1px solid ${locationColors[i]}55` }}
+          >
+            <div className="w-1.5 h-1.5 rounded-full" style={{ background: locationColors[i] }} />
+            <span className="text-[7px] font-bold" style={{ color: locationColors[i] }}>{loc}</span>
+          </div>
+        ))}
+      </div>
+
       {/* Header */}
       <div className="flex items-center justify-between mb-1">
         <div>
