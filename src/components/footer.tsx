@@ -58,17 +58,12 @@ const paymentIcons = [
 ];
 
 const iDealIcon = (
-  <svg viewBox="0 0 80 56" xmlns="http://www.w3.org/2000/svg" className="h-5 w-auto max-w-[44px]">
-    {/* Outer rounded square */}
+  <svg viewBox="0 0 80 56" xmlns="http://www.w3.org/2000/svg" style={{height: "18px", width: "auto"}}>
     <rect x="2" y="2" width="37" height="52" rx="3" fill="white" stroke="black" strokeWidth="4"/>
-    {/* i - dot */}
     <circle cx="16" cy="13" r="5" fill="black"/>
-    {/* i - stem */}
     <rect x="13" y="22" width="6" height="24" fill="black"/>
-    {/* D - pink half circle */}
     <path d="M39 4 Q78 4 78 28 Q78 52 39 52 Z" fill="#CC0066"/>
-    {/* DEAL letters - smaller to fit */}
-    <text x="41" y="35" fontFamily="Arial Black, Arial, sans-serif" fontWeight="900" fontSize="13" fill="white" letterSpacing="0">DEAL</text>
+    <text x="41" y="35" fontFamily="Arial Black, Arial, sans-serif" fontWeight="900" fontSize="13" fill="white">DEAL</text>
   </svg>
 );
 
@@ -115,17 +110,17 @@ export function Footer() {
         <div className="border-t border-ainomiq-border" />
 
         {/* Payment icons */}
-        <div className="flex flex-wrap items-center justify-center gap-3 py-6">
+        <div className="flex flex-wrap items-center justify-start gap-2 py-5">
           {paymentIcons.map((p) => (
             <div
               key={p.label}
               title={p.label}
-              className="flex h-8 w-12 items-center justify-center rounded border border-ainomiq-border bg-white/5"
+              className="flex h-7 w-10 items-center justify-center rounded border border-ainomiq-border bg-white/5"
             >
-              <Icon icon={p.icon} className="h-5 w-auto max-w-[36px]" />
+              <Icon icon={p.icon} className="h-4 w-auto max-w-[28px]" />
             </div>
           ))}
-          <div title="iDEAL" className="flex h-8 w-14 items-center justify-center rounded border border-ainomiq-border bg-white">
+          <div title="iDEAL" className="flex h-7 w-10 items-center justify-center rounded border border-ainomiq-border bg-white">
             {iDealIcon}
           </div>
         </div>
