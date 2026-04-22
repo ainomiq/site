@@ -57,23 +57,6 @@ const paymentIcons = [
   { icon: "logos:google-pay", label: "Google Pay" },
 ];
 
-const iDealIcon = (
-  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" style={{height: "20px", width: "auto"}}>
-    {/* Outer D shape - black border */}
-    <path d="M10 5 L50 5 Q95 5 95 50 Q95 95 50 95 L10 95 Z" fill="black"/>
-    {/* Inner white fill */}
-    <path d="M16 12 L50 12 Q82 12 82 50 Q82 88 50 88 L16 88 Z" fill="white"/>
-    {/* Pink D fill - right half only */}
-    <path d="M44 12 L50 12 Q82 12 82 50 Q82 88 50 88 L44 88 Z" fill="#CC0066"/>
-    {/* i dot */}
-    <circle cx="30" cy="28" r="7" fill="black"/>
-    {/* i stem */}
-    <rect x="26" y="40" width="8" height="35" fill="black"/>
-    {/* DEAL text */}
-    <text x="46" y="62" fontFamily="'Arial Black', Arial, sans-serif" fontWeight="900" fontSize="20" fill="white">DEAL</text>
-  </svg>
-);
-
 export function Footer() {
   return (
     <footer className="border-t border-ainomiq-border bg-ainomiq-navy-light">
@@ -128,7 +111,8 @@ export function Footer() {
             </div>
           ))}
           <div title="iDEAL" className="flex h-7 w-12 items-center justify-center rounded border border-ainomiq-border bg-white overflow-hidden">
-            {iDealIcon}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/payment/ideal.png" alt="iDEAL" className="h-5 w-auto object-contain" />
           </div>
         </div>
 
