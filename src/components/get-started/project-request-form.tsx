@@ -138,7 +138,7 @@ export function ProjectRequestForm() {
   }, [projectType, chatbotLevel, description, timeline, recommendations, selectedRecs, aiFeatures, aiIntegrations]);
 
   useEffect(() => {
-    if (step === 3) {
+    if (step === 4) {
       void fetchEstimate();
     }
     // Pre-fill existingUrl from siteUrl when advancing past step 0
@@ -351,14 +351,29 @@ export function ProjectRequestForm() {
     { title: "Project Type", valid: !!projectType || prefilled },
     { title: "Details", valid: description.trim().length >= 3 && isValidUrl(existingUrl) },
     { title: "Timeline", valid: !!timeline },
-    { title: "Your Estimate", valid: true },
     { title: "Contact", valid: !!company && !!contact && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) },
+    { title: "Your Estimate", valid: true },
   ];
 
   const canNext = steps[step]?.valid;
   const isLast = step === steps.length - 1;
 
-  function handleStepChange(newStep: number) {
+  async function handleStepChange(newStep: number) {
+    // If moving away from Contact step (step 3) → subscribe to Klaviyo
+    if (step === 3 && newStep === 4 && email) {
+      const nameParts = contact.trim().split(" ");
+      void fetch("/api/klaviyo-subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email,
+          firstName: nameParts[0] ?? "",
+          lastName: nameParts.slice(1).join(" ") ?? "",
+          company,
+        }),
+      });
+    }
+
     setStep(newStep);
     setErrors([]);
     
@@ -770,7 +785,7 @@ export function ProjectRequestForm() {
               </div>
             )}
 
-            {step === 3 && (
+            {step === 4 && (
               <div>
                 <h3 className="mb-1 text-lg font-semibold text-ainomiq-text">Your estimate</h3>
                 <p className="mb-6 text-sm text-ainomiq-text-muted">
@@ -823,7 +838,7 @@ export function ProjectRequestForm() {
               </div>
             )}
 
-            {step === 4 && (
+            {step === 3 && (
               <div>
                 <h3 className="mb-1 text-lg font-semibold text-ainomiq-text">Almost there - who are you?</h3>
                 <p className="mb-6 text-sm text-ainomiq-text-muted">We&apos;ll prepare your project brief and reply within 24h.</p>
@@ -916,7 +931,7 @@ export function ProjectRequestForm() {
             {step > 0 ? (
               <button
                 type="button"
-                onClick={() => handleStepChange(step - 1)}
+                onClick={() => void handleStepChange(step - 1)}
                 className="flex items-center gap-2 text-sm text-ainomiq-text-muted transition-colors hover:text-ainomiq-text"
               >
                 <ArrowLeft className="h-4 w-4" /> Back
@@ -945,7 +960,7 @@ export function ProjectRequestForm() {
                 <button
                   type="button"
                   disabled={!canNext}
-                  onClick={() => handleStepChange(step + 1)}
+                  onClick={() => void handleStepChange(step + 1)}
                   className="flex items-center gap-2 rounded-xl bg-[#4A90F5] px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-[#3a7de0] disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-gray-400"
                 >
                   Continue <ArrowRight className="h-4 w-4" />
