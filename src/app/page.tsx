@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import {
   ArrowRight,
 } from "lucide-react";
-import { HeroSection, LogosSection } from "@/components/ui/hero-1";
+import { HeroSection } from "@/components/ui/hero-1";
 
 export default function HomePage() {
   return (
@@ -13,7 +13,7 @@ export default function HomePage() {
       <HeroSection />
 
       {/* Integrations strip */}
-      <LogosSection />
+
 
       {/* Meet the Founders */}
       <section className="py-24 px-6">
