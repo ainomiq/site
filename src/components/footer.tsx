@@ -58,12 +58,24 @@ const paymentIcons = [
 ];
 
 const iDealIcon = (
-  <svg viewBox="0 0 80 56" xmlns="http://www.w3.org/2000/svg" style={{height: "18px", width: "auto"}}>
-    <rect x="2" y="2" width="37" height="52" rx="3" fill="white" stroke="black" strokeWidth="4"/>
-    <circle cx="16" cy="13" r="5" fill="black"/>
-    <rect x="13" y="22" width="6" height="24" fill="black"/>
-    <path d="M39 4 Q78 4 78 28 Q78 52 39 52 Z" fill="#CC0066"/>
-    <text x="41" y="35" fontFamily="Arial Black, Arial, sans-serif" fontWeight="900" fontSize="13" fill="white">DEAL</text>
+  <svg viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg" style={{height: "20px", width: "auto"}}>
+    {/* White background */}
+    <rect width="100" height="60" rx="4" fill="white"/>
+    {/* Left box with "i" */}
+    <rect x="3" y="3" width="34" height="54" rx="3" fill="white" stroke="#000" strokeWidth="4"/>
+    <circle cx="17" cy="14" r="5" fill="#000"/>
+    <rect x="14" y="23" width="6" height="26" fill="#000"/>
+    {/* Pink D-shape */}
+    <path d="M37 3 C37 3 97 3 97 30 C97 57 37 57 37 57 Z" fill="#CC0066"/>
+    {/* iDEAL wordmark in white */}
+    <text
+      x="52"
+      y="38"
+      fontFamily="'Arial Black', 'Arial Bold', Arial, sans-serif"
+      fontWeight="900"
+      fontSize="14"
+      fill="white"
+    >DEAL</text>
   </svg>
 );
 
@@ -120,7 +132,7 @@ export function Footer() {
               <Icon icon={p.icon} className="h-4 w-auto max-w-[28px]" />
             </div>
           ))}
-          <div title="iDEAL" className="flex h-7 w-10 items-center justify-center rounded border border-ainomiq-border bg-white">
+          <div title="iDEAL" className="flex h-7 w-12 items-center justify-center rounded border border-ainomiq-border bg-white overflow-hidden">
             {iDealIcon}
           </div>
         </div>
