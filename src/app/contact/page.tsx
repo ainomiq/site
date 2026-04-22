@@ -31,7 +31,7 @@ export default function ContactPage() {
       </section>
 
       {/* Demo Booking */}
-      <Section className="bg-ainomiq-navy-light">
+      <Section id="book-demo" className="bg-ainomiq-navy-light">
         <div className="max-w-5xl mx-auto">
           <div className="mb-10">
             <div className="mb-3 inline-flex items-center rounded-full bg-ainomiq-blue-glow px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">

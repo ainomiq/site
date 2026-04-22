@@ -182,7 +182,7 @@ export default function EnterprisePage() {
               size="lg"
               className="rounded-full bg-ainomiq-blue hover:bg-ainomiq-blue-hover text-white px-8 h-12"
             >
-              <Link href="/contact">Book a strategy call</Link>
+              <Link href="/contact#book-demo">Book a strategy call</Link>
             </Button>
             <Button
               asChild
@@ -433,7 +433,7 @@ export default function EnterprisePage() {
               size="lg"
               className="rounded-full bg-ainomiq-blue hover:bg-ainomiq-blue-hover text-white px-10 h-12"
             >
-              <Link href="/contact">Book a call</Link>
+              <Link href="/contact#book-demo">Book a call</Link>
             </Button>
             <Button
               asChild

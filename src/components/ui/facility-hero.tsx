@@ -24,7 +24,7 @@ export function FacilityHero() {
       <div className="relative mx-auto max-w-4xl px-6 text-center">
         {/* Badge */}
         <Link
-          href="/contact"
+          href="/contact#book-demo"
           className="group inline-flex items-center gap-3 rounded-full border bg-muted px-4 py-1.5 text-sm shadow-sm transition-all duration-300 hover:bg-background mb-8"
         >
           <Shield className="size-3.5 text-[#00d4aa]" />
@@ -50,7 +50,7 @@ export function FacilityHero() {
             <Link href="/get-started">Get started</Link>
           </Button>
           <Button asChild size="lg" variant="outline" className="rounded-xl px-6">
-            <Link href="/contact">Talk to sales</Link>
+            <Link href="/contact#book-demo">Talk to sales</Link>
           </Button>
         </div>
       </div>
