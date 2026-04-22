@@ -4,7 +4,7 @@ import { useRef } from "react";
 import {
   Bot, LayoutDashboard, Zap, Globe, Smartphone, Paintbrush,
   RefreshCw, Plug, Users, TrendingUp, Check, ArrowRight,
-  Clock, Code, Rocket, FileText, MessageCircle, ChevronRight,
+  Code, Rocket, FileText, MessageCircle, ChevronRight,
   ShieldCheck, Star,
 } from "lucide-react";
 import { ProjectRequestForm } from "@/components/get-started/project-request-form";
@@ -114,56 +114,189 @@ function PainPoints() {
   );
 }
 
-// ─── What We Build ────────────────────────────────────────────────────────────
+// ─── Portfolio / Built By Us ─────────────────────────────────────────────────
 
-const services = [
+const projects = [
   {
+    client: "Billie Jeans",
+    logo: "/logos/billie-jeans.png",
+    type: "AI Customer Support",
     Icon: Bot,
-    color: "text-ainomiq-blue",
-    bg: "bg-ainomiq-blue-glow",
-    label: "AI Chatbots",
-    desc: "Handle customer support, lead qualification, and FAQs 24/7 across your website, WhatsApp, Instagram, or email.",
-    tags: ["Customer support", "Sales qualification", "WhatsApp bots", "FAQ automation"],
+    accentColor: "#3b82f6",
+    headline: "24/7 AI support bot across email, Instagram & Facebook",
+    result: "80% of tickets resolved without human input",
+    // Preview: chat UI mockup
+    preview: (
+      <div className="rounded-xl bg-[#0d1117] border border-white/10 p-4 text-left space-y-3">
+        <div className="flex items-start gap-2.5">
+          <div className="mt-0.5 h-6 w-6 rounded-full bg-blue-500/20 border border-blue-500/30 flex items-center justify-center flex-shrink-0">
+            <Bot className="h-3 w-3 text-blue-400" />
+          </div>
+          <div className="rounded-2xl rounded-tl-none bg-white/5 border border-white/8 px-3 py-2 text-xs text-white/80 max-w-[80%]">
+            Hi! Your order is on its way - estimated delivery in 3-5 days.
+          </div>
+        </div>
+        <div className="flex items-start gap-2.5 flex-row-reverse">
+          <div className="mt-0.5 h-6 w-6 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0 text-[9px] font-bold text-white/60">C</div>
+          <div className="rounded-2xl rounded-tr-none bg-blue-500/20 border border-blue-500/20 px-3 py-2 text-xs text-white/80 max-w-[80%]">
+            Can I change my delivery address?
+          </div>
+        </div>
+        <div className="flex items-start gap-2.5">
+          <div className="mt-0.5 h-6 w-6 rounded-full bg-blue-500/20 border border-blue-500/30 flex items-center justify-center flex-shrink-0">
+            <Bot className="h-3 w-3 text-blue-400" />
+          </div>
+          <div className="rounded-2xl rounded-tl-none bg-white/5 border border-white/8 px-3 py-2 text-xs text-white/80 max-w-[80%]">
+            Of course! Please share your new address and I will update it right away.
+          </div>
+        </div>
+      </div>
+    ),
   },
   {
+    client: "Padelland",
+    logo: "/logos/padelland.png",
+    type: "Booking Dashboard",
     Icon: LayoutDashboard,
-    color: "text-emerald-400",
-    bg: "bg-emerald-400/10",
-    label: "Dashboards & Portals",
-    desc: "Real-time data, clean UI. From internal KPI dashboards to full client portals with login and role management.",
-    tags: ["KPI dashboards", "Client portals", "Admin panels", "Analytics platforms"],
+    accentColor: "#10b981",
+    headline: "Real-time court booking dashboard with member portal",
+    result: "Full booking management, zero manual admin",
+    preview: (
+      <div className="rounded-xl bg-[#0d1117] border border-white/10 p-4">
+        <div className="flex items-center justify-between mb-3">
+          <span className="text-[10px] font-semibold text-white/60 uppercase tracking-wider">Today's Courts</span>
+          <span className="text-[9px] bg-emerald-500/20 text-emerald-400 border border-emerald-500/20 rounded-full px-2 py-0.5">Live</span>
+        </div>
+        <div className="space-y-2">
+          {[["Court 1","09:00","Booked","#10b981"],["Court 2","11:00","Open","#3b82f6"],["Court 3","14:00","Booked","#10b981"],["Court 4","16:00","Open","#3b82f6"]].map(([court,time,status,color]) => (
+            <div key={court} className="flex items-center justify-between rounded-lg bg-white/5 px-3 py-2">
+              <span className="text-[10px] font-medium text-white/80">{court}</span>
+              <span className="text-[9px] text-white/40">{time}</span>
+              <span className="text-[9px] font-semibold rounded-full px-2 py-0.5" style={{ background: `${color}20`, color, border: `1px solid ${color}40` }}>{status}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    ),
   },
   {
-    Icon: Zap,
-    color: "text-amber-400",
-    bg: "bg-amber-400/10",
-    label: "Automations",
-    desc: "Connect your tools and automate the workflows eating your time. No more copy-paste between systems.",
-    tags: ["Email flows", "Order automation", "CRM sync", "Inventory alerts"],
-  },
-  {
+    client: "AccuExpert",
+    logo: "/logos/accu-expert.png",
+    type: "Full Website",
     Icon: Globe,
-    color: "text-violet-400",
-    bg: "bg-violet-400/10",
-    label: "Landing Pages & Websites",
-    desc: "High-converting pages and full websites designed to turn visitors into customers from the first scroll.",
-    tags: ["Campaign pages", "Product launches", "Full redesigns", "SEO pages"],
+    accentColor: "#8b5cf6",
+    headline: "Conversion-optimized site with quote tool and lead flows",
+    result: "Lead generation fully automated",
+    preview: (
+      <div className="rounded-xl bg-[#0d1117] border border-white/10 overflow-hidden">
+        <div className="bg-violet-500/10 border-b border-white/8 px-4 py-2.5 flex items-center gap-2">
+          <div className="flex gap-1">
+            <div className="h-2 w-2 rounded-full bg-white/20" />
+            <div className="h-2 w-2 rounded-full bg-white/20" />
+            <div className="h-2 w-2 rounded-full bg-white/20" />
+          </div>
+          <div className="flex-1 rounded bg-white/10 h-4 mx-2" />
+        </div>
+        <div className="p-4 space-y-2">
+          <div className="h-3 rounded-full bg-white/15 w-2/3" />
+          <div className="h-2 rounded-full bg-white/8 w-full" />
+          <div className="h-2 rounded-full bg-white/8 w-4/5" />
+          <div className="mt-3 h-8 rounded-lg bg-violet-500/30 border border-violet-500/30 flex items-center justify-center">
+            <span className="text-[9px] font-bold text-violet-300">Get Free Quote</span>
+          </div>
+        </div>
+      </div>
+    ),
   },
   {
+    client: "Domino's",
+    logo: "/logos/dominos.png",
+    type: "Order Automation",
+    Icon: Zap,
+    accentColor: "#f59e0b",
+    headline: "Automated order routing and upsell flow across locations",
+    result: "Processing time cut by 60%",
+    preview: (
+      <div className="rounded-xl bg-[#0d1117] border border-white/10 p-4">
+        <div className="flex items-center gap-2 mb-3">
+          <Zap className="h-3.5 w-3.5 text-amber-400" />
+          <span className="text-[10px] font-semibold text-white/60 uppercase tracking-wider">Order Pipeline</span>
+        </div>
+        <div className="flex items-center gap-2">
+          {[["Received","#f59e0b"],["Assigned","#f59e0b"],["Making","#f59e0b"],["Delivered","#10b981"]].map(([label, color], i) => (
+            <>
+              <div key={label} className="flex flex-col items-center gap-1">
+                <div className="h-7 w-7 rounded-full flex items-center justify-center" style={{ background: `${color}20`, border: `1.5px solid ${color}60` }}>
+                  <Check className="h-3 w-3" style={{ color }} />
+                </div>
+                <span className="text-[7px] text-white/50 text-center leading-tight">{label}</span>
+              </div>
+              {i < 3 && <div className="flex-1 h-px bg-gradient-to-r from-amber-500/40 to-amber-500/20 mb-3" />}
+            </>
+          ))}
+        </div>
+      </div>
+    ),
+  },
+  {
+    client: "SchoolRegister",
+    logo: "/logos/schoolregister.png",
+    type: "iOS & Android App",
     Icon: Smartphone,
-    color: "text-pink-400",
-    bg: "bg-pink-400/10",
-    label: "iOS & Android Apps",
-    desc: "Custom mobile apps shipped to the App Store and Google Play - branded, fast, and built to last.",
-    tags: ["Consumer apps", "B2B tools", "Loyalty apps", "Companion apps"],
+    accentColor: "#ec4899",
+    headline: "Student registration and scheduling app for driving schools",
+    result: "Live in App Store and Google Play",
+    preview: (
+      <div className="flex justify-center">
+        <div className="w-28 rounded-[20px] border border-white/15 bg-[#0d1117] overflow-hidden" style={{ boxShadow: "0 20px 40px rgba(0,0,0,0.5)" }}>
+          <div className="bg-pink-500/10 border-b border-white/8 px-2 py-1.5 flex items-center justify-center">
+            <div className="h-1.5 w-8 rounded-full bg-white/20" />
+          </div>
+          <div className="p-2 space-y-1.5">
+            <div className="h-2.5 rounded bg-pink-500/30 border border-pink-500/20 flex items-center px-1">
+              <span className="text-[5px] text-pink-300 font-bold">SchoolRegister</span>
+            </div>
+            {["Mon","Wed","Fri"].map(d => (
+              <div key={d} className="flex items-center justify-between rounded bg-white/5 px-1.5 py-1">
+                <span className="text-[6px] text-white/60">{d}</span>
+                <span className="text-[6px] text-emerald-400">09:00</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    ),
   },
   {
+    client: "Alpina",
+    logo: "/logos/alpina.png",
+    type: "Brand Design",
     Icon: Paintbrush,
-    color: "text-cyan-400",
-    bg: "bg-cyan-400/10",
-    label: "Full Site Design",
-    desc: "Complete brand experience from scratch - design systems, component libraries, pixel-perfect execution.",
-    tags: ["Brand design", "UI/UX systems", "Component libraries", "CRO-optimized UX"],
+    accentColor: "#06b6d4",
+    headline: "Complete visual identity and design system for new market launch",
+    result: "Full brand handover in 3 weeks",
+    preview: (
+      <div className="rounded-xl bg-[#0d1117] border border-white/10 p-4 space-y-3">
+        <div className="flex gap-2">
+          {["#06b6d4","#0e7490","#1e3a5f","#f8fafc","#64748b"].map(c => (
+            <div key={c} className="h-8 flex-1 rounded-lg" style={{ background: c }} />
+          ))}
+        </div>
+        <div className="space-y-1.5">
+          <div className="h-4 rounded bg-white/10 w-1/2" style={{ background: "rgba(6,182,212,0.2)" }} />
+          <div className="h-2.5 rounded bg-white/8 w-full" />
+          <div className="h-2.5 rounded bg-white/8 w-4/5" />
+        </div>
+        <div className="flex gap-2">
+          <div className="h-7 flex-1 rounded-lg flex items-center justify-center" style={{ background: "#06b6d420", border: "1px solid #06b6d440" }}>
+            <span className="text-[8px] font-bold text-cyan-400">Aa</span>
+          </div>
+          <div className="h-7 flex-1 rounded-lg flex items-center justify-center bg-white/5 border border-white/10">
+            <span className="text-[8px] text-white/50">Logo</span>
+          </div>
+        </div>
+      </div>
+    ),
   },
 ];
 
@@ -173,39 +306,46 @@ function WhatWeBuild() {
       <div className="mx-auto max-w-6xl">
         <div className="text-center mb-14">
           <p className="text-xs font-semibold uppercase tracking-widest text-ainomiq-blue mb-3">
-            What we build
+            Our work
           </p>
           <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-ainomiq-text mb-4">
-            Six solutions. One team.
+            Built by us. Running today.
           </h2>
           <p className="text-lg text-ainomiq-text-muted max-w-2xl mx-auto">
-            Every project is scoped specifically for your business, your stack, and your goals.
-            No templates. No guesswork.
+            Real projects, real clients. Here is what we have shipped.
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {services.map(({ Icon, color, bg, label, desc, tags }) => (
+          {projects.map(({ client, logo, type, Icon, accentColor, headline, result, preview }) => (
             <div
-              key={label}
-              className="group rounded-2xl border border-ainomiq-border bg-ainomiq-navy-light p-7 hover:border-ainomiq-blue/40 transition-all"
+              key={client}
+              className="group rounded-2xl border border-ainomiq-border bg-ainomiq-navy-light overflow-hidden hover:border-ainomiq-blue/30 transition-all"
             >
-              <div className={`mb-5 inline-flex h-11 w-11 items-center justify-center rounded-xl ${bg}`}>
-                <Icon className={`h-5 w-5 ${color}`} />
+              {/* Preview area */}
+              <div
+                className="relative p-5 border-b border-ainomiq-border"
+                style={{ background: `radial-gradient(ellipse 80% 60% at 50% 0%, ${accentColor}08, transparent)` }}
+              >
+                {preview}
               </div>
-              <h3 className={`text-lg font-bold text-ainomiq-text mb-3 group-hover:${color} transition-colors`}>
-                {label}
-              </h3>
-              <p className="text-sm text-ainomiq-text-muted leading-relaxed mb-5">{desc}</p>
-              <div className="flex flex-wrap gap-2">
-                {tags.map((t) => (
-                  <span
-                    key={t}
-                    className="rounded-full border border-ainomiq-border bg-ainomiq-navy px-2.5 py-1 text-xs font-medium text-ainomiq-text-subtle"
+
+              {/* Info */}
+              <div className="p-6">
+                <div className="flex items-center gap-3 mb-4">
+                  <img src={logo} alt={client} className="h-6 w-auto object-contain opacity-80" />
+                  <div
+                    className="rounded-full px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider"
+                    style={{ background: `${accentColor}15`, color: accentColor, border: `1px solid ${accentColor}30` }}
                   >
-                    {t}
-                  </span>
-                ))}
+                    {type}
+                  </div>
+                </div>
+                <p className="text-sm font-medium text-ainomiq-text mb-3 leading-snug">{headline}</p>
+                <div className="flex items-center gap-1.5">
+                  <Check className="h-3.5 w-3.5 flex-shrink-0" style={{ color: accentColor }} />
+                  <span className="text-xs text-ainomiq-text-subtle">{result}</span>
+                </div>
               </div>
             </div>
           ))}
