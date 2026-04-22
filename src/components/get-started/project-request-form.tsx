@@ -362,8 +362,8 @@ export function ProjectRequestForm() {
     setStep(newStep);
     setErrors([]);
     
-    // Scroll to the form section (not top of page)
-    document.getElementById('get-started')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    // Scroll to the form (works on both /solutions and /custom)
+    document.getElementById('project-request')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   function resetForm() {
