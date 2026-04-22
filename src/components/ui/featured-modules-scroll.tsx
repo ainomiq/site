@@ -334,48 +334,6 @@ export function FeaturedModulesScroll() {
           </p>
         </div>
 
-        {/* Module selector dock - TOP on mobile for easy switching */}
-        <div className="flex justify-center mb-10 md:mb-14">
-          <div className="inline-flex items-center gap-1.5 md:gap-2 p-1.5 md:p-2 rounded-2xl bg-ainomiq-surface border border-ainomiq-border backdrop-blur-sm">
-            {modules.map((mod) => {
-              const Icon = mod.icon
-              const isActive = activeModule === mod.id
-              return (
-                <button
-                  key={mod.id}
-                  onClick={() => setActiveModule(mod.id)}
-                  className="group relative flex flex-col items-center"
-                >
-                  <motion.div
-                    animate={{ scale: isActive ? 1.1 : 1, y: isActive ? -2 : 0 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 25 }}
-                    className={`relative w-12 h-12 md:w-14 md:h-14 rounded-xl flex items-center justify-center transition-all duration-200 border ${
-                      isActive
-                        ? "border-ainomiq-border shadow-lg bg-ainomiq-navy"
-                        : "border-transparent bg-ainomiq-navy/60 hover:bg-ainomiq-navy hover:border-ainomiq-border hover:shadow-md"
-                    }`}
-                    style={isActive ? { boxShadow: `0 8px 24px rgba(${mod.glowColor}, 0.2)` } : {}}
-                  >
-                    <Icon
-                      className="w-5 h-5 md:w-6 md:h-6 transition-colors duration-200"
-                      style={{ color: isActive ? mod.color : "#9CA3AF" }}
-                    />
-                  </motion.div>
-
-                  {isActive && (
-                    <motion.div
-                      layoutId="activeDot"
-                      className="w-1 h-1 rounded-full mt-1"
-                      style={{ backgroundColor: mod.color }}
-                      transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                    />
-                  )}
-                </button>
-              )
-            })}
-          </div>
-        </div>
-
         {/* Flow visualization */}
         <AnimatePresence mode="wait">
           <motion.div
@@ -547,6 +505,48 @@ export function FeaturedModulesScroll() {
             </div>
           </motion.div>
         </AnimatePresence>
+
+        {/* Module selector dock - BOTTOM */}
+        <div className="flex justify-center mt-10 md:mt-14">
+          <div className="inline-flex items-center gap-1.5 md:gap-2 p-1.5 md:p-2 rounded-2xl bg-ainomiq-surface border border-ainomiq-border backdrop-blur-sm">
+            {modules.map((mod) => {
+              const Icon = mod.icon
+              const isActive = activeModule === mod.id
+              return (
+                <button
+                  key={mod.id}
+                  onClick={() => setActiveModule(mod.id)}
+                  className="group relative flex flex-col items-center"
+                >
+                  <motion.div
+                    animate={{ scale: isActive ? 1.1 : 1, y: isActive ? -2 : 0 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                    className={`relative w-12 h-12 md:w-14 md:h-14 rounded-xl flex items-center justify-center transition-all duration-200 border ${
+                      isActive
+                        ? "border-ainomiq-border shadow-lg bg-ainomiq-navy"
+                        : "border-transparent bg-ainomiq-navy/60 hover:bg-ainomiq-navy hover:border-ainomiq-border hover:shadow-md"
+                    }`}
+                    style={isActive ? { boxShadow: `0 8px 24px rgba(${mod.glowColor}, 0.2)` } : {}}
+                  >
+                    <Icon
+                      className="w-5 h-5 md:w-6 md:h-6 transition-colors duration-200"
+                      style={{ color: isActive ? mod.color : "#9CA3AF" }}
+                    />
+                  </motion.div>
+
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeDot"
+                      className="w-1 h-1 rounded-full mt-1"
+                      style={{ backgroundColor: mod.color }}
+                      transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                    />
+                  )}
+                </button>
+              )
+            })}
+          </div>
+        </div>
       </div>
     </section>
   )
