@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { Button } from "@/components/ui/button";
 import { Section } from "@/components/section";
 import { ContactForm } from "@/components/contact-form";
 import { DemoBooking } from "@/components/demo-booking";
+import { BookDemoAutoScroll } from "@/components/book-demo-autoscroll";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -13,6 +13,7 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
+      <BookDemoAutoScroll />
       {/* Hero */}
       <section className="pt-40 pb-20 px-6">
         <div className="mx-auto max-w-6xl">
