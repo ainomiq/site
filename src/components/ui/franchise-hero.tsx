@@ -6,6 +6,84 @@ import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { FranchiseDashboard } from '@/components/ui/franchise-dashboard';
 
+function MobileDashboard() {
+  return (
+    <div className="p-4 pt-12 space-y-3 text-white">
+      {/* Header */}
+      <div className="flex items-center justify-between mb-1">
+        <div>
+          <div className="text-[10px] font-bold text-white">De Burgerij</div>
+          <div className="text-[8px] text-ainomiq-text-muted">All Locations</div>
+        </div>
+        <div className="flex items-center gap-1 bg-green-500/20 rounded-full px-2 py-0.5">
+          <div className="w-1.5 h-1.5 rounded-full bg-green-400" />
+          <span className="text-[8px] text-green-400 font-semibold">AI Active</span>
+        </div>
+      </div>
+
+      {/* KPI grid */}
+      <div className="grid grid-cols-2 gap-2">
+        {[
+          { label: 'Revenue', val: 'EUR 12.847', sub: '+18% vs yesterday', color: '#00d4aa' },
+          { label: 'AI Orders', val: '2.341', sub: '94.2% automation', color: '#3b82f6' },
+          { label: 'Response', val: '1.2 min', sub: 'Was 8 min manual', color: '#a78bfa' },
+          { label: 'CSAT', val: '4.8/5', sub: 'Up from 3.9 pre-AI', color: '#f59e0b' },
+        ].map(k => (
+          <div key={k.label} className="rounded-xl p-3" style={{ background: 'rgba(255,255,255,0.06)' }}>
+            <div className="text-[8px] text-ainomiq-text-muted mb-1">{k.label}</div>
+            <div className="text-sm font-bold" style={{ color: k.color }}>{k.val}</div>
+            <div className="text-[7px] mt-0.5" style={{ color: k.color, opacity: 0.7 }}>{k.sub}</div>
+          </div>
+        ))}
+      </div>
+
+      {/* Bar chart */}
+      <div className="rounded-xl p-3" style={{ background: 'rgba(255,255,255,0.04)' }}>
+        <div className="text-[9px] font-semibold text-white mb-2">Revenue per Location</div>
+        <div className="flex items-end gap-1" style={{ height: 52 }}>
+          {[100,82,76,58,52,45,36,30,14,10].map((h, i) => (
+            <div key={i} className="flex-1 rounded-sm" style={{
+              height: `${h}%`,
+              background: i === 0 ? '#00d4aa' : i < 3 ? '#3b82f6' : i < 6 ? '#818cf8' : '#ec4899',
+              opacity: i > 6 ? 0.6 : 1,
+            }} />
+          ))}
+        </div>
+        <div className="flex justify-between mt-1">
+          <span className="text-[6px] text-ainomiq-text-muted">AMS-C</span>
+          <span className="text-[6px] text-ainomiq-text-muted">BRD</span>
+        </div>
+      </div>
+
+      {/* Live feed */}
+      <div className="rounded-xl p-3" style={{ background: 'rgba(255,255,255,0.04)' }}>
+        <div className="flex items-center justify-between mb-2">
+          <div className="text-[9px] font-semibold text-white">Live AI Activity</div>
+          <div className="flex items-center gap-1">
+            <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+            <span className="text-[7px] text-green-400">Live</span>
+          </div>
+        </div>
+        {[
+          { loc: 'Amsterdam', action: 'AI drafted 5-star response', type: 'Resolved', color: '#00d4aa' },
+          { loc: 'Haarlem', action: 'Upsell on 22 orders accepted', type: 'Upsell', color: '#f59e0b' },
+          { loc: 'Utrecht', action: 'Complaint resolved by AI', type: 'Resolved', color: '#00d4aa' },
+        ].map((item, i) => (
+          <div key={i} className="flex items-start justify-between py-1.5 border-t border-white/5">
+            <div className="flex-1 pr-2">
+              <div className="text-[8px] font-semibold text-white">{item.loc}</div>
+              <div className="text-[7px] text-ainomiq-text-muted">{item.action}</div>
+            </div>
+            <div className="rounded-full px-1.5 py-0.5 text-[6px] font-bold flex-shrink-0" style={{ background: `${item.color}22`, color: item.color }}>
+              {item.type}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function IPhoneMockup() {
   return (
     <div className="relative flex-shrink-0" style={{ width: 260, marginBottom: 44 }}>
@@ -26,13 +104,11 @@ function IPhoneMockup() {
         />
         {/* Screen */}
         <div
-          className="rounded-[28px] overflow-hidden h-full"
+          className="rounded-[28px] overflow-y-auto h-full"
           style={{ background: '#0f1923', position: 'relative' }}
         >
-          {/* Render full dashboard scaled down to mobile size */}
-          <div style={{ transform: 'scale(0.27)', transformOrigin: 'top left', width: '370%', pointerEvents: 'none' }}>
-            <FranchiseDashboard />
-          </div>
+          {/* Mobile-optimized dashboard layout */}
+          <MobileDashboard />
         </div>
       </div>
       {/* Side buttons */}
