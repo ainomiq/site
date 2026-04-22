@@ -118,16 +118,16 @@ export function Footer() {
         <div className="border-t border-ainomiq-border" />
 
         {/* Payment icons + socials */}
-        <div className="flex items-center justify-between py-5">
-          <div className="flex flex-wrap items-center gap-2">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 py-5">
+          <div className="flex flex-nowrap items-center gap-1.5">
             {paymentIcons.map((p) => (
-              <div key={p.label} title={p.label} className="flex h-7 w-10 items-center justify-center rounded border border-ainomiq-border bg-white/5">
-                <Icon icon={p.icon} className="h-4 w-auto max-w-[28px]" />
+              <div key={p.label} title={p.label} className="flex h-6 w-8 items-center justify-center rounded border border-ainomiq-border bg-white/5">
+                <Icon icon={p.icon} className="h-3.5 w-auto max-w-[22px]" />
               </div>
             ))}
-            <div title="iDEAL" className="flex h-7 items-center justify-center rounded border border-ainomiq-border bg-white/5 overflow-hidden px-1.5">
+            <div title="iDEAL" className="flex h-6 items-center justify-center rounded border border-ainomiq-border bg-white/5 overflow-hidden px-1">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/payment/ideal.png" alt="iDEAL" className="h-6 w-auto object-contain" />
+              <img src="/payment/ideal.png" alt="iDEAL" className="h-5 w-auto object-contain" />
             </div>
           </div>
           {/* App store badges */}
