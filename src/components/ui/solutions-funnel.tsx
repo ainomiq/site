@@ -1,93 +1,111 @@
 "use client";
 
 import { useRef } from "react";
+import {
+  Bot, LayoutDashboard, Zap, Globe, Smartphone, Paintbrush,
+  RefreshCw, Plug, Users, TrendingUp, Check, ArrowRight,
+  Clock, Code, Rocket, FileText, MessageCircle, ChevronRight,
+  ShieldCheck, Star,
+} from "lucide-react";
 import { ProjectRequestForm } from "@/components/get-started/project-request-form";
 
-// ─── Section: Hero ────────────────────────────────────────────────────────────
+// ─── Hero ─────────────────────────────────────────────────────────────────────
 
 function Hero({ onCTA }: { onCTA: () => void }) {
   return (
-    <section className="relative overflow-hidden pt-32 pb-24 text-center">
-      {/* Background glows */}
-      <div aria-hidden className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 h-[700px] w-[700px] rounded-full opacity-20 blur-3xl" style={{ background: "radial-gradient(circle, #3b82f6 0%, transparent 70%)" }} />
-      <div aria-hidden className="pointer-events-none absolute top-20 -right-40 h-[400px] w-[400px] rounded-full opacity-10 blur-3xl" style={{ background: "radial-gradient(circle, #6366f1 0%, transparent 70%)" }} />
+    <section className="relative overflow-hidden bg-ainomiq-navy">
+      {/* Radial glow */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(ellipse 80% 60% at 50% -10%, rgba(59,130,246,0.12), transparent)",
+        }}
+      />
 
-      <div className="relative mx-auto max-w-4xl px-6">
-        {/* Badge */}
-        <div className="inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-1.5 text-sm font-medium text-blue-400 mb-8">
-          <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" />
-          Custom AI solutions - built for your business
+      <div className="relative mx-auto max-w-5xl px-6 pt-32 pb-24 text-center">
+        <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-ainomiq-blue-glow px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">
+          <span className="h-1.5 w-1.5 rounded-full bg-ainomiq-blue animate-pulse" />
+          Custom AI solutions
         </div>
 
-        <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.05] text-white mb-6">
-          Your business.<br />
-          <span className="bg-gradient-to-r from-blue-400 to-violet-400 bg-clip-text text-transparent">Automated.</span>
+        <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.05] text-ainomiq-text mb-6">
+          Your business.{" "}
+          <span className="bg-gradient-to-r from-ainomiq-blue to-violet-400 bg-clip-text text-transparent">
+            Automated.
+          </span>
         </h1>
 
-        <p className="mx-auto max-w-2xl text-xl text-slate-400 leading-relaxed mb-10">
-          We build custom AI tools that handle what your team shouldn&apos;t have to.
-          Chatbots, dashboards, automations, apps, full website design - scoped and shipped in weeks.
+        <p className="mx-auto max-w-2xl text-lg md:text-xl text-ainomiq-text-muted leading-relaxed mb-10">
+          We build the AI tools your business actually needs. Chatbots, dashboards,
+          automations, apps, and full site design - scoped and shipped in weeks.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <button
             onClick={onCTA}
-            className="rounded-xl bg-gradient-to-r from-blue-500 to-violet-600 px-8 py-4 text-base font-bold text-white shadow-lg shadow-blue-500/25 hover:opacity-90 transition-all"
+            className="group inline-flex items-center gap-2 rounded-xl bg-ainomiq-blue px-7 py-3.5 text-base font-bold text-white shadow-lg shadow-ainomiq-blue/25 hover:bg-ainomiq-blue/90 transition-all"
           >
-            Get a free estimate →
+            Get a free estimate
+            <ArrowRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
           </button>
-          <p className="text-sm text-slate-500">No commitment. Reply within 24h.</p>
+          <p className="text-sm text-ainomiq-text-subtle">No commitment. Response within 24h.</p>
         </div>
       </div>
     </section>
   );
 }
 
-// ─── Section: Pain Points ────────────────────────────────────────────────────
+// ─── Pain Points ──────────────────────────────────────────────────────────────
+
+const pains = [
+  {
+    Icon: RefreshCw,
+    title: "You're repeating the same tasks every day",
+    body: "Answering the same emails. Updating spreadsheets. Sending manual follow-ups. Every hour spent on this is an hour not spent on growth.",
+  },
+  {
+    Icon: Plug,
+    title: "Your tools don't connect to each other",
+    body: "Shopify, CRM, email platform, WhatsApp - none of it talks. Data slips through the cracks and nothing runs automatically.",
+  },
+  {
+    Icon: Users,
+    title: "Hiring more people isn't the answer",
+    body: "Staff is expensive, unpredictable, and doesn't scale. There's a faster, cheaper way - one that works around the clock.",
+  },
+  {
+    Icon: TrendingUp,
+    title: "Your competitors are automating faster",
+    body: "Businesses that automate early have more time to focus on what matters. That gap compounds every week you wait.",
+  },
+];
 
 function PainPoints() {
-  const pains = [
-    {
-      emoji: "🔄",
-      title: "You're doing the same tasks every day",
-      body: "Answering the same emails. Updating spreadsheets. Sending follow-ups manually. Every hour you spend on this is an hour not spent growing.",
-    },
-    {
-      emoji: "📉",
-      title: "Your tools don't talk to each other",
-      body: "You've got Shopify, a CRM, an email platform, WhatsApp. But none of it is connected. Data gets lost. Things fall through the cracks.",
-    },
-    {
-      emoji: "💸",
-      title: "Hiring more people isn't the answer",
-      body: "Staff is expensive, unpredictable, and doesn't scale. There's a better way - and it doesn't require a 6-month onboarding.",
-    },
-    {
-      emoji: "⏳",
-      title: "Your competitors are moving faster",
-      body: "Businesses that automate early win. Not because they're smarter - because they have more time to focus on what actually matters.",
-    },
-  ];
-
   return (
-    <section className="py-24 px-6">
+    <section className="bg-ainomiq-navy-light border-y border-ainomiq-border py-24 px-6">
       <div className="mx-auto max-w-5xl">
-        <div className="text-center mb-16">
-          <p className="text-sm font-semibold uppercase tracking-widest text-blue-400 mb-3">Sound familiar?</p>
-          <h2 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight">
-            The manual work is killing your growth
+        <div className="text-center mb-14">
+          <p className="text-xs font-semibold uppercase tracking-widest text-ainomiq-blue mb-3">
+            Sound familiar?
+          </p>
+          <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-ainomiq-text">
+            Manual work is killing your growth
           </h2>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
-          {pains.map((p) => (
+        <div className="grid md:grid-cols-2 gap-5">
+          {pains.map(({ Icon, title, body }) => (
             <div
-              key={p.title}
-              className="rounded-2xl border border-slate-800 bg-slate-900/60 p-7 hover:border-blue-500/30 transition-colors"
+              key={title}
+              className="rounded-2xl border border-ainomiq-border bg-ainomiq-navy p-7 hover:border-ainomiq-blue/30 transition-colors"
             >
-              <div className="text-3xl mb-4">{p.emoji}</div>
-              <h3 className="text-lg font-bold text-white mb-2">{p.title}</h3>
-              <p className="text-slate-400 leading-relaxed">{p.body}</p>
+              <div className="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-ainomiq-blue-glow">
+                <Icon className="h-5 w-5 text-ainomiq-blue" />
+              </div>
+              <h3 className="text-base font-bold text-ainomiq-text mb-2">{title}</h3>
+              <p className="text-sm text-ainomiq-text-muted leading-relaxed">{body}</p>
             </div>
           ))}
         </div>
@@ -96,74 +114,96 @@ function PainPoints() {
   );
 }
 
-// ─── Section: What We Build ──────────────────────────────────────────────────
+// ─── What We Build ────────────────────────────────────────────────────────────
+
+const services = [
+  {
+    Icon: Bot,
+    color: "text-ainomiq-blue",
+    bg: "bg-ainomiq-blue-glow",
+    label: "AI Chatbots",
+    desc: "Handle customer support, lead qualification, and FAQs 24/7 across your website, WhatsApp, Instagram, or email.",
+    tags: ["Customer support", "Sales qualification", "WhatsApp bots", "FAQ automation"],
+  },
+  {
+    Icon: LayoutDashboard,
+    color: "text-emerald-400",
+    bg: "bg-emerald-400/10",
+    label: "Dashboards & Portals",
+    desc: "Real-time data, clean UI. From internal KPI dashboards to full client portals with login and role management.",
+    tags: ["KPI dashboards", "Client portals", "Admin panels", "Analytics platforms"],
+  },
+  {
+    Icon: Zap,
+    color: "text-amber-400",
+    bg: "bg-amber-400/10",
+    label: "Automations",
+    desc: "Connect your tools and automate the workflows eating your time. No more copy-paste between systems.",
+    tags: ["Email flows", "Order automation", "CRM sync", "Inventory alerts"],
+  },
+  {
+    Icon: Globe,
+    color: "text-violet-400",
+    bg: "bg-violet-400/10",
+    label: "Landing Pages & Websites",
+    desc: "High-converting pages and full websites designed to turn visitors into customers from the first scroll.",
+    tags: ["Campaign pages", "Product launches", "Full redesigns", "SEO pages"],
+  },
+  {
+    Icon: Smartphone,
+    color: "text-pink-400",
+    bg: "bg-pink-400/10",
+    label: "iOS & Android Apps",
+    desc: "Custom mobile apps shipped to the App Store and Google Play - branded, fast, and built to last.",
+    tags: ["Consumer apps", "B2B tools", "Loyalty apps", "Companion apps"],
+  },
+  {
+    Icon: Paintbrush,
+    color: "text-cyan-400",
+    bg: "bg-cyan-400/10",
+    label: "Full Site Design",
+    desc: "Complete brand experience from scratch - design systems, component libraries, pixel-perfect execution.",
+    tags: ["Brand design", "UI/UX systems", "Component libraries", "CRO-optimized UX"],
+  },
+];
 
 function WhatWeBuild() {
-  const services = [
-    {
-      icon: "🤖",
-      label: "AI Chatbots",
-      desc: "Handle customer support, lead qualification, and FAQs 24/7 - on your website, WhatsApp, Instagram, or email.",
-      examples: ["Customer support bots", "Sales qualification bots", "FAQ bots", "WhatsApp automation"],
-    },
-    {
-      icon: "📊",
-      label: "Dashboards & Portals",
-      desc: "Real-time data, beautiful UI. From internal KPI dashboards to full client portals with authentication.",
-      examples: ["KPI dashboards", "Client portals", "Admin panels", "Analytics platforms"],
-    },
-    {
-      icon: "⚡",
-      label: "Automations",
-      desc: "Connect your tools and automate the workflows draining your time. No more copy-paste between systems.",
-      examples: ["Email flows", "Order automation", "CRM sync", "Inventory alerts"],
-    },
-    {
-      icon: "🌐",
-      label: "Landing Pages & Websites",
-      desc: "High-converting landing pages and full websites designed to turn visitors into customers.",
-      examples: ["Campaign pages", "Product launches", "Full site redesigns", "SEO-optimized pages"],
-    },
-    {
-      icon: "📱",
-      label: "iOS & Android Apps",
-      desc: "Custom mobile apps shipped to the App Store and Google Play - branded, fast, and built to last.",
-      examples: ["Consumer apps", "B2B tools", "Loyalty apps", "Companion apps"],
-    },
-    {
-      icon: "🎨",
-      label: "Full Site Design",
-      desc: "Complete brand experience from scratch. Design systems, component libraries, and pixel-perfect execution.",
-      examples: ["Brand design", "UI/UX systems", "Component libraries", "Conversion-optimized UX"],
-    },
-  ];
-
   return (
-    <section className="py-24 px-6" style={{ background: "linear-gradient(180deg, transparent 0%, rgba(59,130,246,0.03) 50%, transparent 100%)" }}>
+    <section className="bg-ainomiq-navy py-24 px-6">
       <div className="mx-auto max-w-6xl">
-        <div className="text-center mb-16">
-          <p className="text-sm font-semibold uppercase tracking-widest text-blue-400 mb-3">What we build</p>
-          <h2 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-4">
-            Six tools. One team. Zero nonsense.
+        <div className="text-center mb-14">
+          <p className="text-xs font-semibold uppercase tracking-widest text-ainomiq-blue mb-3">
+            What we build
+          </p>
+          <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-ainomiq-text mb-4">
+            Six solutions. One team.
           </h2>
-          <p className="text-xl text-slate-400 max-w-2xl mx-auto">
-            We don&apos;t do generic. Every project is scoped specifically for your business, your stack, and your goals.
+          <p className="text-lg text-ainomiq-text-muted max-w-2xl mx-auto">
+            Every project is scoped specifically for your business, your stack, and your goals.
+            No templates. No guesswork.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {services.map((s) => (
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+          {services.map(({ Icon, color, bg, label, desc, tags }) => (
             <div
-              key={s.label}
-              className="rounded-2xl border border-slate-800 bg-slate-900/40 p-7 hover:border-blue-500/40 hover:bg-slate-900/70 transition-all group"
+              key={label}
+              className="group rounded-2xl border border-ainomiq-border bg-ainomiq-navy-light p-7 hover:border-ainomiq-blue/40 transition-all"
             >
-              <div className="text-4xl mb-4">{s.icon}</div>
-              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-blue-300 transition-colors">{s.label}</h3>
-              <p className="text-slate-400 leading-relaxed mb-4">{s.desc}</p>
+              <div className={`mb-5 inline-flex h-11 w-11 items-center justify-center rounded-xl ${bg}`}>
+                <Icon className={`h-5 w-5 ${color}`} />
+              </div>
+              <h3 className={`text-lg font-bold text-ainomiq-text mb-3 group-hover:${color} transition-colors`}>
+                {label}
+              </h3>
+              <p className="text-sm text-ainomiq-text-muted leading-relaxed mb-5">{desc}</p>
               <div className="flex flex-wrap gap-2">
-                {s.examples.map((e) => (
-                  <span key={e} className="rounded-full bg-blue-500/10 border border-blue-500/20 px-3 py-1 text-xs font-medium text-blue-400">
-                    {e}
+                {tags.map((t) => (
+                  <span
+                    key={t}
+                    className="rounded-full border border-ainomiq-border bg-ainomiq-navy px-2.5 py-1 text-xs font-medium text-ainomiq-text-subtle"
+                  >
+                    {t}
                   </span>
                 ))}
               </div>
@@ -175,135 +215,146 @@ function WhatWeBuild() {
   );
 }
 
-// ─── Section: How It Works ───────────────────────────────────────────────────
+// ─── How It Works ─────────────────────────────────────────────────────────────
+
+const steps = [
+  {
+    Icon: MessageCircle,
+    num: "01",
+    title: "Fill in the brief",
+    body: "Tell us what you need. Takes 3 minutes. No calls required. You get an instant cost estimate on the spot.",
+  },
+  {
+    Icon: FileText,
+    num: "02",
+    title: "We review and scope",
+    body: "Within 24 hours our team reviews your request, refines the scope, and confirms the plan with you.",
+  },
+  {
+    Icon: Code,
+    num: "03",
+    title: "A dedicated builder starts",
+    body: "One specialist - not a committee. Weekly demos, constant progress, zero confusion.",
+  },
+  {
+    Icon: Rocket,
+    num: "04",
+    title: "We ship. You own it.",
+    body: "Full handover: all code, all credentials, all documentation. Plus 30 days of post-launch support.",
+  },
+];
 
 function HowItWorks() {
-  const steps = [
-    {
-      num: "01",
-      title: "You fill in the brief",
-      body: "Tell us what you need. Our form takes 3 minutes. No calls required. You get an instant estimate.",
-      color: "#3b82f6",
-    },
-    {
-      num: "02",
-      title: "We review and scope",
-      body: "Within 24 hours, our team reviews your request, refines the scope, and confirms the plan with you.",
-      color: "#6366f1",
-    },
-    {
-      num: "03",
-      title: "A dedicated builder starts",
-      body: "You're matched with one specialist. Not a team of 10. Weekly demos, constant progress, zero confusion.",
-      color: "#8b5cf6",
-    },
-    {
-      num: "04",
-      title: "We ship. You own it.",
-      body: "Full handover. All code, all credentials, all documentation. Plus 30 days of post-launch support.",
-      color: "#a855f7",
-    },
-  ];
-
   return (
-    <section className="py-24 px-6">
+    <section className="bg-ainomiq-navy-light border-y border-ainomiq-border py-24 px-6">
       <div className="mx-auto max-w-4xl">
-        <div className="text-center mb-16">
-          <p className="text-sm font-semibold uppercase tracking-widest text-blue-400 mb-3">The process</p>
-          <h2 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight">
+        <div className="text-center mb-14">
+          <p className="text-xs font-semibold uppercase tracking-widest text-ainomiq-blue mb-3">
+            The process
+          </p>
+          <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-ainomiq-text">
             From idea to live in weeks
           </h2>
         </div>
 
-        <div className="relative">
-          {/* Vertical line */}
-          <div className="absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-blue-500 via-violet-500 to-purple-500 opacity-30 hidden md:block" />
-
-          <div className="space-y-8">
-            {steps.map((s) => (
-              <div key={s.num} className="flex gap-8 items-start">
-                <div
-                  className="flex-shrink-0 w-16 h-16 rounded-2xl flex items-center justify-center text-2xl font-black text-white z-10"
-                  style={{ background: `linear-gradient(135deg, ${s.color}33, ${s.color}11)`, border: `1px solid ${s.color}44` }}
-                >
-                  <span style={{ color: s.color }}>{s.num}</span>
+        <div className="space-y-4">
+          {steps.map(({ Icon, num, title, body }, i) => (
+            <div
+              key={num}
+              className="flex items-start gap-6 rounded-2xl border border-ainomiq-border bg-ainomiq-navy p-7"
+            >
+              <div className="flex-shrink-0 flex flex-col items-center gap-3">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-ainomiq-blue-glow border border-ainomiq-blue/20">
+                  <Icon className="h-5 w-5 text-ainomiq-blue" />
                 </div>
-                <div className="pt-3">
-                  <h3 className="text-xl font-bold text-white mb-2">{s.title}</h3>
-                  <p className="text-slate-400 leading-relaxed">{s.body}</p>
-                </div>
+                {i < steps.length - 1 && (
+                  <div className="w-px flex-1 min-h-4 bg-ainomiq-border" />
+                )}
               </div>
-            ))}
-          </div>
+              <div className="pt-2">
+                <div className="text-xs font-bold text-ainomiq-blue mb-1 uppercase tracking-widest">{num}</div>
+                <h3 className="text-lg font-bold text-ainomiq-text mb-2">{title}</h3>
+                <p className="text-sm text-ainomiq-text-muted leading-relaxed">{body}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
   );
 }
 
-// ─── Section: Social Proof ───────────────────────────────────────────────────
+// ─── Social Proof ─────────────────────────────────────────────────────────────
+
+const stats = [
+  { value: "< 48h", label: "First response time" },
+  { value: "2-6 wks", label: "Typical delivery" },
+  { value: "30 days", label: "Post-launch support" },
+  { value: "100%", label: "Code ownership" },
+];
+
+const quotes = [
+  {
+    text: "We had a fully working customer support bot within 3 weeks. It handles 80% of our tickets automatically now.",
+    name: "E-commerce founder",
+    detail: "Apparel brand, Netherlands",
+  },
+  {
+    text: "The dashboard they built replaced 4 different tools we were paying for. It pays for itself every month.",
+    name: "Operations manager",
+    detail: "Logistics company, Belgium",
+  },
+  {
+    text: "I expected it to take months. It was live in 5 weeks and exactly what we asked for.",
+    name: "Marketing director",
+    detail: "SaaS startup, Germany",
+  },
+];
 
 function SocialProof() {
-  const stats = [
-    { value: "< 48h", label: "Average time to first response" },
-    { value: "2-6 wks", label: "Typical delivery time" },
-    { value: "30 days", label: "Post-launch support included" },
-    { value: "100%", label: "Ownership - all code is yours" },
-  ];
-
-  const quotes = [
-    {
-      text: "We had a fully working customer support bot within 3 weeks. It handles 80% of our tickets automatically now.",
-      name: "E-commerce founder",
-      detail: "Apparel brand, Netherlands",
-    },
-    {
-      text: "The dashboard they built replaced 4 different tools we were paying for. It pays for itself every month.",
-      name: "Operations manager",
-      detail: "Logistics company, Belgium",
-    },
-    {
-      text: "I expected it to take months. It was live in 5 weeks and exactly what we asked for.",
-      name: "Marketing director",
-      detail: "SaaS startup, Germany",
-    },
-  ];
-
   return (
-    <section className="py-24 px-6" style={{ background: "rgba(59,130,246,0.03)" }}>
+    <section className="bg-ainomiq-navy py-24 px-6">
       <div className="mx-auto max-w-5xl">
         {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-20">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-20">
           {stats.map((s) => (
-            <div key={s.label} className="text-center rounded-2xl border border-slate-800 bg-slate-900/60 p-6">
-              <div className="text-3xl font-black text-blue-400 mb-2">{s.value}</div>
-              <div className="text-sm text-slate-500">{s.label}</div>
+            <div
+              key={s.label}
+              className="rounded-2xl border border-ainomiq-border bg-ainomiq-navy-light p-6 text-center"
+            >
+              <div className="text-3xl font-extrabold text-ainomiq-blue mb-2">{s.value}</div>
+              <div className="text-xs text-ainomiq-text-subtle">{s.label}</div>
             </div>
           ))}
         </div>
 
         {/* Testimonials */}
         <div className="text-center mb-12">
-          <p className="text-sm font-semibold uppercase tracking-widest text-blue-400 mb-3">What clients say</p>
-          <h2 className="text-3xl md:text-4xl font-extrabold text-white tracking-tight">
+          <p className="text-xs font-semibold uppercase tracking-widest text-ainomiq-blue mb-3">
+            What clients say
+          </p>
+          <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-ainomiq-text">
             Real results. Real businesses.
           </h2>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-3 gap-5">
           {quotes.map((q) => (
-            <div key={q.name} className="rounded-2xl border border-slate-800 bg-slate-900/60 p-7">
-              <div className="flex gap-1 mb-4">
+            <div
+              key={q.name}
+              className="rounded-2xl border border-ainomiq-border bg-ainomiq-navy-light p-7"
+            >
+              <div className="flex gap-0.5 mb-4">
                 {Array.from({ length: 5 }).map((_, i) => (
-                  <svg key={i} className="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
+                  <Star key={i} className="h-4 w-4 fill-amber-400 text-amber-400" />
                 ))}
               </div>
-              <p className="text-slate-300 leading-relaxed mb-5 italic">&ldquo;{q.text}&rdquo;</p>
+              <p className="text-sm text-ainomiq-text-muted leading-relaxed mb-5 italic">
+                &ldquo;{q.text}&rdquo;
+              </p>
               <div>
-                <div className="text-sm font-semibold text-white">{q.name}</div>
-                <div className="text-xs text-slate-500">{q.detail}</div>
+                <div className="text-sm font-semibold text-ainomiq-text">{q.name}</div>
+                <div className="text-xs text-ainomiq-text-subtle mt-0.5">{q.detail}</div>
               </div>
             </div>
           ))}
@@ -313,67 +364,85 @@ function SocialProof() {
   );
 }
 
-// ─── Section: Pre-CTA (objection handling) ───────────────────────────────────
+// ─── Objections ───────────────────────────────────────────────────────────────
+
+const objections = [
+  {
+    q: "Is this just a template?",
+    a: "No. Every project is custom-built from scratch. We scope it, architect it, and ship it specifically for you.",
+  },
+  {
+    q: "What if I don't know exactly what I need?",
+    a: "That's fine. Tell us the problem. We'll figure out the solution. Our intake form helps clarify scope automatically.",
+  },
+  {
+    q: "What happens after it's built?",
+    a: "You own everything - code, credentials, documentation. Plus 30 days of support for any issues post-launch.",
+  },
+  {
+    q: "How much does it cost?",
+    a: "Fill in the form and get an instant estimate. Most projects land between EUR 1,500 and EUR 15,000 depending on scope.",
+  },
+  {
+    q: "How long does it take?",
+    a: "Most projects ship in 2 to 6 weeks. Rush delivery is available for time-sensitive builds.",
+  },
+  {
+    q: "What if I want changes after?",
+    a: "We offer ongoing support packages. Or take the code to any developer. No lock-in, ever.",
+  },
+];
 
 function Objections({ onCTA }: { onCTA: () => void }) {
-  const objections = [
-    {
-      q: "Is this just a template?",
-      a: "No. Every project is custom-built from scratch. We scope it, architect it, and ship it specifically for you.",
-    },
-    {
-      q: "What if I don't know exactly what I need?",
-      a: "That's fine. Tell us the problem. We'll figure out the solution. Our AI-assisted intake form helps clarify scope automatically.",
-    },
-    {
-      q: "What happens after it's built?",
-      a: "You own everything. Code, credentials, documentation. Plus 30 days of support for any issues post-launch.",
-    },
-    {
-      q: "How much does it cost?",
-      a: "Fill in the form and get an instant estimate. Prices vary by scope - but most projects land between €1,500 and €15,000.",
-    },
-    {
-      q: "How long does it take?",
-      a: "Most projects ship in 2-6 weeks. Rush delivery is available for time-sensitive builds.",
-    },
-    {
-      q: "What if I want changes after?",
-      a: "We offer ongoing support packages. Or you can take the code and work with any developer. No lock-in.",
-    },
-  ];
-
   return (
-    <section className="py-24 px-6">
+    <section className="bg-ainomiq-navy-light border-y border-ainomiq-border py-24 px-6">
       <div className="mx-auto max-w-4xl">
-        <div className="text-center mb-16">
-          <p className="text-sm font-semibold uppercase tracking-widest text-blue-400 mb-3">Before you ask</p>
-          <h2 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight">
-            Questions we always get
+        <div className="text-center mb-14">
+          <p className="text-xs font-semibold uppercase tracking-widest text-ainomiq-blue mb-3">
+            Before you ask
+          </p>
+          <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-ainomiq-text">
+            Common questions
           </h2>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6 mb-16">
+        <div className="grid md:grid-cols-2 gap-4 mb-16">
           {objections.map((o) => (
-            <div key={o.q} className="rounded-2xl border border-slate-800 bg-slate-900/40 p-6">
-              <h3 className="font-bold text-white mb-2">{o.q}</h3>
-              <p className="text-slate-400 leading-relaxed text-sm">{o.a}</p>
+            <div
+              key={o.q}
+              className="rounded-2xl border border-ainomiq-border bg-ainomiq-navy p-6"
+            >
+              <div className="flex items-start gap-3 mb-2">
+                <Check className="h-4 w-4 text-ainomiq-blue mt-0.5 flex-shrink-0" />
+                <h3 className="text-sm font-bold text-ainomiq-text">{o.q}</h3>
+              </div>
+              <p className="text-sm text-ainomiq-text-muted leading-relaxed pl-7">{o.a}</p>
             </div>
           ))}
         </div>
 
-        {/* Final push before CTA */}
-        <div className="rounded-2xl border border-blue-500/30 bg-gradient-to-br from-blue-500/10 to-violet-500/10 p-10 text-center">
-          <h3 className="text-2xl font-extrabold text-white mb-3">Still on the fence?</h3>
-          <p className="text-slate-400 mb-6 max-w-lg mx-auto">
-            Fill in the form. It takes 3 minutes. You get an instant price estimate - completely free.
-            No calls, no pressure. Just a clear proposal in your inbox within 24 hours.
+        {/* Pre-CTA nudge */}
+        <div
+          className="rounded-2xl border border-ainomiq-blue/30 p-10 text-center"
+          style={{
+            background:
+              "radial-gradient(ellipse 80% 60% at 50% 0%, rgba(59,130,246,0.08), transparent)",
+          }}
+        >
+          <ShieldCheck className="h-8 w-8 text-ainomiq-blue mx-auto mb-4" />
+          <h3 className="text-2xl font-extrabold text-ainomiq-text mb-3">
+            Still not sure? Just fill in the form.
+          </h3>
+          <p className="text-ainomiq-text-muted mb-6 max-w-md mx-auto">
+            3 minutes. Instant price estimate. No calls, no pressure. A clear proposal in
+            your inbox within 24 hours.
           </p>
           <button
             onClick={onCTA}
-            className="rounded-xl bg-gradient-to-r from-blue-500 to-violet-600 px-8 py-4 text-base font-bold text-white shadow-lg shadow-blue-500/25 hover:opacity-90 transition-all"
+            className="group inline-flex items-center gap-2 rounded-xl bg-ainomiq-blue px-7 py-3.5 text-base font-bold text-white shadow-lg shadow-ainomiq-blue/25 hover:bg-ainomiq-blue/90 transition-all"
           >
-            Get my free estimate →
+            Get my free estimate
+            <ChevronRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
           </button>
         </div>
       </div>
@@ -381,23 +450,20 @@ function Objections({ onCTA }: { onCTA: () => void }) {
   );
 }
 
-// ─── Section: CTA Form ───────────────────────────────────────────────────────
+// ─── Form Section ─────────────────────────────────────────────────────────────
 
 function FormSection({ formRef }: { formRef: React.RefObject<HTMLDivElement | null> }) {
   return (
-    <section
-      ref={formRef}
-      id="get-started"
-      className="py-24 px-6"
-      style={{ background: "linear-gradient(180deg, transparent 0%, rgba(59,130,246,0.05) 50%, transparent 100%)" }}
-    >
+    <section ref={formRef} id="get-started" className="bg-ainomiq-navy py-24 px-6">
       <div className="mx-auto max-w-3xl text-center mb-12">
-        <p className="text-sm font-semibold uppercase tracking-widest text-blue-400 mb-3">Get started</p>
-        <h2 className="text-4xl md:text-5xl font-extrabold text-white tracking-tight mb-4">
+        <p className="text-xs font-semibold uppercase tracking-widest text-ainomiq-blue mb-3">
+          Get started
+        </p>
+        <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-ainomiq-text mb-4">
           Tell us what you need
         </h2>
-        <p className="text-xl text-slate-400">
-          3 minutes. Instant estimate. No commitment required.
+        <p className="text-lg text-ainomiq-text-muted">
+          3 minutes. Instant estimate. No commitment.
         </p>
       </div>
       <ProjectRequestForm />
@@ -405,17 +471,16 @@ function FormSection({ formRef }: { formRef: React.RefObject<HTMLDivElement | nu
   );
 }
 
-// ─── Main Component ───────────────────────────────────────────────────────────
+// ─── Main ─────────────────────────────────────────────────────────────────────
 
 export function SolutionsFunnel() {
   const formRef = useRef<HTMLDivElement>(null);
-
   function scrollToForm() {
     formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 
   return (
-    <div className="min-h-screen bg-ainomiq-navy">
+    <div className="bg-ainomiq-navy">
       <Hero onCTA={scrollToForm} />
       <PainPoints />
       <WhatWeBuild />
