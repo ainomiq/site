@@ -252,9 +252,9 @@ export default function HomePage() {
           <div className="grid grid-cols-1 gap-4">
             {[
               { title: "No legacy software", body: "Built from scratch for AI-first operations. No retrofitting, no workarounds." },
-              { title: "One platform, everything", body: "CS, email, ads, inventory, analytics — one login, one dashboard, full control." },
-              { title: "Truly autonomous", body: "Not just suggestions. Ainomiq acts: responds to customers, scales budgets, sends campaigns." },
-              { title: "E-commerce native", body: "Every feature is built around Shopify, Meta, and Klaviyo — the tools you already use." },
+              { title: "One platform, everything", body: "Automation, analytics, and AI agents — one login, one dashboard, full control across your entire operation." },
+              { title: "Truly autonomous", body: "Not just suggestions. Ainomiq acts: executes tasks, makes decisions, and delivers results — 24/7." },
+              { title: "Fits your stack", body: "We integrate with the tools you already use — from CRMs and ERPs to e-commerce platforms and marketing tools." },
             ].map((item) => (
               <div key={item.title} className="flex gap-4 p-5 rounded-xl border border-ainomiq-border bg-ainomiq-surface">
                 <div className="mt-0.5 h-2 w-2 rounded-full bg-ainomiq-blue shrink-0" />
