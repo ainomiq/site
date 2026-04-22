@@ -606,10 +606,8 @@ function FormSection({ formRef }: { formRef: React.RefObject<HTMLDivElement | nu
           3 minutes. Instant estimate. No commitment.
         </p>
       </div>
-      <div className="mx-auto max-w-3xl rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl shadow-2xl shadow-black/20 ring-1 ring-white/5 p-1">
-        <div className="rounded-[20px] overflow-hidden">
-          <ProjectRequestForm />
-        </div>
+      <div className="mx-auto max-w-3xl rounded-3xl border border-white/15 bg-white/10 backdrop-blur-2xl shadow-2xl shadow-black/30 ring-1 ring-white/10 overflow-hidden">
+        <ProjectRequestForm />
       </div>
     </section>
   );
