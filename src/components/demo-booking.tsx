@@ -139,11 +139,11 @@ export function DemoBooking() {
   }
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
       {/* Left: Calendar + time slots */}
-      <div className="space-y-5">
+      <div className="flex flex-col gap-5">
         {/* Calendar */}
-        <div className="rounded-2xl border border-ainomiq-border bg-ainomiq-navy p-6">
+        <div className="rounded-2xl border border-ainomiq-border bg-ainomiq-navy p-6 flex-1">
           {/* Month nav */}
           <div className="flex items-center justify-between mb-5">
             <button
@@ -206,7 +206,7 @@ export function DemoBooking() {
 
         {/* Time slots */}
         {selectedDate && (
-          <div className="rounded-2xl border border-ainomiq-border bg-ainomiq-navy p-6">
+          <div className="rounded-2xl border border-ainomiq-border bg-ainomiq-navy p-6 flex-1">
             <div className="flex items-center gap-2 mb-4">
               <Calendar className="h-4 w-4 text-ainomiq-blue" />
               <span className="text-sm font-semibold text-ainomiq-text">Available times</span>
@@ -239,11 +239,11 @@ export function DemoBooking() {
       </div>
 
       {/* Right: Contact form */}
-      <div className="rounded-2xl border border-ainomiq-border bg-ainomiq-navy p-6">
+      <div className="rounded-2xl border border-ainomiq-border bg-ainomiq-navy p-6 flex flex-col">
         <h3 className="text-lg font-bold text-ainomiq-text mb-1">Your details</h3>
         <p className="text-sm text-ainomiq-text-muted mb-5">Fill in your info to confirm the demo</p>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4 flex-1 flex flex-col">
           <div className="grid grid-cols-2 gap-4">
             <div>
               <label className="mb-1.5 block text-xs font-medium text-ainomiq-text-muted">First name *</label>
