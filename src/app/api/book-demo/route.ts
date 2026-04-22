@@ -43,7 +43,7 @@ async function createCalendarEvent(
         start: { dateTime: event.startDateTime, timeZone: "Europe/Amsterdam" },
         end: { dateTime: event.endDateTime, timeZone: "Europe/Amsterdam" },
         attendees: [
-          { email: calendarId, displayName: "Ainomiq" },
+          { email: "info@ainomiq.com", displayName: "Ainomiq", organizer: true },
           { email: event.attendeeEmail, displayName: event.attendeeName },
         ],
         conferenceData: {
@@ -93,10 +93,11 @@ async function sendConfirmationEmail(params: {
     body: JSON.stringify({
       from: "Ainomiq <info@ainomiq.com>",
       to: params.to,
+      cc: "info@ainomiq.com",
       subject: `Your Ainomiq demo - ${dateFormatted} at ${params.time}`,
       html: `
         <div style="font-family: -apple-system, sans-serif; max-width: 560px; margin: 0 auto; padding: 40px 20px; color: #1a1a2e;">
-          <img src="https://ainomiq.com/logo.png" alt="Ainomiq" style="height: 32px; margin-bottom: 32px;" />
+          <img src="https://ainomiq.com/logos/ainomiq-wordmark.png" alt="Ainomiq" style="height: 28px; margin-bottom: 32px;" />
           <h2 style="font-size: 22px; font-weight: 700; margin-bottom: 8px;">Your demo is confirmed</h2>
           <p style="color: #6b7280; margin-bottom: 24px;">Hi ${params.name}, we're looking forward to speaking with you.</p>
           
