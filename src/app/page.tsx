@@ -176,7 +176,7 @@ export default function HomePage() {
       </section>
 
       {/* Globe - Social Proof */}
-      <section className="py-24 px-6 overflow-hidden bg-ainomiq-navy-light">
+      <section className="py-24 px-6 overflow-hidden bg-ainomiq-navy">
         <div className="mx-auto max-w-6xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -223,7 +223,7 @@ export default function HomePage() {
               </div>
             </div>
             <div className="flex items-center justify-center">
-              <WireframeGlobe width={500} height={500} bgColor="#f8fafc" />
+              <WireframeGlobe width={500} height={500} bgColor="#ffffff" />
             </div>
           </div>
         </div>
