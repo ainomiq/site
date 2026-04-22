@@ -14,18 +14,26 @@ function MobileDashboard() {
 
   return (
     <div className="p-4 pt-12 space-y-3 text-white">
-      {/* Location icon bar */}
-      <div className="flex items-center gap-1 overflow-x-auto pb-1 scrollbar-none -mx-1 px-1" style={{ scrollbarWidth: 'none' }}>
-        {['AMS-C','AMS-Z','ROT','UTR','DH','EHV','GRN','HLM','TLB','BRD'].map((loc, i) => (
-          <div
-            key={loc}
-            className="flex-shrink-0 flex items-center gap-1 rounded-full px-2 py-1"
-            style={{ background: `${locationColors[i]}22`, border: `1px solid ${locationColors[i]}55` }}
-          >
-            <div className="w-1.5 h-1.5 rounded-full" style={{ background: locationColors[i] }} />
-            <span className="text-[7px] font-bold" style={{ color: locationColors[i] }}>{loc}</span>
-          </div>
-        ))}
+      {/* Location icon bar — sticky, own horizontal scroll */}
+      <div
+        className="sticky top-0 z-10 -mx-4 px-4 py-2"
+        style={{ background: '#0f1923' }}
+      >
+        <div
+          className="flex items-center gap-1.5"
+          style={{ overflowX: 'auto', scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}
+        >
+          {['AMS-C','AMS-Z','ROT','UTR','DH','EHV','GRN','HLM','TLB','BRD'].map((loc, i) => (
+            <div
+              key={loc}
+              className="flex-shrink-0 flex items-center gap-1 rounded-full px-2 py-0.5"
+              style={{ background: `${locationColors[i]}22`, border: `1px solid ${locationColors[i]}55` }}
+            >
+              <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: locationColors[i] }} />
+              <span className="text-[7px] font-bold" style={{ color: locationColors[i] }}>{loc}</span>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* Header */}
