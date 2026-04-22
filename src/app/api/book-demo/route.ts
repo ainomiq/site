@@ -120,6 +120,7 @@ async function sendInternalEmail(params: {
   email: string;
   phone?: string;
   company: string;
+  website?: string;
   question?: string;
   meetLink?: string;
 }) {
@@ -152,6 +153,7 @@ async function sendInternalEmail(params: {
             <tr><td style="padding: 8px 0; color: #6b7280;">Company</td><td style="padding: 8px 0; font-weight: 600;">${params.company}</td></tr>
             <tr><td style="padding: 8px 0; color: #6b7280;">Email</td><td style="padding: 8px 0;"><a href="mailto:${params.email}" style="color: #3b82f6;">${params.email}</a></td></tr>
             ${params.phone ? `<tr><td style="padding: 8px 0; color: #6b7280;">Phone</td><td style="padding: 8px 0;">${params.phone}</td></tr>` : ""}
+            ${params.website ? `<tr><td style="padding: 8px 0; color: #6b7280;">Website</td><td style="padding: 8px 0;"><a href="${params.website}" style="color: #3b82f6;">${params.website}</a></td></tr>` : ""}
           </table>
 
           ${params.question ? `
@@ -177,7 +179,7 @@ async function sendInternalEmail(params: {
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { date, time, firstName, lastName, email, phone, company, question } = body;
+    const { date, time, firstName, lastName, email, phone, company, website, question } = body;
 
     if (!date || !time || !firstName || !lastName || !email || !company) {
       return NextResponse.json({ error: "Required fields missing." }, { status: 400 });
@@ -197,6 +199,7 @@ export async function POST(req: NextRequest) {
       `Name: ${firstName} ${lastName}`,
       `Email: ${email}`,
       `Company: ${company}`,
+      website ? `Website: ${website}` : null,
       phone ? `Phone: ${phone}` : null,
       question ? `\nQuestions:\n${question}` : null,
     ]
@@ -249,6 +252,7 @@ export async function POST(req: NextRequest) {
       email,
       phone,
       company,
+      website,
       question,
       meetLink,
     });

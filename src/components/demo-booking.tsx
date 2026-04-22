@@ -59,6 +59,7 @@ export function DemoBooking() {
     email: "",
     phone: "",
     company: "",
+    website: "",
     question: "",
   });
 
@@ -318,6 +319,17 @@ export function DemoBooking() {
               onChange={e => setForm(f => ({ ...f, company: e.target.value }))}
               placeholder="Company name"
               required
+              className="bg-ainomiq-navy-light border-ainomiq-border text-ainomiq-text placeholder:text-ainomiq-text-subtle focus-visible:ring-ainomiq-blue"
+            />
+          </div>
+
+          <div>
+            <label className="mb-1.5 block text-xs font-medium text-ainomiq-text-muted">Website (optional)</label>
+            <Input
+              type="url"
+              value={form.website}
+              onChange={e => setForm(f => ({ ...f, website: e.target.value }))}
+              placeholder="https://yourstore.com"
               className="bg-ainomiq-navy-light border-ainomiq-border text-ainomiq-text placeholder:text-ainomiq-text-subtle focus-visible:ring-ainomiq-blue"
             />
           </div>
