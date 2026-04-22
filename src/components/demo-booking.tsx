@@ -326,7 +326,7 @@ export function DemoBooking() {
           <div>
             <label className="mb-1.5 block text-xs font-medium text-ainomiq-text-muted">Website (optional)</label>
             <Input
-              type="url"
+              type="text"
               value={form.website}
               onChange={e => setForm(f => ({ ...f, website: e.target.value }))}
               placeholder="https://yourstore.com"
