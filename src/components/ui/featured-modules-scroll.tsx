@@ -329,13 +329,6 @@ export function FeaturedModulesScroll() {
   return (
     <section className="py-20 md:py-32 px-4 md:px-6 bg-ainomiq-navy overflow-hidden">
       <div className="max-w-6xl mx-auto">
-        {/* Header — static section title */}
-        <div className="text-center mb-10 md:mb-16">
-          <h2 className="text-2xl md:text-5xl font-extrabold text-ainomiq-text tracking-tight">
-            See the automation in action.
-          </h2>
-        </div>
-
         {/* Dynamic module header — label + title + explanation */}
         <AnimatePresence mode="wait">
           <motion.div
