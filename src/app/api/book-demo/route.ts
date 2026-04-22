@@ -67,7 +67,7 @@ async function createCalendarEvent(
   return data;
 }
 
-async function sendConfirmationEmail(params: {
+async function sendClientEmail(params: {
   to: string;
   name: string;
   date: string;
@@ -75,32 +75,24 @@ async function sendConfirmationEmail(params: {
   meetLink?: string;
 }) {
   const apiKey = process.env.RESEND_API_KEY;
-  if (!apiKey) return; // Skip if not configured
+  if (!apiKey) return;
 
   const dateFormatted = new Date(params.date).toLocaleDateString("en-GB", {
-    weekday: "long",
-    day: "numeric",
-    month: "long",
-    year: "numeric",
+    weekday: "long", day: "numeric", month: "long", year: "numeric",
   });
 
   await fetch("https://api.resend.com/emails", {
     method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-    },
+    headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
     body: JSON.stringify({
       from: "Ainomiq <info@ainomiq.com>",
       to: params.to,
-      cc: "info@ainomiq.com",
       subject: `Your Ainomiq demo - ${dateFormatted} at ${params.time}`,
       html: `
         <div style="font-family: -apple-system, sans-serif; max-width: 560px; margin: 0 auto; padding: 40px 20px; color: #1a1a2e;">
           <img src="https://ainomiq.com/logos/ainomiq-wordmark.png" alt="Ainomiq" style="height: 28px; margin-bottom: 32px;" />
           <h2 style="font-size: 22px; font-weight: 700; margin-bottom: 8px;">Your demo is confirmed</h2>
           <p style="color: #6b7280; margin-bottom: 24px;">Hi ${params.name}, we're looking forward to speaking with you.</p>
-          
           <div style="background: #f0f5ff; border-radius: 12px; padding: 20px; margin-bottom: 24px;">
             <p style="margin: 0; font-weight: 600; font-size: 16px;">${dateFormatted}</p>
             <p style="margin: 4px 0 0; color: #4b5563;">${params.time} (Amsterdam time)</p>
@@ -111,11 +103,71 @@ async function sendConfirmationEmail(params: {
               <p style="margin: 8px 0 0; font-size: 11px; color: #9ca3af;">${params.meetLink}</p>
             </div>` : ""}
           </div>
-          
           <p style="color: #6b7280; font-size: 14px;">A Google Calendar invite has been sent to your email. If you need to reschedule, reply to this email.</p>
-          
           <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 32px 0;" />
           <p style="color: #9ca3af; font-size: 12px;">Ainomiq - AI Customer Support for E-commerce</p>
+        </div>
+      `,
+    }),
+  });
+}
+
+async function sendInternalEmail(params: {
+  date: string;
+  time: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phone?: string;
+  company: string;
+  question?: string;
+  meetLink?: string;
+}) {
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) return;
+
+  const dateFormatted = new Date(params.date).toLocaleDateString("en-GB", {
+    weekday: "long", day: "numeric", month: "long", year: "numeric",
+  });
+
+  await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
+    body: JSON.stringify({
+      from: "Ainomiq Bookings <info@ainomiq.com>",
+      to: "info@ainomiq.com",
+      subject: `New demo booked - ${params.company} - ${dateFormatted} at ${params.time}`,
+      html: `
+        <div style="font-family: -apple-system, sans-serif; max-width: 560px; margin: 0 auto; padding: 40px 20px; color: #1a1a2e;">
+          <img src="https://ainomiq.com/logos/ainomiq-wordmark.png" alt="Ainomiq" style="height: 28px; margin-bottom: 32px;" />
+          <div style="background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 10px; padding: 12px 16px; margin-bottom: 24px; font-size: 13px; color: #166534; font-weight: 600;">
+            New appointment booked
+          </div>
+          <h2 style="font-size: 20px; font-weight: 700; margin-bottom: 20px;">Demo with ${params.firstName} ${params.lastName}</h2>
+
+          <table style="width: 100%; border-collapse: collapse; font-size: 14px; margin-bottom: 24px;">
+            <tr><td style="padding: 8px 0; color: #6b7280; width: 120px;">Date</td><td style="padding: 8px 0; font-weight: 600;">${dateFormatted}</td></tr>
+            <tr><td style="padding: 8px 0; color: #6b7280;">Time</td><td style="padding: 8px 0; font-weight: 600;">${params.time} (Amsterdam)</td></tr>
+            <tr><td style="padding: 8px 0; color: #6b7280;">Name</td><td style="padding: 8px 0;">${params.firstName} ${params.lastName}</td></tr>
+            <tr><td style="padding: 8px 0; color: #6b7280;">Company</td><td style="padding: 8px 0; font-weight: 600;">${params.company}</td></tr>
+            <tr><td style="padding: 8px 0; color: #6b7280;">Email</td><td style="padding: 8px 0;"><a href="mailto:${params.email}" style="color: #3b82f6;">${params.email}</a></td></tr>
+            ${params.phone ? `<tr><td style="padding: 8px 0; color: #6b7280;">Phone</td><td style="padding: 8px 0;">${params.phone}</td></tr>` : ""}
+          </table>
+
+          ${params.question ? `
+          <div style="background: #f9fafb; border-radius: 8px; padding: 14px 16px; margin-bottom: 24px;">
+            <p style="margin: 0 0 6px; font-size: 12px; color: #6b7280; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;">Their question</p>
+            <p style="margin: 0; font-size: 14px; color: #1a1a2e;">${params.question}</p>
+          </div>` : ""}
+
+          ${params.meetLink ? `
+          <div style="margin-bottom: 24px;">
+            <a href="${params.meetLink}" style="display: inline-block; background: #3b82f6; color: white; font-weight: 600; font-size: 14px; padding: 12px 24px; border-radius: 8px; text-decoration: none;">Join Google Meet →</a>
+            <p style="margin: 8px 0 0; font-size: 11px; color: #9ca3af;">${params.meetLink}</p>
+          </div>` : ""}
+
+          <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 24px 0;" />
+          <p style="color: #9ca3af; font-size: 12px;">Ainomiq booking system - check Google Calendar for the full invite</p>
         </div>
       `,
     }),
@@ -179,12 +231,25 @@ export async function POST(req: NextRequest) {
       }
     }
 
-    // Send confirmation email via Resend
-    await sendConfirmationEmail({
+    // Send confirmation email to client
+    await sendClientEmail({
       to: email,
       name: firstName,
       date,
       time,
+      meetLink,
+    });
+
+    // Send internal notification to Ainomiq
+    await sendInternalEmail({
+      date,
+      time,
+      firstName,
+      lastName,
+      email,
+      phone,
+      company,
+      question,
       meetLink,
     });
 
