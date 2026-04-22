@@ -62,7 +62,7 @@ const paymentIcons = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-ainomiq-border bg-ainomiq-navy">
+    <footer className="border-t border-ainomiq-border bg-ainomiq-navy-light">
       <div className="mx-auto max-w-6xl px-6">
 
         {/* Main grid */}
