@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/section";
 import { ContactForm } from "@/components/contact-form";
+import { DemoBooking } from "@/components/demo-booking";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -29,29 +30,42 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Form */}
+      {/* Demo Booking */}
       <Section className="bg-ainomiq-navy-light">
+        <div className="max-w-5xl mx-auto">
+          <div className="mb-10">
+            <div className="mb-3 inline-flex items-center rounded-full bg-ainomiq-blue-glow px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">
+              Book a demo
+            </div>
+            <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-3">
+              Schedule a 30-minute demo
+            </h2>
+            <p className="text-ainomiq-text-muted max-w-xl">
+              Pick a time that works for you. You&apos;ll receive a Google Calendar invite with a Meet link right after booking.
+            </p>
+          </div>
+          <DemoBooking />
+        </div>
+      </Section>
+
+      {/* Contact Form */}
+      <Section>
         <div className="max-w-2xl mx-auto">
+          <div className="mb-8 text-center">
+            <h2 className="text-2xl font-bold text-ainomiq-text mb-2">Or just send a message</h2>
+            <p className="text-ainomiq-text-muted">We respond within 24 hours.</p>
+          </div>
           <ContactForm />
         </div>
       </Section>
 
       {/* CTA */}
-      <section className="py-32 px-6 text-center">
+      <section className="py-20 px-6 text-center">
         <div className="mx-auto max-w-2xl">
-          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-6">
-            We respond within 24 hours
-          </h2>
-          <p className="text-lg text-ainomiq-text-muted mb-10 max-w-lg mx-auto">
-            Fill in the form above or email us directly. No sales scripts, just a real conversation.
+          <p className="text-ainomiq-text-muted mb-6">
+            Prefer email? Reach us directly at{" "}
+            <a href="mailto:info@ainomiq.com" className="text-ainomiq-blue font-semibold hover:underline">info@ainomiq.com</a>
           </p>
-          <Button
-            asChild
-            size="lg"
-            className="rounded-full bg-ainomiq-blue hover:bg-ainomiq-blue-hover text-white px-10 h-12"
-          >
-            <a href="mailto:info@ainomiq.com">Email us directly</a>
-          </Button>
         </div>
       </section>
     </>
