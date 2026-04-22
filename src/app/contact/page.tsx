@@ -41,7 +41,7 @@ export default function ContactPage() {
               Schedule a 30-minute demo
             </h2>
             <p className="text-ainomiq-text-muted max-w-xl">
-              Pick a time that works for you. You&apos;ll receive a Google Calendar invite with a Meet link right after booking.
+              We are here for you, 7 days a week, 12 hours a day. Pick a time that works for you. You&apos;ll receive a Google Calendar invite with a Meet link right after booking.
             </p>
           </div>
           <DemoBooking />
