@@ -240,6 +240,22 @@ export function GetStartedWizard() {
   const handleFallbackSubmit = useCallback((answers: ManualAnswers) => {
     setManual(answers);
     setStep("results");
+    // Fire Klaviyo "Project Form Submitted" event for nurture flow
+    if (answers.email) {
+      void fetch("/api/klaviyo-track", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          eventName: "Project Form Submitted",
+          email: answers.email,
+          properties: {
+            source: "fallback_form",
+            business_type: answers.businessType ?? "",
+            company: answers.company ?? "",
+          },
+        }),
+      });
+    }
   }, []);
 
   const handleReset = useCallback(() => {

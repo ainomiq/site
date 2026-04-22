@@ -43,6 +43,8 @@ export function FallbackForm({ onSubmit, onReset }: FallbackFormProps) {
   const [teamSize, setTeamSize] = useState("");
   const [description, setDescription] = useState("");
   const [tools, setTools] = useState<string[]>([]);
+  const [email, setEmail] = useState("");
+  const [company, setCompany] = useState("");
 
   const toggleTool = (tool: string) => {
     setTools((prev) =>
@@ -64,6 +66,8 @@ export function FallbackForm({ onSubmit, onReset }: FallbackFormProps) {
       teamSize: businessType === "service" ? teamSize : undefined,
       description: businessType === "service" ? description : undefined,
       tools,
+      email: email || undefined,
+      company: company || undefined,
     });
   };
 
@@ -265,6 +269,25 @@ export function FallbackForm({ onSubmit, onReset }: FallbackFormProps) {
               />
             </div>
           </>
+        )}
+
+        {businessType && (
+          <div className="space-y-3">
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Your email address"
+              className="w-full rounded-xl border border-ainomiq-border bg-ainomiq-navy px-4 py-3 text-sm text-ainomiq-text placeholder:text-ainomiq-text-subtle focus:outline-none focus:border-ainomiq-blue transition-colors"
+            />
+            <input
+              type="text"
+              value={company}
+              onChange={(e) => setCompany(e.target.value)}
+              placeholder="Company name (optional)"
+              className="w-full rounded-xl border border-ainomiq-border bg-ainomiq-navy px-4 py-3 text-sm text-ainomiq-text placeholder:text-ainomiq-text-subtle focus:outline-none focus:border-ainomiq-blue transition-colors"
+            />
+          </div>
         )}
 
         {businessType && (

@@ -48,4 +48,6 @@ export interface ManualAnswers {
   teamSize?: string;
   description?: string;
   tools: string[];
+  email?: string;
+  company?: string;
 }
