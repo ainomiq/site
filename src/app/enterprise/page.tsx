@@ -115,8 +115,8 @@ const moreSolutions = [
 const enterpriseFeatures = [
   {
     icon: Lock,
-    title: "Security & Compliance",
-    subtitle: "GDPR-compliant, ISO 27001, EU-hosted",
+    title: "Privacy First",
+    subtitle: "GDPR-ready, data stays in your control",
   },
   {
     icon: Code,
@@ -130,8 +130,8 @@ const enterpriseFeatures = [
   },
   {
     icon: BadgeCheck,
-    title: "SLA Guarantee",
-    subtitle: "99.9% uptime, contractually guaranteed",
+    title: "Built for Reliability",
+    subtitle: "99.9% uptime target, monitored 24/7",
   },
 ];
 
@@ -283,10 +283,10 @@ export default function EnterprisePage() {
                     <Building2 className="h-8 w-8 text-ainomiq-blue" />
                   </div>
                   <div className="text-5xl font-extrabold tracking-tight text-[#0f1b2d] mb-2">
-                    50+
+                    1
                   </div>
                   <p className="text-sm text-ainomiq-text-muted">
-                    locations managed from one platform
+                    platform across all locations
                   </p>
                 </CardContent>
               </Card>
@@ -330,10 +330,10 @@ export default function EnterprisePage() {
                     <Wrench className="h-8 w-8 text-ainomiq-blue" />
                   </div>
                   <div className="text-5xl font-extrabold tracking-tight text-[#0f1b2d] mb-2">
-                    80%
+                    24/7
                   </div>
                   <p className="text-sm text-ainomiq-text-muted">
-                    less manual scheduling
+                    operations monitored automatically
                   </p>
                 </CardContent>
               </Card>

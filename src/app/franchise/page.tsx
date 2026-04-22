@@ -5,7 +5,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Section } from "@/components/section";
 import { Accordion } from "@/components/accordion";
 import { PlatformGraph } from "@/components/platform-graph";
-import { TrendingDown, TrendingUp, DollarSign, Clock, ArrowRight, Quote } from "lucide-react";
+import { TrendingDown, TrendingUp, DollarSign, Clock, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Franchise AI. Ainomiq",
@@ -14,14 +14,10 @@ export const metadata: Metadata = {
 };
 
 const results = [
-  { value: "+32%", label: "Quality score", desc: "Consistent standards across every location" },
-  { value: "-30%", label: "Labour costs", desc: "Smarter scheduling, zero overstaffing" },
-  { value: "+15%", label: "Revenue per store", desc: "Higher throughput, better operations" },
-  { value: "-40%", label: "Food waste", desc: "Predict demand, stock only what sells" },
-  { value: "-22%", label: "Operational costs", desc: "Automate the busywork, cut overhead" },
-  { value: "+95%", label: "Franchise visibility", desc: "Full oversight across all locations" },
-  { value: "+89%", label: "Employee satisfaction", desc: "Better tools, smoother shifts, less stress" },
-  { value: "+3x", label: "Faster onboarding", desc: "New hires productive from day one" },
+  { value: "24/7", label: "Always on", desc: "No shift ends, no sick days, no missed tickets" },
+  { value: "1", label: "Platform", desc: "One dashboard for every location, every metric" },
+  { value: "<2min", label: "Setup per location", desc: "Connect a new store without IT involvement" },
+  { value: "0", label: "Missed tickets", desc: "Every customer question gets a response, automatically" },
 ];
 
 const accordionItems = [
@@ -240,7 +236,7 @@ export default function FranchisePage() {
               Real results
             </span>
             <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mt-4">
-              The numbers that matter
+              What you get
             </h2>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -284,52 +280,35 @@ export default function FranchisePage() {
         </div>
       </section>
 
-      {/* Testimonials */}
+      {/* Why it works */}
       <section className="py-24 px-6 bg-ainomiq-navy-light">
         <div className="mx-auto max-w-6xl">
           <div className="text-center mb-16">
             <span className="inline-flex items-center rounded-full bg-ainomiq-blue-glow px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">
-              What they say
+              Built for franchise
             </span>
             <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight mt-4">
-              Trusted by franchise operators
+              Why franchise operators choose Ainomiq
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
               {
-                quote: "We reduced labour costs by 28% in the first three months. The smart scheduling alone paid for itself within weeks.",
-                name: "Franchise Manager",
-                role: "Top-10 QSR Chain, Netherlands",
-                initials: "FM",
+                title: "One system, all locations",
+                body: "Every store runs on the same platform. You get consistent data, consistent operations, and full visibility from a single dashboard.",
               },
               {
-                quote: "For the first time, I can see exactly why one store outperforms another. That insight alone changed how we operate.",
-                name: "Multi-unit Owner",
-                role: "Quick Service Restaurants",
-                initials: "MO",
+                title: "Works with what you have",
+                body: "No ripping out your existing POS or planning tools. We connect to your current systems and add intelligence on top.",
               },
               {
-                quote: "Onboarding new staff used to take two weeks. Now they\u2019re productive from day one with the smart assistant.",
-                name: "Operations Director",
-                role: "Franchise Group, 20+ locations",
-                initials: "OD",
+                title: "Scales as you grow",
+                body: "Adding a new location takes minutes, not months. The platform handles the complexity so you can focus on opening stores, not configuring software.",
               },
-            ].map((t) => (
-              <div key={t.initials} className="rounded-2xl border border-ainomiq-border bg-ainomiq-navy p-8">
-                <Quote className="h-6 w-6 text-ainomiq-blue/20 mb-4" />
-                <p className="text-sm leading-relaxed text-ainomiq-text-muted mb-6">
-                  &ldquo;{t.quote}&rdquo;
-                </p>
-                <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-full bg-ainomiq-blue/10 flex items-center justify-center text-xs font-bold text-ainomiq-blue">
-                    {t.initials}
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold">{t.name}</p>
-                    <p className="text-xs text-ainomiq-text-muted">{t.role}</p>
-                  </div>
-                </div>
+            ].map((item) => (
+              <div key={item.title} className="rounded-2xl border border-ainomiq-border bg-ainomiq-navy p-8">
+                <h3 className="font-bold text-lg mb-3">{item.title}</h3>
+                <p className="text-sm leading-relaxed text-ainomiq-text-muted">{item.body}</p>
               </div>
             ))}
           </div>

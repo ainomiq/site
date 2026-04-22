@@ -6,26 +6,26 @@ const valuesData = [
   {
     num: "01",
     title: "Just get it done",
-    body: "We value decisive action and speed over prolonged deliberation and planning. Every solution ships fast because our clients can't afford to wait.",
-    color: "#7dd3fc", // sky-300
+    body: "We value decisive action and speed over prolonged deliberation. Every solution ships fast because our clients can't afford to wait.",
+    color: "#7dd3fc",
   },
   {
     num: "02",
-    title: "Invent what customers want",
-    body: "Our core identity is rooted in building for our customers. We listen, we test, we iterate - because the best products come from obsessing over real problems.",
-    color: "#38bdf8", // sky-400
+    title: "Build for real problems",
+    body: "No vanity features, no bloat. We listen to clients, find the actual bottleneck, and build exactly what removes it. Nothing more.",
+    color: "#38bdf8",
   },
   {
     num: "03",
-    title: "Winner's mindset",
-    body: "Fiercely competitive nature and fighting spirit are foundational. We play to win, learn from losses, and never settle for second best.",
-    color: "#4A90F5", // ainomiq-blue
+    title: "Stay ahead",
+    body: "AI moves fast. We test new technology every week so our clients always run on what works best right now - not what worked last year.",
+    color: "#4A90F5",
   },
   {
     num: "04",
-    title: "The Polymath Principle",
-    body: "The best team members understand other functions deeply and promote cross-functional collaboration. Breadth of knowledge drives innovation.",
-    color: "#2563eb", // blue-600
+    title: "Own your outcomes",
+    body: "We don't hand off and disappear. If something doesn't work, we fix it. Our success is measured by our clients' results, not our delivery dates.",
+    color: "#2563eb",
   },
 ];
 
