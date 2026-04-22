@@ -329,9 +329,10 @@ export function DemoBooking() {
               type="text"
               value={form.website}
               onChange={e => setForm(f => ({ ...f, website: e.target.value }))}
-              placeholder="https://yourstore.com"
+              placeholder="www.yourstore.com or https://yourstore.com"
               className="bg-ainomiq-navy-light border-ainomiq-border text-ainomiq-text placeholder:text-ainomiq-text-subtle focus-visible:ring-ainomiq-blue"
             />
+            <p className="mt-1 text-xs text-ainomiq-text-subtle">e.g. www.yourstore.com or yourstore.com</p>
           </div>
 
           <div>
