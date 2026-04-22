@@ -193,8 +193,8 @@ export function LogosSection() {
       />
 
       <h2 className="relative z-10 mb-4 text-center text-lg font-medium tracking-tight text-ainomiq-text-muted md:text-xl">
-        Integrates with{" "}
-        <span className="font-semibold text-ainomiq-text">your existing tools</span>
+        Trusted by{" "}
+        <span className="font-semibold text-ainomiq-text">experts</span>
       </h2>
 
       <div className="relative z-10 mx-auto max-w-4xl overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_15%,black_85%,transparent)]">
