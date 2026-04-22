@@ -157,7 +157,11 @@ export function Footer() {
               </svg>
               GDPR Compliant
             </span>
-          </div>
+            <span className="flex items-center gap-1 text-xs text-ainomiq-text-subtle">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/sbb-verified.png" alt="SBB" className="h-3.5 w-3.5 object-contain" />
+              SBB Verified
+            </span>
         </div>
 
       </div>
