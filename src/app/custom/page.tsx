@@ -86,6 +86,65 @@ export default function CustomPage() {
       {/* Hero with wizard */}
       <CustomHero />
 
+      {/* Use cases */}
+      <section className="py-20 px-6">
+        <div className="mx-auto max-w-6xl">
+          <div className="text-center mb-12">
+            <p className="text-xs font-semibold uppercase tracking-widest text-ainomiq-blue mb-3">Use cases</p>
+            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-ainomiq-text mb-4">
+              What we typically build
+            </h2>
+            <p className="text-ainomiq-text-muted text-lg max-w-2xl mx-auto">
+              Every project is custom. These are the problems we solve most often.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[
+              {
+                icon: "💬",
+                title: "AI customer support",
+                desc: "Handles returns, FAQs, order status, and complaints — 24/7, across email, chat, and DMs. Escalates to humans when needed.",
+              },
+              {
+                icon: "📦",
+                title: "Inventory & order automation",
+                desc: "Auto-reorder triggers, supplier notifications, low-stock alerts, and fulfillment sync — without manual spreadsheets.",
+              },
+              {
+                icon: "📣",
+                title: "Marketing automation",
+                desc: "Email flows, ad performance triggers, post-purchase sequences, and review requests — all automated based on customer behavior.",
+              },
+              {
+                icon: "🛒",
+                title: "Shopify integrations",
+                desc: "Custom Shopify apps, theme logic, checkout flows, metafield syncs, and third-party API connections tailored to your store.",
+              },
+              {
+                icon: "📊",
+                title: "Reporting dashboards",
+                desc: "Live dashboards that pull from Shopify, Meta, Google, and Klaviyo — so you always know what's working and what isn't.",
+              },
+              {
+                icon: "🤖",
+                title: "Custom AI agents",
+                desc: "Agents that monitor, decide, and act — from ad budget pacing to review moderation to supplier communication.",
+              },
+            ].map((uc) => (
+              <div
+                key={uc.title}
+                className="rounded-2xl border border-ainomiq-border bg-white/60 backdrop-blur-sm p-6 flex flex-col gap-3 hover:border-ainomiq-blue/40 hover:shadow-md transition-all"
+              >
+                <span className="text-3xl">{uc.icon}</span>
+                <h3 className="text-lg font-bold text-ainomiq-text">{uc.title}</h3>
+                <p className="text-sm text-ainomiq-text-muted leading-relaxed">{uc.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Build Your Solution section - code + robot */}
       <BuildYourSolution />
 

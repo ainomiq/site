@@ -463,29 +463,6 @@ export function ProjectRequestForm() {
           <div className="flex-1">
             {step === 0 && (
               <div>
-                {/* Top 10 quick-select chips */}
-                <div className="mb-6">
-                  <p className="mb-3 text-sm font-medium text-ainomiq-text-muted">Most requested solutions</p>
-                  <div className="flex flex-wrap gap-2">
-                    {TOP_SOLUTIONS.map((sol) => (
-                      <button
-                        key={sol.label}
-                        type="button"
-                        onClick={() => {
-                          setAiInput(sol.prompt);
-                          setPrefilled(false);
-                        }}
-                        className={`rounded-full border px-3.5 py-1.5 text-sm font-medium transition-all hover:border-[#4A90F5]/60 hover:bg-[#4A90F5]/5 hover:text-ainomiq-text ${
-                          aiInput === sol.prompt
-                            ? "border-[#4A90F5] bg-[#4A90F5]/10 text-[#4A90F5]"
-                            : "border-blue-200/60 bg-ainomiq-navy/40 text-ainomiq-text-muted"
-                        }`}
-                      >
-                        {sol.label}
-                      </button>
-                    ))}
-                  </div>
-                </div>
                 {/* AI Magic Prefill */}
                 <div className="mb-8 rounded-2xl border border-[#4A90F5]/20 bg-gradient-to-br from-[#4A90F5]/5 to-[#6C5CE7]/5 p-5">
                   <div className="mb-3 flex items-center gap-2">
