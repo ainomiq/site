@@ -93,7 +93,7 @@ function ScrollToTop() {
       </div>
     </div>
   );
-}}
+}
 
 export function Footer() {
   return (
