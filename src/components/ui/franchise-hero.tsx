@@ -8,7 +8,7 @@ import { FranchiseDashboard } from '@/components/ui/franchise-dashboard';
 
 function IPhoneMockup() {
   return (
-    <div className="relative flex-shrink-0" style={{ width: 200, marginBottom: 34 }}>
+    <div className="relative flex-shrink-0" style={{ width: 260, marginBottom: 44 }}>
       {/* iPhone body */}
       <div
         className="relative rounded-[36px] overflow-hidden shadow-2xl"
@@ -16,7 +16,7 @@ function IPhoneMockup() {
           background: 'linear-gradient(180deg, #2a2a2c 0%, #1c1c1e 100%)',
           padding: '10px',
           boxShadow: '0 40px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.08)',
-          height: 400,
+          height: 520,
         }}
       >
         {/* Dynamic Island */}
@@ -45,7 +45,7 @@ function IPhoneMockup() {
 
 export function FranchiseHero() {
   return (
-    <section className="relative overflow-hidden pt-32 pb-8 md:pt-44 md:pb-12">
+    <section className="relative overflow-hidden pt-32 pb-0 md:pt-44 md:pb-0">
       {/* Subtle blue glow top-left */}
       <div
         aria-hidden
@@ -99,12 +99,12 @@ export function FranchiseHero() {
       </div>
 
       {/* Apple-style Desktop + iPhone mockup */}
-      <div className="relative mx-auto mt-16 max-w-6xl px-4">
-        {/* Bottom fade */}
+      <div className="relative mx-auto mt-16 max-w-6xl px-4 pb-32">
+        {/* Bottom fade — soft, tall gradient */}
         <div
           aria-hidden
-          className="pointer-events-none absolute bottom-0 inset-x-4 h-40 z-10"
-          style={{ background: 'linear-gradient(to bottom, transparent, hsl(var(--background)))' }}
+          className="pointer-events-none absolute bottom-0 inset-x-0 h-64 z-10"
+          style={{ background: 'linear-gradient(to bottom, transparent 0%, hsl(var(--background)) 80%)' }}
         />
 
         <div className="flex items-end justify-center gap-8">
