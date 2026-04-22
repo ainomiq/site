@@ -7,34 +7,8 @@ import { Button } from '@/components/ui/button';
 import { FranchiseDashboard } from '@/components/ui/franchise-dashboard';
 
 function MobileDashboard() {
-  const locationColors = [
-    '#00d4aa', '#3b82f6', '#6366f1', '#818cf8', '#ec4899',
-    '#f59e0b', '#10b981', '#8b5cf6', '#ef4444', '#06b6d4',
-  ];
-
   return (
-    <div className="p-4 pt-12 space-y-3 text-white">
-      {/* Location icon bar — sticky, own horizontal scroll */}
-      <div
-        className="sticky top-0 z-10 -mx-4 px-4 py-2"
-        style={{ background: '#0f1923' }}
-      >
-        <div
-          className="flex items-center gap-1.5"
-          style={{ overflowX: 'auto', scrollbarWidth: 'none', WebkitOverflowScrolling: 'touch' }}
-        >
-          {['AMS-C','AMS-Z','ROT','UTR','DH','EHV','GRN','HLM','TLB','BRD'].map((loc, i) => (
-            <div
-              key={loc}
-              className="flex-shrink-0 flex items-center gap-1 rounded-full px-2 py-0.5"
-              style={{ background: `${locationColors[i]}22`, border: `1px solid ${locationColors[i]}55` }}
-            >
-              <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ background: locationColors[i] }} />
-              <span className="text-[7px] font-bold" style={{ color: locationColors[i] }}>{loc}</span>
-            </div>
-          ))}
-        </div>
-      </div>
+    <div className="p-4 pt-20 space-y-3 text-white">
 
       {/* Header */}
       <div className="flex items-center justify-between mb-1">
@@ -129,6 +103,31 @@ function IPhoneMockup() {
           className="absolute top-4 left-1/2 -translate-x-1/2 z-20 rounded-full"
           style={{ width: 80, height: 22, background: '#000' }}
         />
+        {/* Location bar — outside scroll, pinned below Dynamic Island */}
+        <div
+          className="absolute z-10 left-0 right-0"
+          style={{ top: 36, background: '#0f1923', padding: '6px 12px 4px' }}
+        >
+          <div
+            className="flex items-center gap-1.5"
+            style={{ overflowX: 'auto', scrollbarWidth: 'none' }}
+          >
+            {[
+              ['AMS-C','#00d4aa'],['AMS-Z','#3b82f6'],['ROT','#6366f1'],
+              ['UTR','#818cf8'],['DH','#ec4899'],['EHV','#f59e0b'],
+              ['GRN','#10b981'],['HLM','#8b5cf6'],['TLB','#ef4444'],['BRD','#06b6d4'],
+            ].map(([loc, color]) => (
+              <div
+                key={loc}
+                className="flex-shrink-0 flex items-center gap-1 rounded-full px-2 py-0.5"
+                style={{ background: `${color}22`, border: `1px solid ${color}55` }}
+              >
+                <div className="w-1.5 h-1.5 rounded-full" style={{ background: color }} />
+                <span className="text-[7px] font-bold" style={{ color }}>{loc}</span>
+              </div>
+            ))}
+          </div>
+        </div>
         {/* Screen */}
         <div
           className="rounded-[28px] overflow-y-auto h-full"
