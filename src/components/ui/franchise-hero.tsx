@@ -6,6 +6,74 @@ import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { FranchiseDashboard } from '@/components/ui/franchise-dashboard';
 
+const kpiItems = [
+  {label:'Revenue', val:'EUR 12.8K', color:'#00d4aa'},
+  {label:'AI Orders', val:'2.341', color:'#3b82f6'},
+  {label:'Response', val:'1.2 min', color:'#a78bfa'},
+  {label:'CSAT', val:'4.8/5', color:'#f59e0b'},
+];
+
+const barHeights = [90,75,65,55,45,38,28,20,12];
+
+function IPhoneMockup() {
+  return (
+    <div className="relative flex-shrink-0 hidden md:block" style={{ width: 200, marginBottom: 34 }}>
+      {/* iPhone body */}
+      <div
+        className="relative rounded-[36px] overflow-hidden shadow-2xl"
+        style={{
+          background: 'linear-gradient(180deg, #2a2a2c 0%, #1c1c1e 100%)',
+          padding: '10px',
+          boxShadow: '0 40px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.08)',
+          height: 400,
+        }}
+      >
+        {/* Dynamic Island */}
+        <div
+          className="absolute top-4 left-1/2 -translate-x-1/2 z-20 rounded-full"
+          style={{ width: 80, height: 22, background: '#000' }}
+        />
+        {/* Screen */}
+        <div
+          className="rounded-[28px] overflow-hidden h-full"
+          style={{ background: '#0f1923' }}
+        >
+          <div className="p-3 pt-10 h-full overflow-hidden">
+            <div className="text-[8px] text-ainomiq-text-muted mb-2 font-semibold tracking-wide">FRANCHISE OPS</div>
+            <div className="grid grid-cols-2 gap-1 mb-3">
+              {kpiItems.map(k => (
+                <div key={k.label} className="rounded-lg p-2" style={{background:'rgba(255,255,255,0.05)'}}>
+                  <div className="text-[6px] text-ainomiq-text-muted mb-0.5">{k.label}</div>
+                  <div className="text-[9px] font-bold" style={{color: k.color}}>{k.val}</div>
+                </div>
+              ))}
+            </div>
+            <div className="rounded-lg p-2 mb-1.5" style={{background:'rgba(255,255,255,0.04)'}}>
+              <div className="text-[6px] text-ainomiq-text-muted mb-1.5">Revenue per Location</div>
+              <div className="flex items-end gap-0.5" style={{height:40}}>
+                {barHeights.map((h,i) => (
+                  <div
+                    key={i}
+                    className="flex-1 rounded-sm"
+                    style={{height:`${h}%`, background: i===0 ? '#00d4aa' : i<3 ? '#3b82f6' : 'rgba(255,255,255,0.15)'}}
+                  />
+                ))}
+              </div>
+            </div>
+            <div className="flex items-center gap-1.5 rounded-lg p-2" style={{background:'rgba(0,212,170,0.08)',border:'1px solid rgba(0,212,170,0.2)'}}>
+              <div className="w-1.5 h-1.5 rounded-full" style={{background:'#00d4aa'}} />
+              <div className="text-[6px] font-medium" style={{color:'#00d4aa'}}>AI Active - 94.2% automation</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="absolute left-0 top-20 w-0.5 h-8 rounded-r" style={{background:'#3a3a3c',marginLeft:-2}} />
+      <div className="absolute left-0 top-32 w-0.5 h-6 rounded-r" style={{background:'#3a3a3c',marginLeft:-2}} />
+      <div className="absolute right-0 top-24 w-0.5 h-10 rounded-l" style={{background:'#3a3a3c',marginRight:-2}} />
+    </div>
+  );
+}
+
 export function FranchiseHero() {
   return (
     <section className="relative overflow-hidden pt-32 pb-8 md:pt-44 md:pb-12">
@@ -61,7 +129,7 @@ export function FranchiseHero() {
         </div>
       </div>
 
-      {/* Apple-style Desktop mockup with live dashboard */}
+      {/* Apple-style Desktop + iPhone mockup */}
       <div className="relative mx-auto mt-16 max-w-6xl px-4">
         {/* Bottom fade */}
         <div
@@ -70,8 +138,10 @@ export function FranchiseHero() {
           style={{ background: 'linear-gradient(to bottom, transparent, hsl(var(--background)))' }}
         />
 
+        <div className="flex items-end justify-center gap-8">
+
         {/* iMac / Desktop monitor frame */}
-        <div className="relative mx-auto" style={{ maxWidth: 1080 }}>
+        <div className="relative flex-1" style={{ maxWidth: 900 }}>
           {/* Monitor bezel */}
           <div
             className="rounded-2xl overflow-hidden shadow-2xl"
@@ -128,20 +198,11 @@ export function FranchiseHero() {
             }}
           />
         </div>
-      </div>
 
-      {/* Integration logos */}
-      <div className="mx-auto mt-16 max-w-3xl px-6">
-        <p className="text-center text-xs font-semibold uppercase tracking-widest text-muted-foreground/50 mb-6">
-          Integrates with your existing tools
-        </p>
-        <div className="grid grid-cols-4 gap-6 sm:grid-cols-8">
-          {['Shopify', 'Klaviyo', 'Meta', 'Google', 'TikTok', 'Stripe', 'OpenAI', 'Zapier'].map((name) => (
-            <div key={name} className="flex items-center justify-center">
-              <span className="text-muted-foreground/40 text-xs font-semibold tracking-wide">{name}</span>
-            </div>
-          ))}
+        <IPhoneMockup />
+
         </div>
+        {/* end flex row */}
       </div>
     </section>
   );
