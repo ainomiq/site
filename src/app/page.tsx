@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { FeatureCarousel } from "@/components/ui/feature-carousel";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Section } from "@/components/section";
@@ -226,6 +227,10 @@ export default function HomePage() {
             </div>
           </div>
         </div>
+      </section>
+      {/* Feature Carousel */}
+      <section className="py-16 px-4 bg-ainomiq-navy">
+        <FeatureCarousel />
       </section>
       {/* Why we're different - CTA strip above footer */}
       <section className="border-t border-ainomiq-border bg-ainomiq-navy">
