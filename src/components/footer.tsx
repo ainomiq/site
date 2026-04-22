@@ -58,18 +58,17 @@ const paymentIcons = [
 ];
 
 const iDealIcon = (
-  <svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg" className="h-5 w-auto max-w-[40px]">
-    <rect width="120" height="80" rx="6" fill="white"/>
-    {/* Left square border */}
-    <rect x="8" y="8" width="52" height="64" rx="4" fill="none" stroke="black" strokeWidth="5"/>
-    {/* i dot */}
-    <circle cx="25" cy="22" r="7" fill="black"/>
-    {/* i stem */}
-    <rect x="21" y="34" width="8" height="30" fill="black"/>
-    {/* D shape - pink fill */}
-    <path d="M60 8 Q112 8 112 40 Q112 72 60 72 L60 8Z" fill="#CC0066"/>
-    {/* DEAL text */}
-    <text x="66" y="52" fontFamily="Arial Black,sans-serif" fontWeight="900" fontSize="22" fill="white">DEAL</text>
+  <svg viewBox="0 0 80 56" xmlns="http://www.w3.org/2000/svg" className="h-5 w-auto max-w-[40px]">
+    {/* Outer rounded square */}
+    <rect x="2" y="2" width="37" height="52" rx="3" fill="white" stroke="black" strokeWidth="4"/>
+    {/* i - dot */}
+    <circle cx="16" cy="13" r="5" fill="black"/>
+    {/* i - stem */}
+    <rect x="13" y="22" width="6" height="24" fill="black"/>
+    {/* D - pink half circle */}
+    <path d="M39 4 Q78 4 78 28 Q78 52 39 52 Z" fill="#CC0066"/>
+    {/* DEAL letters */}
+    <text x="42" y="36" fontFamily="Arial Black, Arial, sans-serif" fontWeight="900" fontSize="16" fill="white" letterSpacing="-0.5">DEAL</text>
   </svg>
 );
 
