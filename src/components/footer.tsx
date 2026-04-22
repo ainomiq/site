@@ -57,6 +57,7 @@ const paymentIcons = [
   { icon: "logos:google-pay", label: "Google Pay" },
   { icon: "logos:ideal", label: "iDEAL" },
   { icon: "logos:klarna", label: "Klarna" },
+  { icon: "logos:bancontact", label: "Bancontact" },
 ];
 
 export function Footer() {
@@ -102,13 +103,14 @@ export function Footer() {
         <div className="border-t border-ainomiq-border" />
 
         {/* Payment icons */}
-        <div className="flex flex-wrap items-center justify-center gap-2 py-6">
+        <div className="flex flex-wrap items-center justify-center gap-3 py-6">
           {paymentIcons.map((p) => (
             <div
               key={p.label}
-              className="flex h-8 w-14 items-center justify-center rounded-md border border-ainomiq-border bg-ainomiq-navy-light"
+              title={p.label}
+              className="flex h-8 w-12 items-center justify-center rounded border border-ainomiq-border bg-white/5"
             >
-              <Icon icon={p.icon} className="h-5 w-auto" />
+              <Icon icon={p.icon} className="h-5 w-auto max-w-[36px]" />
             </div>
           ))}
         </div>
