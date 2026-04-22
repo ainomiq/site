@@ -247,21 +247,29 @@ export function FeaturedModulesScroll() {
     return hashToModule[hash] || "cs"
   }
 
-  const [activeModule, setActiveModule] = useState<string>(getModuleFromHash)
+  const [activeModule, setActiveModule] = useState<string>("cs")
   const [animatingStep, setAnimatingStep] = useState<number>(-1)
   const [showResult, setShowResult] = useState(false)
   const [showTrigger, setShowTrigger] = useState(false)
   const current = modules.find(m => m.id === activeModule)!
 
-  // Sync active module when hash changes (e.g. nav click)
+  // On mount and on hash changes: activate correct module
   useEffect(() => {
+    const mod = getModuleFromHash()
+    setActiveModule(mod)
+
     const onHashChange = () => {
-      const mod = getModuleFromHash()
-      if (mod !== activeModule) setActiveModule(mod)
+      setActiveModule(getModuleFromHash())
     }
+    // hashchange fires when hash changes on same page
+    // popstate fires on Next.js router navigations
     window.addEventListener("hashchange", onHashChange)
-    return () => window.removeEventListener("hashchange", onHashChange)
-  }, [activeModule])
+    window.addEventListener("popstate", onHashChange)
+    return () => {
+      window.removeEventListener("hashchange", onHashChange)
+      window.removeEventListener("popstate", onHashChange)
+    }
+  }, [])
 
   // Run animation once
   const runAnimation = useCallback(() => {

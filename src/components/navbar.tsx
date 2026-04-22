@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
 import {
@@ -56,6 +56,7 @@ export function Navbar() {
   const [mobileExpanded, setMobileExpanded] = useState<DropdownKey>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
   const pathname = usePathname();
+  const router = useRouter();
 
   // Close dropdowns on route change
   useEffect(() => {
@@ -63,6 +64,19 @@ export function Navbar() {
     setMobileOpen(false);
     setMobileExpanded(null);
   }, [pathname]);
+
+  // Navigate to a hash link — if already on the page, force a hashchange event
+  const handleHashNav = (href: string) => {
+    const [path, hash] = href.split("#");
+    if (!hash) { router.push(href); return; }
+    if (pathname === path || pathname === path + "/") {
+      // Already on the page — just update hash and dispatch event
+      window.history.pushState(null, "", `#${hash}`);
+      window.dispatchEvent(new HashChangeEvent("hashchange"));
+    } else {
+      router.push(href);
+    }
+  };
 
   const openDropdown = (key: DropdownKey) => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
@@ -180,17 +194,17 @@ export function Navbar() {
                   </h3>
                   <div className="flex flex-col gap-1">
                     {productsEcommerce.map((item) => (
-                      <Link
+                      <button
                         key={item.label}
-                        href={item.href}
-                        className="flex items-center gap-3 rounded-lg px-3 py-2.5 hover:bg-ainomiq-surface transition-colors"
+                        onClick={() => { handleHashNav(item.href); setActiveDropdown(null); }}
+                        className="flex items-center gap-3 rounded-lg px-3 py-2.5 hover:bg-ainomiq-surface transition-colors text-left"
                       >
                         <item.icon className="h-4 w-4 text-ainomiq-blue shrink-0 mt-0.5" />
                         <div>
                           <div className="text-sm font-semibold text-[#0f1b2d]">{item.label}</div>
                           <div className="text-xs text-ainomiq-text-muted font-normal">{item.sub}</div>
                         </div>
-                      </Link>
+                      </button>
                     ))}
                   </div>
                 </div>
@@ -202,17 +216,17 @@ export function Navbar() {
                   </h3>
                   <div className="flex flex-col gap-1">
                     {productsCustom.map((item) => (
-                      <Link
+                      <button
                         key={item.label}
-                        href={item.href}
-                        className="flex items-center gap-3 rounded-lg px-3 py-2.5 hover:bg-ainomiq-surface transition-colors"
+                        onClick={() => { handleHashNav(item.href); setActiveDropdown(null); }}
+                        className="flex items-center gap-3 rounded-lg px-3 py-2.5 hover:bg-ainomiq-surface transition-colors text-left"
                       >
                         <item.icon className="h-4 w-4 text-ainomiq-blue shrink-0 mt-0.5" />
                         <div>
                           <div className="text-sm font-semibold text-[#0f1b2d]">{item.label}</div>
                           <div className="text-xs text-ainomiq-text-muted font-normal">{item.sub}</div>
                         </div>
-                      </Link>
+                      </button>
                     ))}
                   </div>
                 </div>
@@ -226,17 +240,17 @@ export function Navbar() {
                 </h3>
                 <div className="grid grid-cols-2 gap-1">
                   {industries.map((item) => (
-                    <Link
+                    <button
                       key={item.label}
-                      href={item.href}
-                      className="flex items-center gap-3 rounded-lg px-3 py-2.5 hover:bg-ainomiq-surface transition-colors"
+                      onClick={() => { handleHashNav(item.href); setActiveDropdown(null); }}
+                      className="flex items-center gap-3 rounded-lg px-3 py-2.5 hover:bg-ainomiq-surface transition-colors text-left"
                     >
                       <item.icon className="h-4 w-4 text-ainomiq-blue shrink-0 mt-0.5" />
                       <div>
                         <div className="text-sm font-semibold text-[#0f1b2d]">{item.label}</div>
                         <div className="text-xs text-ainomiq-text-muted font-normal">{item.sub}</div>
                       </div>
-                    </Link>
+                    </button>
                   ))}
                 </div>
               </div>
@@ -270,29 +284,27 @@ export function Navbar() {
                   Ecommerce Application
                 </p>
                 {productsEcommerce.map((item) => (
-                  <Link
+                  <button
                     key={item.label}
-                    href={item.href}
-                    onClick={() => setMobileOpen(false)}
-                    className="flex items-center gap-2.5 text-sm text-ainomiq-text-muted hover:text-ainomiq-text"
+                    onClick={() => { handleHashNav(item.href); setMobileOpen(false); }}
+                    className="flex items-center gap-2.5 text-sm text-ainomiq-text-muted hover:text-ainomiq-text text-left"
                   >
                     <item.icon className="h-4 w-4 text-ainomiq-blue" />
                     {item.label}
-                  </Link>
+                  </button>
                 ))}
                 <p className="text-xs font-semibold uppercase tracking-wider text-ainomiq-text-subtle mt-2">
                   Custom Solutions
                 </p>
                 {productsCustom.map((item) => (
-                  <Link
+                  <button
                     key={item.label}
-                    href={item.href}
-                    onClick={() => setMobileOpen(false)}
-                    className="flex items-center gap-2.5 text-sm text-ainomiq-text-muted hover:text-ainomiq-text"
+                    onClick={() => { handleHashNav(item.href); setMobileOpen(false); }}
+                    className="flex items-center gap-2.5 text-sm text-ainomiq-text-muted hover:text-ainomiq-text text-left"
                   >
                     <item.icon className="h-4 w-4 text-ainomiq-blue" />
                     {item.label}
-                  </Link>
+                  </button>
                 ))}
               </div>
             )}
@@ -318,15 +330,14 @@ export function Navbar() {
                   Specialised in
                 </p>
                 {industries.map((item) => (
-                  <Link
+                  <button
                     key={item.label}
-                    href={item.href}
-                    onClick={() => setMobileOpen(false)}
-                    className="flex items-center gap-2.5 text-sm text-ainomiq-text-muted hover:text-ainomiq-text"
+                    onClick={() => { handleHashNav(item.href); setMobileOpen(false); }}
+                    className="flex items-center gap-2.5 text-sm text-ainomiq-text-muted hover:text-ainomiq-text text-left"
                   >
                     <item.icon className="h-4 w-4 text-ainomiq-blue" />
                     {item.label}
-                  </Link>
+                  </button>
                 ))}
               </div>
             )}
