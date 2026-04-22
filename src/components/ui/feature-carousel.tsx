@@ -213,7 +213,7 @@ export function FeatureCarousel() {
                         className="absolute inset-x-0 bottom-0 p-10 pt-32 bg-gradient-to-t from-black/90 via-black/40 to-transparent flex flex-col justify-end pointer-events-none"
                       >
                         <div className="bg-white text-[#0f172a] px-4 py-1.5 rounded-full text-[11px] font-semibold uppercase tracking-[0.2em] w-fit shadow-lg mb-3 border border-black/10">
-                          {index + 1} - {feature.label}
+                          {feature.label}
                         </div>
                         <p className="text-white font-normal text-xl md:text-2xl leading-tight drop-shadow-md tracking-tight">
                           {feature.description}
