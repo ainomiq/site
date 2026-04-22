@@ -1,19 +1,7 @@
-'use client';
-
 import React from 'react';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: (delay = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] },
-  }),
-};
 
 export function FranchiseHero() {
   return (
@@ -33,81 +21,50 @@ export function FranchiseHero() {
 
       <div className="relative mx-auto max-w-4xl px-6 text-center">
         {/* Badge */}
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          custom={0}
-          variants={fadeUp}
+        <Link
+          href="/contact"
+          className="group inline-flex items-center gap-3 rounded-full border bg-muted px-4 py-1.5 text-sm shadow-sm transition-all duration-300 hover:bg-background mb-8"
         >
-          <Link
-            href="/contact"
-            className="group inline-flex items-center gap-3 rounded-full border bg-muted px-4 py-1.5 text-sm shadow-sm transition-all duration-300 hover:bg-background mb-8"
-          >
-            <span className="text-foreground">AI for franchise operations</span>
-            <span className="block h-4 w-px bg-border" />
-            <div className="size-5 overflow-hidden rounded-full bg-background">
-              <div className="flex w-10 -translate-x-1/2 duration-500 ease-in-out group-hover:translate-x-0">
-                <span className="flex size-5"><ArrowRight className="m-auto size-3" /></span>
-                <span className="flex size-5"><ArrowRight className="m-auto size-3" /></span>
-              </div>
+          <span className="text-foreground">AI for franchise operations</span>
+          <span className="block h-4 w-px bg-border" />
+          <div className="size-5 overflow-hidden rounded-full bg-background">
+            <div className="flex w-10 -translate-x-1/2 duration-500 ease-in-out group-hover:translate-x-0">
+              <span className="flex size-5"><ArrowRight className="m-auto size-3" /></span>
+              <span className="flex size-5"><ArrowRight className="m-auto size-3" /></span>
             </div>
-          </Link>
-        </motion.div>
+          </div>
+        </Link>
 
         {/* Headline */}
-        <motion.h1
-          initial="hidden"
-          animate="visible"
-          custom={0.1}
-          variants={fadeUp}
-          className="text-5xl md:text-7xl font-bold tracking-tight leading-[1.05] text-foreground"
-        >
+        <h1 className="text-5xl md:text-7xl font-bold tracking-tight leading-[1.05] text-foreground">
           One platform.
           <br />
           Every location.
-        </motion.h1>
+        </h1>
 
         {/* Subtext */}
-        <motion.p
-          initial="hidden"
-          animate="visible"
-          custom={0.2}
-          variants={fadeUp}
-          className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground"
-        >
+        <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">
           Ainomiq gives franchise operators a single AI layer across all locations.
           Customer service, inventory, email, and reporting - automated from day one.
-        </motion.p>
+        </p>
 
         {/* CTAs */}
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          custom={0.3}
-          variants={fadeUp}
-          className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row"
-        >
+        <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <Button asChild size="lg" className="rounded-xl px-6 text-base">
             <Link href="/get-started">Get started</Link>
           </Button>
           <Button asChild size="lg" variant="outline" className="rounded-xl px-6">
             <Link href="/contact">Talk to sales</Link>
           </Button>
-        </motion.div>
+        </div>
       </div>
 
       {/* Dashboard screenshot */}
-      <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.45, ease: [0.22, 1, 0.36, 1] }}
-        className="relative mx-auto mt-16 max-w-5xl px-6"
-      >
-        {/* Fade-out bottom gradient */}
+      <div className="relative mx-auto mt-16 max-w-5xl px-6">
         <div
           aria-hidden
           className="pointer-events-none absolute bottom-0 inset-x-6 h-32 z-10"
-          style={{ background: 'linear-gradient(to bottom, transparent, var(--background))' }}
+          style={{ background: 'linear-gradient(to bottom, transparent, hsl(var(--background)))' }}
         />
         <div className="overflow-hidden rounded-2xl border shadow-2xl shadow-black/10 ring-1 ring-black/5">
           <img
@@ -118,15 +75,10 @@ export function FranchiseHero() {
             className="w-full object-cover"
           />
         </div>
-      </motion.div>
+      </div>
 
       {/* Integration logos */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.6, delay: 0.7 }}
-        className="mx-auto mt-16 max-w-3xl px-6"
-      >
+      <div className="mx-auto mt-16 max-w-3xl px-6">
         <p className="text-center text-xs font-semibold uppercase tracking-widest text-muted-foreground/50 mb-6">
           Integrates with your existing tools
         </p>
@@ -137,7 +89,7 @@ export function FranchiseHero() {
             </div>
           ))}
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }
