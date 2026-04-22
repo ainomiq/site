@@ -70,24 +70,6 @@ export default function FranchisePage() {
     <>
       <FranchiseHero />
 
-      {/* AI Dashboard Demo */}
-      <section className="py-24 px-6">
-        <div className="mx-auto max-w-7xl">
-          <div className="text-center mb-12">
-            <span className="inline-flex items-center rounded-full bg-ainomiq-blue-glow px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">
-              Live Demo
-            </span>
-            <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight mt-4">
-              See it in action
-            </h2>
-            <p className="text-ainomiq-text-muted mt-4 max-w-xl mx-auto">
-              This is what your franchise operations look like with Ainomiq. Real-time AI actions, per-location insights, and full automation visibility.
-            </p>
-          </div>
-          <FranchiseDashboard />
-        </div>
-      </section>
-
 
       {/* Accordion. How we transform franchise ops */}
       <section className="py-24 px-6">
