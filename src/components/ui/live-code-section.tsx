@@ -36,7 +36,7 @@ export async function handleTicket(email: Email) {
   },
   {
     title: "inventory.ts",
-    label: "Inventory",
+    label: "Smart Inventory",
     color: "#10b981",
     code: `// Ainomiq - Smart restock alerts
 import { getStockLevels } from "@ainomiq/inventory";
@@ -65,7 +65,7 @@ export async function checkInventory(storeId: string) {
   },
   {
     title: "email-flow.ts",
-    label: "Email Marketing",
+    label: "E-mail Marketing",
     color: "#8b5cf6",
     code: `// Ainomiq - Abandoned cart recovery flow
 import { getAbandonedCarts } from "@ainomiq/klaviyo";
