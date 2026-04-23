@@ -5,6 +5,17 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { HeroSection } from "@/components/ui/hero-1";
+import { ZoomParallax } from "@/components/ui/zoom-parallax";
+
+const parallaxImages = [
+  { src: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1280&h=720&fit=crop&auto=format&q=80", alt: "AI neural network visualization" },
+  { src: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1280&h=720&fit=crop&auto=format&q=80", alt: "Modern workspace" },
+  { src: "https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?w=800&h=800&fit=crop&auto=format&q=80", alt: "Abstract data flow" },
+  { src: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1280&h=720&fit=crop&auto=format&q=80", alt: "Analytics dashboard" },
+  { src: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&h=800&fit=crop&auto=format&q=80", alt: "AI interface close-up" },
+  { src: "https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=1280&h=720&fit=crop&auto=format&q=80", alt: "Automation workflow" },
+  { src: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1280&h=720&fit=crop&auto=format&q=80", alt: "Circuitry technology" },
+];
 
 export default function HomePage() {
   return (
@@ -117,6 +128,16 @@ export default function HomePage() {
             ))}
           </div>
         </div>
+      </section>
+
+      {/* Zoom Parallax */}
+      <section className="bg-ainomiq-navy">
+        <div className="relative flex h-[40vh] items-center justify-center">
+          <h2 className="text-center text-3xl md:text-5xl font-extrabold tracking-tight px-6">
+            One platform. Every channel.
+          </h2>
+        </div>
+        <ZoomParallax images={parallaxImages} />
       </section>
     </>
   );
