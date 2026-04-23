@@ -213,27 +213,6 @@ export function Features() {
                     </div>
                 </div>
 
-                {/* Uptime */}
-                <div className="col-span-full border-y border-ainomiq-border p-12">
-                    <p className="text-center text-4xl font-semibold text-ainomiq-text lg:text-7xl">99.99% Uptime</p>
-                </div>
-
-                {/* Activity chart */}
-                <div className="col-span-full">
-                    <div className="px-6 pt-6 pb-2 md:px-12 md:pt-12 md:pb-4">
-                        <span className="text-ainomiq-text-muted flex items-center gap-2">
-                            <Activity className="size-4" />
-                            See results from day one
-                        </span>
-                        <p className="mt-4 text-2xl font-semibold text-ainomiq-text">
-                            Pim saved 76% on monthly costs{' '}
-                            <span className="text-ainomiq-text-muted">
-                                by automating what doesn&apos;t need a human.
-                            </span>
-                        </p>
-                    </div>
-                    <MonitoringChart />
-                </div>
             </div>
         </section>
     )
