@@ -1,9 +1,13 @@
 "use client";
 
 import { useState, useCallback, useEffect, useRef } from "react";
-import { MultiStepForm } from "./multi-step-form";
+import { AnimatePresence } from "motion/react";
+import { UrlInput } from "./url-input";
+import { AnalysisProgress } from "./progress";
+import { Results } from "./results";
+import { FallbackForm } from "./fallback-form";
 import { InfiniteSlider } from "@/components/ui/infinite-slider";
-
+import type { SiteAnalysis, ManualAnswers } from "@/lib/analysis-types";
 
 const CLIENTS: { name: string; logo: string }[] = [
   // Sorted: short (portrait), long (landscape), alternating
@@ -17,6 +21,8 @@ const CLIENTS: { name: string; logo: string }[] = [
   { name: "VindJeRijschool.nl", logo: "/logos/vindjerijschool.png" },
   { name: "Padelland", logo: "/logos/padelland.png" },
 ];
+
+type Step = "input" | "analyzing" | "results" | "fallback";
 
 interface Beam {
   x: number;
@@ -48,6 +54,10 @@ function createBeam(width: number, height: number): Beam {
 }
 
 export function GetStartedWizard() {
+  const [step, setStep] = useState<Step>("input");
+  const [analysis, setAnalysis] = useState<SiteAnalysis | null>(null);
+  const [manual, setManual] = useState<ManualAnswers | undefined>();
+  const [isLoading, setIsLoading] = useState(false);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const beamsRef = useRef<Beam[]>([]);
   const animationFrameRef = useRef<number>(0);
@@ -195,8 +205,65 @@ export function GetStartedWizard() {
     };
   }, []);
 
-  const [_resetKey, setResetKey] = useState(0);
-  const handleReset = useCallback(() => setResetKey((k) => k + 1), []);
+  const handleUrlSubmit = useCallback(async (url: string) => {
+    setIsLoading(true);
+    setStep("analyzing");
+
+    try {
+      const response = await fetch("/api/analyze", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ url }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || data.error) {
+        setStep("fallback");
+        return;
+      }
+
+      setAnalysis(data.analysis);
+    } catch {
+      setStep("fallback");
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
+  const handleProgressComplete = useCallback(() => {
+    if (analysis) {
+      setStep("results");
+    }
+  }, [analysis]);
+
+  const handleFallbackSubmit = useCallback((answers: ManualAnswers) => {
+    setManual(answers);
+    setStep("results");
+    // Fire Klaviyo "Project Form Submitted" event for nurture flow
+    if (answers.email) {
+      void fetch("/api/klaviyo-track", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          eventName: "Project Form Submitted",
+          email: answers.email,
+          properties: {
+            source: "fallback_form",
+            business_type: answers.businessType ?? "",
+            company: answers.company ?? "",
+          },
+        }),
+      });
+    }
+  }, []);
+
+  const handleReset = useCallback(() => {
+    setStep("input");
+    setAnalysis(null);
+    setManual(undefined);
+    setIsLoading(false);
+  }, []);
 
   return (
     <section className="relative overflow-hidden">
@@ -211,7 +278,27 @@ export function GetStartedWizard() {
 
       <div className="mx-auto max-w-5xl">
         <div className="relative flex min-h-[calc(75vh-4rem)] flex-col items-center justify-center gap-5 px-6 pt-32 pb-20">
-          <MultiStepForm key={_resetKey} onReset={handleReset} />
+          <AnimatePresence mode="wait">
+            {step === "input" && (
+              <UrlInput
+                key="input"
+                onSubmit={handleUrlSubmit}
+                isLoading={isLoading}
+              />
+            )}
+            {step === "analyzing" && (
+              <AnalysisProgress
+                key="progress"
+                onComplete={handleProgressComplete}
+              />
+            )}
+            {step === "results" && (
+              <Results key="results" analysis={analysis} manual={manual} onReset={handleReset} />
+            )}
+            {step === "fallback" && (
+              <FallbackForm key="fallback" onSubmit={handleFallbackSubmit} onReset={handleReset} />
+            )}
+          </AnimatePresence>
         </div>
       </div>
 
