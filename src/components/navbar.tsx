@@ -87,7 +87,7 @@ export function Navbar() {
 
   return (
     <div className="fixed top-0 left-0 right-0 z-50 pt-2 pointer-events-none px-4">
-      <nav className="pointer-events-auto mx-auto flex max-w-3xl items-center justify-between rounded-full glass px-6 py-2 shadow-sm">
+      <nav className="pointer-events-auto mx-auto flex max-w-2xl items-center justify-between rounded-full glass px-6 py-2 shadow-sm">
         <Logo />
 
         {/* Desktop links */}
@@ -178,7 +178,7 @@ export function Navbar() {
       {/* Desktop dropdown panels */}
       {activeDropdown && (
         <div
-          className="pointer-events-auto hidden md:block mx-auto mt-2 max-w-3xl"
+          className="pointer-events-auto hidden md:block mx-auto mt-2 max-w-2xl"
           onMouseEnter={() => openDropdown(activeDropdown)}
           onMouseLeave={closeDropdown}
         >
@@ -259,7 +259,7 @@ export function Navbar() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="pointer-events-auto md:hidden mx-auto mt-3 max-w-3xl rounded-2xl glass p-6 shadow-lg">
+        <div className="pointer-events-auto md:hidden mx-auto mt-3 max-w-2xl rounded-2xl glass p-6 shadow-lg">
           <div className="flex flex-col gap-2">
             {/* Products accordion */}
             <button
