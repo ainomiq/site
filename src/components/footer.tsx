@@ -31,39 +31,34 @@ function NewsletterSignup() {
   }
 
   return (
-    <div className="md:text-right">
-      <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-ainomiq-text-subtle">
-        Newsletter
-      </p>
-      <p className="text-sm text-ainomiq-text-muted mb-3 leading-relaxed">
+    <div className="flex flex-col gap-2 md:flex-row md:items-center md:gap-4">
+      <p className="text-sm text-ainomiq-text-muted leading-relaxed md:whitespace-nowrap">
         AI news. Once a month. No spam.
       </p>
       {status === "success" ? (
         <p className="text-sm text-ainomiq-blue">Thanks, you&apos;re in.</p>
       ) : (
-        <>
-          <form onSubmit={handleSubmit} className="flex items-stretch rounded-lg border border-ainomiq-border bg-ainomiq-surface overflow-hidden focus-within:border-ainomiq-blue transition-colors w-full">
-            <input
-              type="email"
-              required
-              value={email}
-              onChange={(e) => { setEmail(e.target.value); if (status === "error") setStatus("idle"); }}
-              placeholder="you@company.com"
-              className="flex-1 min-w-0 bg-transparent px-3 py-2 text-sm text-ainomiq-text placeholder:text-ainomiq-text-subtle focus:outline-none"
-              aria-label="Email address"
-            />
-            <button
-              type="submit"
-              disabled={status === "loading"}
-              className="shrink-0 bg-ainomiq-blue px-4 text-sm font-semibold text-white hover:bg-ainomiq-blue-hover transition-colors disabled:opacity-50"
-            >
-              {status === "loading" ? "..." : "Subscribe"}
-            </button>
-          </form>
-          {status === "error" && (
-            <p className="mt-2 text-xs text-red-400">Something went wrong. Try again.</p>
-          )}
-        </>
+        <form onSubmit={handleSubmit} className="flex items-stretch rounded-lg border border-ainomiq-border bg-ainomiq-surface overflow-hidden focus-within:border-ainomiq-blue transition-colors w-full md:w-72">
+          <input
+            type="email"
+            required
+            value={email}
+            onChange={(e) => { setEmail(e.target.value); if (status === "error") setStatus("idle"); }}
+            placeholder="you@company.com"
+            className="flex-1 min-w-0 bg-transparent px-3 py-2 text-sm text-ainomiq-text placeholder:text-ainomiq-text-subtle focus:outline-none"
+            aria-label="Email address"
+          />
+          <button
+            type="submit"
+            disabled={status === "loading"}
+            className="shrink-0 bg-ainomiq-blue px-4 text-sm font-semibold text-white hover:bg-ainomiq-blue-hover transition-colors disabled:opacity-50"
+          >
+            {status === "loading" ? "..." : "Subscribe"}
+          </button>
+        </form>
+      )}
+      {status === "error" && (
+        <p className="text-xs text-red-400 md:whitespace-nowrap">Try again.</p>
       )}
     </div>
   );
@@ -139,7 +134,7 @@ export function Footer() {
       <div className="mx-auto max-w-6xl px-6">
 
         {/* Main grid */}
-        <div className="grid grid-cols-2 gap-10 py-14 md:grid-cols-7">
+        <div className="grid grid-cols-2 gap-10 pt-14 pb-8 md:grid-cols-5">
           <div className="col-span-2 md:col-span-2">
             <Link href="/" className="flex items-center gap-2 mb-4">
               <LogoMark className="h-7 w-auto" />
@@ -147,20 +142,6 @@ export function Footer() {
             <p className="text-sm text-ainomiq-text-muted leading-relaxed max-w-xs">
               Automation that works. Built for businesses that want to move forward.
             </p>
-            <div className="flex items-center gap-2 mt-4">
-              {socials.map((s) => (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  aria-label={s.label}
-                  target={s.href.startsWith("http") ? "_blank" : undefined}
-                  rel={s.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                  className="flex h-7 w-7 items-center justify-center rounded-full border border-ainomiq-border text-ainomiq-text-subtle hover:text-ainomiq-text hover:border-ainomiq-border-hover transition-colors"
-                >
-                  {s.icon}
-                </a>
-              ))}
-            </div>
           </div>
           {nav.map((col) => (
             <div key={col.title}>
@@ -179,7 +160,25 @@ export function Footer() {
             </div>
           ))}
 
-          <div className="col-span-2 md:col-span-2">
+        </div>
+
+        {/* Socials + Newsletter row (same height, above the line) */}
+        <div className="flex flex-col gap-6 pb-6 md:flex-row md:items-center md:justify-between">
+          <div className="flex items-center gap-2">
+            {socials.map((s) => (
+              <a
+                key={s.label}
+                href={s.href}
+                aria-label={s.label}
+                target={s.href.startsWith("http") ? "_blank" : undefined}
+                rel={s.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                className="flex h-8 w-8 items-center justify-center rounded-full border border-ainomiq-border text-ainomiq-text-subtle hover:text-ainomiq-text hover:border-ainomiq-border-hover transition-colors"
+              >
+                {s.icon}
+              </a>
+            ))}
+          </div>
+          <div className="w-full md:w-auto md:max-w-sm md:flex-1 md:ml-auto">
             <NewsletterSignup />
           </div>
         </div>
