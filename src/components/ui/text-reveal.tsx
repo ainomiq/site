@@ -34,11 +34,13 @@ const TextRevealByWord: FC<TextRevealByWordProps> = ({ text, highlight, tail, cl
           return (
             <Word key={`t-${i}`} progress={scrollYProgress} range={[start, end]}>
               {word}
-              {i < words.length - 1 || highlight || tail ? " " : ""}
+              {i < words.length - 1 ? " " : ""}
             </Word>
           );
         })}
-        {highlight && (
+      </p>
+      {highlight && (
+        <p className="mt-6 text-center text-2xl font-bold md:text-3xl lg:text-4xl xl:text-5xl">
           <span className="whitespace-nowrap">
             {highlightWords.map((word, i) => {
               const offset = words.length + i;
@@ -52,24 +54,23 @@ const TextRevealByWord: FC<TextRevealByWordProps> = ({ text, highlight, tail, cl
               );
             })}
           </span>
-        )}
-        {tail && (
-          <>
-            {" "}
-            {tailWords.map((word, i) => {
-              const offset = words.length + highlightWords.length + i;
-              const start = offset / total;
-              const end = (offset + 1) / total;
-              return (
-                <Word key={`tl-${i}`} progress={scrollYProgress} range={[start, end]}>
-                  {word}
-                  {i < tailWords.length - 1 ? " " : ""}
-                </Word>
-              );
-            })}
-          </>
-        )}
-      </p>
+        </p>
+      )}
+      {tail && (
+        <p className="mt-2 text-center text-balance text-2xl font-bold md:text-3xl lg:text-4xl xl:text-5xl">
+          {tailWords.map((word, i) => {
+            const offset = words.length + highlightWords.length + i;
+            const start = offset / total;
+            const end = (offset + 1) / total;
+            return (
+              <Word key={`tl-${i}`} progress={scrollYProgress} range={[start, end]}>
+                {word}
+                {i < tailWords.length - 1 ? " " : ""}
+              </Word>
+            );
+          })}
+        </p>
+      )}
     </div>
   );
 };
