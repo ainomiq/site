@@ -41,27 +41,29 @@ function NewsletterSignup() {
       {status === "success" ? (
         <p className="text-sm text-ainomiq-blue">Thanks, you&apos;re in.</p>
       ) : (
-        <form onSubmit={handleSubmit} className="flex flex-col gap-2 md:items-end">
-          <input
-            type="email"
-            required
-            value={email}
-            onChange={(e) => { setEmail(e.target.value); if (status === "error") setStatus("idle"); }}
-            placeholder="you@company.com"
-            className="w-full md:w-56 rounded-lg border border-ainomiq-border bg-ainomiq-surface px-3 py-2 text-sm text-ainomiq-text placeholder:text-ainomiq-text-subtle focus:outline-none focus:border-ainomiq-blue transition-colors"
-            aria-label="Email address"
-          />
-          <button
-            type="submit"
-            disabled={status === "loading"}
-            className="w-full md:w-56 rounded-lg bg-ainomiq-blue px-3 py-2 text-sm font-semibold text-white hover:bg-ainomiq-blue-hover transition-colors disabled:opacity-50"
-          >
-            {status === "loading" ? "Subscribing..." : "Subscribe"}
-          </button>
+        <>
+          <form onSubmit={handleSubmit} className="flex items-stretch gap-0 rounded-lg border border-ainomiq-border bg-ainomiq-surface overflow-hidden focus-within:border-ainomiq-blue transition-colors md:ml-auto md:w-full md:max-w-xs">
+            <input
+              type="email"
+              required
+              value={email}
+              onChange={(e) => { setEmail(e.target.value); if (status === "error") setStatus("idle"); }}
+              placeholder="you@company.com"
+              className="flex-1 min-w-0 bg-transparent px-3 py-2 text-sm text-ainomiq-text placeholder:text-ainomiq-text-subtle focus:outline-none"
+              aria-label="Email address"
+            />
+            <button
+              type="submit"
+              disabled={status === "loading"}
+              className="shrink-0 bg-ainomiq-blue px-4 text-sm font-semibold text-white hover:bg-ainomiq-blue-hover transition-colors disabled:opacity-50"
+            >
+              {status === "loading" ? "..." : "Subscribe"}
+            </button>
+          </form>
           {status === "error" && (
-            <p className="text-xs text-red-400">Something went wrong. Try again.</p>
+            <p className="mt-2 text-xs text-red-400">Something went wrong. Try again.</p>
           )}
-        </form>
+        </>
       )}
     </div>
   );
