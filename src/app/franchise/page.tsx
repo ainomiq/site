@@ -25,43 +25,23 @@ const results = [
 const accordionItems = [
   {
     num: "01",
-    title: "Smarter scheduling, lower costs",
-    body: "Analyzes sales patterns, weather, events, and historical data to predict exactly how many staff you need per shift. No more overstaffing during slow hours or panic-calling during rush.",
+    title: "Customer service on autopilot",
+    body: "Ainomiq handles customer questions across email, chat, and social media - 24/7, across all your locations. One consistent voice, zero wait time.",
   },
   {
     num: "02",
-    title: "Real-time insights across all locations",
-    body: "One dashboard for all your stores. Compare performance, spot outliers, and make data-driven decisions. without waiting for end-of-month reports.",
+    title: "One dashboard for all locations",
+    body: "See performance across every franchise in real time. Spot issues early, compare locations, and make decisions without waiting for end-of-month reports.",
   },
   {
     num: "03",
-    title: "Smart assistant for every employee",
-    body: "New hire? Language barrier? No problem. A smart assistant answers operational questions, guides procedures, and handles training. in any language, 24/7.",
+    title: "Automated manager tasks",
+    body: "Daily reports, checklists, escalation handling - automated. Managers focus on the floor, not on admin.",
   },
   {
     num: "04",
-    title: "Inventory & waste management",
-    body: "Predicts demand per product, per location. Automatically suggests optimal stock levels, flags expiring items, and reduces food waste by up to 40%.",
-  },
-  {
-    num: "05",
-    title: "Quality control & compliance",
-    body: "Automated checklists, HACCP monitoring, and hygiene tracking. Consistent quality across every location. without relying on manual inspections.",
-  },
-  {
-    num: "06",
-    title: "Multi-language onboarding",
-    body: "Train new employees in their own language. Intelligent onboarding guides cover procedures, safety, and operations. no translator needed.",
-  },
-  {
-    num: "07",
-    title: "Automated manager tasks",
-    body: "Daily reports, opening and closing checklists, escalation handling. Automates the repetitive work so managers can focus on the floor.",
-  },
-  {
-    num: "08",
-    title: "Customer feedback analysis",
-    body: "Analyzes reviews, complaints, and ratings across all platforms. Spots patterns per location so you can fix problems before they spread.",
+    title: "Scales with your network",
+    body: "Add a new location? Ainomiq is live within days. Same setup, same quality, no extra headcount needed.",
   },
 ];
 
