@@ -178,7 +178,7 @@ export default function AboutPage() {
                 {dept.jobs.map((job) => (
                   <Link
                     key={job.title}
-                    href="/contact"
+                    href="/get-started"
                     className="flex items-center justify-between py-4 border-b border-ainomiq-border group"
                   >
                     <span className="font-semibold group-hover:text-ainomiq-blue transition-colors">{job.title}</span>
@@ -210,7 +210,7 @@ export default function AboutPage() {
             size="lg"
             className="rounded-full bg-ainomiq-blue hover:bg-ainomiq-blue-hover text-white px-10 h-12"
           >
-            <Link href="/contact">Get in touch</Link>
+            <Link href="/get-started">Get in touch</Link>
           </Button>
         </div>
       </section>

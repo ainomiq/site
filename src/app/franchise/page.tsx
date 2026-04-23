@@ -291,7 +291,7 @@ export default function FranchisePage() {
             size="lg"
             className="rounded-full bg-ainomiq-navy text-ainomiq-blue hover:bg-ainomiq-navy/90 px-10 h-12 font-bold"
           >
-            <Link href="/contact#book-demo">
+            <Link href="/get-started#book-demo">
               Get a demo <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>

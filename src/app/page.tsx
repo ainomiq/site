@@ -111,7 +111,7 @@ export default function HomePage() {
                 <Link href="https://app.ainomiq.com">Get started free</Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="rounded-full border-ainomiq-border hover:border-ainomiq-border-hover bg-transparent text-ainomiq-text">
-                <Link href="/contact">Talk to us</Link>
+                <Link href="/get-started">Talk to us</Link>
               </Button>
             </div>
           </div>

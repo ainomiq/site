@@ -13,7 +13,9 @@ export default function GetStartedPage() {
   return (
     <>
       <GetStartedWizard />
-      <DemoBooking />
+      <section id="book-demo" className="py-24 px-6 max-w-5xl mx-auto">
+        <DemoBooking />
+      </section>
     </>
   );
 }

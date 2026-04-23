@@ -299,7 +299,7 @@ export default function DemosPage() {
               size="lg"
               className="rounded-full border-ainomiq-border hover:border-ainomiq-border-hover bg-ainomiq-navy text-ainomiq-text px-8 h-12"
             >
-              <Link href="/contact#book-demo">
+              <Link href="/get-started#book-demo">
                 Book a call <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
