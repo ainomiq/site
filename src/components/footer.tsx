@@ -38,7 +38,7 @@ function NewsletterSignup() {
       {status === "success" ? (
         <p className="text-sm text-ainomiq-blue">Thanks, you&apos;re in.</p>
       ) : (
-        <form onSubmit={handleSubmit} className="flex items-stretch rounded-lg border border-ainomiq-border bg-ainomiq-surface overflow-hidden focus-within:border-ainomiq-blue transition-colors w-full md:w-96">
+        <form onSubmit={handleSubmit} className="flex items-stretch rounded-lg border border-ainomiq-border bg-ainomiq-surface overflow-hidden focus-within:border-ainomiq-blue transition-colors w-full">
           <input
             type="email"
             required
@@ -178,7 +178,7 @@ export function Footer() {
               </a>
             ))}
           </div>
-          <div className="w-full md:w-auto md:max-w-xs md:flex-shrink-0">
+          <div className="w-full md:w-80">
             <NewsletterSignup />
           </div>
         </div>
