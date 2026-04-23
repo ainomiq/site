@@ -38,14 +38,14 @@ export default function HomePage() {
           <div className="max-w-4xl mx-auto">
             <div className="group relative aspect-[16/9] overflow-hidden rounded-3xl">
               <img
-                src="/team/founders.jpg?v=2"
-                alt="Pim Smit & Bink Sanders - Co-Founders of Ainomiq"
+                src="/team/founders.png?v=3"
+                alt="Bink Sanders & Pim Smit - Co-Founders of Ainomiq"
                 className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent md:from-black/70 md:via-black/20" />
               <div className="absolute bottom-0 left-0 right-0 p-5 md:p-10">
                 <h3 className="text-xl md:text-4xl font-extrabold text-white">
-                  Pim Smit &amp; Bink Sanders
+                  Bink Sanders &amp; Pim Smit
                 </h3>
                 <div className="hidden md:flex items-end justify-between mt-4">
                   <p className="text-white/80 text-base leading-relaxed max-w-md">
@@ -134,7 +134,7 @@ export default function HomePage() {
       <section className="bg-ainomiq-navy">
         <div className="relative flex h-[40vh] items-center justify-center">
           <h2 className="text-center text-3xl md:text-5xl font-extrabold tracking-tight px-6">
-            One platform. Every channel.
+            People we've helped
           </h2>
         </div>
         <ZoomParallax images={parallaxImages} />
