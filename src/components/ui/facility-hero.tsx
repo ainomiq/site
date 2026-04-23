@@ -126,7 +126,7 @@ export function FacilityHero() {
         <p className="text-center text-xs font-semibold uppercase tracking-widest text-muted-foreground/50 mb-6">
           Integrates with your existing systems
         </p>
-        <div className="grid grid-cols-4 gap-6 sm:grid-cols-8">
+        <div className="grid grid-cols-2 gap-6 sm:grid-cols-4 lg:grid-cols-8">
           {['Verklizan', 'Planday', 'Procare', 'Genetec', 'Milestone', 'Bosch', 'Axis', 'Hikvision'].map((name) => (
             <div key={name} className="flex items-center justify-center">
               <span className="text-muted-foreground/40 text-xs font-semibold tracking-wide">{name}</span>
