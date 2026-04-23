@@ -10,6 +10,8 @@ interface TextRevealByWordProps {
   className?: string;
 }
 
+const REVEAL_FRACTION = 0.55;
+
 const TextRevealByWord: FC<TextRevealByWordProps> = ({
   text,
   className,
@@ -18,24 +20,25 @@ const TextRevealByWord: FC<TextRevealByWordProps> = ({
 
   const { scrollYProgress } = useScroll({
     target: targetRef,
+    offset: ["start end", "end start"],
   });
   const words = text.split(" ");
 
   return (
-    <div ref={targetRef} className={cn("relative z-0 h-[100vh]", className)}>
+    <div ref={targetRef} className={cn("relative z-0 h-[70vh]", className)}>
       <div
         className={
-          "sticky top-0 mx-auto flex h-[60vh] max-w-4xl items-center justify-center bg-transparent px-6"
+          "sticky top-0 mx-auto flex h-[50vh] max-w-4xl items-center justify-center bg-transparent px-6"
         }
       >
         <p
           className={
-            "flex flex-wrap text-center justify-center text-2xl font-bold text-black/10 md:text-3xl lg:text-4xl xl:text-5xl"
+            "flex flex-wrap text-center justify-center text-2xl font-bold md:text-3xl lg:text-4xl xl:text-5xl"
           }
         >
           {words.map((word, i) => {
-            const start = i / words.length;
-            const end = start + 1 / words.length;
+            const start = 0.2 + (i / words.length) * REVEAL_FRACTION;
+            const end = start + (1 / words.length) * REVEAL_FRACTION;
             return (
               <Word key={i} progress={scrollYProgress} range={[start, end]}>
                 {word}
@@ -55,11 +58,11 @@ interface WordProps {
 }
 
 const Word: FC<WordProps> = ({ children, progress, range }) => {
-  const opacity = useTransform(progress, range, [0, 1]);
+  const opacity = useTransform(progress, range, [0.15, 1]);
   return (
-    <span className="xl:lg-3 relative mx-1 lg:mx-2.5">
+    <span className="relative mx-1 lg:mx-2.5">
       <motion.span
-        style={{ opacity: opacity }}
+        style={{ opacity }}
         className={"text-black"}
       >
         {children}
