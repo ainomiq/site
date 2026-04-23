@@ -241,30 +241,18 @@ export default function FranchisePage() {
       </section>
 
       {/* Gradient CTA */}
-      <section className="relative py-24 px-6 overflow-hidden">
-        <div
-          className="absolute inset-0"
-          style={{
-            background: "linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #3b82f6 100%)",
-          }}
-        />
-        <div
-          className="absolute inset-0 opacity-30"
-          style={{
-            background: "radial-gradient(ellipse at 70% 50%, rgba(96,165,250,0.5) 0%, transparent 60%)",
-          }}
-        />
+      <section className="relative py-24 px-6 overflow-hidden bg-white">
         <div className="relative z-10 mx-auto max-w-3xl text-center">
-          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-white mb-6">
+          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-gray-900 mb-6">
             The future of franchise operations starts here.
           </h2>
-          <p className="text-lg text-white/80 mb-10 max-w-lg mx-auto">
+          <p className="text-lg text-gray-600 mb-10 max-w-lg mx-auto">
             Book a 30-minute demo. We&apos;ll show you exactly how much you can save per location.
           </p>
           <Button
             asChild
             size="lg"
-            className="rounded-full bg-ainomiq-navy text-ainomiq-blue hover:bg-ainomiq-navy/90 px-10 h-12 font-bold"
+            className="rounded-full bg-ainomiq-blue text-white hover:bg-ainomiq-blue/90 px-10 h-12 font-bold"
           >
             <Link href="/get-started#book-demo">
               Get a demo <ArrowRight className="ml-2 h-4 w-4" />
