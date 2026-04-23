@@ -30,9 +30,8 @@ function Hero({ onCTA }: { onCTA: () => void }) {
           Custom AI solutions
         </div>
 
-        <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.05] text-ainomiq-text mb-6">
-          The best performing companies<br />
-          aren&apos;t hiring more people.{" "}
+        <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight leading-[1.05] text-ainomiq-text mb-6">
+          The best companies aren&apos;t hiring more people.{" "}
           <span className="bg-gradient-to-r from-ainomiq-blue to-violet-400 bg-clip-text text-transparent">
             They&apos;re using smarter systems.
           </span>
