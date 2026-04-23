@@ -76,7 +76,7 @@ export default function HomePage() {
 
       {/* Scroll Text Reveal */}
       <section className="bg-white">
-        <TextRevealByWord text="Ainomiq builds AI that doesn't just suggest — it acts. Your entire operation, one platform, running autonomously around the clock." />
+        <TextRevealByWord text="We don't automate tasks. We run entire operations. One platform, every channel, always on." />
       </section>
 
       {/* Feature Carousel */}
