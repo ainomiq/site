@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import { motion } from "framer-motion";
 import {
   Bot, LayoutDashboard, Zap, Globe, Smartphone, Paintbrush,
   RefreshCw, Plug, Users, TrendingUp, Check, ArrowRight,
@@ -408,8 +409,12 @@ function HowItWorks() {
 
         <div className="space-y-4">
           {steps.map(({ Icon, num, title, body }, i) => (
-            <div
+            <motion.div
               key={num}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.5, delay: i * 0.12, ease: "easeOut" }}
               className="flex items-start gap-6 rounded-2xl border border-ainomiq-border bg-ainomiq-navy p-7"
             >
               <div className="flex-shrink-0 flex flex-col items-center gap-3">
@@ -425,7 +430,7 @@ function HowItWorks() {
                 <h3 className="text-lg font-bold text-ainomiq-text mb-2">{title}</h3>
                 <p className="text-sm text-ainomiq-text-muted leading-relaxed">{body}</p>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
