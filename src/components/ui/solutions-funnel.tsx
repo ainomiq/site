@@ -31,15 +31,15 @@ function Hero({ onCTA }: { onCTA: () => void }) {
         </div>
 
         <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight leading-[1.05] text-ainomiq-text mb-6">
-          Your business.{" "}
+          The best performing companies<br />
+          aren&apos;t hiring more people.{" "}
           <span className="bg-gradient-to-r from-ainomiq-blue to-violet-400 bg-clip-text text-transparent">
-            Automated.
+            They&apos;re using smarter systems.
           </span>
         </h1>
 
         <p className="mx-auto max-w-2xl text-lg md:text-xl text-ainomiq-text-muted leading-relaxed mb-10">
-          We build the AI tools your business actually needs. Chatbots, dashboards,
-          automations, apps, and full site design - scoped and shipped in weeks.
+          We build those systems. Custom to how your business actually works. AI that quietly takes the repetitive work off your team, so they can focus on what moves the company forward.
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -47,10 +47,10 @@ function Hero({ onCTA }: { onCTA: () => void }) {
             onClick={onCTA}
             className="group inline-flex items-center gap-2 rounded-xl bg-ainomiq-blue px-7 py-3.5 text-base font-bold text-white shadow-lg shadow-ainomiq-blue/25 hover:bg-ainomiq-blue/90 transition-all"
           >
-            Get a free estimate
+            See what AI could take over
             <ArrowRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
           </button>
-          <p className="text-sm text-ainomiq-text-subtle">No commitment. Response within 24h.</p>
+          <p className="text-sm text-ainomiq-text-subtle">Free scoping. No sales call required.</p>
         </div>
       </div>
     </section>
@@ -62,23 +62,23 @@ function Hero({ onCTA }: { onCTA: () => void }) {
 const pains = [
   {
     Icon: RefreshCw,
-    title: "You're repeating the same tasks every day",
-    body: "Answering the same emails. Updating spreadsheets. Sending manual follow-ups. Every hour spent on this is an hour not spent on growth.",
+    title: "You're not short on people.",
+    body: "You're short on hours. Admin, follow-ups, reports. They eat the day before the real work starts.",
   },
   {
     Icon: Plug,
-    title: "Your tools don't connect to each other",
-    body: "Shopify, CRM, email platform, WhatsApp - none of it talks. Data slips through the cracks and nothing runs automatically.",
+    title: "Your tools don't talk to each other.",
+    body: "So your team fills the gaps. Manually. Every day. That's not a workflow, that's a cost.",
   },
   {
     Icon: Users,
-    title: "Hiring more people isn't the answer",
-    body: "Staff is expensive, unpredictable, and doesn't scale. There's a faster, cheaper way - one that works around the clock.",
+    title: "You keep hiring. Costs keep climbing.",
+    body: "More headcount means more overhead. AI doesn't call in sick, doesn't scale linearly, never asks for a raise.",
   },
   {
     Icon: TrendingUp,
-    title: "Your competitors are automating faster",
-    body: "Businesses that automate early have more time to focus on what matters. That gap compounds every week you wait.",
+    title: "Your industry hasn't been touched by AI yet.",
+    body: "That's about to change. The question isn't if. It's who gets there first in your sector.",
   },
 ];
 
@@ -91,7 +91,7 @@ function PainPoints() {
             Sound familiar?
           </p>
           <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-ainomiq-text">
-            Manual work is killing your growth
+            You&apos;re not behind.<br />You&apos;re just still doing it manually.
           </h2>
         </div>
 
@@ -309,10 +309,10 @@ function WhatWeBuild() {
             Our work
           </p>
           <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-ainomiq-text mb-4">
-            Built by us. Running today.
+            Built by us. Running every day.
           </h2>
           <p className="text-lg text-ainomiq-text-muted max-w-2xl mx-auto">
-            Real projects, real clients. Here is what we have shipped.
+            Not case studies. Live systems, quietly doing the work for real companies.
           </p>
         </div>
 
@@ -361,26 +361,26 @@ const steps = [
   {
     Icon: MessageCircle,
     num: "01",
-    title: "Fill in the brief",
-    body: "Tell us what you need. Takes 3 minutes. No calls required. You get an instant cost estimate on the spot.",
+    title: "Tell us what's eating your week.",
+    body: "Three minutes. No calls. You describe the work you want to stop doing, we give you a price on the spot.",
   },
   {
     Icon: FileText,
     num: "02",
-    title: "We review and scope",
-    body: "Within 24 hours our team reviews your request, refines the scope, and confirms the plan with you.",
+    title: "We scope it within 24 hours.",
+    body: "Our team reads your brief, sharpens the scope, confirms the plan. No sales call unless you want one.",
   },
   {
     Icon: Code,
     num: "03",
-    title: "A dedicated builder starts",
-    body: "One specialist - not a committee. Weekly demos, constant progress, zero confusion.",
+    title: "One builder. Not a committee.",
+    body: "A dedicated specialist starts building. Weekly demos, constant progress, zero handoff confusion.",
   },
   {
     Icon: Rocket,
     num: "04",
     title: "We ship. You own it.",
-    body: "Full handover: all code, all credentials, all documentation. Plus 30 days of post-launch support.",
+    body: "All code, all credentials, all documentation. Plus 30 days of support after launch. No lock-in.",
   },
 ];
 
@@ -393,7 +393,7 @@ function HowItWorks() {
             The process
           </p>
           <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-ainomiq-text">
-            From idea to live in weeks
+            From idea to running in weeks.<br />Not quarters.
           </h2>
         </div>
 
@@ -435,19 +435,19 @@ const stats = [
 
 const quotes = [
   {
-    text: "We had a fully working customer support bot within 3 weeks. It handles 80% of our tickets automatically now.",
-    name: "E-commerce founder",
-    detail: "Apparel brand, Netherlands",
+    text: "It replaced an entire shift of support work. Nobody noticed the handover because it just answered faster.",
+    name: "Operations lead",
+    detail: "Multi-location franchise, NL",
   },
   {
-    text: "The dashboard they built replaced 4 different tools we were paying for. It pays for itself every month.",
+    text: "We were paying four tools to do what one dashboard now does. The difference lands in the P&L every month.",
     name: "Operations manager",
-    detail: "Logistics company, Belgium",
+    detail: "Logistics company, BE",
   },
   {
-    text: "I expected it to take months. It was live in 5 weeks and exactly what we asked for.",
+    text: "I expected a months-long project. It was live in five weeks. Exactly what we asked for.",
     name: "Marketing director",
-    detail: "SaaS startup, Germany",
+    detail: "B2B SaaS, DE",
   },
 ];
 
@@ -474,7 +474,7 @@ function SocialProof() {
             What clients say
           </p>
           <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-ainomiq-text">
-            Real results. Real businesses.
+            Built it. Shipped it.<br />They kept using it.
           </h2>
         </div>
 
@@ -509,27 +509,27 @@ function SocialProof() {
 const objections = [
   {
     q: "Is this just a template?",
-    a: "No. Every project is custom-built from scratch. We scope it, architect it, and ship it specifically for you.",
+    a: "No. Every project is built from scratch, scoped and architected specifically for how your business works.",
   },
   {
     q: "What if I don't know exactly what I need?",
-    a: "That's fine. Tell us the problem. We'll figure out the solution. Our intake form helps clarify scope automatically.",
+    a: "That's fine. Tell us the problem, we'll shape the solution. The intake form walks you through it.",
   },
   {
     q: "What happens after it's built?",
-    a: "You own everything - code, credentials, documentation. Plus 30 days of support for any issues post-launch.",
+    a: "You own everything. Code, credentials, documentation. Plus 30 days of support after launch.",
   },
   {
     q: "How much does it cost?",
-    a: "Fill in the form and get an instant estimate. Most projects land between EUR 1,500 and EUR 15,000 depending on scope.",
+    a: "Most projects land between EUR 95 and EUR 25,000. Fill in the form and see your exact estimate in 3 minutes.",
   },
   {
     q: "How long does it take?",
-    a: "Most projects ship in 2 to 6 weeks. Rush delivery is available for time-sensitive builds.",
+    a: "Most projects ship in 2 to 6 weeks. Rush delivery is available when you need it sooner.",
   },
   {
-    q: "What if I want changes after?",
-    a: "We offer ongoing support packages. Or take the code to any developer. No lock-in, ever.",
+    q: "What if I want changes later?",
+    a: "Ongoing support packages available. Or take the code to any developer. No lock-in, ever.",
   },
 ];
 
@@ -542,7 +542,7 @@ function Objections({ onCTA }: { onCTA: () => void }) {
             Before you ask
           </p>
           <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-ainomiq-text">
-            Common questions
+            The questions you&apos;re about to ask.
           </h2>
         </div>
 
@@ -571,11 +571,10 @@ function Objections({ onCTA }: { onCTA: () => void }) {
         >
           <ShieldCheck className="h-8 w-8 text-ainomiq-blue mx-auto mb-4" />
           <h3 className="text-2xl font-extrabold text-ainomiq-text mb-3">
-            Still not sure? Just fill in the form.
+            Still thinking? Just fill in the form.
           </h3>
           <p className="text-ainomiq-text-muted mb-6 max-w-md mx-auto">
-            3 minutes. Instant price estimate. No calls, no pressure. A clear proposal in
-            your inbox within 24 hours.
+            3 minutes. Instant price estimate. No calls, no pressure. A clear proposal in your inbox within 24 hours.
           </p>
           <button
             onClick={onCTA}
