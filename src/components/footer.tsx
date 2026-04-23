@@ -77,7 +77,7 @@ const nav = [
     title: "Company",
     links: [
       { href: "/about", label: "About" },
-      { href: "/contact", label: "Contact" },
+      { href: "/get-started#book-demo", label: "Contact" },
     ],
   },
   {

@@ -471,7 +471,7 @@ export function Results({ analysis, manual, onReset }: ResultsProps) {
       {error && (
         <div className="rounded-2xl border border-ainomiq-border bg-ainomiq-navy p-8 text-center">
           <p className="text-ainomiq-text-muted">{error}</p>
-          <a href="/contact" className="text-ainomiq-blue text-sm mt-2 inline-block hover:underline">
+          <a href="/get-started#book-demo" className="text-ainomiq-blue text-sm mt-2 inline-block hover:underline">
             Contact us for a personalized assessment
           </a>
         </div>
@@ -592,7 +592,7 @@ export function Results({ analysis, manual, onReset }: ResultsProps) {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pb-4">
             {isCustom ? (
               <a
-                href="/contact"
+                href="/get-started#book-demo"
                 className="inline-flex h-12 items-center gap-2 rounded-full bg-ainomiq-blue px-8 text-sm font-medium text-white transition-all hover:bg-ainomiq-blue-hover shadow-sm"
               >
                 Book a free consultation
@@ -610,7 +610,7 @@ export function Results({ analysis, manual, onReset }: ResultsProps) {
               </a>
             )}
             <a
-              href="/contact"
+              href="/get-started#book-demo"
               className="inline-flex h-12 items-center gap-2 rounded-full border border-ainomiq-border px-8 text-sm font-medium text-ainomiq-text transition-all hover:bg-ainomiq-surface"
             >
               Talk to our team

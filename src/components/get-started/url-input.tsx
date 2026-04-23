@@ -84,7 +84,7 @@ export function UrlInput({ onSubmit, isLoading }: UrlInputProps) {
           Open app
         </a>
         <a
-          href="/contact"
+          href="/get-started#book-demo"
           className="inline-flex items-center gap-2 rounded-full bg-ainomiq-blue px-5 py-2.5 text-sm font-medium text-white hover:bg-ainomiq-blue-hover transition-all"
         >
           Contact sales
