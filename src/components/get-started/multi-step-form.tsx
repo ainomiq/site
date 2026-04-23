@@ -323,7 +323,7 @@ function ProgressTabs({ activeStep }: { activeStep: number }) {
             {i === activeStep && (
               <motion.div
                 layoutId="tab-indicator"
-                className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-500 rounded-full"
+                className="absolute top-0 left-0 right-0 h-0.5 bg-blue-500 rounded-full"
               />
             )}
           </div>
