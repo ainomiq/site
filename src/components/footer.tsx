@@ -1,8 +1,71 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 import { Icon } from "@iconify/react";
 import { LogoMark } from "@/components/logo";
+
+function NewsletterSignup() {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setStatus("error");
+      return;
+    }
+    setStatus("loading");
+    try {
+      const res = await fetch("/api/klaviyo-subscribe", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+      if (!res.ok) throw new Error();
+      setStatus("success");
+      setEmail("");
+    } catch {
+      setStatus("error");
+    }
+  }
+
+  return (
+    <div className="md:text-right">
+      <p className="mb-3 text-xs font-semibold uppercase tracking-wider text-ainomiq-text-subtle">
+        Newsletter
+      </p>
+      <p className="text-sm text-ainomiq-text-muted mb-3 leading-relaxed">
+        AI news. Once a month. No spam.
+      </p>
+      {status === "success" ? (
+        <p className="text-sm text-ainomiq-blue">Thanks, you&apos;re in.</p>
+      ) : (
+        <form onSubmit={handleSubmit} className="flex flex-col gap-2 md:items-end">
+          <input
+            type="email"
+            required
+            value={email}
+            onChange={(e) => { setEmail(e.target.value); if (status === "error") setStatus("idle"); }}
+            placeholder="you@company.com"
+            className="w-full md:w-56 rounded-lg border border-ainomiq-border bg-ainomiq-surface px-3 py-2 text-sm text-ainomiq-text placeholder:text-ainomiq-text-subtle focus:outline-none focus:border-ainomiq-blue transition-colors"
+            aria-label="Email address"
+          />
+          <button
+            type="submit"
+            disabled={status === "loading"}
+            className="w-full md:w-56 rounded-lg bg-ainomiq-blue px-3 py-2 text-sm font-semibold text-white hover:bg-ainomiq-blue-hover transition-colors disabled:opacity-50"
+          >
+            {status === "loading" ? "Subscribing..." : "Subscribe"}
+          </button>
+          {status === "error" && (
+            <p className="text-xs text-red-400">Something went wrong. Try again.</p>
+          )}
+        </form>
+      )}
+    </div>
+  );
+}
 
 const nav = [
   {
@@ -74,7 +137,7 @@ export function Footer() {
       <div className="mx-auto max-w-6xl px-6">
 
         {/* Main grid */}
-        <div className="grid grid-cols-2 gap-10 py-14 md:grid-cols-5">
+        <div className="grid grid-cols-2 gap-10 py-14 md:grid-cols-6">
           <div className="col-span-2 md:col-span-2">
             <Link href="/" className="flex items-center gap-2 mb-4">
               <LogoMark className="h-7 w-auto" />
@@ -113,6 +176,10 @@ export function Footer() {
               </ul>
             </div>
           ))}
+
+          <div className="col-span-2 md:col-span-1">
+            <NewsletterSignup />
+          </div>
         </div>
 
         <div className="border-t border-ainomiq-border" />
