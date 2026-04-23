@@ -26,14 +26,12 @@ const productsEcommerce = [
   { href: "/ecommerce#customer-service", label: "Customer Service", sub: "24/7 intelligent support", icon: Headset },
   { href: "/ecommerce#smart-inventory", label: "Smart Inventory", sub: "Real-time stock tracking", icon: Package },
   { href: "/ecommerce#email-marketing", label: "E-mail Marketing", sub: "Automated campaigns", icon: Mail },
-  { href: "/ecommerce", label: "See More", sub: "All features", icon: ArrowRight },
 ];
 
 const productsCustom = [
   { href: "/enterprise#all-in-one", label: "All-in-one", sub: "Full automation suite", icon: Layers },
   { href: "/enterprise#chatbot", label: "Chatbot", sub: "Website & WhatsApp", icon: MessageCircle },
   { href: "/enterprise#app", label: "App", sub: "iOS / Playstore app", icon: Smartphone },
-  { href: "/enterprise", label: "See More", sub: "All solutions", icon: ArrowRight },
 ];
 
 const industries = [
