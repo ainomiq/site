@@ -27,7 +27,7 @@ const TextRevealByWord: FC<TextRevealByWordProps> = ({ text, highlight, tail, cl
 
   return (
     <div ref={targetRef} className={cn("mx-auto max-w-4xl px-6", className)}>
-      <p className="flex flex-wrap justify-center text-center text-2xl font-bold md:text-3xl lg:text-4xl xl:text-5xl">
+      <p className="flex flex-wrap justify-center text-center text-balance text-2xl font-bold md:text-3xl lg:text-4xl xl:text-5xl">
         {words.map((word, i) => {
           const start = i / total;
           const end = (i + 1) / total;
@@ -40,16 +40,20 @@ const TextRevealByWord: FC<TextRevealByWordProps> = ({ text, highlight, tail, cl
       </p>
       {(highlight || tail) && (
         <p className="mt-4 flex flex-wrap justify-center text-center text-2xl font-bold md:text-3xl lg:text-4xl xl:text-5xl">
-          {highlightWords.map((word, i) => {
-            const offset = words.length + i;
-            const start = offset / total;
-            const end = (offset + 1) / total;
-            return (
-              <Word key={`h-${i}`} progress={scrollYProgress} range={[start, end]} accent>
-                {word}
-              </Word>
-            );
-          })}
+          {highlight && (
+            <span className="inline-flex whitespace-nowrap">
+              {highlightWords.map((word, i) => {
+                const offset = words.length + i;
+                const start = offset / total;
+                const end = (offset + 1) / total;
+                return (
+                  <Word key={`h-${i}`} progress={scrollYProgress} range={[start, end]} accent>
+                    {word}
+                  </Word>
+                );
+              })}
+            </span>
+          )}
           {tailWords.map((word, i) => {
             const offset = words.length + highlightWords.length + i;
             const start = offset / total;
