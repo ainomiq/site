@@ -38,7 +38,7 @@ function NewsletterSignup() {
       {status === "success" ? (
         <p className="text-sm text-ainomiq-blue">Thanks, you&apos;re in.</p>
       ) : (
-        <form onSubmit={handleSubmit} className="flex items-stretch rounded-lg border border-ainomiq-border bg-ainomiq-surface overflow-hidden focus-within:border-ainomiq-blue transition-colors w-full md:w-72">
+        <form onSubmit={handleSubmit} className="flex items-stretch rounded-lg border border-ainomiq-border bg-ainomiq-surface overflow-hidden focus-within:border-ainomiq-blue transition-colors w-full md:w-96">
           <input
             type="email"
             required
