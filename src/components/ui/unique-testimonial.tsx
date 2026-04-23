@@ -100,19 +100,7 @@ export function Testimonials() {
                       showName ? "pr-4 pl-2 py-2" : "p-0.5",
                     )}
                   >
-                    {/* Avatar */}
-                    <div className="relative flex-shrink-0">
-                      <img
-                        src={testimonial.avatar}
-                        alt={testimonial.author}
-                        className={cn(
-                          "w-10 h-10 rounded-full object-cover",
-                          "transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]",
-                          isActive ? "ring-2 ring-white/30" : "ring-0",
-                          !isActive && "hover:scale-105",
-                        )}
-                      />
-                    </div>
+                    {/* Avatar removed */}
 
                     <div
                       className={cn(

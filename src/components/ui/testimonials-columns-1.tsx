@@ -54,13 +54,6 @@ export const TestimonialsColumn = (props: {
                 <div className="p-10 rounded-3xl border border-ainomiq-border shadow-lg shadow-ainomiq-blue/5 max-w-xs w-full" key={i}>
                   <div className="text-ainomiq-text text-sm leading-relaxed">{text}</div>
                   <div className="flex items-center gap-2 mt-5">
-                    <img
-                      width={40}
-                      height={40}
-                      src={image}
-                      alt={name}
-                      className="h-10 w-10 rounded-full object-cover"
-                    />
                     <div className="flex flex-col">
                       <div className="font-medium tracking-tight leading-5 text-ainomiq-text">{name}</div>
                       <div className="leading-5 text-ainomiq-text-muted tracking-tight text-sm">{role}</div>
