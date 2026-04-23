@@ -76,16 +76,21 @@ export default function HomePage() {
 
       {/* Text Reveal */}
       <section className="bg-white py-24">
-        <TextRevealByWord
-          text="Built from scratch. Fully tailored. Deployed fast."
-          highlight="We're building the future"
-          tail="for businesses that refuse to wait."
-        />
+        <TextRevealByWord text="Built from scratch. Fully tailored. Deployed fast." />
       </section>
 
       {/* Feature Carousel */}
       <section className="py-24 px-6 bg-ainomiq-navy">
         <FeatureCarousel />
+      </section>
+
+      {/* Text Reveal — slogan */}
+      <section className="bg-white py-24">
+        <TextRevealByWord
+          text=""
+          highlight="We're building the future"
+          tail="for businesses that refuse to wait."
+        />
       </section>
 
       {/* Why we're different */}

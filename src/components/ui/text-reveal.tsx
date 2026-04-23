@@ -20,13 +20,14 @@ const TextRevealByWord: FC<TextRevealByWordProps> = ({ text, highlight, tail, cl
     offset: ["start 0.85", "end 0.4"],
   });
 
-  const words = text.split(" ");
+  const words = text ? text.split(" ") : [];
   const highlightWords = highlight ? highlight.split(" ") : [];
   const tailWords = tail ? tail.split(" ") : [];
   const total = words.length + highlightWords.length + tailWords.length;
 
   return (
     <div ref={targetRef} className={cn("mx-auto max-w-4xl px-6", className)}>
+      {words.length > 0 && (
       <p className="text-center text-balance text-2xl font-bold md:text-3xl lg:text-4xl xl:text-5xl">
         {words.map((word, i) => {
           const start = i / total;
@@ -39,8 +40,9 @@ const TextRevealByWord: FC<TextRevealByWordProps> = ({ text, highlight, tail, cl
           );
         })}
       </p>
+      )}
       {highlight && (
-        <p className="mt-6 text-center text-2xl font-bold md:text-3xl lg:text-4xl xl:text-5xl">
+        <p className={cn("text-center text-2xl font-bold md:text-3xl lg:text-4xl xl:text-5xl", words.length > 0 && "mt-6")}>
           <span className="whitespace-nowrap">
             {highlightWords.map((word, i) => {
               const offset = words.length + i;
