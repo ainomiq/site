@@ -31,7 +31,7 @@ function NewsletterSignup() {
   }
 
   return (
-    <div className="flex flex-col gap-2 md:flex-row md:items-center md:gap-4">
+    <div className="flex flex-col gap-2">
       <p className="text-sm text-ainomiq-text-muted leading-relaxed md:whitespace-nowrap">
         AI news. Once a month. No spam.
       </p>
@@ -178,7 +178,7 @@ export function Footer() {
               </a>
             ))}
           </div>
-          <div className="w-full md:w-auto md:max-w-sm md:flex-1 md:ml-auto">
+          <div className="w-full md:w-auto md:max-w-xs md:flex-shrink-0">
             <NewsletterSignup />
           </div>
         </div>
