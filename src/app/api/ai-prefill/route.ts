@@ -3,22 +3,47 @@ import { generateText } from "ai";
 import { openai } from "@ai-sdk/openai";
 
 const PROJECT_TYPE_IDS = [
-  "simple-automation",
-  "website",
-  "chatbot",
+  // Chatbots
+  "chatbot-embedded",
   "chatbot-basic",
   "chatbot-standard",
   "chatbot-advanced",
+  "chatbot-ops-replacement",
   "chatbot-enterprise",
+  "chatbot-2d-animated",
+  "chatbot-3d-animated",
+  "chatbot-voice-only",
+  "chatbot",
+  // Dashboards
+  "dashboard-public",
   "dashboard",
-  "webshop",
+  "dashboard-private-api",
+  // Websites
+  "landing-page",
+  "website",
+  "website-cms",
+  "website-multilang",
+  "website-multilang-cms",
+  // Flows
+  "flow-simple",
+  "flow-complex",
+  "flow-ai-workflow",
+  "simple-automation",
+  // Mobile
+  "mobile-app-simple",
+  "mobile-app-full",
   "mobile-app",
+  // AI tools
+  "ai-content-generator",
+  // Industry
+  "facility-services-tool",
+  // Generic
+  "webshop",
   "enterprise",
 ];
 
 const TIMELINE_IDS = ["asap", "1-2-weeks", "2-4-weeks", "1-2-months", "flexible"];
 
-// Feature keys that map to prices in the estimate API
 const FEATURE_KEYS = [
   "payment", "login", "admin", "rbac", "email-notifs", "sms-push", "search",
   "file-uploads-basic", "file-uploads-large", "analytics", "booking",
@@ -26,7 +51,6 @@ const FEATURE_KEYS = [
   "rag", "custom-ai-agent", "api-external", "realtime", "saas",
 ];
 
-// Integration keys that map to prices in the estimate API
 const INTEGRATION_KEYS = [
   "shopify", "magento", "klaviyo", "meta", "google", "hubspot",
   "salesforce", "erp", "marketplace", "whatsapp", "custom-api",
@@ -42,103 +66,141 @@ interface SiteData {
   bodyPreview: string;
 }
 
-const SYSTEM_PROMPT = `You help clients fill in a project request form for Ainomiq, an AI automation agency.
+const SYSTEM_PROMPT = `You classify custom-solution requests for Ainomiq, an AI automation agency.
 
-## Pricing config (exact - use this to classify and select features)
+## CRITICAL: Redirect to app.ainomiq.com
 
-### Base prices per project type:
-- simple-automation: €2,500 - scrapers, data pipelines, file parsers (Excel/CSV/PDF), translation scripts, Zapier-like workflows, image processing, email automations, scheduled jobs
-- website: €5,000 - marketing sites, landing pages, portfolios (no backend logic)
-- chatbot-basic: €3,500 - simple embedded website chatbot, FAQ/product info only, text-only, no voice, no hardware, no staff training. Example: product FAQ bot for a webshop
-- chatbot-standard: €7,500 - chatbot with integrations (CRM/Shopify/email), multi-channel (web+email), basic knowledge base. Example: customer service bot that checks orders
-- chatbot-advanced: €12,500 - RAG/knowledge base, complex integrations, multi-language, learns from data. Example: smart support bot with full knowledge base
-- chatbot-enterprise: €18,000 - voice capability, hardware deployment, staff training, complex multi-system integrations. Example: Domino's staff training bot with voice + hardware
-- dashboard: €7,500 - admin panels, data portals, internal tools with user management
-- webshop: €15,000 - full e-commerce with catalog, cart, checkout, order management
-- mobile-app: €20,000 - native iOS/Android apps
-- enterprise: €25,000 - multi-tenant SaaS, full system replacements, 6+ month projects
+Ainomiq has a ready-made ecom app (app.ainomiq.com) that already handles these things. If the user asks for any of these, DO NOT generate an estimate — set \`redirect: "app.ainomiq.com"\` instead.
 
-### Feature add-ons (only include if genuinely needed):
-- payment: €750 - Stripe/Mollie/iDEAL payment processing
-- login: €750 - user accounts, authentication
-- admin: €1,500 - admin panel / backoffice
-- rbac: €1,000 - role-based access control
-- email-notifs: €500 - transactional email notifications
-- sms-push: €500 - SMS or push notifications
-- search: €500 - search & filtering
-- file-uploads-basic: €400 - basic file/image uploads
-- file-uploads-large: €1,400 - video/large file uploads, S3/CDN
-- analytics: €1,500 - analytics dashboard, charts, reporting
-- booking: €2,000 - booking/scheduling/calendar
-- multilang-small: €750 - 2-3 languages
-- multilang-large: €1,500 - 4+ languages
-- chat: €1,500 - real-time messaging/chat
-- ai-chatbot-basic: €2,500 - basic AI chatbot feature
-- rag: €5,000 - RAG / knowledge base / vector search
-- custom-ai-agent: €7,500 - custom autonomous AI agent
-- api-external: €2,000 - public API for third parties (with docs, auth, versioning)
-- realtime: €1,500 - real-time/websockets/live data
-- saas: €7,500 - multi-tenant / SaaS architecture
+App modules (ALL of these → REDIRECT, not custom):
+- AI customer service (email / chat / DMs replies for ecom)
+- Email marketing (Klaviyo flows, welcome series, abandoned cart, win-back)
+- Smart inventory (stock tracking, auto-reorder, low-stock alerts)
+- Ads automation (Meta / Google / TikTok ad management, creative testing)
+- Performance / profit dashboard (revenue, ROAS, spend tracking like Triple Whale)
+- Reviews automation (sending review requests, replying to reviews)
+- Returns automation
+- Social media post scheduling / management
 
-### Integration add-ons (only include if explicitly mentioned):
-- shopify: €1,000
-- magento: €1,500 (also WooCommerce)
-- klaviyo: €300 (also Mailchimp, Sendgrid)
-- meta: €500 (Facebook, Instagram API, TikTok)
-- google: €400 (Google Ads, GA4, GTM)
-- hubspot: €750
-- salesforce: €2,500
-- erp: €2,500 (Exact, Twinfield, SAP)
-- marketplace: €1,000 (Bol.com, Amazon, Etsy)
-- whatsapp: €500 (also Slack, Teams)
-- custom-api: €1,500 (custom API connection, webhook, Zapier, Make.com)
+If the request is clearly one of these → output \`{ "redirect": "app.ainomiq.com", "reason": "<short NL reason>" }\` and nothing else.
 
-### Timeline surcharges:
-- asap: +25%
-- 1-2-weeks: +15%
-- 2-4-weeks: 0% (standard)
-- 1-2-months: 0%
-- flexible: 0%
+## CRITICAL: Needs-Review escape hatch
 
-### Delivery time by project type + complexity:
-- simple-automation, no complex features: 1-2 weeks
-- simple-automation with integrations: 2-3 weeks
-- website: 2-3 weeks
-- chatbot: 3-5 weeks
-- dashboard: 3-5 weeks
-- webshop: 4-6 weeks
-- mobile-app: 6-10 weeks
-- enterprise: 8-16 weeks
+For projects that are too big, too vague, or outside Ainomiq's expertise, DON'T auto-price. Instead set \`needsReview: true\`.
 
-## CRITICAL classification rules:
+Trigger needs-review when:
+- Custom CRM from scratch (they offer dashboards linked to existing CRMs, not replacements)
+- Custom ERP, full HR system, accounting system replacement
+- Native games, hardware design, blockchain protocol development
+- Multi-year multi-system projects (>€50k feel)
+- Request is too vague to scope (< 10 words and no clear deliverable)
 
-**DO NOT over-classify:**
-- A web scraper → simple-automation (even if it processes 10,000 items/day)
-- An Excel/CSV processor → simple-automation
-- A translation pipeline → simple-automation
-- An Amazon product scraper → simple-automation (Amazon as data source ≠ "marketplace integration")
-- A PDF reader/extractor → simple-automation
-- An image processing script → simple-automation
+Output for needs-review: \`{ "needsReview": true, "reason": "<short NL reason>" }\`.
 
-**Integrations: ONLY add if the client explicitly mentions connecting TO that platform:**
-- "scrape Amazon" → NO marketplace integration (Amazon is the data source, not an integration)
-- "sync orders with Shopify" → YES shopify integration
-- "send emails via Klaviyo" → YES klaviyo integration
-- "export to Excel" → NO integration needed (just file-uploads-basic at most, usually nothing)
+## Pricing taxonomy (if NOT redirect / NOT needs-review)
 
-**Features: be conservative. A simple scraper needs ZERO features from the list.**
+### Chatbots
+- chatbot-embedded (€995): embedded widget on product pages / site, public/scrapable data only, FAQ + brand voice. 0-1 week delivery.
+- chatbot-standard (€3,500): chatbot with 1-2 integrations, basic knowledge base, single channel.
+- chatbot-advanced (€7,500): RAG, multi-channel, complex integrations.
+- chatbot-ops-replacement (€12,500): store manager / ops-replacement chatbot with private data, custom interface, custom app. Toni-for-Domino's style.
+- chatbot-2d-animated (€3,950): custom 2D animated character chatbot.
+- chatbot-3d-animated (€12,500): 3D animated mascot with mouth-sync + voice. Heavy asset production.
+- chatbot-voice-only (€950): voice assistant (phone/embed), no avatar.
+
+### Dashboards
+- dashboard-public (€2,500): scrapes public data (TikTok trends, competitor data), gives insights.
+- dashboard-private-api (€15,000): private data from customer's kassa/ERP/inventory systems. Complex APIs.
+
+### Websites
+- landing-page (€95): single page.
+- website (€495): 5-10 pages, custom design, static (no CMS).
+- website-cms (€1,950): with CMS so client can edit content themselves.
+- website-multilang (€950): 2-3 languages, no CMS.
+- website-multilang-cms (€2,950): multilanguage + CMS.
+
+### Flows / Automations
+- flow-simple (€195): one trigger, simple automation (e.g. Shopify → Klaviyo list sync).
+- flow-complex (€895): multiple integrations, conditional logic.
+- flow-ai-workflow (€1,995): AI-driven workflow (e.g. reviews → AI sentiment → auto-reply / escalate).
+
+### Mobile apps
+- mobile-app-simple (€2,950): one purpose, standard UI, one platform.
+- mobile-app-full (€9,950): native iOS + Android + backend + auth + push.
+
+### AI tools
+- ai-content-generator (€1,950): generates product descriptions + AI images for catalog; monthly = AI credits × 1.5 markup.
+
+### Industry-specific
+- facility-services-tool (€25,000): field-worker planning + cleaning reports + photo verification + personnel management.
+
+## Optional feature add-ons (stack on top of base, only if genuinely needed):
+- payment (€750), login (€750), admin (€1,500), rbac (€1,000)
+- email-notifs (€500), sms-push (€500), search (€500)
+- file-uploads-basic (€400), file-uploads-large (€1,400)
+- analytics (€1,500), booking (€2,000)
+- multilang-small (€750), multilang-large (€1,500)
+- chat (€1,500), ai-chatbot-basic (€2,500)
+- rag (€5,000), custom-ai-agent (€7,500)
+- api-external (€2,000), realtime (€1,500), saas (€7,500)
+
+## Integration add-ons (only if explicitly mentioned):
+- shopify (€1,000), magento (€1,500), klaviyo (€300), meta (€500), google (€400)
+- hubspot (€750), salesforce (€2,500), erp (€2,500), marketplace (€1,000)
+- whatsapp (€500), custom-api (€1,500)
+
+## Timeline surcharges:
+- asap: +25%, 1-2-weeks: +15%, 2-4-weeks / 1-2-months / flexible: 0%
+
+## Pricing drivers (reason carefully):
+1. Data access: public/scrapable = cheap; private/behind-login = 10-15x more
+2. Integration complexity: easy APIs (Shopify, Klaviyo) = cheap; kassa / ERP / legacy = expensive
+3. Interface: embed widget = cheap; custom dashboard = mid; custom app = expensive
+4. Scope: FAQ lookup = cheap; ops-replacement (replaces a human role) = expensive
+5. Modality: text-only = cheap; voice = mid; 3D+voice = expensive
 
 ## Output format (JSON only, no markdown):
-{
-  "projectType": "<id>",
-  "description": "<English brief, 80-150 words, bullet points, specific, no questions>",
+
+If redirect:
+\`{ "redirect": "app.ainomiq.com", "reason": "<NL reason in 1 sentence>" }\`
+
+If needs-review:
+\`{ "needsReview": true, "reason": "<NL reason in 1 sentence>" }\`
+
+Otherwise (normal estimate):
+\`{
+  "projectType": "<id from taxonomy>",
+  "description": "<English brief, 80-150 words, bullet-style, specific>",
   "timeline": "<id>",
-  "targetAudience": "<5-15 words in English or empty string>",
+  "targetAudience": "<5-15 words in English or empty>",
   "needsCredentials": <boolean>,
-  "features": ["<feature-key>", ...],  // only keys from the feature list above, only if genuinely needed
-  "integrations": ["<integration-key>", ...],  // only keys from integration list, only if explicitly mentioned
-  "recommendations": ["<short suggestion>", "<short suggestion>"]  // 2-3 actionable tips
-}`;
+  "features": ["<feature-key>", ...],
+  "integrations": ["<integration-key>", ...],
+  "recommendations": ["<2-3 short actionable tips>"]
+}\`
+
+## Classification examples:
+
+**Input:** "Chatbot op mijn productpagina die FAQs kan beantwoorden"
+→ \`{ "projectType": "chatbot-embedded", ... }\` (public data, embedded)
+
+**Input:** "Chatbot voor winkelmanagers die alle recepten en procedures kent"
+→ \`{ "projectType": "chatbot-ops-replacement", ... }\` (private data, ops-replacement)
+
+**Input:** "Ik wil automatisch abandoned cart emails sturen via Klaviyo"
+→ \`{ "redirect": "app.ainomiq.com", "reason": "Abandoned cart flows zitten in onze Email module." }\`
+
+**Input:** "Dashboard met TikTok trends en content-ideeën"
+→ \`{ "projectType": "dashboard-public", ... }\`
+
+**Input:** "Dashboard dat data uit mijn kassa en voorraadsysteem combineert"
+→ \`{ "projectType": "dashboard-private-api", ... }\` (private APIs, complex)
+
+**Input:** "Custom CRM voor mijn makelaarskantoor"
+→ \`{ "needsReview": true, "reason": "Full custom CRMs bouwen we niet. We kunnen wel een dashboard maken dat koppelt met je bestaande CRM — even contact voor scoping." }\`
+
+**Input:** "Een ding voor mijn bedrijf"
+→ \`{ "needsReview": true, "reason": "Aanvraag te vaag — stuur ons meer context, we komen binnen 48u terug." }\``;
 
 export async function POST(request: NextRequest) {
   try {
@@ -159,7 +221,7 @@ export async function POST(request: NextRequest) {
 - Tech stack: ${siteData.tech.join(", ") || "unknown"}
 - Content: ${siteData.bodyPreview.slice(0, 500)}
 
-Use this to tailor the description to their actual business. Only add integrations that match their existing platforms.`;
+Use this to tailor the description to their actual business.`;
     }
 
     const { text } = await generateText({
@@ -173,8 +235,25 @@ Use this to tailor the description to their actual business. Only add integratio
       const cleaned = text.trim().replace(/^```json\s*/i, "").replace(/```\s*$/, "").trim();
       const parsed = JSON.parse(cleaned);
 
+      // Redirect response — pass through
+      if (parsed.redirect) {
+        return NextResponse.json({
+          redirect: parsed.redirect,
+          reason: parsed.reason || "",
+        });
+      }
+
+      // Needs-review response — pass through
+      if (parsed.needsReview) {
+        return NextResponse.json({
+          needsReview: true,
+          reason: parsed.reason || "",
+        });
+      }
+
+      // Normal estimate path — validate fields
       if (!PROJECT_TYPE_IDS.includes(parsed.projectType)) {
-        parsed.projectType = "simple-automation";
+        parsed.projectType = "chatbot-embedded";
       }
       if (!TIMELINE_IDS.includes(parsed.timeline)) {
         parsed.timeline = "2-4-weeks";
@@ -182,7 +261,6 @@ Use this to tailor the description to their actual business. Only add integratio
       if (!Array.isArray(parsed.recommendations)) {
         parsed.recommendations = [];
       }
-      // Validate feature/integration keys
       if (Array.isArray(parsed.features)) {
         parsed.features = parsed.features.filter((f: string) => FEATURE_KEYS.includes(f));
       } else {

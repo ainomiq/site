@@ -17,24 +17,47 @@ import { NextRequest, NextResponse } from "next/server";
  * - Minimum: €2.500
  */
 
+// Prijzen gecalibreerd op real-world Pim offertes (april 2026)
+// Zie: brain/ainomiq/pricing-examples.md
 const BASE_PRICES: Record<string, { price: number; label: string }> = {
-  "simple-automation":   { price: 2500,  label: "Simple Automation" },
-  "website":             { price: 5000,  label: "Website" },
-  // Chatbot levels - prijs varieert enorm op basis van complexiteit
-  // Level 1: basic FAQ embed (website chatbot, geen spraak, geen integraties)
-  "chatbot-basic":       { price: 3500,  label: "AI Chatbot - Basic" },
-  // Level 2: standaard chatbot met wat integraties
-  "chatbot-standard":    { price: 7500,  label: "AI Chatbot - Standard" },
-  // Level 3: advanced (RAG, kennisbank, multi-channel)
-  "chatbot-advanced":    { price: 12500, label: "AI Chatbot - Advanced" },
-  // Level 4: enterprise (spraak, hardware, training, multi-system)
-  "chatbot-enterprise":  { price: 18000, label: "AI Chatbot - Enterprise" },
-  // Legacy key - fallback naar standard als sub-type onbekend
-  "chatbot":             { price: 7500,  label: "AI Chatbot" },
-  "dashboard":           { price: 7500,  label: "Dashboard / Portal" },
-  "webshop":             { price: 15000, label: "Webshop (Shopify)" },
-  "mobile-app":          { price: 20000, label: "iOS / Android App" },
-  "enterprise":          { price: 25000, label: "Enterprise / Full Custom" },
+  // Chatbots
+  "chatbot-embedded":         { price: 995,   label: "Embedded Chatbot (public data)" },
+  "chatbot-basic":            { price: 995,   label: "AI Chatbot - Basic" },      // alias
+  "chatbot-standard":         { price: 3500,  label: "AI Chatbot - Standard" },
+  "chatbot-advanced":         { price: 7500,  label: "AI Chatbot - Advanced" },
+  "chatbot-ops-replacement":  { price: 12500, label: "Store Manager Chatbot (ops-replacement)" },
+  "chatbot-enterprise":       { price: 12500, label: "AI Chatbot - Enterprise" }, // alias
+  "chatbot-2d-animated":      { price: 3950,  label: "2D Animated Chatbot" },
+  "chatbot-3d-animated":      { price: 12500, label: "3D Animated Mascot + Voice" },
+  "chatbot-voice-only":       { price: 950,   label: "Voice-only Assistant" },
+  "chatbot":                  { price: 995,   label: "AI Chatbot" }, // legacy
+  // Dashboards
+  "dashboard-public":         { price: 2500,  label: "Dashboard (public data)" },
+  "dashboard":                { price: 2500,  label: "Dashboard" }, // alias
+  "dashboard-private-api":    { price: 15000, label: "Dashboard (private API + data)" },
+  // Websites
+  "landing-page":             { price: 95,    label: "Landing Page" },
+  "website":                  { price: 495,   label: "Website (5-10 pagina's)" },
+  "website-cms":              { price: 1950,  label: "Website + CMS" },
+  "website-multilang":        { price: 950,   label: "Website Multilanguage" },
+  "website-multilang-cms":    { price: 2950,  label: "Website Multilanguage + CMS" },
+  // Flows / Automations
+  "flow-simple":              { price: 195,   label: "Simple Flow (1 trigger)" },
+  "flow-complex":             { price: 895,   label: "Complex Flow (multi-integration)" },
+  "flow-ai-workflow":         { price: 1995,  label: "AI Workflow (full custom)" },
+  "simple-automation":        { price: 195,   label: "Simple Automation" }, // alias
+  // Mobile apps
+  "mobile-app-simple":        { price: 2950,  label: "Mobile App (simple, 1 platform)" },
+  "mobile-app-full":          { price: 9950,  label: "Full Native App (iOS + Android)" },
+  "mobile-app":               { price: 2950,  label: "Mobile App" }, // alias
+  // AI tools
+  "ai-content-generator":     { price: 1950,  label: "AI Content Generator" },
+  // Industry-specific
+  "facility-services-tool":   { price: 25000, label: "Facility Services Tool" },
+  // Webshop (via app.ainomiq.com redirect meestal, maar custom kan)
+  "webshop":                  { price: 15000, label: "Custom Webshop" },
+  // Enterprise / full custom
+  "enterprise":               { price: 25000, label: "Enterprise / Full Custom" },
 };
 
 const FEATURE_PRICES: Record<string, { price: number; keywords: string[] }> = {
@@ -90,25 +113,45 @@ const TIMELINE_SURCHARGE: Record<string, number> = {
   "flexible":   0.0,
 };
 
-const MARGIN_BUFFER = 0.15;       // 15% marge buffer (Pim: verhoogd van 10%)
-const MIN_PRICE = 2500;           // minimum projectprijs (verhoogd van €1750)
+// Pim's prijzen zijn al client-facing; geen extra buffer meer.
+// Marge zit verwerkt in BASE_PRICES + FEATURE_PRICES.
+const MARGIN_BUFFER = 0;
+const MIN_PRICE = 95;             // landing page = laagste tier
 const HOURLY_RATE_EXTERN = 125;   // extern uurtarief (verhoogd van €100)
 const HOURLY_RATE_INTERN = 20;    // intern builder uurtarief
 const DEV_PAYOUT_PCT = 0.20;      // dev payout 20%
 
 // Delivery weeks by project type (base, before feature count adjustment)
 const BASE_DELIVERY: Record<string, string> = {
-  "simple-automation":  "1-2",
-  "website":            "2-3",
-  "chatbot-basic":      "1-2",
-  "chatbot-standard":   "2-4",
-  "chatbot-advanced":   "3-5",
-  "chatbot-enterprise": "5-8",
-  "chatbot":            "2-4",
-  "dashboard":          "3-5",
-  "webshop":            "4-6",
-  "mobile-app":         "6-10",
-  "enterprise":         "8-16",
+  "chatbot-embedded":        "0-1",
+  "chatbot-basic":           "0-1",
+  "chatbot-standard":        "1-2",
+  "chatbot-advanced":        "2-4",
+  "chatbot-ops-replacement": "4-8",
+  "chatbot-enterprise":      "4-8",
+  "chatbot-2d-animated":     "2-3",
+  "chatbot-3d-animated":     "4-6",
+  "chatbot-voice-only":      "1-2",
+  "chatbot":                 "0-1",
+  "dashboard-public":        "1-2",
+  "dashboard":               "1-2",
+  "dashboard-private-api":   "3-5",
+  "landing-page":            "0-1",
+  "website":                 "1-2",
+  "website-cms":             "2-3",
+  "website-multilang":       "1-2",
+  "website-multilang-cms":   "2-4",
+  "flow-simple":             "0-1",
+  "flow-complex":            "1-2",
+  "flow-ai-workflow":        "2-3",
+  "simple-automation":       "0-1",
+  "mobile-app-simple":       "3-5",
+  "mobile-app-full":         "6-10",
+  "mobile-app":              "3-5",
+  "ai-content-generator":    "2-3",
+  "facility-services-tool":  "8-16",
+  "webshop":                 "4-6",
+  "enterprise":              "8-16",
 };
 
 interface EstimateRequest {

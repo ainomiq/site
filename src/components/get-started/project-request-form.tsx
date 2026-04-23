@@ -92,6 +92,8 @@ export function ProjectRequestForm() {
   const [hp, setHp] = useState("");
   const [aiFeatures, setAiFeatures] = useState<string[]>([]);       // structured feature keys from ai-prefill
   const [aiIntegrations, setAiIntegrations] = useState<string[]>([]); // structured integration keys from ai-prefill
+  const [redirectNotice, setRedirectNotice] = useState<string | null>(null);
+  const [needsReviewNotice, setNeedsReviewNotice] = useState<string | null>(null);
 
   const descPlaceholder = projectType
     ? `Describe your ${PROJECT_TYPES.find((t) => t.id === projectType)?.label?.toLowerCase() || "project"}. What should it do? Any integrations or specific features?`
@@ -164,6 +166,21 @@ export function ProjectRequestForm() {
         body: JSON.stringify({ input: aiInput, siteData: scraped }),
       });
       const data = await res.json();
+
+      // App redirect — user asked for something that already exists in app.ainomiq.com
+      if (data.redirect) {
+        setRedirectNotice(data.reason || "Dit bieden we als kant-en-klare module in onze app.");
+        setIsPrefilling(false);
+        return;
+      }
+
+      // Needs review — too complex / vague / out-of-scope for auto-pricing
+      if (data.needsReview) {
+        setNeedsReviewNotice(data.reason || "Dit project vraagt om een scoping-sessie. Laat je gegevens achter, we komen binnen 48u terug.");
+        setIsPrefilling(false);
+        return;
+      }
+
       if (data.projectType) setProjectType(data.projectType);
       if (data.description) { setDescription(data.description); setWasEnhanced(true); }
       if (data.timeline) setTimeline(data.timeline);
@@ -504,6 +521,27 @@ export function ProjectRequestForm() {
                   <p className="mt-1 text-xs text-ainomiq-text-muted/50">We'll scan your site for brand voice, tech stack, and integrations.</p>
                   {prefilled && (
                     <p className="mt-2 text-xs text-[#6C5CE7]">Form filled! Click Continue to review.</p>
+                  )}
+
+                  {redirectNotice && (
+                    <div className="mt-4 rounded-xl border border-ainomiq-blue/30 bg-ainomiq-blue-glow p-4">
+                      <p className="text-sm font-semibold text-ainomiq-text mb-1">Dit zit al in onze app</p>
+                      <p className="text-sm text-ainomiq-text-muted mb-3">{redirectNotice}</p>
+                      <a
+                        href="https://app.ainomiq.com"
+                        className="inline-flex items-center gap-1.5 rounded-full bg-ainomiq-blue px-4 py-2 text-sm font-medium text-white hover:bg-ainomiq-blue-hover"
+                      >
+                        Ga naar app.ainomiq.com →
+                      </a>
+                    </div>
+                  )}
+
+                  {needsReviewNotice && (
+                    <div className="mt-4 rounded-xl border border-amber-400/40 bg-amber-50/60 p-4">
+                      <p className="text-sm font-semibold text-ainomiq-text mb-1">Needs review</p>
+                      <p className="text-sm text-ainomiq-text-muted">{needsReviewNotice}</p>
+                      <p className="mt-2 text-xs text-ainomiq-text-muted">Ga door om je contactgegevens achter te laten — we bekijken de aanvraag en komen binnen 48u terug met een voorstel.</p>
+                    </div>
                   )}
                 </div>
               </div>
