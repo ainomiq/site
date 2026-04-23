@@ -5,6 +5,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { HeroSection } from "@/components/ui/hero-1";
+import { TextRevealByWord } from "@/components/ui/text-reveal";
 
 export default function HomePage() {
   return (
@@ -71,6 +72,11 @@ export default function HomePage() {
             </div>
           </div>
         </div>
+      </section>
+
+      {/* Scroll Text Reveal */}
+      <section className="bg-white">
+        <TextRevealByWord text="Ainomiq builds AI that doesn't just suggest — it acts. Your entire operation, one platform, running autonomously around the clock." />
       </section>
 
       {/* Feature Carousel */}
