@@ -36,8 +36,9 @@ export async function POST(req: NextRequest) {
       }),
     });
 
-    const profileData = (await profileRes.json()) as { data?: { id: string }; errors?: unknown[] };
-    const profileId = profileData?.data?.id;
+    const profileData = (await profileRes.json()) as { data?: { id: string }; errors?: Array<{ meta?: { duplicate_profile_id?: string } }> };
+    // If profile already exists (409), extract id from error meta
+    const profileId = profileData?.data?.id ?? profileData?.errors?.[0]?.meta?.duplicate_profile_id;
 
     // Add to list if configured
     if (profileId && KLAVIYO_LIST_ID) {
