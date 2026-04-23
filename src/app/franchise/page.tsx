@@ -178,31 +178,6 @@ export default function FranchisePage() {
         </div>
       </section>
 
-      {/* Results / ROI */}
-      <section className="py-24 px-6 bg-ainomiq-navy-light">
-        <div className="mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <span className="inline-flex items-center rounded-full bg-ainomiq-blue-glow px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">
-              Real results
-            </span>
-            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mt-4">
-              What you get
-            </h2>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {results.map((r) => (
-              <div key={r.label} className="rounded-2xl border border-ainomiq-border bg-ainomiq-navy p-6 text-center hover:border-ainomiq-blue/30 transition-colors">
-                <span className={`block text-3xl md:text-4xl font-extrabold tracking-tight mb-2 ${
-                  r.value.startsWith("+") ? "text-emerald-500" : r.value.startsWith("-") ? "text-ainomiq-blue" : "text-ainomiq-blue"
-                }`}>{r.value}</span>
-                <h3 className="font-bold text-sm mb-1">{r.label}</h3>
-                <p className="text-xs text-ainomiq-text-muted">{r.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* What we do. steps */}
       <section className="py-24 px-6">
         <div className="mx-auto max-w-6xl">
