@@ -42,7 +42,7 @@ function NewsletterSignup() {
         <p className="text-sm text-ainomiq-blue">Thanks, you&apos;re in.</p>
       ) : (
         <>
-          <form onSubmit={handleSubmit} className="flex items-stretch gap-0 rounded-lg border border-ainomiq-border bg-ainomiq-surface overflow-hidden focus-within:border-ainomiq-blue transition-colors md:ml-auto md:w-full md:max-w-xs">
+          <form onSubmit={handleSubmit} className="flex items-stretch rounded-lg border border-ainomiq-border bg-ainomiq-surface overflow-hidden focus-within:border-ainomiq-blue transition-colors w-full">
             <input
               type="email"
               required
@@ -139,7 +139,7 @@ export function Footer() {
       <div className="mx-auto max-w-6xl px-6">
 
         {/* Main grid */}
-        <div className="grid grid-cols-2 gap-10 py-14 md:grid-cols-6">
+        <div className="grid grid-cols-2 gap-10 py-14 md:grid-cols-7">
           <div className="col-span-2 md:col-span-2">
             <Link href="/" className="flex items-center gap-2 mb-4">
               <LogoMark className="h-7 w-auto" />
@@ -179,7 +179,7 @@ export function Footer() {
             </div>
           ))}
 
-          <div className="col-span-2 md:col-span-1">
+          <div className="col-span-2 md:col-span-2">
             <NewsletterSignup />
           </div>
         </div>
