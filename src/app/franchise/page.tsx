@@ -178,33 +178,6 @@ export default function FranchisePage() {
         </div>
       </section>
 
-      {/* What we do. steps */}
-      <section className="py-24 px-6">
-        <div className="mx-auto max-w-6xl">
-          <span className="inline-flex items-center rounded-full bg-ainomiq-blue-glow px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">
-            What we do
-          </span>
-          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mt-4 mb-12">
-            A system that runs your stores. so you don&apos;t have to
-          </h2>
-          <div className="space-y-10">
-            {[
-              { num: "01", title: "We connect to your systems", body: "POS, planning tools, sales data. we plug into what you already have. No new hardware, no disruption." },
-              { num: "02", title: "Automation takes over the busywork", body: "Scheduling, demand prediction, inventory. The system handles it 24/7. Your managers focus on customers, not spreadsheets." },
-              { num: "03", title: "You see the results immediately", body: "Lower labour costs, less waste, better shifts. Real-time dashboards show exactly where you're saving and earning more." },
-            ].map((s) => (
-              <div key={s.num} className="flex gap-6">
-                <span className="text-3xl font-extrabold text-ainomiq-blue/20 shrink-0">{s.num}</span>
-                <div>
-                  <h3 className="text-xl font-bold mb-2">{s.title}</h3>
-                  <p className="text-ainomiq-text-muted leading-relaxed">{s.body}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Why it works */}
       <section className="py-24 px-6 bg-ainomiq-navy-light">
         <div className="mx-auto max-w-6xl">
