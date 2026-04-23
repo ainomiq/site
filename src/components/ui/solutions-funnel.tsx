@@ -24,7 +24,7 @@ function Hero({ onCTA }: { onCTA: () => void }) {
         }}
       />
 
-      <div className="relative mx-auto max-w-5xl px-6 pt-32 pb-24 text-center">
+      <div className="relative mx-auto max-w-6xl px-6 pt-32 pb-24 text-center">
         <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-ainomiq-blue-glow px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">
           <span className="h-1.5 w-1.5 rounded-full bg-ainomiq-blue animate-pulse" />
           Custom AI solutions
@@ -85,7 +85,7 @@ const pains = [
 function PainPoints() {
   return (
     <section className="bg-ainomiq-navy-light border-y border-ainomiq-border py-24 px-6">
-      <div className="mx-auto max-w-5xl">
+      <div className="mx-auto max-w-6xl">
         <div className="text-center mb-14">
           <p className="text-xs font-semibold uppercase tracking-widest text-ainomiq-blue mb-3">
             Sound familiar?
@@ -387,7 +387,7 @@ const steps = [
 function HowItWorks() {
   return (
     <section className="bg-ainomiq-navy-light border-y border-ainomiq-border py-24 px-6">
-      <div className="mx-auto max-w-4xl">
+      <div className="mx-auto max-w-6xl">
         <div className="text-center mb-14">
           <p className="text-xs font-semibold uppercase tracking-widest text-ainomiq-blue mb-3">
             The process
@@ -454,7 +454,7 @@ const quotes = [
 function SocialProof() {
   return (
     <section className="bg-ainomiq-navy py-24 px-6">
-      <div className="mx-auto max-w-5xl">
+      <div className="mx-auto max-w-6xl">
         {/* Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-20">
           {stats.map((s) => (
@@ -536,7 +536,7 @@ const objections = [
 function Objections({ onCTA }: { onCTA: () => void }) {
   return (
     <section className="bg-ainomiq-navy-light border-y border-ainomiq-border py-24 px-6">
-      <div className="mx-auto max-w-4xl">
+      <div className="mx-auto max-w-6xl">
         <div className="text-center mb-14">
           <p className="text-xs font-semibold uppercase tracking-widest text-ainomiq-blue mb-3">
             Before you ask

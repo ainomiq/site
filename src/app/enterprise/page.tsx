@@ -164,7 +164,7 @@ export default function EnterprisePage() {
     <>
       {/* Hero */}
       <section className="pt-40 pb-20 px-6">
-        <div className="mx-auto max-w-4xl">
+        <div className="mx-auto max-w-6xl">
           <div className="mb-6 inline-flex items-center rounded-full bg-ainomiq-blue-glow px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">
             Custom Solutions
           </div>
@@ -203,7 +203,7 @@ export default function EnterprisePage() {
           id={sol.id}
           className={`scroll-mt-28 py-24 px-6 ${i % 2 === 0 ? "bg-ainomiq-navy-light" : ""}`}
         >
-          <div className="mx-auto max-w-5xl">
+          <div className="mx-auto max-w-6xl">
             <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${i % 2 !== 0 ? "lg:grid-flow-dense" : ""}`}>
               <div className={i % 2 !== 0 ? "lg:col-start-2" : ""}>
                 <div className="mb-4 inline-flex items-center rounded-full bg-ainomiq-blue-glow px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">
@@ -254,7 +254,7 @@ export default function EnterprisePage() {
 
       {/* Industries - Franchise */}
       <section id="franchise" className="scroll-mt-28 py-24 px-6">
-        <div className="mx-auto max-w-5xl">
+        <div className="mx-auto max-w-6xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <div className="mb-4 inline-flex items-center rounded-full bg-ainomiq-blue-glow px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">
@@ -301,7 +301,7 @@ export default function EnterprisePage() {
 
       {/* Industries - Facility Services */}
       <section id="facility-services" className="scroll-mt-28 py-24 px-6 bg-ainomiq-navy-light">
-        <div className="mx-auto max-w-5xl">
+        <div className="mx-auto max-w-6xl">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center lg:grid-flow-dense">
             <div className="lg:col-start-2">
               <div className="mb-4 inline-flex items-center rounded-full bg-ainomiq-blue-glow px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">

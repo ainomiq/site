@@ -72,7 +72,7 @@ export default function FranchisePage() {
 
       {/* Accordion. How we transform franchise ops */}
       <section className="py-24 px-6">
-        <div className="mx-auto max-w-4xl">
+        <div className="mx-auto max-w-6xl">
           <span className="inline-flex items-center rounded-full bg-ainomiq-blue-glow px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">
             How it works
           </span>
@@ -85,7 +85,7 @@ export default function FranchisePage() {
 
       {/* How we do it. 3-level visual flow */}
       <section className="py-24 px-6">
-        <div className="mx-auto max-w-5xl">
+        <div className="mx-auto max-w-6xl">
           <div className="text-center mb-20">
             <span className="inline-flex items-center rounded-full bg-ainomiq-blue-glow px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">
               The platform
@@ -225,7 +225,7 @@ export default function FranchisePage() {
 
       {/* What we do. steps */}
       <section className="py-24 px-6">
-        <div className="mx-auto max-w-4xl">
+        <div className="mx-auto max-w-6xl">
           <span className="inline-flex items-center rounded-full bg-ainomiq-blue-glow px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">
             What we do
           </span>

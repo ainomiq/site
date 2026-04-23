@@ -63,7 +63,7 @@ export function CustomHero() {
         </p>
 
         {/* Liquid Glass card */}
-        <div className="relative mx-auto max-w-5xl">
+        <div className="relative mx-auto max-w-6xl">
           <div
             className="relative flex flex-col overflow-hidden rounded-3xl p-6 md:p-8 transition-all duration-700"
             style={{

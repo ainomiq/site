@@ -21,7 +21,7 @@ export function FacilityHero() {
         style={{ background: 'radial-gradient(circle, #3b82f6 0%, transparent 70%)' }}
       />
 
-      <div className="relative mx-auto max-w-4xl px-6 text-center">
+      <div className="relative mx-auto max-w-6xl px-6 text-center">
         {/* Badge */}
         <Link
           href="/contact#book-demo"
