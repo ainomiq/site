@@ -41,15 +41,6 @@ const values = [
   },
 ];
 
-const benefits = [
-  { title: "Remote-first", body: "Work from anywhere. Results matter, not where your desk is." },
-  { title: "Competitive pay", body: "We hire the best and compensate accordingly." },
-  { title: "Latest AI tools", body: "Work with cutting-edge AI every single day. We don't just follow - we build." },
-  { title: "Flexible PTO", body: "Take what you need. We trust you to manage your time." },
-  { title: "Equity", body: "Share in the upside. Early team members get meaningful ownership." },
-  { title: "Growth budget", body: "Courses, conferences, books - invest in yourself on us." },
-];
-
 
 export default function AboutPage() {
   return (
@@ -150,50 +141,6 @@ export default function AboutPage() {
 
       {/* Values - scroll-driven */}
       <ValuesScroll />
-
-      {/* Benefits - with shader background */}
-      <section className="relative w-full overflow-hidden py-24 px-6">
-        <ShaderBackground />
-        <div
-          className="absolute inset-0 opacity-30"
-          style={{
-            background:
-              "radial-gradient(ellipse at 20% 80%, rgba(74,144,245,0.4) 0%, transparent 50%), radial-gradient(ellipse at 80% 20%, rgba(139,92,246,0.25) 0%, transparent 50%)",
-          }}
-        />
-        <div className="relative z-10 mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-ainomiq-blue">
-              Benefits
-            </span>
-            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-white mt-4">
-              Great work deserves great benefits
-            </h2>
-            <p className="text-white/80 text-lg mt-4 max-w-lg mx-auto">
-              We take care of our team so they can focus on building.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {benefits.map((b) => (
-              <div
-                key={b.title}
-                className="group relative rounded-2xl border border-white/10 backdrop-blur-xl p-8 transition-all duration-500 hover:border-ainomiq-blue/40 hover:shadow-[0_0_40px_rgba(74,144,245,0.15)]"
-                style={{
-                  background:
-                    "linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%)",
-                }}
-              >
-                <h3 className="text-lg font-bold text-white mb-3 group-hover:text-ainomiq-blue transition-colors duration-300">
-                  {b.title}
-                </h3>
-                <p className="text-sm leading-relaxed text-white/80 group-hover:text-white/70 transition-colors duration-300">
-                  {b.body}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Careers at Ainomiq */}
       <section id="jobs" className="py-24 px-6">
