@@ -8,10 +8,11 @@ import { cn } from "@/lib/utils";
 interface TextRevealByWordProps {
   text: string;
   highlight?: string;
+  tail?: string;
   className?: string;
 }
 
-const TextRevealByWord: FC<TextRevealByWordProps> = ({ text, highlight, className }) => {
+const TextRevealByWord: FC<TextRevealByWordProps> = ({ text, highlight, tail, className }) => {
   const targetRef = useRef<HTMLDivElement | null>(null);
 
   const { scrollYProgress } = useScroll({
@@ -21,7 +22,8 @@ const TextRevealByWord: FC<TextRevealByWordProps> = ({ text, highlight, classNam
 
   const words = text.split(" ");
   const highlightWords = highlight ? highlight.split(" ") : [];
-  const total = words.length + highlightWords.length;
+  const tailWords = tail ? tail.split(" ") : [];
+  const total = words.length + highlightWords.length + tailWords.length;
 
   return (
     <div ref={targetRef} className={cn("mx-auto max-w-4xl px-6", className)}>
@@ -44,6 +46,20 @@ const TextRevealByWord: FC<TextRevealByWordProps> = ({ text, highlight, classNam
             const end = (offset + 1) / total;
             return (
               <Word key={`h-${i}`} progress={scrollYProgress} range={[start, end]} accent>
+                {word}
+              </Word>
+            );
+          })}
+        </p>
+      )}
+      {tail && (
+        <p className="mt-4 flex flex-wrap justify-center text-center text-2xl font-bold md:text-3xl lg:text-4xl xl:text-5xl">
+          {tailWords.map((word, i) => {
+            const offset = words.length + highlightWords.length + i;
+            const start = offset / total;
+            const end = (offset + 1) / total;
+            return (
+              <Word key={`tl-${i}`} progress={scrollYProgress} range={[start, end]}>
                 {word}
               </Word>
             );
