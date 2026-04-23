@@ -45,6 +45,7 @@ const industries = [
 
 const navLinks = [
   { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
 
 ];
 
