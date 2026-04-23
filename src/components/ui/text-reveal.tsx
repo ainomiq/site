@@ -10,7 +10,7 @@ interface TextRevealByWordProps {
   className?: string;
 }
 
-const REVEAL_FRACTION = 0.55;
+const REVEAL_FRACTION = 0.4;
 
 const TextRevealByWord: FC<TextRevealByWordProps> = ({
   text,
@@ -37,7 +37,7 @@ const TextRevealByWord: FC<TextRevealByWordProps> = ({
           }
         >
           {words.map((word, i) => {
-            const start = 0.2 + (i / words.length) * REVEAL_FRACTION;
+            const start = 0.05 + (i / words.length) * REVEAL_FRACTION;
             const end = start + (1 / words.length) * REVEAL_FRACTION;
             return (
               <Word key={i} progress={scrollYProgress} range={[start, end]}>
