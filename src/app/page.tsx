@@ -39,13 +39,13 @@ export default function HomePage() {
             <div className="group relative aspect-[16/9] overflow-hidden rounded-3xl">
               <img
                 src="/team/founders.png?v=3"
-                alt="Bink Sanders & Pim Smit - Co-Founders of Ainomiq"
+                alt="Pim Smit & Bink Sanders - Co-Founders of Ainomiq"
                 className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent md:from-black/70 md:via-black/20" />
               <div className="absolute bottom-0 left-0 right-0 p-5 md:p-10">
                 <h3 className="text-xl md:text-4xl font-extrabold text-white">
-                  Bink Sanders &amp; Pim Smit
+                  Pim Smit &amp; Bink Sanders
                 </h3>
                 <div className="hidden md:flex items-end justify-between mt-4">
                   <p className="text-white/80 text-base leading-relaxed max-w-md">
