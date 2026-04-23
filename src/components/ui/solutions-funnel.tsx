@@ -116,13 +116,14 @@ function PainPoints() {
 
 const projects = [
   {
-    client: "Billie Jeans",
+    client: "Consumer brand",
     logo: "/logos/billie-jeans.png",
     type: "AI Customer Support",
     Icon: Bot,
     accentColor: "#3b82f6",
-    headline: "24/7 AI support bot across email, Instagram & Facebook",
-    result: "80% of tickets resolved without human input",
+    shipped: "3 weeks",
+    headline: "Cut support tickets by 80%. Same team size.",
+    result: "Resolves email, Instagram & Facebook DMs automatically",
     // Preview: chat UI mockup
     preview: (
       <div className="rounded-xl bg-[#0d1117] border border-white/10 p-4 text-left space-y-3">
@@ -157,8 +158,9 @@ const projects = [
     type: "Booking Dashboard",
     Icon: LayoutDashboard,
     accentColor: "#10b981",
-    headline: "Real-time court booking dashboard with member portal",
-    result: "Full booking management, zero manual admin",
+    shipped: "4 weeks",
+    headline: "Zero admin hours on bookings. Ever again.",
+    result: "Real-time courts, members, payments in one view",
     preview: (
       <div className="rounded-xl bg-[#0d1117] border border-white/10 p-4">
         <div className="flex items-center justify-between mb-3">
@@ -183,8 +185,9 @@ const projects = [
     type: "Full Website",
     Icon: Globe,
     accentColor: "#8b5cf6",
-    headline: "Conversion-optimized site with quote tool and lead flows",
-    result: "Lead generation fully automated",
+    shipped: "2 weeks",
+    headline: "New site. New leads. Fully automated pipeline.",
+    result: "Quote tool + CRM sync running day one",
     preview: (
       <div className="rounded-xl bg-[#0d1117] border border-white/10 overflow-hidden">
         <div className="bg-violet-500/10 border-b border-white/8 px-4 py-2.5 flex items-center gap-2">
@@ -212,8 +215,9 @@ const projects = [
     type: "Order Automation",
     Icon: Zap,
     accentColor: "#f59e0b",
-    headline: "Automated order routing and upsell flow across locations",
-    result: "Processing time cut by 60%",
+    shipped: "5 weeks",
+    headline: "60% faster orders. Across every location.",
+    result: "Routing + upsell running in every store, 24/7",
     preview: (
       <div className="rounded-xl bg-[#0d1117] border border-white/10 p-4">
         <div className="flex items-center gap-2 mb-3">
@@ -242,7 +246,8 @@ const projects = [
     type: "iOS & Android App",
     Icon: Smartphone,
     accentColor: "#ec4899",
-    headline: "Student registration and scheduling app for driving schools",
+    shipped: "6 weeks",
+    headline: "Replaced 3 spreadsheets with one app.",
     result: "Live in App Store and Google Play",
     preview: (
       <div className="flex justify-center">
@@ -271,8 +276,9 @@ const projects = [
     type: "Brand Design",
     Icon: Paintbrush,
     accentColor: "#06b6d4",
-    headline: "Complete visual identity and design system for new market launch",
-    result: "Full brand handover in 3 weeks",
+    shipped: "3 weeks",
+    headline: "New identity. Ready for market launch.",
+    result: "Logo, design system, and brand kit delivered",
     preview: (
       <div className="rounded-xl bg-[#0d1117] border border-white/10 p-4 space-y-3">
         <div className="flex gap-2">
@@ -315,16 +321,21 @@ function WhatWeBuild() {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {projects.map(({ client, logo, type, Icon, accentColor, headline, result, preview }) => (
+          {projects.map(({ client, logo, type, accentColor, headline, result, preview, shipped }) => (
             <div
               key={client}
               className="group rounded-2xl border border-ainomiq-border bg-ainomiq-navy-light overflow-hidden hover:border-ainomiq-blue/30 transition-all"
             >
-              {/* Preview area */}
+              {/* Preview area with shipped pill */}
               <div
                 className="relative p-5 border-b border-ainomiq-border"
                 style={{ background: `radial-gradient(ellipse 80% 60% at 50% 0%, ${accentColor}08, transparent)` }}
               >
+                {shipped && (
+                  <div className="absolute top-3 right-3 z-10 rounded-full bg-ainomiq-navy/80 backdrop-blur-sm border border-ainomiq-blue/30 px-2.5 py-1 text-[10px] font-semibold text-ainomiq-blue">
+                    Shipped in {shipped}
+                  </div>
+                )}
                 {preview}
               </div>
 
@@ -339,7 +350,7 @@ function WhatWeBuild() {
                     {type}
                   </div>
                 </div>
-                <p className="text-sm font-medium text-ainomiq-text mb-3 leading-snug">{headline}</p>
+                <p className="text-base font-bold text-ainomiq-text mb-3 leading-snug">{headline}</p>
                 <div className="flex items-center gap-1.5">
                   <Check className="h-3.5 w-3.5 flex-shrink-0" style={{ color: accentColor }} />
                   <span className="text-xs text-ainomiq-text-subtle">{result}</span>
