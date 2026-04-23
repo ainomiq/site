@@ -515,15 +515,15 @@ const objections = [
   },
   {
     q: "How much does it cost?",
-    a: "Most projects land between EUR 95 and EUR 25,000. Fill in the form and see your exact estimate in 3 minutes.",
+    a: "Fill in what you want and see your exact price instantly.",
   },
   {
     q: "How long does it take?",
-    a: "Most projects ship in 2 to 6 weeks. Rush delivery is available when you need it sooner.",
+    a: "Depends on the size - from 1 day to a few weeks. We always give you a clear timeline upfront.",
   },
   {
     q: "What if I want changes later?",
-    a: "Ongoing support packages available. Or take the code to any developer. No lock-in, ever.",
+    a: "Always possible to reach out to us and we will make the changes for you.",
   },
 ];
 
