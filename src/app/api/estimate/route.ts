@@ -177,7 +177,10 @@ export async function POST(req: NextRequest) {
     const detectedFeatures: string[] = [];
     const structuredFeatures = body.features ?? [];
     const structuredIntegrations = body.integrations ?? [];
-    const useStructured = structuredFeatures.length > 0 || structuredIntegrations.length > 0;
+    // If the caller sent features/integrations fields at all (even empty arrays),
+    // trust that classification and skip keyword fallback to avoid false positives
+    // like "chatbot" → "chat" feature (+€1500).
+    const useStructured = body.features !== undefined || body.integrations !== undefined;
 
     if (useStructured) {
       // Gestructureerde input: exact de opgegeven features
