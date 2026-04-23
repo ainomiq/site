@@ -540,7 +540,7 @@ export function ProjectRequestForm() {
                     <div className="mt-4 rounded-xl border border-amber-400/40 bg-amber-50/60 p-4">
                       <p className="text-sm font-semibold text-ainomiq-text mb-1">Needs review</p>
                       <p className="text-sm text-ainomiq-text-muted">{needsReviewNotice}</p>
-                      <p className="mt-2 text-xs text-ainomiq-text-muted">Ga door om je contactgegevens achter te laten — we bekijken de aanvraag en komen binnen 48u terug met een voorstel.</p>
+                      <p className="mt-2 text-xs text-ainomiq-text-muted">Continue to leave your contact details - we will review your request and get back to you within 48 hours with a proposal.</p>
                     </div>
                   )}
                 </div>

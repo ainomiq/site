@@ -82,7 +82,7 @@ App modules (ALL of these → REDIRECT, not custom):
 - Returns automation
 - Social media post scheduling / management
 
-If the request is clearly one of these → output \`{ "redirect": "app.ainomiq.com", "reason": "<short NL reason>" }\` and nothing else.
+If the request is clearly one of these → output \`{ "redirect": "app.ainomiq.com", "reason": "<short EN reason>" }\` and nothing else.
 
 ## CRITICAL: Needs-Review escape hatch
 
@@ -93,9 +93,9 @@ Trigger needs-review when:
 - Custom ERP, full HR system, accounting system replacement
 - Native games, hardware design, blockchain protocol development
 - Multi-year multi-system projects (>€50k feel)
-- Request is too vague to scope (< 10 words and no clear deliverable)
+- Request is truly too vague to scope (no product type or deliverable mentioned at all, e.g. just "help" or "something cool")
 
-Output for needs-review: \`{ "needsReview": true, "reason": "<short NL reason>" }\`.
+Output for needs-review: \`{ "needsReview": true, "reason": "<short EN reason>" }\`.
 
 ## Pricing taxonomy (if NOT redirect / NOT needs-review)
 
@@ -162,10 +162,10 @@ Output for needs-review: \`{ "needsReview": true, "reason": "<short NL reason>" 
 ## Output format (JSON only, no markdown):
 
 If redirect:
-\`{ "redirect": "app.ainomiq.com", "reason": "<NL reason in 1 sentence>" }\`
+\`{ "redirect": "app.ainomiq.com", "reason": "<EN reason in 1 sentence>" }\`
 
 If needs-review:
-\`{ "needsReview": true, "reason": "<NL reason in 1 sentence>" }\`
+\`{ "needsReview": true, "reason": "<EN reason in 1 sentence>" }\`
 
 Otherwise (normal estimate):
 \`{
