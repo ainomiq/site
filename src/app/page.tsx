@@ -18,14 +18,14 @@ export default function HomePage() {
 
       {/* Meet the Founders */}
       <section className="py-24 px-6">
-        <div className="mx-auto max-w-4xl">
+        <div className="mx-auto max-w-6xl">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight">
               Meet the Founders
             </h2>
           </div>
 
-          <div className="max-w-4xl mx-auto">
+          <div>
             <div className="group relative aspect-[16/9] overflow-hidden rounded-3xl">
               <img
                 src="/team/founders.png?v=3"
