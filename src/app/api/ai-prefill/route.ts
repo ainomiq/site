@@ -110,7 +110,7 @@ Output for needs-review: \`{ "needsReview": true, "reason": "<short EN reason>" 
 
 ### Dashboards
 - dashboard-public (€2,500): scrapes public data (TikTok trends, competitor data), gives insights.
-- dashboard-private-api (€15,000): private data from customer's kassa/ERP/inventory systems. Complex APIs.
+- dashboard-private-api (€15,000): private data from customer's POS/ERP/inventory systems. Complex APIs.
 
 ### Websites
 - landing-page (€95): single page.
@@ -154,7 +154,7 @@ Output for needs-review: \`{ "needsReview": true, "reason": "<short EN reason>" 
 
 ## Pricing drivers (reason carefully):
 1. Data access: public/scrapable = cheap; private/behind-login = 10-15x more
-2. Integration complexity: easy APIs (Shopify, Klaviyo) = cheap; kassa / ERP / legacy = expensive
+2. Integration complexity: easy APIs (Shopify, Klaviyo) = cheap; POS / ERP / legacy = expensive
 3. Interface: embed widget = cheap; custom dashboard = mid; custom app = expensive
 4. Scope: FAQ lookup = cheap; ops-replacement (replaces a human role) = expensive
 5. Modality: text-only = cheap; voice = mid; 3D+voice = expensive
@@ -181,26 +181,26 @@ Otherwise (normal estimate):
 
 ## Classification examples:
 
-**Input:** "Chatbot op mijn productpagina die FAQs kan beantwoorden"
+**Input:** "Chatbot on my product page that can answer FAQs"
 → \`{ "projectType": "chatbot-embedded", ... }\` (public data, embedded)
 
-**Input:** "Chatbot voor winkelmanagers die alle recepten en procedures kent"
+**Input:** "Chatbot for store managers that knows all recipes and procedures"
 → \`{ "projectType": "chatbot-ops-replacement", ... }\` (private data, ops-replacement)
 
-**Input:** "Ik wil automatisch abandoned cart emails sturen via Klaviyo"
-→ \`{ "redirect": "app.ainomiq.com", "reason": "Abandoned cart flows zitten in onze Email module." }\`
+**Input:** "I want to automatically send abandoned cart emails via Klaviyo"
+→ \`{ "redirect": "app.ainomiq.com", "reason": "Abandoned cart flows are part of our Email module." }\`
 
-**Input:** "Dashboard met TikTok trends en content-ideeën"
+**Input:** "Dashboard with TikTok trends and content ideas"
 → \`{ "projectType": "dashboard-public", ... }\`
 
-**Input:** "Dashboard dat data uit mijn kassa en voorraadsysteem combineert"
+**Input:** "Dashboard that combines data from my POS and inventory system"
 → \`{ "projectType": "dashboard-private-api", ... }\` (private APIs, complex)
 
-**Input:** "Custom CRM voor mijn makelaarskantoor"
-→ \`{ "needsReview": true, "reason": "Full custom CRMs bouwen we niet. We kunnen wel een dashboard maken dat koppelt met je bestaande CRM — even contact voor scoping." }\`
+**Input:** "Custom CRM for my real estate agency"
+→ \`{ "needsReview": true, "reason": "We do not build full custom CRMs. We can build a dashboard that connects to your existing CRM - contact us for scoping." }\`
 
-**Input:** "Een ding voor mijn bedrijf"
-→ \`{ "needsReview": true, "reason": "Aanvraag te vaag — stuur ons meer context, we komen binnen 48u terug." }\``;
+**Input:** "Something for my business"
+→ \`{ "needsReview": true, "reason": "Request too vague - please share more details and we will get back to you within 48 hours." }\``;
 
 export async function POST(request: NextRequest) {
   try {
