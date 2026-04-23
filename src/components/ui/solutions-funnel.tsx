@@ -49,7 +49,6 @@ function Hero({ onCTA }: { onCTA: () => void }) {
             See what AI could take over
             <ArrowRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
           </button>
-          <p className="text-sm text-ainomiq-text-subtle">Free scoping. No sales call required.</p>
         </div>
       </div>
     </section>
