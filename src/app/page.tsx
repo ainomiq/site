@@ -74,8 +74,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Scroll Text Reveal */}
-      <section className="bg-white">
+      {/* Text Reveal */}
+      <section className="bg-white py-24">
         <TextRevealByWord text="We don't automate tasks. We run entire operations. One platform, every channel, always on." />
       </section>
 
