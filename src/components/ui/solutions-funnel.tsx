@@ -440,13 +440,6 @@ function HowItWorks() {
 
 // ─── Social Proof ─────────────────────────────────────────────────────────────
 
-const stats = [
-  { value: "< 48h", label: "First response time" },
-  { value: "2-6 wks", label: "Typical delivery" },
-  { value: "30 days", label: "Post-launch support" },
-  { value: "100%", label: "Code ownership" },
-];
-
 const quotes = [
   {
     text: "It replaced an entire shift of support work. Nobody noticed the handover because it just answered faster.",
@@ -469,19 +462,6 @@ function SocialProof() {
   return (
     <section className="bg-ainomiq-navy py-24 px-6">
       <div className="mx-auto max-w-6xl">
-        {/* Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-20">
-          {stats.map((s) => (
-            <div
-              key={s.label}
-              className="rounded-2xl border border-ainomiq-border bg-ainomiq-navy-light p-6 text-center"
-            >
-              <div className="text-3xl font-extrabold text-ainomiq-blue mb-2">{s.value}</div>
-              <div className="text-xs text-ainomiq-text-subtle">{s.label}</div>
-            </div>
-          ))}
-        </div>
-
         {/* Testimonials */}
         <div className="text-center mb-12">
           <p className="text-xs font-semibold uppercase tracking-widest text-ainomiq-blue mb-3">
