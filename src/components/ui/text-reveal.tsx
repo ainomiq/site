@@ -25,10 +25,10 @@ const TextRevealByWord: FC<TextRevealByWordProps> = ({
   const words = text.split(" ");
 
   return (
-    <div ref={targetRef} className={cn("relative z-0 h-[70vh]", className)}>
+    <div ref={targetRef} className={cn("relative z-0 h-[120vh]", className)}>
       <div
         className={
-          "sticky top-0 mx-auto flex h-[50vh] max-w-4xl items-center justify-center bg-transparent px-6"
+          "sticky top-0 mx-auto flex h-screen max-w-4xl items-center justify-center bg-transparent px-6"
         }
       >
         <p
