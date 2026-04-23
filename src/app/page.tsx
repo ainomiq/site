@@ -80,7 +80,7 @@ export default function HomePage() {
       </section>
 
       {/* Feature Carousel */}
-      <section className="py-24 px-4 bg-ainomiq-navy">
+      <section className="py-24 px-6 bg-ainomiq-navy">
         <FeatureCarousel />
       </section>
 
