@@ -88,8 +88,8 @@ export function Navbar() {
   };
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 pt-5 pointer-events-none px-4">
-      <nav className="pointer-events-auto mx-auto flex max-w-3xl items-center justify-between rounded-full glass px-6 py-3 shadow-sm">
+    <div className="fixed top-0 left-0 right-0 z-50 pt-2 pointer-events-none px-4">
+      <nav className="pointer-events-auto mx-auto flex max-w-3xl items-center justify-between rounded-full glass px-6 py-2 shadow-sm">
         <Logo />
 
         {/* Desktop links */}
