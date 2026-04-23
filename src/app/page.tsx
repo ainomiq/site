@@ -76,7 +76,7 @@ export default function HomePage() {
 
       {/* Text Reveal */}
       <section className="bg-white py-24">
-        <TextRevealByWord text="We don't automate tasks. We run entire operations. One platform, every channel, always on." />
+        <TextRevealByWord text="Built from scratch. Fully tailored. Deployed fast. For businesses that refuse to wait — we're building the future." />
       </section>
 
       {/* Feature Carousel */}
