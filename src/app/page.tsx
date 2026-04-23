@@ -76,7 +76,10 @@ export default function HomePage() {
 
       {/* Text Reveal */}
       <section className="bg-white py-24">
-        <TextRevealByWord text="Built from scratch. Fully tailored. Deployed fast. For businesses that refuse to wait. We're building the future." />
+        <TextRevealByWord
+          text="Built from scratch. Fully tailored. Deployed fast. For businesses that refuse to wait."
+          highlight="We're building the future."
+        />
       </section>
 
       {/* Feature Carousel */}
