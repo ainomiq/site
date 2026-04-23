@@ -38,7 +38,7 @@ const TextRevealByWord: FC<TextRevealByWordProps> = ({ text, highlight, tail, cl
           );
         })}
       </p>
-      {highlight && (
+      {(highlight || tail) && (
         <p className="mt-4 flex flex-wrap justify-center text-center text-2xl font-bold md:text-3xl lg:text-4xl xl:text-5xl">
           {highlightWords.map((word, i) => {
             const offset = words.length + i;
@@ -50,10 +50,6 @@ const TextRevealByWord: FC<TextRevealByWordProps> = ({ text, highlight, tail, cl
               </Word>
             );
           })}
-        </p>
-      )}
-      {tail && (
-        <p className="mt-4 flex flex-wrap justify-center text-center text-2xl font-bold md:text-3xl lg:text-4xl xl:text-5xl">
           {tailWords.map((word, i) => {
             const offset = words.length + highlightWords.length + i;
             const start = offset / total;

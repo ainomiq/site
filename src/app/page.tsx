@@ -78,8 +78,8 @@ export default function HomePage() {
       <section className="bg-white py-24">
         <TextRevealByWord
           text="Built from scratch. Fully tailored. Deployed fast."
-          highlight="We're building the future."
-          tail="For businesses that refuse to wait."
+          highlight="We're building the future"
+          tail="for businesses that refuse to wait."
         />
       </section>
 
