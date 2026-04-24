@@ -100,6 +100,11 @@ Trigger needs-review when:
 - Multi-year multi-system projects (>€50k feel)
 - Request is truly too vague to scope (no product type or deliverable mentioned at all, e.g. just "help" or "something cool")
 
+NEVER trigger needs-review for:
+- "Chatbot" alone or "chatbot" + a domain → always estimate as chatbot-embedded
+- Any input that mentions a product type (chatbot, website, dashboard, automation) → estimate it, don't ask for more info
+- A domain is sufficient context to personalize; missing details just mean use sensible defaults
+
 Output for needs-review: \`{ "needsReview": true, "reason": "<short EN reason>" }\`.
 
 ## Pricing taxonomy (if NOT redirect / NOT needs-review)
