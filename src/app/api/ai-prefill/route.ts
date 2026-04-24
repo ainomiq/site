@@ -223,6 +223,25 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Too short" }, { status: 400 });
     }
 
+    // Hardcoded: short chatbot requests always get chatbot-embedded estimate (never needs-review)
+    const normalized = input.trim().toLowerCase();
+    const isChatbotRequest = /^chatbots?(\s+(for|on|widget|embed|my|a|the|website|site|webshop|store|page|pages)?)?$/i.test(normalized);
+    if (isChatbotRequest) {
+      return NextResponse.json({
+        projectType: "chatbot-embedded",
+        description: "Embedded chatbot widget for the website. Handles FAQs, brand voice, and basic visitor questions using publicly available site content. Delivered as a lightweight embed script.",
+        timeline: "flexible",
+        targetAudience: "Website visitors looking for quick answers",
+        needsCredentials: false,
+        features: [],
+        integrations: [],
+        recommendations: [
+          "Share your most common customer questions so we can train the bot",
+          "Consider adding a fallback to email for complex questions",
+        ],
+      });
+    }
+
     let siteContext = "";
     if (siteData) {
       siteContext = `\n\nClient website analysis:
