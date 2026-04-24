@@ -73,7 +73,7 @@ const SYSTEM_PROMPT = `You classify custom-solution requests for Ainomiq, an AI 
 Ainomiq has a ready-made ecom app (app.ainomiq.com) that already handles these things. If the user asks for any of these, DO NOT generate an estimate — set \`redirect: "app.ainomiq.com"\` instead.
 
 App modules (ALL of these → REDIRECT, not custom):
-- AI customer service (email / chat / DMs replies for ecom)
+- AI customer service for ecom: automated email replies, inbox triage, ticket handling for support@domain (NOT website chatbots/widgets)
 - Email marketing (Klaviyo flows, welcome series, abandoned cart, win-back)
 - Smart inventory (stock tracking, auto-reorder, low-stock alerts)
 - Ads automation (Meta / Google / TikTok ad management, creative testing)
@@ -81,6 +81,11 @@ App modules (ALL of these → REDIRECT, not custom):
 - Reviews automation (sending review requests, replying to reviews)
 - Returns automation
 - Social media post scheduling / management
+
+NOT redirect (these are custom builds → generate estimate):
+- Chatbot widget on a website / product page / landing page (→ chatbot-embedded or chatbot-standard)
+- AI assistant embedded on a webshop product page
+- Chatbot for FAQ, lead gen, or customer onboarding on a website
 
 If the request is clearly one of these → output \`{ "redirect": "app.ainomiq.com", "reason": "<short EN reason>" }\` and nothing else.
 
