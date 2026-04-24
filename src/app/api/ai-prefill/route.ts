@@ -83,7 +83,7 @@ App modules (ALL of these → REDIRECT, not custom):
 - Social media post scheduling / management
 
 NOT redirect (these are custom builds → generate estimate):
-- Chatbot widget on a website / product page / landing page (→ chatbot-embedded or chatbot-standard)
+- Chatbot widget on a website / product page / landing page
 - AI assistant embedded on a webshop product page
 - Chatbot for FAQ, lead gen, or customer onboarding on a website
 
@@ -93,30 +93,48 @@ If the request is clearly one of these → output \`{ "redirect": "app.ainomiq.c
 
 For projects that are too big, too vague, or outside Ainomiq's expertise, DON'T auto-price. Instead set \`needsReview: true\`.
 
-Trigger needs-review when:
-- Custom CRM from scratch (they offer dashboards linked to existing CRMs, not replacements)
+Trigger needs-review ONLY when:
+- Custom CRM from scratch
 - Custom ERP, full HR system, accounting system replacement
 - Native games, hardware design, blockchain protocol development
 - Multi-year multi-system projects (>€50k feel)
-- Request is truly too vague to scope (no product type or deliverable mentioned at all, e.g. just "help" or "something cool")
+- Request has NO identifiable product type at all (e.g. just "help", "something cool", "I need something for my business")
 
-NEVER trigger needs-review for:
-- "Chatbot" alone or "chatbot" + a domain → always estimate as chatbot-embedded
-- Any input that mentions a product type (chatbot, website, dashboard, automation) → estimate it, don't ask for more info
-- A domain is sufficient context to personalize; missing details just mean use sensible defaults
+NEVER trigger needs-review when:
+- Input mentions "chatbot" → always pick the right chatbot tier based on data complexity (see below)
+- Input mentions "website", "dashboard", "automation", "flow", "landing page" → always estimate
+- A domain is provided → use it to infer business type, don't ask for more info
+- Input is short but has a clear product type → estimate with sensible defaults
 
 Output for needs-review: \`{ "needsReview": true, "reason": "<short EN reason>" }\`.
 
 ## Pricing taxonomy (if NOT redirect / NOT needs-review)
 
-### Chatbots
-- chatbot-embedded (€995): embedded widget on product pages / site, public/scrapable data only, FAQ + brand voice. 0-1 week delivery.
-- chatbot-standard (€3,500): chatbot with 1-2 integrations, basic knowledge base, single channel.
-- chatbot-advanced (€7,500): RAG, multi-channel, complex integrations.
-- chatbot-ops-replacement (€12,500): store manager / ops-replacement chatbot with private data, custom interface, custom app. Toni-for-Domino's style.
-- chatbot-2d-animated (€3,950): custom 2D animated character chatbot.
-- chatbot-3d-animated (€12,500): 3D animated mascot with mouth-sync + voice. Heavy asset production.
-- chatbot-voice-only (€950): voice assistant (phone/embed), no avatar.
+### Chatbots — PICK THE RIGHT TIER BASED ON DATA COMPLEXITY
+
+The most important factor is **where the data comes from**:
+
+- **chatbot-embedded (€995)**: ONLY when data is 100% public/scrapable — FAQ pages, product pages, publicly visible site content. No login required to access the data. Delivered as a lightweight embed script. 0-1 week.
+  - Example: "Chatbot for my webshop that answers product questions" (product info is public)
+  - Example: "FAQ chatbot on my restaurant site" (menu/hours are public)
+
+- **chatbot-standard (€3,500)**: chatbot with 1-2 integrations, or data that requires an API key / basic integration (e.g. Shopify product catalog via API, Klaviyo customer data, order history lookup). Single channel.
+  - Example: "Chatbot that can look up a customer's order status" (needs Shopify API)
+  - Example: "Chatbot that knows our product catalog and can recommend items" (needs product feed integration)
+
+- **chatbot-advanced (€7,500)**: RAG (retrieval-augmented generation), private knowledge base, multi-channel, complex integrations, or data that requires document ingestion (PDFs, internal wikis, databases).
+  - Example: "Chatbot trained on our internal manuals and policy documents"
+  - Example: "Multi-channel support bot across website + WhatsApp"
+
+- **chatbot-ops-replacement (€12,500)**: replaces a human role. Private data, custom interface, acts autonomously on behalf of the business. Accesses internal systems (POS, ERP, inventory).
+  - Example: "Bot that handles all customer service and can process refunds automatically"
+  - Example: "Store manager bot that knows all recipes, procedures, staff schedules"
+
+- **chatbot-2d-animated (€3,950)**: custom 2D animated character chatbot (visual mascot).
+- **chatbot-3d-animated (€12,500)**: 3D animated mascot with mouth-sync + voice.
+- **chatbot-voice-only (€950)**: voice assistant (phone/embed), no avatar.
+
+**IMPORTANT**: When input is vague (e.g. just "chatbot" or "chatbot for my webshop") — default to chatbot-embedded (€995) unless the site analysis suggests they need integrations or private data. Never output needs-review for a chatbot request.
 
 ### Dashboards
 - dashboard-public (€2,500): scrapes public data (TikTok trends, competitor data), gives insights.
@@ -139,7 +157,7 @@ Output for needs-review: \`{ "needsReview": true, "reason": "<short EN reason>" 
 - mobile-app-full (€9,950): native iOS + Android + backend + auth + push.
 
 ### AI tools
-- ai-content-generator (€1,950): generates product descriptions + AI images for catalog; monthly = AI credits × 1.5 markup.
+- ai-content-generator (€1,950): generates product descriptions + AI images for catalog.
 
 ### Industry-specific
 - facility-services-tool (€25,000): field-worker planning + cleaning reports + photo verification + personnel management.
@@ -154,7 +172,7 @@ Output for needs-review: \`{ "needsReview": true, "reason": "<short EN reason>" 
 - rag (€5,000), custom-ai-agent (€7,500)
 - api-external (€2,000), realtime (€1,500), saas (€7,500)
 
-## Integration add-ons (only if explicitly mentioned):
+## Integration add-ons (only if explicitly mentioned or clearly implied by site analysis):
 - shopify (€1,000), magento (€1,500), klaviyo (€300), meta (€500), google (€400)
 - hubspot (€750), salesforce (€2,500), erp (€2,500), marketplace (€1,000)
 - whatsapp (€500), custom-api (€1,500)
@@ -162,11 +180,11 @@ Output for needs-review: \`{ "needsReview": true, "reason": "<short EN reason>" 
 ## Timeline surcharges:
 - asap: +25%, 1-2-weeks: +15%, 2-4-weeks / 1-2-months / flexible: 0%
 
-## Pricing drivers (reason carefully):
-1. Data access: public/scrapable = cheap; private/behind-login = 10-15x more
-2. Integration complexity: easy APIs (Shopify, Klaviyo) = cheap; POS / ERP / legacy = expensive
+## Pricing drivers — reason through these before outputting:
+1. Data access: public/scrapable = chatbot-embedded; API/key required = chatbot-standard; private documents/DB = chatbot-advanced; ops-replacement = chatbot-ops-replacement
+2. Integration complexity: no integrations = cheap; easy APIs (Shopify, Klaviyo) = mid; POS/ERP/legacy = expensive
 3. Interface: embed widget = cheap; custom dashboard = mid; custom app = expensive
-4. Scope: FAQ lookup = cheap; ops-replacement (replaces a human role) = expensive
+4. Scope: FAQ lookup = cheap; replaces a human role = expensive
 5. Modality: text-only = cheap; voice = mid; 3D+voice = expensive
 
 ## Output format (JSON only, no markdown):
@@ -191,8 +209,17 @@ Otherwise (normal estimate):
 
 ## Classification examples:
 
+**Input:** "Chatbot" (+ billiejeansclo.com — a fashion webshop)
+→ \`{ "projectType": "chatbot-embedded", ... }\` (webshop product info is public, simple FAQ bot)
+
 **Input:** "Chatbot on my product page that can answer FAQs"
 → \`{ "projectType": "chatbot-embedded", ... }\` (public data, embedded)
+
+**Input:** "Chatbot that can check my customer's order status"
+→ \`{ "projectType": "chatbot-standard", ... }\` (needs Shopify/order API → integration required)
+
+**Input:** "Chatbot trained on our internal policy documents and manuals"
+→ \`{ "projectType": "chatbot-advanced", ... }\` (private documents, RAG required)
 
 **Input:** "Chatbot for store managers that knows all recipes and procedures"
 → \`{ "projectType": "chatbot-ops-replacement", ... }\` (private data, ops-replacement)
@@ -203,14 +230,11 @@ Otherwise (normal estimate):
 **Input:** "Dashboard with TikTok trends and content ideas"
 → \`{ "projectType": "dashboard-public", ... }\`
 
-**Input:** "Dashboard that combines data from my POS and inventory system"
-→ \`{ "projectType": "dashboard-private-api", ... }\` (private APIs, complex)
-
 **Input:** "Custom CRM for my real estate agency"
 → \`{ "needsReview": true, "reason": "We do not build full custom CRMs. We can build a dashboard that connects to your existing CRM - contact us for scoping." }\`
 
 **Input:** "Something for my business"
-→ \`{ "needsReview": true, "reason": "Request too vague - please share more details and we will get back to you within 48 hours." }\``;
+→ \`{ "needsReview": true, "reason": "Request too vague - please share what kind of tool or automation you need." }\``;
 
 export async function POST(request: NextRequest) {
   try {
@@ -226,7 +250,8 @@ export async function POST(request: NextRequest) {
     // Hardcoded: short chatbot requests always get chatbot-embedded estimate (never needs-review)
     const normalized = input.trim().toLowerCase();
     const isChatbotRequest = /^chatbots?(\s+(for|on|widget|embed|my|a|the|website|site|webshop|store|page|pages)?)?$/i.test(normalized);
-    if (isChatbotRequest) {
+    if (isChatbotRequest && !siteData) {
+      // No site data to infer complexity from - safe default is chatbot-embedded
       return NextResponse.json({
         projectType: "chatbot-embedded",
         description: "Embedded chatbot widget for the website. Handles FAQs, brand voice, and basic visitor questions using publicly available site content. Delivered as a lightweight embed script.",
@@ -241,6 +266,7 @@ export async function POST(request: NextRequest) {
         ],
       });
     }
+    // If siteData is available even for short chatbot input, let AI analyze it for correct tier
 
     let siteContext = "";
     if (siteData) {
@@ -250,7 +276,12 @@ export async function POST(request: NextRequest) {
 - Tech stack: ${siteData.tech.join(", ") || "unknown"}
 - Content: ${siteData.bodyPreview.slice(0, 500)}
 
-Use this to tailor the description to their actual business.`;
+Use this to:
+1. Tailor the description to their actual business
+2. Infer data complexity for chatbot tier selection:
+   - Ecom/webshop with public product pages → chatbot-embedded is fine
+   - Site with order tracking, account area, or private data needs → chatbot-standard or higher
+   - Complex internal operations or private knowledge → chatbot-advanced or chatbot-ops-replacement`;
     }
 
     const { text } = await generateText({
