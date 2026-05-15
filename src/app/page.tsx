@@ -76,7 +76,11 @@ export default function HomePage() {
 
       {/* Text Reveal */}
       <section className="bg-white py-24">
-        <TextRevealByWord text="Built from scratch. Fully tailored. Deployed fast." />
+        <TextRevealByWord
+          text=""
+          highlight="We're building the future"
+          tail="for businesses that refuse to wait."
+        />
       </section>
 
       {/* Feature Carousel */}
@@ -86,11 +90,7 @@ export default function HomePage() {
 
       {/* Text Reveal — slogan */}
       <section className="bg-white py-24">
-        <TextRevealByWord
-          text=""
-          highlight="We're building the future"
-          tail="for businesses that refuse to wait."
-        />
+        <TextRevealByWord text="Built from scratch. Fully tailored. Deployed fast." />
       </section>
 
       {/* Why we're different */}
