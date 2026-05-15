@@ -28,7 +28,7 @@ export default function HomePage() {
           <div>
             <div className="group relative aspect-[16/9] overflow-hidden rounded-3xl">
               <img
-                src="/team/founders.png?v=3"
+                src="/team/founders.png?v=4"
                 alt="Bink Sanders & Pim Smit - Co-Founders of Ainomiq"
                 className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
