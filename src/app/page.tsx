@@ -93,47 +93,6 @@ export default function HomePage() {
         <TextRevealByWord text="Built from scratch. Fully tailored. Deployed fast." />
       </section>
 
-      {/* Why we're different */}
-      <section className="bg-ainomiq-navy">
-        <div className="mx-auto max-w-6xl px-6 py-24 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <span className="inline-block rounded-full border border-ainomiq-border px-3 py-1 text-xs font-semibold text-ainomiq-text-subtle uppercase tracking-wider mb-6">
-              Why Ainomiq
-            </span>
-            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-6">
-              Built different.<br />Works differently.
-            </h2>
-            <p className="text-ainomiq-text-muted text-lg leading-relaxed mb-8 max-w-md">
-              Most automation tools bolt AI on top of old software. We built Ainomiq from the ground up - one platform, every channel, fully autonomous.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button asChild size="lg" className="rounded-full bg-ainomiq-blue hover:bg-ainomiq-blue-hover text-white">
-                <Link href="https://app.ainomiq.com">Get started free</Link>
-              </Button>
-              <Button asChild size="lg" variant="outline" className="rounded-full border-ainomiq-border hover:border-ainomiq-border-hover bg-transparent text-ainomiq-text">
-                <Link href="/get-started">Talk to us</Link>
-              </Button>
-            </div>
-          </div>
-          <div className="grid grid-cols-1 gap-4">
-            {[
-              { title: "No legacy software", body: "Built from scratch for AI-first operations. No retrofitting, no workarounds." },
-              { title: "One platform, everything", body: "CS, email, inventory, and analytics - one login, one dashboard, full control." },
-              { title: "Truly autonomous", body: "Not just suggestions. Ainomiq acts: executes tasks, makes decisions, and delivers results - 24/7." },
-              { title: "Fits your stack", body: "We connect with the tools you already use - Shopify, Klaviyo, Meta, Google, and more." },
-            ].map((item) => (
-              <div key={item.title} className="flex gap-4 p-5 rounded-xl border border-ainomiq-border bg-ainomiq-surface">
-                <div className="mt-0.5 h-2 w-2 rounded-full bg-ainomiq-blue shrink-0" />
-                <div>
-                  <p className="font-semibold text-sm mb-1">{item.title}</p>
-                  <p className="text-sm text-ainomiq-text-muted leading-relaxed">{item.body}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
     </>
   );
 }
