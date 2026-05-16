@@ -91,8 +91,8 @@ const Gallery4 = ({
                   className="absolute h-full w-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 h-full bg-[linear-gradient(to_bottom,rgba(15,23,42,0.04),rgba(15,23,42,0.36),rgba(15,23,42,0.97)_100%)] mix-blend-multiply" />
-                <div className="absolute inset-x-0 bottom-0 flex flex-col items-start px-6 pb-5 text-white">
-                  <div className="mb-2 text-lg font-semibold leading-tight md:text-xl">
+                <div className="absolute inset-x-0 bottom-0 flex h-[9.75rem] flex-col items-start px-6 pb-5 text-white">
+                  <div className="mb-2 flex min-h-[3.35rem] items-start text-lg font-semibold leading-tight md:text-xl">
                     {item.title}
                   </div>
                   <div className="text-sm leading-relaxed text-white/90 md:text-[15px]">
