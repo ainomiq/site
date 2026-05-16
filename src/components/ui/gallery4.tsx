@@ -79,9 +79,13 @@ const Gallery4 = ({
             <p className="max-w-lg text-ainomiq-text-muted">{description}</p>
           </div>
         </div>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="-mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-2 sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 sm:pb-0 xl:grid-cols-4">
           {visibleItems.map((item) => (
-            <a key={item.id} href={item.href} className="group rounded-xl">
+            <a
+              key={item.id}
+              href={item.href}
+              className="group w-[66%] shrink-0 snap-start rounded-xl sm:w-auto"
+            >
               <div className="group relative h-[23rem] max-w-full overflow-hidden rounded-xl">
                 <img
                   src={item.image}
