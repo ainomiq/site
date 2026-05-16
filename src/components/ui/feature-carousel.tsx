@@ -3,16 +3,11 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import {
-  AiCloudIcon,
-  CheckmarkCircle01Icon,
   DashboardSquare01Icon,
-  CustomerService01Icon,
   ShoppingCart01Icon,
   Building03Icon,
-  ChartAverageIcon,
   PackageIcon,
   RobotIcon,
-  PuzzleIcon,
 } from "@hugeicons/core-free-icons";
 import { cn } from "@/lib/utils";
 import { HugeiconsIcon } from "@hugeicons/react";
@@ -48,25 +43,11 @@ const FEATURES = [
     description: "Bespoke agents, dashboards, and chatbots - from text-based to 3D animated mascots.",
   },
   {
-    id: "integrations",
-    label: "Fits Your Stack",
-    icon: PuzzleIcon,
-    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=900&auto=format&fit=crop",
-    description: "Shopify, Klaviyo, Meta, Google, and more. Ainomiq plugs into what you already use.",
-  },
-  {
     id: "analytics",
     label: "Performance Tracking",
     icon: DashboardSquare01Icon,
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&auto=format&fit=crop",
     description: "Revenue, profit, ROAS, and spend in one dashboard. Free for all users.",
-  },
-  {
-    id: "uptime",
-    label: "Enterprise-Grade",
-    icon: CheckmarkCircle01Icon,
-    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=900&auto=format&fit=crop",
-    description: "99.9% uptime. GDPR compliant. SSL secured. Your automation never sleeps.",
   },
 ];
 
