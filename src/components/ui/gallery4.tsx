@@ -19,7 +19,7 @@ const data = [
     id: "dominos-pizza",
     title: "Domino's Pizza",
     description:
-      "A manager chatbot for employee questions, trained on internal guides.",
+      "A manager chatbot trained on internal guides and employee questions.",
     href: "/enterprise",
     image: "/projects/dominos-pizza.png",
   },
@@ -27,7 +27,7 @@ const data = [
     id: "internal-ops-assistant",
     title: "Internal Ops Assistant",
     description:
-      "One assistant for team questions, task updates, checklists, and daily reports.",
+      "One assistant for team questions, checklists, updates, and daily reports.",
     href: "/enterprise",
     image:
       "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&q=80&w=1080",
@@ -36,15 +36,15 @@ const data = [
     id: "bol-amazon-automation",
     title: "Bol x Amazon",
     description:
-      "Marketplace operations automated across stock, orders, fulfillment, and reporting.",
+      "Marketplace workflows for stock, orders, fulfillment, and reporting.",
     href: "/enterprise",
     image: "/projects/bol-amazon-automation.png",
   },
   {
     id: "field-team-automation",
-    title: "Field Team Automation",
+    title: "Field Team Ops",
     description:
-      "Planning, job updates, proof-of-work, and reporting in one automated flow.",
+      "Job planning, field updates, proof-of-work, and reporting in one flow.",
     href: "/facility",
     image:
       "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&q=80&w=1080",
@@ -91,8 +91,8 @@ const Gallery4 = ({
                   className="absolute h-full w-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 h-full bg-[linear-gradient(to_bottom,rgba(15,23,42,0.04),rgba(15,23,42,0.36),rgba(15,23,42,0.97)_100%)] mix-blend-multiply" />
-                <div className="absolute inset-x-0 bottom-0 flex h-[9.75rem] flex-col items-start px-6 pb-5 text-white">
-                  <div className="mb-2 flex min-h-[3.35rem] items-start text-lg font-semibold leading-tight md:text-xl">
+                <div className="absolute inset-x-0 bottom-0 flex flex-col items-start px-6 pb-5 text-white">
+                  <div className="mb-2 whitespace-nowrap text-lg font-semibold leading-tight md:text-xl">
                     {item.title}
                   </div>
                   <div className="text-sm leading-relaxed text-white/90 md:text-[15px]">
