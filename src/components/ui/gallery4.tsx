@@ -34,7 +34,7 @@ const data = [
   },
   {
     id: "bol-amazon-automation",
-    title: "Bol x Amazon automation",
+    title: "Bol x Amazon",
     description:
       "A marketplace workflow that replaced a 20-person manual workload.",
     href: "/enterprise",
