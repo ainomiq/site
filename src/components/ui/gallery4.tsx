@@ -21,8 +21,7 @@ const data = [
     description:
       "An internal manager chatbot that gives employees instant answers from operational guides, procedures, and company knowledge.",
     href: "/enterprise",
-    image:
-      "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&q=80&w=1080",
+    image: "/projects/dominos-pizza.png",
   },
   {
     id: "enterprise",
