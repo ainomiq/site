@@ -19,7 +19,7 @@ const data = [
     id: "dominos-pizza",
     title: "Domino's Pizza",
     description:
-      "An internal manager chatbot that gives employees instant answers from operational guides, procedures, and company knowledge.",
+      "A manager chatbot that answers employee questions from internal guides and procedures.",
     href: "/enterprise",
     image: "/projects/dominos-pizza.png",
   },
@@ -27,7 +27,7 @@ const data = [
     id: "enterprise",
     title: "Enterprise automation",
     description:
-      "Custom AI systems for teams that need central dashboards, connected tools, and automation across departments.",
+      "Connected dashboards and automations for teams that need one operational source of truth.",
     href: "/enterprise",
     image:
       "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&q=80&w=1080",
@@ -36,7 +36,7 @@ const data = [
     id: "franchise",
     title: "Franchise operations",
     description:
-      "Multi-location workflows for support, reporting, field operations, and faster decisions across every branch.",
+      "Multi-location workflows for support, reporting, and faster branch-level decisions.",
     href: "/franchise",
     image:
       "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&q=80&w=1080",
@@ -45,7 +45,7 @@ const data = [
     id: "facility",
     title: "Facility services",
     description:
-      "Dispatch, maintenance, reporting, and service workflows designed for field teams and operational clarity.",
+      "Dispatch, maintenance, and reporting workflows built for field teams.",
     href: "/facility",
     image:
       "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&q=80&w=1080",
@@ -96,7 +96,7 @@ const Gallery4 = ({
                   <div className="mb-2 text-lg font-semibold leading-tight md:text-xl">
                     {item.title}
                   </div>
-                  <div className="text-sm leading-relaxed text-white/90 md:text-[15px]">
+                  <div className="line-clamp-3 text-sm leading-relaxed text-white/90 md:text-[15px]">
                     {item.description}
                   </div>
                 </div>
