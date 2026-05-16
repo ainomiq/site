@@ -24,14 +24,6 @@ const data = [
     image: "/projects/dominos-pizza.png",
   },
   {
-    id: "bol-amazon-automation",
-    title: "Bol x Amazon",
-    description:
-      "Marketplace operations automated across stock, orders, fulfillment, and reporting.",
-    href: "/enterprise",
-    image: "/projects/bol-amazon-automation.png",
-  },
-  {
     id: "internal-ops-assistant",
     title: "Internal Ops Assistant",
     description:
@@ -39,6 +31,14 @@ const data = [
     href: "/enterprise",
     image:
       "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&q=80&w=1080",
+  },
+  {
+    id: "bol-amazon-automation",
+    title: "Bol x Amazon",
+    description:
+      "Marketplace operations automated across stock, orders, fulfillment, and reporting.",
+    href: "/enterprise",
+    image: "/projects/bol-amazon-automation.png",
   },
   {
     id: "field-team-automation",
