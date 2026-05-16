@@ -26,14 +26,14 @@ import {
 export const metadata: Metadata = {
   title: "Custom Solutions",
   description:
-    "Custom solutions: all-in-one automation, chatbots, mobile apps, and more. Built for your business.",
+    "Custom solutions: automation suites, chatbots, mobile apps, and more. Built for your business.",
 };
 
 const customSolutions = [
   {
-    id: "all-in-one",
+    id: "automation-suite",
     icon: Layers,
-    title: "All-in-one",
+    title: "Automation Suite",
     headline: "One system to run your entire operation",
     description:
       "A fully integrated automation suite tailored to your business. From customer service to inventory, from marketing to analytics - everything connected in one platform.",
@@ -173,7 +173,7 @@ export default function EnterprisePage() {
             <span className="gradient-text">ambition</span>
           </h1>
           <p className="text-lg text-ainomiq-text-muted max-w-2xl mb-10">
-            From all-in-one platforms to custom chatbots and mobile apps - we
+            From automation suites to custom chatbots and mobile apps - we
             build solutions that tackle your specific business challenges.
           </p>
           <div className="flex flex-wrap gap-4">
@@ -190,7 +190,7 @@ export default function EnterprisePage() {
               size="lg"
               className="rounded-full border-ainomiq-border hover:border-ainomiq-border-hover bg-ainomiq-navy text-ainomiq-text px-8 h-12"
             >
-              <Link href="#all-in-one">View solutions</Link>
+              <Link href="#automation-suite">View solutions</Link>
             </Button>
           </div>
         </div>
