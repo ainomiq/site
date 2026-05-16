@@ -145,12 +145,12 @@ export function TopRequestedSolutions() {
             transition={{ duration: 0.5, delay: 0.14 }}
             className="text-ainomiq-text-muted text-lg max-w-xl mx-auto"
           >
-            From chatbots to full integrations — these are the solutions our clients request most.
+            From chatbots to full integrations. These are the solutions our clients request most.
           </motion.p>
         </div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <div className="mx-auto grid max-w-4xl grid-cols-1 gap-3 sm:grid-cols-2">
           {solutions.map((sol, i) => {
             const Icon = sol.icon
             const isHovered = hovered === i
