@@ -232,17 +232,6 @@ export function FeatureCarousel() {
                     )}
                   </AnimatePresence>
 
-                  <div
-                    className={cn(
-                      "absolute top-8 left-8 flex items-center gap-3 transition-opacity duration-300",
-                      isActive ? "opacity-100" : "opacity-0"
-                    )}
-                  >
-                    <div className="w-2 h-2 rounded-full bg-white shadow-[0_0_10px_white]" />
-                    <span className="text-white/80 text-[10px] font-normal uppercase tracking-[0.3em] font-mono">
-                      Live Session
-                    </span>
-                  </div>
                 </motion.div>
               );
             })}
