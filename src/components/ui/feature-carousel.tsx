@@ -22,7 +22,7 @@ const FEATURES = [
     id: "ecommerce",
     label: "E-commerce Automation",
     icon: ShoppingCart01Icon,
-    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=900&auto=format&fit=crop",
+    image: "/projects/ecommerce-ainomiq-app.png",
     description: "Plug & play modules for your webshop. CS, email, inventory, ads - all autonomous.",
   },
   {
