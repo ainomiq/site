@@ -6,6 +6,7 @@ import {
 } from "lucide-react";
 import { HeroSection } from "@/components/ui/hero-1";
 import { TextRevealByWord } from "@/components/ui/text-reveal";
+import { Gallery4 } from "@/components/ui/gallery4";
 
 export default function HomePage() {
   return (
@@ -92,6 +93,9 @@ export default function HomePage() {
       <section className="bg-white py-24">
         <TextRevealByWord text="Built from scratch. Fully tailored. Deployed fast." />
       </section>
+
+      {/* Projects gallery */}
+      <Gallery4 />
 
     </>
   );
