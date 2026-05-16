@@ -19,7 +19,7 @@ const data = [
     id: "dominos-pizza",
     title: "Domino's Pizza",
     description:
-      "A manager chatbot that answers employee questions from internal guides and procedures.",
+      "A manager chatbot for employee questions, trained on internal guides.",
     href: "/enterprise",
     image: "/projects/dominos-pizza.png",
   },
@@ -27,7 +27,7 @@ const data = [
     id: "bol-amazon-automation",
     title: "Bol x Amazon automation",
     description:
-      "A marketplace workflow that automated repetitive operations and reduced a 20-person manual workload.",
+      "A marketplace workflow that replaced a 20-person manual workload.",
     href: "/enterprise",
     image:
       "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&q=80&w=1080",
@@ -96,7 +96,7 @@ const Gallery4 = ({
                   <div className="mb-2 text-lg font-semibold leading-tight md:text-xl">
                     {item.title}
                   </div>
-                  <div className="line-clamp-3 text-sm leading-relaxed text-white/90 md:text-[15px]">
+                  <div className="text-sm leading-relaxed text-white/90 md:text-[15px]">
                     {item.description}
                   </div>
                 </div>
