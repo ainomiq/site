@@ -150,7 +150,7 @@ export function TopRequestedSolutions() {
         </div>
 
         {/* Grid */}
-        <div className="mx-auto grid max-w-4xl grid-cols-1 gap-3 sm:grid-cols-2">
+        <div className="mx-auto grid max-w-[760px] grid-cols-1 gap-x-8 gap-y-3 sm:grid-cols-2">
           {solutions.map((sol, i) => {
             const Icon = sol.icon
             const isHovered = hovered === i
@@ -172,7 +172,7 @@ export function TopRequestedSolutions() {
                       boxShadow: isHovered ? `0 8px 32px rgba(${sol.glow}, 0.15)` : "none",
                     }}
                     transition={{ duration: 0.2 }}
-                    className="relative flex items-center gap-4 rounded-2xl border p-4 cursor-pointer"
+                    className="relative mx-auto flex w-full max-w-[360px] cursor-pointer items-center gap-4 rounded-2xl border p-4"
                   >
                     {/* Rank number */}
                     <div className="flex-shrink-0 w-7 text-right">
