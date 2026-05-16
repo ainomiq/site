@@ -78,7 +78,7 @@ const Gallery4 = ({
             <p className="max-w-lg text-ainomiq-text-muted">{description}</p>
           </div>
         </div>
-        <div className="-mx-6 flex snap-x snap-mandatory gap-4 overflow-x-auto px-6 pb-2 sm:mx-0 sm:grid sm:grid-cols-2 sm:overflow-visible sm:px-0 sm:pb-0 xl:grid-cols-4">
+        <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 sm:grid sm:grid-cols-2 sm:overflow-visible sm:pb-0 xl:grid-cols-4">
           {visibleItems.map((item) => (
             <article
               key={item.id}
