@@ -24,10 +24,10 @@ const data = [
     image: "/projects/dominos-pizza.png",
   },
   {
-    id: "enterprise",
-    title: "Enterprise automation",
+    id: "bol-amazon-automation",
+    title: "Bol x Amazon automation",
     description:
-      "Connected dashboards and automations for teams that need one operational source of truth.",
+      "A marketplace workflow that automated repetitive operations and reduced a 20-person manual workload.",
     href: "/enterprise",
     image:
       "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&q=80&w=1080",
