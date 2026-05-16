@@ -73,8 +73,8 @@ const Gallery4 = ({
 
   return (
     <section className="bg-white py-24">
-      <div className="mx-auto max-w-7xl px-6">
-        <div className="mb-8 flex items-end justify-between md:mb-12">
+      <div className="mx-auto max-w-6xl px-6">
+        <div className="mb-8 flex items-end justify-between md:mb-10">
           <div className="flex flex-col gap-4">
             <h2 className="text-3xl font-medium md:text-4xl lg:text-5xl">
               {title}
@@ -82,10 +82,10 @@ const Gallery4 = ({
             <p className="max-w-lg text-ainomiq-text-muted">{description}</p>
           </div>
         </div>
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
           {visibleItems.map((item) => (
             <a key={item.id} href={item.href} className="group rounded-xl">
-              <div className="group relative h-[25rem] max-w-full overflow-hidden rounded-xl">
+              <div className="group relative h-[23rem] max-w-full overflow-hidden rounded-xl">
                 <img
                   src={item.image}
                   alt={item.title}
