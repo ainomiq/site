@@ -1,7 +1,5 @@
 "use client";
 
-import { ArrowRight } from "lucide-react";
-
 export interface Gallery4Item {
   id: string;
   title: string;
@@ -18,11 +16,11 @@ export interface Gallery4Props {
 
 const data = [
   {
-    id: "ecommerce",
-    title: "E-commerce AI systems",
+    id: "dominos-pizza",
+    title: "Domino's Pizza",
     description:
-      "Customer service, ads, email, inventory, and performance workflows built for webshops that need operational speed.",
-    href: "/ecommerce",
+      "An internal manager chatbot that gives employees instant answers from operational guides, procedures, and company knowledge.",
+    href: "/enterprise",
     image:
       "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&q=80&w=1080",
   },
@@ -98,10 +96,6 @@ const Gallery4 = ({
                   </div>
                   <div className="mb-8 line-clamp-2 text-white/85">
                     {item.description}
-                  </div>
-                  <div className="flex items-center text-sm">
-                    Read more{" "}
-                    <ArrowRight className="ml-2 size-5 transition-transform group-hover:translate-x-1" />
                   </div>
                 </div>
               </div>
