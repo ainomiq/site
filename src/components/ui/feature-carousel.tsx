@@ -36,7 +36,7 @@ const FEATURES = [
     id: "facility",
     label: "Facility Services",
     icon: PackageIcon,
-    image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=900&auto=format&fit=crop",
+    image: "/projects/facility-cleaning-check.png",
     description: "AI for cleaning, maintenance, and service operations. A legacy market, reimagined.",
   },
   {
