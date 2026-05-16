@@ -29,7 +29,7 @@ const FEATURES = [
     id: "franchise",
     label: "Franchise Operations",
     icon: Building03Icon,
-    image: "https://images.unsplash.com/photo-1556742393-d75f468bfcb0?w=900&auto=format&fit=crop",
+    image: "/projects/dominos-pizza.png",
     description: "Multi-location automation. Already powering Domino's across the Netherlands.",
   },
   {
