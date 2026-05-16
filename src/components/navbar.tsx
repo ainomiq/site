@@ -29,9 +29,9 @@ const productsEcommerce = [
 ];
 
 const productsCustom = [
-  { href: "/enterprise#all-in-one", label: "All-in-one", sub: "Full automation suite", icon: Layers },
-  { href: "/enterprise#chatbot", label: "Chatbot", sub: "Website & WhatsApp", icon: MessageCircle },
-  { href: "/enterprise#app", label: "App", sub: "iOS / Playstore app", icon: Smartphone },
+  { href: "/custom-solutions#all-in-one", label: "All-in-one", sub: "Full automation suite", icon: Layers },
+  { href: "/custom-solutions#chatbot", label: "Chatbot", sub: "Website & WhatsApp", icon: MessageCircle },
+  { href: "/custom-solutions#app", label: "App", sub: "iOS / Playstore app", icon: Smartphone },
 ];
 
 const industries = [
