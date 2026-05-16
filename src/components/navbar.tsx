@@ -19,6 +19,7 @@ import {
   Building2,
   Wrench,
   ChevronDown,
+  Workflow,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -29,7 +30,7 @@ const productsEcommerce = [
 ];
 
 const productsCustom = [
-  { href: "/custom-solutions#automation-suite", label: "Automation Suite", sub: "Full automation suite", icon: Layers },
+  { href: "/custom-solutions#workflow", label: "Workflow", sub: "Automated business flows", icon: Workflow },
   { href: "/custom-solutions#chatbot", label: "Chatbot", sub: "Website & WhatsApp", icon: MessageCircle },
   { href: "/custom-solutions#app", label: "App", sub: "iOS / Playstore app", icon: Smartphone },
 ];

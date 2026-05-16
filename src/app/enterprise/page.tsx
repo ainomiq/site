@@ -5,7 +5,6 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Section } from "@/components/section";
 import { TopRequestedSolutions } from "@/components/ui/top-requested-solutions";
 import {
-  Layers,
   MessageCircle,
   Smartphone,
   Cog,
@@ -21,6 +20,7 @@ import {
   Check,
   Building2,
   Wrench,
+  Workflow,
 } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -31,9 +31,9 @@ export const metadata: Metadata = {
 
 const customSolutions = [
   {
-    id: "automation-suite",
-    icon: Layers,
-    title: "Automation Suite",
+    id: "workflow",
+    icon: Workflow,
+    title: "Workflow",
     headline: "One system to run your entire operation",
     description:
       "A fully integrated automation suite tailored to your business. From customer service to inventory, from marketing to analytics - everything connected in one platform.",
@@ -190,7 +190,7 @@ export default function EnterprisePage() {
               size="lg"
               className="rounded-full border-ainomiq-border hover:border-ainomiq-border-hover bg-ainomiq-navy text-ainomiq-text px-8 h-12"
             >
-              <Link href="#automation-suite">View solutions</Link>
+              <Link href="#workflow">View solutions</Link>
             </Button>
           </div>
         </div>
