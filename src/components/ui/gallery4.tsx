@@ -24,27 +24,27 @@ const data = [
     image: "/projects/dominos-pizza.png",
   },
   {
-    id: "franchise",
-    title: "Franchise operations",
-    description:
-      "Multi-location workflows for support, reporting, and faster branch-level decisions.",
-    href: "/franchise",
-    image:
-      "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&q=80&w=1080",
-  },
-  {
     id: "bol-amazon-automation",
     title: "Bol x Amazon",
     description:
-      "A marketplace workflow that replaced a 20-person manual workload.",
+      "Marketplace operations automated across stock, orders, fulfillment, and reporting.",
     href: "/enterprise",
     image: "/projects/bol-amazon-automation.png",
   },
   {
-    id: "facility",
-    title: "Facility services",
+    id: "internal-ops-assistant",
+    title: "Internal Ops Assistant",
     description:
-      "Dispatch, maintenance, and reporting workflows built for field teams.",
+      "One assistant for team questions, task updates, checklists, and daily reports.",
+    href: "/enterprise",
+    image:
+      "https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&q=80&w=1080",
+  },
+  {
+    id: "field-team-automation",
+    title: "Field Team Automation",
+    description:
+      "Planning, job updates, proof-of-work, and reporting in one automated flow.",
     href: "/facility",
     image:
       "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&q=80&w=1080",
