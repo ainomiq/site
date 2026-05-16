@@ -236,22 +236,6 @@ export function TopRequestedSolutions() {
           })}
         </div>
 
-        {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-10 text-center"
-        >
-          <p className="text-ainomiq-text-muted text-sm mb-4">Don&apos;t see what you need?</p>
-          <Link
-            href="/get-started"
-            className="inline-flex items-center gap-2 rounded-full bg-ainomiq-blue hover:bg-ainomiq-blue-hover text-white text-sm font-semibold px-6 py-3 transition-colors"
-          >
-            Describe your custom solution <ArrowRight className="w-4 h-4" />
-          </Link>
-        </motion.div>
       </div>
     </section>
   )
