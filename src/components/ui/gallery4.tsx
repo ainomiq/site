@@ -90,11 +90,11 @@ const Gallery4 = ({
                   className="absolute h-full w-full object-cover object-center transition-transform duration-300 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 h-full bg-[linear-gradient(to_bottom,rgba(15,23,42,0),rgba(15,23,42,0.45),rgba(15,23,42,0.92)_100%)] mix-blend-multiply" />
-                <div className="absolute inset-x-0 bottom-0 flex flex-col items-start p-6 text-white">
-                  <div className="mb-2 pt-4 text-xl font-semibold">
+                <div className="absolute inset-x-0 bottom-0 flex flex-col items-start px-6 pb-5 text-white">
+                  <div className="mb-2 text-xl font-semibold">
                     {item.title}
                   </div>
-                  <div className="mb-8 line-clamp-2 text-white/85">
+                  <div className="line-clamp-2 text-white/85">
                     {item.description}
                   </div>
                 </div>
