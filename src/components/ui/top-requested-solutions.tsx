@@ -203,11 +203,16 @@ export function TopRequestedSolutions() {
                     <div className="flex-1 min-w-0">
                       <p
                         className="text-sm font-semibold transition-colors duration-200"
-                        style={{ color: isHovered ? "#f1f5f9" : "#cbd5e1" }}
+                        style={{ color: isHovered ? "#0f172a" : "#334155" }}
                       >
                         {sol.label}
                       </p>
-                      <p className="text-xs text-ainomiq-text-muted truncate">{sol.sub}</p>
+                      <p
+                        className="text-xs truncate transition-colors duration-200"
+                        style={{ color: isHovered ? "#475569" : "#64748b" }}
+                      >
+                        {sol.sub}
+                      </p>
                     </div>
 
                     {/* Arrow */}
