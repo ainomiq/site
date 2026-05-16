@@ -30,6 +30,7 @@ const FEATURES = [
     label: "Franchise Operations",
     icon: Building03Icon,
     image: "/projects/dominos-pizza.png",
+    imagePosition: "72% center",
     description: "Multi-location automation. Already powering Domino's across the Netherlands.",
   },
   {
@@ -212,6 +213,7 @@ export function FeatureCarousel() {
                       "w-full h-full object-cover transition-all duration-700",
                       isActive ? "grayscale-0 blur-0" : "grayscale blur-[2px] brightness-75"
                     )}
+                    style={{ objectPosition: feature.imagePosition ?? "center" }}
                   />
 
                   <AnimatePresence>
