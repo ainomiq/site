@@ -115,7 +115,7 @@ export default function AboutPage() {
       </section>
 
       {/* Team Structure */}
-      <section className="pb-24 px-6">
+      <section className="overflow-hidden pb-24 px-6">
         <div className="mx-auto max-w-6xl">
           <div className="mb-10 text-center">
             <div className="mb-4 inline-flex items-center rounded-full bg-ainomiq-blue-glow px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">
@@ -126,31 +126,41 @@ export default function AboutPage() {
             </h2>
           </div>
 
-          <div className="mx-auto flex max-w-5xl flex-col items-center">
-            <Card className="w-full max-w-2xl border-ainomiq-border bg-white shadow-sm">
-              <CardContent className="p-6 text-center">
-                <div className="relative mb-5 aspect-[16/9] overflow-hidden rounded-2xl bg-ainomiq-blue-glow">
+          <div className="relative mx-auto max-w-6xl">
+            <div className="pointer-events-none absolute left-1/2 top-10 h-72 w-72 -translate-x-1/2 rounded-full bg-ainomiq-blue/10 blur-3xl" />
+
+            <Card className="group relative z-10 mx-auto w-full max-w-3xl overflow-hidden border-ainomiq-border bg-white shadow-[0_24px_70px_rgba(15,23,42,0.10)] transition duration-500 hover:-translate-y-1 hover:shadow-[0_34px_90px_rgba(59,130,246,0.18)]">
+              <CardContent className="p-0">
+                <div className="relative aspect-[16/8] overflow-hidden bg-ainomiq-blue-glow md:aspect-[16/7]">
                   <Image
                     src="/team/founders.png"
                     alt="Bink Sanders and Pim Smit"
                     fill
-                    className="object-cover object-center"
-                    sizes="(min-width: 768px) 672px, calc(100vw - 3rem)"
+                    className="object-cover object-center transition duration-700 group-hover:scale-[1.03]"
+                    sizes="(min-width: 768px) 768px, calc(100vw - 3rem)"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-ainomiq-text/75 via-ainomiq-text/15 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 p-6 text-left md:p-8">
+                    <p className="mb-3 inline-flex rounded-full bg-white/95 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.22em] text-ainomiq-blue shadow-sm">
+                      Founders
+                    </p>
+                    <h3 className="text-2xl font-extrabold tracking-tight text-white md:text-3xl">
+                      Bink & Pim
+                    </h3>
+                    <p className="mt-1 text-sm font-medium text-white/80">
+                      Co-founders
+                    </p>
+                  </div>
                 </div>
-                <h3 className="text-xl font-extrabold tracking-tight text-ainomiq-text">
-                  Bink & Pim
-                </h3>
-                <p className="mt-1 text-sm text-ainomiq-text-muted">
-                  Co-founders
-                </p>
               </CardContent>
             </Card>
 
-            <div className="h-12 w-px bg-ainomiq-border" />
-            <div className="hidden h-px w-full max-w-3xl bg-ainomiq-border md:block" />
+            <div className="relative mx-auto mt-8 max-w-5xl md:mt-0">
+              <div className="pointer-events-none absolute left-5 top-0 h-full w-px bg-gradient-to-b from-ainomiq-blue via-ainomiq-border to-transparent md:left-1/2 md:top-0 md:h-14 md:-translate-x-1/2" />
+              <div className="pointer-events-none absolute left-[16.66%] right-[16.66%] top-14 hidden h-px bg-gradient-to-r from-transparent via-ainomiq-blue/60 to-transparent md:block" />
+              <div className="pointer-events-none absolute left-1/2 top-12 hidden h-2 w-2 -translate-x-1/2 rounded-full bg-ainomiq-blue shadow-[0_0_0_8px_rgba(59,130,246,0.12)] animate-pulse md:block" />
 
-            <div className="grid w-full gap-5 pt-8 md:grid-cols-3">
+              <div className="grid w-full gap-5 pt-8 md:grid-cols-3 md:pt-24">
               {[
                 {
                   team: "Team Development",
@@ -170,20 +180,23 @@ export default function AboutPage() {
               ].map((item) => (
                 <Card
                   key={item.team}
-                  className="border-ainomiq-border bg-white shadow-sm"
+                  className="group relative ml-10 border-ainomiq-border bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:border-ainomiq-blue/30 hover:shadow-[0_24px_60px_rgba(15,23,42,0.12)] md:ml-0"
                 >
+                  <div className="absolute -left-[2.95rem] top-1/2 h-px w-10 bg-ainomiq-border md:-top-10 md:left-1/2 md:h-10 md:w-px md:-translate-x-1/2" />
+                  <div className="absolute -left-[3.4rem] top-1/2 h-3 w-3 -translate-y-1/2 rounded-full border-2 border-white bg-ainomiq-blue shadow-[0_0_0_6px_rgba(59,130,246,0.10)] md:-top-10 md:left-1/2 md:-translate-x-1/2 md:translate-y-0" />
                   <CardContent className="p-5">
-                    <div className="relative mb-5 flex aspect-[4/3] items-center justify-center overflow-hidden rounded-2xl border border-dashed border-ainomiq-border bg-ainomiq-navy-light text-sm font-medium text-ainomiq-text-muted">
+                    <div className="relative mb-5 flex aspect-[4/3] items-center justify-center overflow-hidden rounded-2xl bg-ainomiq-navy-light text-sm font-medium text-ainomiq-text-muted">
                       {item.photo ? (
                         <Image
                           src={item.photo}
                           alt={item.lead}
                           fill
-                          className="object-cover object-top"
+                          className="object-cover object-top transition duration-500 group-hover:scale-[1.04]"
                         />
                       ) : (
                         "Photo space"
                       )}
+                      <div className="absolute inset-0 bg-gradient-to-t from-ainomiq-text/10 to-transparent opacity-0 transition group-hover:opacity-100" />
                     </div>
                     <p className="text-xs font-semibold uppercase tracking-[0.18em] text-ainomiq-blue">
                       {item.team}
@@ -194,6 +207,7 @@ export default function AboutPage() {
                   </CardContent>
                 </Card>
               ))}
+              </div>
             </div>
           </div>
         </div>
