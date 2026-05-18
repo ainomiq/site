@@ -164,18 +164,15 @@ export default function AboutPage() {
                 {
                   team: "Team Development",
                   lead: "Ashar",
-                  role: "Run by",
                   photo: "/team/ashar.png",
                 },
                 {
                   team: "Team Sales",
-                  lead: "Marni",
-                  role: "Run by",
+                  lead: "Marnix",
                 },
                 {
                   team: "Team HR",
                   lead: "Nynke Jurjus",
-                  role: "Run by",
                 },
               ].map((item) => (
                 <Card
@@ -201,9 +198,6 @@ export default function AboutPage() {
                     <h3 className="mt-2 text-xl font-extrabold tracking-tight text-ainomiq-text">
                       {item.lead}
                     </h3>
-                    <p className="mt-1 text-sm text-ainomiq-text-muted">
-                      {item.role} {item.lead}
-                    </p>
                   </CardContent>
                 </Card>
               ))}
