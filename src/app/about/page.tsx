@@ -169,6 +169,7 @@ export default function AboutPage() {
                 {
                   team: "Team Sales",
                   lead: "Marnix",
+                  photo: "/team/marnix.png",
                 },
                 {
                   team: "Team HR",
