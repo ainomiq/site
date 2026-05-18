@@ -225,17 +225,17 @@ export default function AboutPage() {
               <div className="grid w-full gap-5 pt-8 md:grid-cols-3 md:pt-24">
               {[
                 {
-                  team: "Team Development",
+                  team: "Head of Development",
                   lead: "Ashar",
                   photo: "/team/ashar.png",
                 },
                 {
-                  team: "Team Sales",
+                  team: "Head of Sales",
                   lead: "Marnix",
                   photo: "/team/marnix.png",
                 },
                 {
-                  team: "Team HR",
+                  team: "Head of People & HR",
                   lead: "Nynke",
                   photo: "/team/nynke.png",
                 },
