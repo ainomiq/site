@@ -3,7 +3,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Section } from "@/components/section";
 import {
   RocketIcon,
   ArrowRightIcon,
@@ -205,29 +204,39 @@ export default function AboutPage() {
       </section>
 
       {/* Why Ainomiq */}
-      <Section label="Why Ainomiq" className="bg-ainomiq-navy-light">
-        <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">
-          AI moves fast. We move faster.
-        </h2>
-        <div className="text-ainomiq-text-muted text-lg max-w-2xl leading-relaxed space-y-4">
-          <p>
-            At Ainomiq, staying ahead isn&apos;t a goal, it&apos;s how we work. Our team tests and applies new technology every single day, so everything we deliver uses what works best right now.
-          </p>
-          <p>
-            And we keep it that way. Because AI evolves fast, your systems should too. Everything we build is designed to grow, adapt, and keep optimizing as the technology moves forward. That&apos;s what makes Ainomiq different. Not just a one-time solution, but a system that stays ahead.
-          </p>
+      <section className="bg-ainomiq-navy-light px-6 py-24 text-center">
+        <div className="mx-auto max-w-3xl">
+          <div className="mb-6 inline-flex items-center rounded-full bg-ainomiq-blue-glow px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">
+            Why Ainomiq
+          </div>
+          <h2 className="mb-4 text-3xl font-extrabold tracking-tight md:text-5xl">
+            AI moves fast. We move faster.
+          </h2>
+          <div className="mx-auto max-w-2xl space-y-4 text-lg leading-relaxed text-ainomiq-text-muted">
+            <p>
+              At Ainomiq, staying ahead isn&apos;t a goal, it&apos;s how we work. Our team tests and applies new technology every single day, so everything we deliver uses what works best right now.
+            </p>
+            <p>
+              And we keep it that way. Because AI evolves fast, your systems should too. Everything we build is designed to grow, adapt, and keep optimizing as the technology moves forward. That&apos;s what makes Ainomiq different. Not just a one-time solution, but a system that stays ahead.
+            </p>
+          </div>
         </div>
-      </Section>
+      </section>
 
       {/* Mission and Impact */}
-      <Section label="Mission and Impact">
-        <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">
-          Bringing every business into the age of AI
-        </h2>
-        <p className="text-ainomiq-text-muted text-lg max-w-2xl leading-relaxed">
-          Every business deserves to benefit from AI, not just the ones with big budgets or tech teams. We&apos;re here to change that. By building smart, evolving systems that make AI work for businesses of any size, we help companies compete in a world that&apos;s changing faster than ever.
-        </p>
-      </Section>
+      <section className="px-6 py-24 text-center">
+        <div className="mx-auto max-w-3xl">
+          <div className="mb-6 inline-flex items-center rounded-full bg-ainomiq-blue-glow px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">
+            Mission and Impact
+          </div>
+          <h2 className="mb-4 text-3xl font-extrabold tracking-tight md:text-5xl">
+            Bringing every business into the age of AI
+          </h2>
+          <p className="mx-auto max-w-2xl text-lg leading-relaxed text-ainomiq-text-muted">
+            Every business deserves to benefit from AI, not just the ones with big budgets or tech teams. We&apos;re here to change that. By building smart, evolving systems that make AI work for businesses of any size, we help companies compete in a world that&apos;s changing faster than ever.
+          </p>
+        </div>
+      </section>
 
       {/* Careers at Ainomiq */}
       <section id="jobs" className="py-24 px-6">
