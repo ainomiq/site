@@ -129,11 +129,11 @@ export default function AboutPage() {
 
             <Link
               className="group relative z-10 mx-auto flex w-fit items-center gap-3 rounded-full border border-ainomiq-border bg-white px-3 py-1 shadow-sm"
-              href="#story"
+              href="/get-started"
             >
               <RocketIcon className="size-3 text-ainomiq-blue" />
               <span className="text-xs font-medium text-ainomiq-text">
-                Systems that work from day one
+                Start implementing
               </span>
               <span className="block h-5 border-l border-ainomiq-border" />
               <ArrowRightIcon className="size-3 text-ainomiq-text-muted transition-transform duration-200 ease-out group-hover:translate-x-0.5" />
@@ -157,15 +157,15 @@ export default function AboutPage() {
                 size="lg"
                 className="rounded-full border border-ainomiq-border bg-white text-ainomiq-text hover:bg-ainomiq-navy-light"
               >
-                <Link href="/demos">View demos</Link>
+                <Link href="#team">Ainomiq team</Link>
               </Button>
               <Button
                 asChild
                 size="lg"
                 className="rounded-full bg-ainomiq-blue text-white shadow-lg shadow-ainomiq-blue/25 hover:bg-ainomiq-blue-hover"
               >
-                <Link href="/get-started">
-                  Get Started
+                <Link href="#story">
+                  Ainomiq story
                   <ArrowRightIcon className="ms-2 size-4" />
                 </Link>
               </Button>
@@ -352,7 +352,7 @@ export default function AboutPage() {
       </section>
 
       {/* Team Structure */}
-      <section className="overflow-hidden pb-24 px-6">
+      <section id="team" className="scroll-mt-24 overflow-hidden pb-24 px-6">
         <div className="mx-auto max-w-6xl">
           <div className="mb-10 text-center">
             <div className="mb-4 inline-flex items-center rounded-full bg-ainomiq-blue-glow px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">
