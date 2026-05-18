@@ -165,6 +165,7 @@ export default function AboutPage() {
                   team: "Team Development",
                   lead: "Ashar",
                   role: "Run by",
+                  photo: "/team/ashar.png",
                 },
                 {
                   team: "Team Sales",
@@ -182,8 +183,17 @@ export default function AboutPage() {
                   className="border-ainomiq-border bg-white shadow-sm"
                 >
                   <CardContent className="p-5">
-                    <div className="mb-5 flex aspect-[4/3] items-center justify-center rounded-2xl border border-dashed border-ainomiq-border bg-ainomiq-navy-light text-sm font-medium text-ainomiq-text-muted">
-                      Photo space
+                    <div className="relative mb-5 flex aspect-[4/3] items-center justify-center overflow-hidden rounded-2xl border border-dashed border-ainomiq-border bg-ainomiq-navy-light text-sm font-medium text-ainomiq-text-muted">
+                      {item.photo ? (
+                        <Image
+                          src={item.photo}
+                          alt={item.lead}
+                          fill
+                          className="object-cover object-top"
+                        />
+                      ) : (
+                        "Photo space"
+                      )}
                     </div>
                     <p className="text-xs font-semibold uppercase tracking-[0.18em] text-ainomiq-blue">
                       {item.team}
