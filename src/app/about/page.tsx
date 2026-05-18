@@ -11,16 +11,10 @@ import {
   Clock,
   RocketIcon,
   ArrowRightIcon,
-  Hand,
-  Factory,
-  RadioTower,
-  Globe2,
-  Smartphone,
-  BrainCircuit,
-  Sparkles,
 } from "lucide-react";
 import { ValuesScroll } from "@/components/values-scroll";
 import { AboutTypewriterWord } from "@/components/about-typewriter-word";
+import { EvolutionTimeline } from "@/components/evolution-timeline";
 
 export const metadata: Metadata = {
   title: "About",
@@ -54,60 +48,6 @@ const values = [
     body: "The best team members understand other functions deeply and promote cross-functional collaboration.",
   },
 ];
-
-const evolutionTimeline = [
-  {
-    era: "01",
-    title: "Handwork",
-    detail: "Everything depended on human effort.",
-    icon: Hand,
-  },
-  {
-    era: "02",
-    title: "Steam machines",
-    detail: "Physical work became scalable.",
-    icon: Factory,
-  },
-  {
-    era: "03",
-    title: "War communication",
-    detail: "Information started moving faster than people.",
-    icon: RadioTower,
-  },
-  {
-    era: "04",
-    title: "Rocket age",
-    detail: "Engineering pushed ambition beyond earth.",
-    icon: RocketIcon,
-  },
-  {
-    era: "05",
-    title: "Internet",
-    detail: "Knowledge became instantly connected.",
-    icon: Globe2,
-  },
-  {
-    era: "06",
-    title: "Mobile",
-    detail: "Every business moved into every pocket.",
-    icon: Smartphone,
-  },
-  {
-    era: "07",
-    title: "Age of AI",
-    detail: "The current shift: software starts thinking with us.",
-    icon: BrainCircuit,
-    current: true,
-  },
-  {
-    era: "08",
-    title: "Ainomiq",
-    detail: "AI becomes the operating layer for real businesses.",
-    icon: Sparkles,
-    next: true,
-  },
-];
-
 
 export default function AboutPage() {
   return (
@@ -174,113 +114,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Evolution Timeline */}
-      <section className="relative overflow-hidden border-b border-ainomiq-border bg-ainomiq-navy-light py-24">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(59,130,246,0.10),transparent_32%),radial-gradient(circle_at_80%_60%,rgba(59,130,246,0.08),transparent_34%)]"
-        />
-        <div className="relative mx-auto max-w-6xl px-6">
-          <div className="mb-12 grid gap-8 md:grid-cols-[0.9fr_1.1fr] md:items-end">
-            <div>
-              <div className="mb-4 inline-flex items-center rounded-full bg-white px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ainomiq-blue shadow-sm">
-                The timeline
-              </div>
-              <h2 className="max-w-xl text-3xl font-extrabold tracking-tight text-ainomiq-text md:text-5xl">
-                Every era made work move faster.
-              </h2>
-            </div>
-            <p className="max-w-xl text-lg leading-relaxed text-ainomiq-text-muted md:justify-self-end">
-              From hands to machines, from signals to software, from mobile to AI.
-              Ainomiq is built for the moment where AI becomes part of how a
-              business actually runs.
-            </p>
-          </div>
-
-          <div className="relative overflow-hidden rounded-[2rem] border border-ainomiq-border bg-white py-8 shadow-[0_24px_70px_rgba(15,23,42,0.08)]">
-            <div
-              aria-hidden="true"
-              className="absolute left-0 right-0 top-1/2 h-px bg-gradient-to-r from-transparent via-ainomiq-blue/35 to-transparent"
-            />
-            <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-20 bg-gradient-to-r from-white to-transparent" />
-            <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-20 bg-gradient-to-l from-white to-transparent" />
-
-            <div className="flex gap-4 [--duration:46s] [--gap:1rem]">
-              {[0, 1].map((loop) => (
-                <div
-                  key={loop}
-                  className="flex shrink-0 gap-4 animate-marquee"
-                >
-                  {evolutionTimeline.map((item) => {
-                    const Icon = item.icon;
-                    return (
-                      <div
-                        key={`${loop}-${item.title}`}
-                        className={`relative min-w-[260px] rounded-2xl border p-5 shadow-sm ${
-                          item.current
-                            ? "border-ainomiq-blue bg-ainomiq-blue text-white shadow-ainomiq-blue/25"
-                            : item.next
-                              ? "border-ainomiq-blue/40 bg-ainomiq-text text-white"
-                              : "border-ainomiq-border bg-white text-ainomiq-text"
-                        }`}
-                      >
-                        <div className="mb-8 flex items-center justify-between">
-                          <span
-                            className={`text-xs font-bold tracking-[0.18em] ${
-                              item.current || item.next
-                                ? "text-white/70"
-                                : "text-ainomiq-text-subtle"
-                            }`}
-                          >
-                            {item.era}
-                          </span>
-                          <div
-                            className={`flex size-11 items-center justify-center rounded-xl ${
-                              item.current || item.next
-                                ? "bg-white/15 text-white"
-                                : "bg-ainomiq-blue-glow text-ainomiq-blue"
-                            }`}
-                          >
-                            <Icon className="size-5" />
-                          </div>
-                        </div>
-                        <div
-                          className={`absolute left-6 top-1/2 size-3 -translate-y-1/2 rounded-full border-2 ${
-                            item.current || item.next
-                              ? "border-white bg-white"
-                              : "border-white bg-ainomiq-blue"
-                          }`}
-                        />
-                        <div className="pt-8">
-                          <div className="mb-2 flex items-center gap-2">
-                            <h3 className="text-xl font-extrabold tracking-tight">
-                              {item.title}
-                            </h3>
-                            {item.current ? (
-                              <span className="rounded-full bg-white px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.16em] text-ainomiq-blue">
-                                Now
-                              </span>
-                            ) : null}
-                          </div>
-                          <p
-                            className={`text-sm leading-relaxed ${
-                              item.current || item.next
-                                ? "text-white/78"
-                                : "text-ainomiq-text-muted"
-                            }`}
-                          >
-                            {item.detail}
-                          </p>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+      <EvolutionTimeline />
 
       {/* Our Story */}
       <section id="story" className="pt-24 pb-24 px-6">
