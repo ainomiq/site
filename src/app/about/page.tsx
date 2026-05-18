@@ -127,25 +127,16 @@ export default function AboutPage() {
           </div>
 
           <div className="mx-auto flex max-w-5xl flex-col items-center">
-            <Card className="w-full max-w-md border-ainomiq-border bg-white shadow-sm">
+            <Card className="w-full max-w-2xl border-ainomiq-border bg-white shadow-sm">
               <CardContent className="p-6 text-center">
-                <div className="mx-auto mb-4 flex justify-center -space-x-4">
-                  <div className="relative h-16 w-16 overflow-hidden rounded-full border-4 border-white bg-ainomiq-blue-glow">
-                    <Image
-                      src="/team/bink.jpg"
-                      alt="Bink Sanders"
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-                  <div className="relative h-16 w-16 overflow-hidden rounded-full border-4 border-white bg-ainomiq-blue-glow">
-                    <Image
-                      src="/team/pim.jpg"
-                      alt="Pim Smit"
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
+                <div className="relative mb-5 aspect-[16/9] overflow-hidden rounded-2xl bg-ainomiq-blue-glow">
+                  <Image
+                    src="/team/founders.png"
+                    alt="Bink Sanders and Pim Smit"
+                    fill
+                    className="object-cover object-center"
+                    sizes="(min-width: 768px) 672px, calc(100vw - 3rem)"
+                  />
                 </div>
                 <h3 className="text-xl font-extrabold tracking-tight text-ainomiq-text">
                   Bink & Pim
