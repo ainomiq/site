@@ -5,14 +5,9 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Section } from "@/components/section";
 import {
-  Zap,
-  BadgeCheck,
-  Info,
-  Clock,
   RocketIcon,
   ArrowRightIcon,
 } from "lucide-react";
-import { ValuesScroll } from "@/components/values-scroll";
 import { AboutTypewriterWord } from "@/components/about-typewriter-word";
 
 export const metadata: Metadata = {
@@ -20,33 +15,6 @@ export const metadata: Metadata = {
   description:
     "We are Ainomiq. Learn more about our team, our mission, and our values.",
 };
-
-const values = [
-  {
-    icon: Zap,
-    num: "01",
-    title: "Just get it done",
-    body: "We value decisive action and speed over prolonged deliberation and planning.",
-  },
-  {
-    icon: BadgeCheck,
-    num: "02",
-    title: "Invent what customers want",
-    body: "Our core identity must always be rooted in building for our customers; this has been the foundation of our success.",
-  },
-  {
-    icon: Info,
-    num: "03",
-    title: "Winner's mindset",
-    body: "Fiercely competitive nature and fighting spirit are foundational.",
-  },
-  {
-    icon: Clock,
-    num: "04",
-    title: "The Polymath Principle",
-    body: "The best team members understand other functions deeply and promote cross-functional collaboration.",
-  },
-];
 
 export default function AboutPage() {
   return (
@@ -260,9 +228,6 @@ export default function AboutPage() {
           Every business deserves to benefit from AI, not just the ones with big budgets or tech teams. We&apos;re here to change that. By building smart, evolving systems that make AI work for businesses of any size, we help companies compete in a world that&apos;s changing faster than ever.
         </p>
       </Section>
-
-      {/* Values - scroll-driven */}
-      <ValuesScroll />
 
       {/* Careers at Ainomiq */}
       <section id="jobs" className="py-24 px-6">
