@@ -174,6 +174,7 @@ export default function AboutPage() {
                 {
                   team: "Team HR",
                   lead: "Nynke Jurjus",
+                  photo: "/team/nynke.png",
                 },
               ].map((item) => (
                 <Card
