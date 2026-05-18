@@ -114,6 +114,94 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* Team Structure */}
+      <section className="pb-24 px-6">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-10 text-center">
+            <div className="mb-4 inline-flex items-center rounded-full bg-ainomiq-blue-glow px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">
+              Team structure
+            </div>
+            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight">
+              Built around focused teams
+            </h2>
+          </div>
+
+          <div className="mx-auto flex max-w-5xl flex-col items-center">
+            <Card className="w-full max-w-md border-ainomiq-border bg-white shadow-sm">
+              <CardContent className="p-6 text-center">
+                <div className="mx-auto mb-4 flex justify-center -space-x-4">
+                  <div className="relative h-16 w-16 overflow-hidden rounded-full border-4 border-white bg-ainomiq-blue-glow">
+                    <Image
+                      src="/team/bink.jpg"
+                      alt="Bink Sanders"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="relative h-16 w-16 overflow-hidden rounded-full border-4 border-white bg-ainomiq-blue-glow">
+                    <Image
+                      src="/team/pim.jpg"
+                      alt="Pim Smit"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                </div>
+                <h3 className="text-xl font-extrabold tracking-tight text-ainomiq-text">
+                  Bink & Pim
+                </h3>
+                <p className="mt-1 text-sm text-ainomiq-text-muted">
+                  Co-founders
+                </p>
+              </CardContent>
+            </Card>
+
+            <div className="h-12 w-px bg-ainomiq-border" />
+            <div className="hidden h-px w-full max-w-3xl bg-ainomiq-border md:block" />
+
+            <div className="grid w-full gap-5 pt-8 md:grid-cols-3">
+              {[
+                {
+                  team: "Team Development",
+                  lead: "Ashar",
+                  role: "Run by",
+                },
+                {
+                  team: "Team Sales",
+                  lead: "Marni",
+                  role: "Run by",
+                },
+                {
+                  team: "Team HR",
+                  lead: "Nynke Jurjus",
+                  role: "Run by",
+                },
+              ].map((item) => (
+                <Card
+                  key={item.team}
+                  className="border-ainomiq-border bg-white shadow-sm"
+                >
+                  <CardContent className="p-5">
+                    <div className="mb-5 flex aspect-[4/3] items-center justify-center rounded-2xl border border-dashed border-ainomiq-border bg-ainomiq-navy-light text-sm font-medium text-ainomiq-text-muted">
+                      Photo space
+                    </div>
+                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-ainomiq-blue">
+                      {item.team}
+                    </p>
+                    <h3 className="mt-2 text-xl font-extrabold tracking-tight text-ainomiq-text">
+                      {item.lead}
+                    </h3>
+                    <p className="mt-1 text-sm text-ainomiq-text-muted">
+                      {item.role} {item.lead}
+                    </p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Why Ainomiq */}
       <Section label="Why Ainomiq" className="bg-ainomiq-navy-light">
         <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">
