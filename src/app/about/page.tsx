@@ -192,7 +192,7 @@ export default function AboutPage() {
                   photo: "/team/marnix.png",
                 },
                 {
-                  team: "Head of People & HR",
+                  team: "Head of HR",
                   lead: "Nynke",
                   photo: "/team/nynke.png",
                 },
