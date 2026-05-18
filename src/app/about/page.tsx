@@ -4,9 +4,8 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Section } from "@/components/section";
-import { Zap, BadgeCheck, Info, Clock } from "lucide-react";
+import { Zap, BadgeCheck, Info, Clock, RocketIcon, ArrowRightIcon } from "lucide-react";
 import { ValuesScroll } from "@/components/values-scroll";
-import { ShaderBackground } from "@/components/shader-background";
 
 export const metadata: Metadata = {
   title: "About",
@@ -45,8 +44,71 @@ const values = [
 export default function AboutPage() {
   return (
     <>
+      {/* About Hero */}
+      <section className="relative overflow-hidden border-b border-ainomiq-border bg-white">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_24%,rgba(59,130,246,0.12),transparent_34%),radial-gradient(circle_at_82%_70%,rgba(59,130,246,0.08),transparent_32%)]"
+        />
+        <div className="mx-auto max-w-6xl">
+          <div className="relative flex min-h-[calc(78vh-4rem)] flex-col items-center justify-center gap-5 px-6 pt-32 pb-20">
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 -z-0 overflow-hidden"
+            >
+              <div className="absolute inset-y-0 left-4 w-px bg-gradient-to-b from-transparent via-ainomiq-border to-ainomiq-border md:left-8" />
+              <div className="absolute inset-y-0 right-4 w-px bg-gradient-to-b from-transparent via-ainomiq-border to-ainomiq-border md:right-8" />
+            </div>
+
+            <Link
+              className="group relative z-10 mx-auto flex w-fit items-center gap-3 rounded-full border border-ainomiq-border bg-white px-3 py-1 shadow-sm"
+              href="#story"
+            >
+              <RocketIcon className="size-3 text-ainomiq-blue" />
+              <span className="text-xs font-medium text-ainomiq-text">
+                Systems that work from day one
+              </span>
+              <span className="block h-5 border-l border-ainomiq-border" />
+              <ArrowRightIcon className="size-3 text-ainomiq-text-muted transition-transform duration-200 ease-out group-hover:translate-x-0.5" />
+            </Link>
+
+            <h1 className="relative z-10 text-balance text-center text-5xl font-extrabold tracking-tight text-ainomiq-text md:text-6xl lg:text-7xl">
+              Building The{" "}
+              <span className="gradient-text">
+                Momentum.
+              </span>
+              <span className="ml-1 inline-block h-[0.9em] w-px translate-y-1 bg-ainomiq-blue" />
+            </h1>
+
+            <p className="relative z-10 mx-auto max-w-lg text-center text-base tracking-wider text-ainomiq-text-muted sm:text-lg md:text-xl">
+              Built for businesses that refuse to wait.
+            </p>
+
+            <div className="relative z-10 flex flex-row flex-wrap items-center justify-center gap-3 pt-2">
+              <Button
+                asChild
+                size="lg"
+                className="rounded-full border border-ainomiq-border bg-white text-ainomiq-text hover:bg-ainomiq-navy-light"
+              >
+                <Link href="/demos">View demos</Link>
+              </Button>
+              <Button
+                asChild
+                size="lg"
+                className="rounded-full bg-ainomiq-blue text-white shadow-lg shadow-ainomiq-blue/25 hover:bg-ainomiq-blue-hover"
+              >
+                <Link href="/get-started">
+                  Get Started
+                  <ArrowRightIcon className="ms-2 size-4" />
+                </Link>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Our Story */}
-      <section className="pt-40 pb-24 px-6">
+      <section id="story" className="pt-24 pb-24 px-6">
         <div className="mx-auto max-w-6xl">
           <div className="mb-6 inline-flex items-center rounded-full bg-ainomiq-blue-glow px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">
             Our Story
