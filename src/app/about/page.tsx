@@ -124,19 +124,25 @@ export default function AboutPage() {
           </h2>
           <div className="space-y-4 text-lg leading-relaxed text-ainomiq-text-muted">
             <p>
-              Pim and Bink have been friends since they were kids. Pim built e-commerce brands - successful ones. Bink's an IT specialist who knows systems inside out.
+              Pim and Bink have been friends since they were kids. One built e-commerce brands. The other built systems. Different backgrounds, same instinct: if work can be made smarter, faster or more scalable, it should be.
             </p>
             <p>
-              Pim started building automation for his own stores. Customer emails, inventory alerts, campaigns - all handled automatically. It worked so well he showed Bink.
+              After years of building their own businesses, they saw the same shift happening everywhere: AI is changing how companies operate, and the businesses that adapt early will move faster than the ones that wait.
             </p>
             <p>
-              They realized: if this works for one store, it works for every store. Why should every founder rebuild the same systems?
+              ainomiq was built to help businesses move ahead of that shift.
             </p>
             <p>
-              That's Ainomiq. The systems Pim built for himself, now available to everyone. Plus custom solutions for businesses that need more than plug-and-play.
+              We build what each company needs to stay ahead: custom software, AI systems, automations, dashboards and integrations that fit the way the business actually works.
             </p>
             <p>
-              No consultants. No reports. Just systems that work from day one.
+              Not vague tools. Not generic AI promises. Custom-built systems that create real value inside the company.
+            </p>
+            <p>
+              Because we believe the companies that build their own software layer in the coming years will move faster than the companies relying only on disconnected tools.
+            </p>
+            <p>
+              Working systems, built for the business from day one.
             </p>
           </div>
         </div>
