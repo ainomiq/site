@@ -14,7 +14,6 @@ import {
 } from "lucide-react";
 import { ValuesScroll } from "@/components/values-scroll";
 import { AboutTypewriterWord } from "@/components/about-typewriter-word";
-import { EvolutionTimeline } from "@/components/evolution-timeline";
 
 export const metadata: Metadata = {
   title: "About",
@@ -113,8 +112,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-
-      <EvolutionTimeline />
 
       {/* Our Story */}
       <section id="story" className="pt-24 pb-24 px-6">
