@@ -402,7 +402,7 @@ export default function AboutPage() {
                 },
                 {
                   team: "Team HR",
-                  lead: "Nynke Jurjus",
+                  lead: "Nynke",
                   photo: "/team/nynke.png",
                 },
               ].map((item) => (
