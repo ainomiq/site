@@ -20,6 +20,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import { ValuesScroll } from "@/components/values-scroll";
+import { AboutTypewriterWord } from "@/components/about-typewriter-word";
 
 export const metadata: Metadata = {
   title: "About",
@@ -142,9 +143,8 @@ export default function AboutPage() {
             <h1 className="relative z-10 text-balance text-center text-5xl font-extrabold tracking-tight text-ainomiq-text md:text-6xl lg:text-7xl">
               Building The{" "}
               <span className="gradient-text">
-                Momentum.
+                <AboutTypewriterWord />
               </span>
-              <span className="ml-1 inline-block h-[0.9em] w-px translate-y-1 bg-ainomiq-blue" />
             </h1>
 
             <p className="relative z-10 mx-auto max-w-lg text-center text-base tracking-wider text-ainomiq-text-muted sm:text-lg md:text-xl">
