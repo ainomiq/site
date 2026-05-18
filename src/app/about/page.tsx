@@ -115,69 +115,29 @@ export default function AboutPage() {
 
       {/* Our Story */}
       <section id="story" className="pt-24 pb-24 px-6">
-        <div className="mx-auto max-w-6xl">
+        <div className="mx-auto max-w-3xl text-center">
           <div className="mb-6 inline-flex items-center rounded-full bg-ainomiq-blue-glow px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">
             Our Story
           </div>
-          <div className="grid md:grid-cols-2 gap-12 items-stretch">
-            {/* Text */}
-            <div className="flex flex-col">
-              <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight mb-6">
-                Two friends. One idea.
-              </h2>
-              <div className="space-y-4 text-ainomiq-text-muted text-lg leading-relaxed">
-                <p>
-                  Pim and Bink have been friends since they were kids. 
-                  Pim built e-commerce brands - successful ones. Bink's an IT specialist who knows systems inside out.
-                </p>
-                <p>
-                  Pim started building automation for his own stores. Customer emails, inventory alerts, campaigns - all handled automatically. 
-                  It worked so well he showed Bink.
-                </p>
-                <p>
-                  They realized: if this works for one store, it works for every store. 
-                  Why should every founder rebuild the same systems?
-                </p>
-                <p>
-                  That's Ainomiq. The systems Pim built for himself, now available to everyone. 
-                  Plus custom solutions for businesses that need more than plug-and-play.
-                </p>
-                <p>
-                  No consultants. No reports. Just systems that work from day one.
-                </p>
-              </div>
-            </div>
-            {/* Portraits */}
-            <div className="grid grid-cols-2 gap-6">
-              <div className="flex flex-col">
-                <div className="relative flex-1 min-h-0 overflow-hidden rounded-2xl">
-                  <Image
-                    src="/team/bink.jpg"
-                    alt="Bink Sanders"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div className="text-center mt-3">
-                  <p className="font-bold text-ainomiq-text">Bink Sanders</p>
-                  <p className="text-sm text-ainomiq-text-muted">Co-Founder</p>
-                </div>
-              </div>
-              <div className="flex flex-col">
-                <div className="relative flex-1 min-h-0 overflow-hidden rounded-2xl">
-                  <Image
-                    src="/team/pim.jpg"
-                    alt="Pim Smit"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div className="text-center mt-3">
-                  <p className="font-bold text-ainomiq-text">Pim Smit</p>
-                  <p className="text-sm text-ainomiq-text-muted">Co-Founder</p>
-                </div>
-              </div>
-            </div>
+          <h2 className="mb-6 text-3xl font-extrabold tracking-tight md:text-4xl">
+            Two friends. One idea.
+          </h2>
+          <div className="space-y-4 text-lg leading-relaxed text-ainomiq-text-muted">
+            <p>
+              Pim and Bink have been friends since they were kids. Pim built e-commerce brands - successful ones. Bink's an IT specialist who knows systems inside out.
+            </p>
+            <p>
+              Pim started building automation for his own stores. Customer emails, inventory alerts, campaigns - all handled automatically. It worked so well he showed Bink.
+            </p>
+            <p>
+              They realized: if this works for one store, it works for every store. Why should every founder rebuild the same systems?
+            </p>
+            <p>
+              That's Ainomiq. The systems Pim built for himself, now available to everyone. Plus custom solutions for businesses that need more than plug-and-play.
+            </p>
+            <p>
+              No consultants. No reports. Just systems that work from day one.
+            </p>
           </div>
         </div>
       </section>
