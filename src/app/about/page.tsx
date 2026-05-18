@@ -210,9 +210,8 @@ export default function AboutPage() {
             </Card>
 
             <div className="relative mx-auto mt-8 max-w-5xl md:mt-0">
-              <div className="pointer-events-none absolute left-5 top-0 h-full w-px bg-gradient-to-b from-ainomiq-blue/70 via-ainomiq-border to-transparent md:left-1/2 md:top-0 md:h-14 md:-translate-x-1/2" />
-              <div className="pointer-events-none absolute left-[16.66%] right-[16.66%] top-14 hidden h-px bg-gradient-to-r from-transparent via-ainomiq-blue/60 to-transparent md:block" />
-              <div className="pointer-events-none absolute left-1/2 top-12 hidden h-2 w-2 -translate-x-1/2 rounded-full bg-ainomiq-blue shadow-[0_0_0_8px_rgba(59,130,246,0.10)] md:block" />
+              <div className="pointer-events-none absolute left-5 top-0 h-full w-px bg-ainomiq-border md:left-1/2 md:top-0 md:h-14 md:-translate-x-1/2" />
+              <div className="pointer-events-none absolute left-[16.66%] right-[16.66%] top-14 hidden h-px bg-ainomiq-border md:block" />
 
               <div className="grid w-full gap-5 pt-8 md:grid-cols-3 md:pt-24">
               {[
@@ -237,7 +236,6 @@ export default function AboutPage() {
                   className="group relative ml-10 border-ainomiq-border bg-white shadow-sm transition-[transform,box-shadow,border-color] duration-500 ease-out hover:-translate-y-0.5 hover:border-ainomiq-blue/30 hover:shadow-[0_20px_55px_rgba(15,23,42,0.10)] md:ml-0"
                 >
                   <div className="absolute -left-[2.95rem] top-1/2 h-px w-10 bg-ainomiq-border md:-top-10 md:left-1/2 md:h-10 md:w-px md:-translate-x-1/2" />
-                  <div className="absolute -left-[3.4rem] top-1/2 h-3 w-3 -translate-y-1/2 rounded-full border-2 border-white bg-ainomiq-blue shadow-[0_0_0_6px_rgba(59,130,246,0.10)] md:-top-10 md:left-1/2 md:-translate-x-1/2 md:translate-y-0" />
                   <CardContent className="p-5">
                     <div className="relative mb-5 flex aspect-[4/3] items-center justify-center overflow-hidden rounded-2xl bg-ainomiq-navy-light text-sm font-medium text-ainomiq-text-muted">
                       {item.photo ? (
