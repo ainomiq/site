@@ -148,7 +148,7 @@ export function AboutTeamStructure() {
                   </Card>
                   {item.members.length > 0 && (
                     <motion.div
-                      className="relative mt-6 grid gap-4 sm:grid-cols-2 md:-mx-20"
+                      className="relative mt-10 grid gap-4 sm:grid-cols-2 md:-mx-20"
                       initial={{ opacity: 0, y: 28, scale: 0.98 }}
                       whileInView={{ opacity: 1, y: 0, scale: 1 }}
                       viewport={{ once: true, amount: 0.35 }}
@@ -160,14 +160,24 @@ export function AboutTeamStructure() {
                     >
                       <motion.div
                         aria-hidden="true"
-                        className="pointer-events-none absolute -top-6 left-1/2 h-6 w-px origin-top -translate-x-1/2 bg-ainomiq-border"
+                        className="pointer-events-none absolute -top-10 left-1/2 h-10 w-px origin-top -translate-x-1/2 bg-ainomiq-border"
                         style={{ scaleY: branchScale }}
+                      />
+                      <motion.div
+                        aria-hidden="true"
+                        className="pointer-events-none absolute -top-5 left-1/4 right-1/4 hidden h-px origin-center bg-ainomiq-border sm:block"
+                        style={{ scaleX: branchScale }}
                       />
                       {item.members.map((member) => (
                         <Card
                           key={member.name}
                           className="group relative border-ainomiq-border bg-white shadow-sm transition-[transform,box-shadow,border-color] duration-500 ease-out hover:-translate-y-1 hover:border-ainomiq-blue/30 hover:shadow-[0_22px_60px_rgba(15,23,42,0.12)]"
                         >
+                          <motion.div
+                            aria-hidden="true"
+                            className="pointer-events-none absolute -top-5 left-1/2 h-5 w-px origin-top -translate-x-1/2 bg-ainomiq-border"
+                            style={{ scaleY: branchScale }}
+                          />
                           <CardContent className="p-4">
                             <div className="relative mb-4 flex aspect-[4/3] items-center justify-center overflow-hidden rounded-xl bg-ainomiq-navy-light text-sm font-medium text-ainomiq-text-muted">
                               <Image
