@@ -89,19 +89,21 @@ export function AboutTeamStructure() {
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-ainomiq-blue">
                   Founders
                 </p>
-                <h3 className="mt-2 text-xl font-extrabold tracking-tight text-ainomiq-text">
-                  Bink Sander & Pim Smit
-                </h3>
-                <Button
-                  asChild
-                  variant="outline"
-                  className="mt-5 rounded-full border-ainomiq-border bg-white text-ainomiq-text hover:border-ainomiq-blue/40 hover:bg-ainomiq-blue-glow"
-                >
-                  <Link href="#founder-story">
-                    Read story
-                    <ArrowRightIcon className="size-4" />
-                  </Link>
-                </Button>
+                <div className="mt-2 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                  <h3 className="text-xl font-extrabold tracking-tight text-ainomiq-text">
+                    Bink Sander & Pim Smit
+                  </h3>
+                  <Button
+                    asChild
+                    variant="outline"
+                    className="w-fit rounded-full border-ainomiq-border bg-white text-ainomiq-text hover:border-ainomiq-blue/40 hover:bg-ainomiq-blue-glow"
+                  >
+                    <Link href="#founder-story">
+                      Read story
+                      <ArrowRightIcon className="size-4" />
+                    </Link>
+                  </Button>
+                </div>
               </CardContent>
             </Card>
           </motion.div>
