@@ -16,6 +16,24 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
+  const socialLinks = [
+    {
+      label: "Facebook",
+      href: "https://facebook.com/ainomiq",
+      icon: "https://images.shadcnspace.com/assets/svgs/icon-facebook.svg",
+    },
+    {
+      label: "Instagram",
+      href: "https://instagram.com/ainomiq",
+      icon: "https://cdn.simpleicons.org/instagram/E4405F",
+    },
+    {
+      label: "LinkedIn",
+      href: "https://linkedin.com/company/ainomiq",
+      icon: "https://images.shadcnspace.com/assets/svgs/icon-linkedin.svg",
+    },
+  ];
+
   return (
     <>
       {/* About Hero */}
@@ -135,6 +153,45 @@ export default function AboutPage() {
             <p>
               Working systems, built for the business from day one.
             </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Socials */}
+      <section className="border-y border-ainomiq-border bg-ainomiq-navy-light px-6 py-20">
+        <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
+          <div className="mb-5 inline-flex items-center rounded-full bg-ainomiq-blue-glow px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">
+            Socials
+          </div>
+          <h2 className="text-3xl font-extrabold tracking-tight text-ainomiq-text md:text-4xl">
+            Follow the build
+          </h2>
+          <p className="mt-4 max-w-xl text-lg leading-relaxed text-ainomiq-text-muted">
+            See what we are building, shipping, and learning as Ainomiq grows.
+          </p>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
+            {socialLinks.map((social) => (
+              <Button
+                key={social.label}
+                asChild
+                variant="outline"
+                type="button"
+                className="size-12 rounded-lg border-ainomiq-border bg-white shadow-sm transition-all duration-300 hover:scale-[1.15] hover:bg-white hover:shadow-md"
+              >
+                <a
+                  href={social.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`Open Ainomiq on ${social.label}`}
+                >
+                  <img
+                    src={social.icon}
+                    alt={`${social.label} icon`}
+                    className="h-5 w-5"
+                  />
+                </a>
+              </Button>
+            ))}
           </div>
         </div>
       </section>
