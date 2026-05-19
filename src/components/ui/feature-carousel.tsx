@@ -185,13 +185,13 @@ export function FeatureCarousel() {
                     damping: 25,
                     mass: 0.8,
                   }}
-                  className="absolute inset-0 rounded-[2rem] md:rounded-[2.8rem] overflow-hidden border-4 md:border-8 border-background bg-background origin-center"
+                  className="absolute inset-0 rounded-[2rem] md:rounded-[2.8rem] overflow-hidden border-4 md:border-8 border-background bg-[#eef2f7] origin-center"
                 >
                   <img
                     src={feature.image}
                     alt={feature.label}
                     className={cn(
-                      "w-full h-full object-cover transition-all duration-700",
+                      "h-full w-full object-contain transition-all duration-700",
                       isActive ? "grayscale-0 blur-0" : "grayscale blur-[2px] brightness-75"
                     )}
                     style={{ objectPosition: feature.imagePosition ?? "center" }}
