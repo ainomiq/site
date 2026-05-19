@@ -122,40 +122,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Our Story */}
-      <section id="story" className="pt-24 pb-24 px-6">
-        <div className="mx-auto max-w-3xl text-center">
-          <div className="mb-6 inline-flex items-center rounded-full bg-ainomiq-blue-glow px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">
-            Our Story
-          </div>
-          <h2 className="mb-6 text-3xl font-extrabold tracking-tight md:text-4xl">
-            Two friends. One idea.
-          </h2>
-          <div className="space-y-4 text-lg leading-relaxed text-ainomiq-text-muted">
-            <p>
-              Pim and Bink have been friends since they were kids. One built e-commerce brands. The other built systems. Different backgrounds, same instinct: if work can be made smarter, faster or more scalable, it should be.
-            </p>
-            <p>
-              After years of building their own businesses, they saw the same shift happening everywhere: AI is changing how companies operate, and the businesses that adapt early will move faster than the ones that wait.
-            </p>
-            <p>
-              ainomiq was built to help businesses move ahead of that shift.
-            </p>
-            <p>
-              We build what each company needs to stay ahead: custom software, AI systems, automations, dashboards and integrations that fit the way the business actually works.
-            </p>
-            <p>
-              Not vague tools. Not generic AI promises. Custom-built systems that create real value inside the company.
-            </p>
-            <p>
-              Because we believe the companies that build their own software layer in the coming years will move faster than the companies relying only on disconnected tools.
-            </p>
-            <p>
-              Working systems, built for the business from day one.
-            </p>
-          </div>
-        </div>
-      </section>
+      <AboutTeamStructure />
 
       {/* Socials */}
       <section className="border-y border-ainomiq-border bg-ainomiq-navy-light px-6 py-20">
@@ -195,8 +162,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-
-      <AboutTeamStructure />
 
       {/* Why Ainomiq */}
       <section className="bg-ainomiq-navy-light px-6 py-24 text-center">

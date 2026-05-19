@@ -64,7 +64,7 @@ export function AboutTeamStructure() {
             Team structure
           </div>
           <h2 className="text-3xl font-extrabold tracking-tight md:text-5xl">
-            Built around focused teams
+            Two friends. One idea.
           </h2>
         </div>
 
@@ -235,6 +235,35 @@ export function AboutTeamStructure() {
                 </motion.div>
               ))}
             </motion.div>
+          </div>
+        </div>
+
+        <div
+          id="story"
+          className="mx-auto mt-20 max-w-3xl scroll-mt-24 text-center"
+        >
+          <div className="space-y-4 text-lg leading-relaxed text-ainomiq-text-muted">
+            <p>
+              Pim and Bink have been friends since they were kids. One built e-commerce brands. The other built systems. Different backgrounds, same instinct: if work can be made smarter, faster or more scalable, it should be.
+            </p>
+            <p>
+              After years of building their own businesses, they saw the same shift happening everywhere: AI is changing how companies operate, and the businesses that adapt early will move faster than the ones that wait.
+            </p>
+            <p>
+              ainomiq was built to help businesses move ahead of that shift.
+            </p>
+            <p>
+              We build what each company needs to stay ahead: custom software, AI systems, automations, dashboards and integrations that fit the way the business actually works.
+            </p>
+            <p>
+              Not vague tools. Not generic AI promises. Custom-built systems that create real value inside the company.
+            </p>
+            <p>
+              Because we believe the companies that build their own software layer in the coming years will move faster than the companies relying only on disconnected tools.
+            </p>
+            <p>
+              Working systems, built for the business from day one.
+            </p>
           </div>
         </div>
       </div>
