@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import { AboutTypewriterWord } from "@/components/about-typewriter-word";
 import { AboutTeamStructure } from "@/components/about-team-structure";
+import { LocationMap } from "@/components/ui/expand-map";
 
 export const metadata: Metadata = {
   title: "About",
@@ -75,6 +76,30 @@ export default function AboutPage() {
                 </Link>
               </Button>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Location */}
+      <section className="border-b border-ainomiq-border bg-white px-6 py-20">
+        <div className="mx-auto grid max-w-6xl items-center gap-10 md:grid-cols-[1fr_auto]">
+          <div className="text-center md:text-left">
+            <div className="mb-5 inline-flex items-center rounded-full bg-ainomiq-blue-glow px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">
+              Based in Amsterdam
+            </div>
+            <h2 className="text-3xl font-extrabold tracking-tight text-ainomiq-text md:text-5xl">
+              Amsterdam, The Netherlands
+            </h2>
+            <p className="mt-5 max-w-xl text-lg leading-relaxed text-ainomiq-text-muted">
+              Built in Amsterdam for businesses that want AI systems, software,
+              automations, and workflows that work from day one.
+            </p>
+          </div>
+          <div className="flex justify-center md:justify-end">
+            <LocationMap
+              location="Amsterdam, The Netherlands"
+              coordinates="52.3676° N, 4.9041° E"
+            />
           </div>
         </div>
       </section>
