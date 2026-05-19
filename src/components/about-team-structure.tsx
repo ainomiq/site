@@ -56,13 +56,10 @@ export function AboutTeamStructure() {
     <section
       ref={sectionRef}
       id="story"
-      className="scroll-mt-24 overflow-hidden px-6 pb-28"
+      className="scroll-mt-24 overflow-hidden px-6 pt-24 pb-28"
     >
       <div className="mx-auto max-w-6xl">
         <div className="mb-10 text-center">
-          <div className="mb-4 inline-flex items-center rounded-full bg-ainomiq-blue-glow px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">
-            Team structure
-          </div>
           <h2 className="text-3xl font-extrabold tracking-tight md:text-5xl">
             Two friends. One idea.
           </h2>
