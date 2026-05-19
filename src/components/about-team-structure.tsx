@@ -16,6 +16,11 @@ const teams = [
         name: "Jayden",
         photo: "/team/jayden.png",
       },
+      {
+        role: "Development",
+        name: "Teis",
+        photo: "/team/teis.png",
+      },
     ],
   },
   {
@@ -143,7 +148,7 @@ export function AboutTeamStructure() {
                   </Card>
                   {item.members.length > 0 && (
                     <motion.div
-                      className="relative mt-6"
+                      className="relative mt-6 grid gap-4 sm:grid-cols-2 md:-mx-20"
                       initial={{ opacity: 0, y: 28, scale: 0.98 }}
                       whileInView={{ opacity: 1, y: 0, scale: 1 }}
                       viewport={{ once: true, amount: 0.35 }}
