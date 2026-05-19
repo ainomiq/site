@@ -83,6 +83,104 @@ export function LocationMap({
       >
         <div className="absolute inset-0 bg-gradient-to-br from-ainomiq-blue-glow/70 via-transparent to-ainomiq-navy-light" />
 
+        <motion.div
+          className="pointer-events-none absolute inset-0"
+          animate={{ opacity: isExpanded ? 0 : 1 }}
+          transition={{ duration: 0.25 }}
+        >
+          <svg
+            className="absolute inset-0 h-full w-full"
+            preserveAspectRatio="none"
+          >
+            <defs>
+              <pattern
+                id="location-map-compact-grid"
+                width="34"
+                height="34"
+                patternUnits="userSpaceOnUse"
+              >
+                <path
+                  d="M 34 0 L 0 0 0 34"
+                  fill="none"
+                  className="stroke-ainomiq-text-muted/15"
+                  strokeWidth="1"
+                />
+              </pattern>
+            </defs>
+            <rect
+              width="100%"
+              height="100%"
+              fill="url(#location-map-compact-grid)"
+            />
+            <line
+              x1="0%"
+              y1="42%"
+              x2="100%"
+              y2="42%"
+              className="stroke-ainomiq-text-muted/20"
+              strokeWidth="3"
+            />
+            <line
+              x1="0%"
+              y1="70%"
+              x2="100%"
+              y2="70%"
+              className="stroke-ainomiq-text-muted/18"
+              strokeWidth="3"
+            />
+            <line
+              x1="30%"
+              y1="0%"
+              x2="30%"
+              y2="100%"
+              className="stroke-ainomiq-text-muted/18"
+              strokeWidth="3"
+            />
+            <line
+              x1="70%"
+              y1="0%"
+              x2="70%"
+              y2="100%"
+              className="stroke-ainomiq-text-muted/16"
+              strokeWidth="3"
+            />
+          </svg>
+
+          {[
+            "left-[10%] top-[54%] h-[28%] w-[15%]",
+            "left-[35%] top-[30%] h-[22%] w-[17%]",
+            "right-[10%] top-[16%] h-[15%] w-[19%]",
+            "right-[8%] bottom-[12%] h-[25%] w-[24%]",
+            "right-[9%] top-[35%] h-[29%] w-[14%]",
+            "left-[5%] top-[67%] h-[13%] w-[12%]",
+          ].map((position) => (
+            <div
+              key={position}
+              className={cn(
+                "absolute rounded bg-ainomiq-text-muted/10 ring-1 ring-ainomiq-text-muted/15",
+                position,
+              )}
+            />
+          ))}
+
+          <div
+            className="absolute left-1/2 top-[52%] -translate-x-1/2 -translate-y-1/2"
+            style={{
+              filter: "drop-shadow(0 8px 16px rgba(59, 130, 246, 0.3))",
+            }}
+          >
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"
+                fill="#3b82f6"
+              />
+              <circle cx="12" cy="9" r="2.5" fill="white" />
+            </svg>
+          </div>
+
+          <div className="absolute inset-0 bg-gradient-to-t from-white via-white/35 to-transparent" />
+        </motion.div>
+
         <AnimatePresence>
           {isExpanded && (
             <motion.div
@@ -227,57 +325,8 @@ export function LocationMap({
           )}
         </AnimatePresence>
 
-        <motion.div
-          className="absolute inset-0 opacity-[0.04]"
-          animate={{ opacity: isExpanded ? 0 : 0.04 }}
-          transition={{ duration: 0.3 }}
-        >
-          <svg width="100%" height="100%" className="absolute inset-0">
-            <defs>
-              <pattern
-                id="location-map-grid"
-                width="20"
-                height="20"
-                patternUnits="userSpaceOnUse"
-              >
-                <path
-                  d="M 20 0 L 0 0 0 20"
-                  fill="none"
-                  className="stroke-ainomiq-text"
-                  strokeWidth="0.5"
-                />
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#location-map-grid)" />
-          </svg>
-        </motion.div>
-
         <div className="relative z-10 flex h-full flex-col justify-between p-5">
-          <div className="flex items-start justify-between">
-            <motion.svg
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="text-ainomiq-blue"
-              animate={{
-                opacity: isExpanded ? 0 : 1,
-                filter: isHovered
-                  ? "drop-shadow(0 0 8px rgba(59, 130, 246, 0.5))"
-                  : "drop-shadow(0 0 4px rgba(59, 130, 246, 0.2))",
-              }}
-              transition={{ duration: 0.3 }}
-            >
-              <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21" />
-              <line x1="9" x2="9" y1="3" y2="18" />
-              <line x1="15" x2="15" y1="6" y2="21" />
-            </motion.svg>
-
-          </div>
+          <div />
 
           <div className="space-y-1">
             <motion.h3
@@ -288,19 +337,14 @@ export function LocationMap({
               {location}
             </motion.h3>
 
-            <AnimatePresence>
-              {isExpanded && (
-                <motion.p
-                  className="font-mono text-xs text-ainomiq-text-muted"
-                  initial={{ opacity: 0, y: -10, height: 0 }}
-                  animate={{ opacity: 1, y: 0, height: "auto" }}
-                  exit={{ opacity: 0, y: -10, height: 0 }}
-                  transition={{ duration: 0.25 }}
-                >
-                  {coordinates}
-                </motion.p>
-              )}
-            </AnimatePresence>
+            <motion.p
+              className="font-mono text-xs text-ainomiq-text-muted"
+              initial={false}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.25 }}
+            >
+              {coordinates}
+            </motion.p>
 
             <motion.div
               className="h-px bg-gradient-to-r from-ainomiq-blue/50 via-ainomiq-blue/30 to-transparent"
