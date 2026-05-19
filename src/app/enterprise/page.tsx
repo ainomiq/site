@@ -73,7 +73,7 @@ export default function EnterprisePage() {
   return (
     <>
       {/* Hero */}
-      <section className="pt-40 pb-20 px-6">
+      <section className="px-6 pb-16 pt-32 md:pb-20 md:pt-40">
         <div className="mx-auto max-w-6xl">
           <div className="mb-6 inline-flex items-center rounded-full bg-ainomiq-blue-glow px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">
             Custom Solutions
@@ -111,7 +111,7 @@ export default function EnterprisePage() {
         <section
           key={sol.id}
           id={sol.id}
-          className={`scroll-mt-28 py-24 px-6 ${i % 2 === 0 ? "bg-ainomiq-navy-light" : ""}`}
+          className={`scroll-mt-28 px-6 py-16 md:py-24 ${i % 2 === 0 ? "bg-ainomiq-navy-light" : ""}`}
         >
           <div className="mx-auto max-w-6xl">
             <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center ${i % 2 !== 0 ? "lg:grid-flow-dense" : ""}`}>
@@ -163,7 +163,7 @@ export default function EnterprisePage() {
       <TopRequestedSolutions />
 
       {/* CTA */}
-      <section className="py-32 px-6 text-center">
+      <section className="px-6 py-20 text-center md:py-32">
         <div className="mx-auto max-w-2xl">
           <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-6">
             Book a strategy call

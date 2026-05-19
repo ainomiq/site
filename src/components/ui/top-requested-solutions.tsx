@@ -115,53 +115,29 @@ export function TopRequestedSolutions() {
   const [hovered, setHovered] = useState<number | null>(null)
 
   return (
-    <section className="py-24 px-6 bg-ainomiq-navy overflow-hidden">
+    <section className="py-20 md:py-24 px-6 bg-ainomiq-navy-light overflow-hidden">
       <div className="mx-auto max-w-5xl">
         {/* Header */}
         <div className="text-center mb-14">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 rounded-full bg-ainomiq-blue-glow px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ainomiq-blue mb-4"
-          >
+          <motion.div className="inline-flex items-center gap-2 rounded-full bg-ainomiq-blue-glow px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ainomiq-blue mb-4">
             <Sparkles className="h-3.5 w-3.5" />
             Most Requested
           </motion.div>
-          <motion.h2
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.08 }}
-            className="text-3xl md:text-5xl font-extrabold tracking-tight text-ainomiq-text mb-4"
-          >
+          <motion.h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-ainomiq-text mb-4">
             What businesses ask for most
           </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.14 }}
-            className="text-ainomiq-text-muted text-lg max-w-xl mx-auto"
-          >
+          <motion.p className="text-ainomiq-text-muted text-lg max-w-xl mx-auto">
             From chatbots to full integrations. These are the solutions our clients request most.
           </motion.p>
         </div>
 
         {/* Grid */}
-        <div className="mx-auto grid w-fit grid-cols-1 justify-center gap-y-3 sm:grid-cols-[320px_320px] sm:gap-x-8">
+        <div className="mx-auto grid w-full max-w-[680px] grid-cols-1 justify-center gap-3 sm:grid-cols-2 sm:gap-x-8">
           {solutions.map((sol, i) => {
             const Icon = sol.icon
             const isHovered = hovered === i
             return (
-              <motion.div
-                key={sol.rank}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: i * 0.05 }}
-              >
+              <motion.div key={sol.rank}>
                 <Link href={sol.href}>
                   <motion.div
                     onHoverStart={() => setHovered(i)}
@@ -172,7 +148,7 @@ export function TopRequestedSolutions() {
                       boxShadow: isHovered ? `0 8px 32px rgba(${sol.glow}, 0.15)` : "none",
                     }}
                     transition={{ duration: 0.2 }}
-                    className="relative flex w-[320px] cursor-pointer items-center gap-4 rounded-2xl border p-4"
+                    className="relative flex w-full cursor-pointer items-center gap-4 rounded-2xl border bg-white p-4 shadow-sm"
                   >
                     {/* Rank number */}
                     <div className="flex-shrink-0 w-7 text-right">
@@ -187,7 +163,7 @@ export function TopRequestedSolutions() {
                     {/* Icon */}
                     <motion.div
                       animate={{
-                        backgroundColor: isHovered ? `rgba(${sol.glow}, 0.15)` : "rgba(255,255,255,0.04)",
+                        backgroundColor: isHovered ? `rgba(${sol.glow}, 0.15)` : "rgba(59,130,246,0.08)",
                         scale: isHovered ? 1.08 : 1,
                       }}
                       transition={{ duration: 0.2 }}
@@ -208,7 +184,7 @@ export function TopRequestedSolutions() {
                         {sol.label}
                       </p>
                       <p
-                        className="text-xs truncate transition-colors duration-200"
+                        className="text-xs leading-snug transition-colors duration-200"
                         style={{ color: isHovered ? "#475569" : "#64748b" }}
                       >
                         {sol.sub}

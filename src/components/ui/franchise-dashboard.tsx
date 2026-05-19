@@ -650,12 +650,12 @@ export function FranchiseDashboard() {
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-1 px-5 pt-3 pb-0" style={{ borderBottom: "1px solid #1e2836" }}>
+      <div className="flex gap-1 overflow-x-auto px-3 pt-3 pb-0 sm:px-5" style={{ borderBottom: "1px solid #1e2836" }}>
         {TABS.map((t) => (
           <button
             key={t}
             onClick={() => setTab(t)}
-            className="px-4 py-2 text-xs font-semibold rounded-t-lg transition-all"
+            className="shrink-0 whitespace-nowrap px-2.5 py-2 text-[11px] font-semibold rounded-t-lg transition-all sm:px-4 sm:text-xs"
             style={{
               background: tab === t ? "#161d27" : "transparent",
               color: tab === t ? "#00d4aa" : "#64748b",
@@ -678,4 +678,3 @@ export function FranchiseDashboard() {
     </div>
   );
 }
-

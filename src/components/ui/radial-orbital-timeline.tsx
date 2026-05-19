@@ -162,11 +162,50 @@ export default function RadialOrbitalTimeline({
   };
 
   return (
-    <div
-      className="w-full min-h-[600px] max-h-[75vh] flex flex-col items-center justify-center overflow-hidden"
-      ref={containerRef}
-      onClick={handleContainerClick}
-    >
+    <>
+      <div className="md:hidden space-y-3">
+        {timelineData.map((item, index) => {
+          const Icon = ICON_MAP[item.icon];
+
+          return (
+            <button
+              key={item.id}
+              type="button"
+              onClick={() => toggleItem(item.id)}
+              className="group w-full rounded-2xl border border-ainomiq-border bg-white p-4 text-left shadow-sm transition-all hover:border-ainomiq-blue/30 hover:shadow-md"
+            >
+              <div className="flex items-start gap-4">
+                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-ainomiq-blue-glow text-ainomiq-blue">
+                  <Icon size={18} />
+                </div>
+                <div className="min-w-0 flex-1">
+                  <div className="mb-1 flex items-center gap-2">
+                    <span className="text-[11px] font-semibold uppercase tracking-wider text-ainomiq-blue">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <span className="h-1 w-1 rounded-full bg-ainomiq-text-subtle" />
+                    <span className="text-[11px] font-medium text-ainomiq-text-subtle">
+                      {item.date}
+                    </span>
+                  </div>
+                  <h3 className="text-base font-extrabold text-ainomiq-text">
+                    {item.title}
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-ainomiq-text-muted">
+                    {item.content}
+                  </p>
+                </div>
+              </div>
+            </button>
+          );
+        })}
+      </div>
+
+      <div
+        className="hidden w-full min-h-[600px] max-h-[75vh] flex-col items-center justify-center overflow-hidden md:flex"
+        ref={containerRef}
+        onClick={handleContainerClick}
+      >
       <div className="relative w-full max-w-4xl h-full flex items-center justify-center">
         <div
           className="absolute w-full h-full flex items-center justify-center"
@@ -346,6 +385,7 @@ export default function RadialOrbitalTimeline({
           })}
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 }

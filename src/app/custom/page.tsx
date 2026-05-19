@@ -159,7 +159,7 @@ export default function CustomPage() {
               Your project journey
             </h2>
             <p className="text-ainomiq-text-muted text-lg max-w-2xl mx-auto">
-              Click any node to explore the process. Related steps light up.
+              Select a step to explore the process. Related steps light up on desktop.
             </p>
           </div>
 
