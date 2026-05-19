@@ -164,7 +164,7 @@ export default function AboutPage() {
       </section>
 
       {/* Why Ainomiq */}
-      <section className="bg-ainomiq-navy-light px-6 py-24 text-center">
+      <section className="bg-white px-6 py-24 text-center">
         <div className="mx-auto max-w-3xl">
           <div className="mb-6 inline-flex items-center rounded-full bg-ainomiq-blue-glow px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">
             Why Ainomiq
