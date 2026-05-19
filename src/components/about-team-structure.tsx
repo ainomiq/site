@@ -46,8 +46,11 @@ export function AboutTeamStructure() {
 
   const trunkScale = useTransform(scrollYProgress, [0.08, 0.34], [0, 1]);
   const branchScale = useTransform(scrollYProgress, [0.3, 0.55], [0, 1]);
-  const cardOpacity = useTransform(scrollYProgress, [0.48, 0.7], [0, 1]);
-  const cardY = useTransform(scrollYProgress, [0.48, 0.78], [16, 0]);
+  const levelTwoOpacity = useTransform(scrollYProgress, [0.45, 0.6], [0, 1]);
+  const levelTwoY = useTransform(scrollYProgress, [0.45, 0.68], [18, 0]);
+  const memberBranchScale = useTransform(scrollYProgress, [0.68, 0.78], [0, 1]);
+  const levelThreeOpacity = useTransform(scrollYProgress, [0.76, 0.9], [0, 1]);
+  const levelThreeY = useTransform(scrollYProgress, [0.76, 0.96], [28, 0]);
 
   return (
     <section
@@ -135,7 +138,7 @@ export function AboutTeamStructure() {
 
             <motion.div
               className="grid w-full gap-5 pt-8 md:grid-cols-3 md:pt-36"
-              style={{ opacity: cardOpacity, y: cardY }}
+              style={{ opacity: levelTwoOpacity, y: levelTwoY }}
             >
               {teams.map((item, index) => (
                 <motion.div
@@ -145,7 +148,7 @@ export function AboutTeamStructure() {
                   viewport={{ once: true, amount: 0.35 }}
                   transition={{
                     duration: 0.65,
-                    delay: index * 0.08,
+                    delay: index * 0.14,
                     ease: [0.22, 1, 0.36, 1],
                   }}
                   className="relative ml-10 md:ml-0"
@@ -177,53 +180,55 @@ export function AboutTeamStructure() {
                   {item.members.length > 0 && (
                     <motion.div
                       className="relative mt-10 grid gap-4 sm:grid-cols-2 md:-mx-20"
-                      initial={{ opacity: 0, y: 28, scale: 0.98 }}
-                      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                      viewport={{ once: true, amount: 0.35 }}
-                      transition={{
-                        duration: 0.65,
-                        delay: 0.16,
-                        ease: [0.22, 1, 0.36, 1],
-                      }}
+                      style={{ opacity: levelThreeOpacity, y: levelThreeY }}
                     >
                       <motion.div
                         aria-hidden="true"
                         className="pointer-events-none absolute -top-10 left-1/2 h-10 w-px origin-top -translate-x-1/2 bg-ainomiq-border"
-                        style={{ scaleY: branchScale }}
+                        style={{ scaleY: memberBranchScale }}
                       />
                       <motion.div
                         aria-hidden="true"
                         className="pointer-events-none absolute -top-5 left-1/4 right-1/4 hidden h-px origin-center bg-ainomiq-border sm:block"
-                        style={{ scaleX: branchScale }}
+                        style={{ scaleX: memberBranchScale }}
                       />
-                      {item.members.map((member) => (
-                        <Card
+                      {item.members.map((member, memberIndex) => (
+                        <motion.div
                           key={member.name}
-                          className="group relative border-ainomiq-border bg-white shadow-sm transition-[transform,box-shadow,border-color] duration-500 ease-out hover:-translate-y-1 hover:border-ainomiq-blue/30 hover:shadow-[0_22px_60px_rgba(15,23,42,0.12)]"
+                          initial={{ opacity: 0, y: 18, scale: 0.98 }}
+                          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                          viewport={{ once: true, amount: 0.35 }}
+                          transition={{
+                            duration: 0.55,
+                            delay: 0.18 + memberIndex * 0.16,
+                            ease: [0.22, 1, 0.36, 1],
+                          }}
                         >
-                          <motion.div
-                            aria-hidden="true"
-                            className="pointer-events-none absolute -top-5 left-1/2 h-5 w-px origin-top -translate-x-1/2 bg-ainomiq-border"
-                            style={{ scaleY: branchScale }}
-                          />
-                          <CardContent className="p-4">
-                            <div className="relative mb-4 flex aspect-[4/3] items-center justify-center overflow-hidden rounded-xl bg-ainomiq-navy-light text-sm font-medium text-ainomiq-text-muted">
-                              <Image
-                                src={member.photo}
-                                alt={member.name}
-                                fill
-                                className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
-                                sizes="(min-width: 768px) 288px, calc(100vw - 6rem)"
-                              />
-                            </div>
-                            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-ainomiq-blue">
-                              {member.role}
-                            </p>
-                            <h3 className="mt-1.5 text-lg font-extrabold tracking-tight text-ainomiq-text">
-                              {member.name}
-                            </h3>
-                          </CardContent>
-                        </Card>
+                          <Card className="group relative border-ainomiq-border bg-white shadow-sm transition-[transform,box-shadow,border-color] duration-500 ease-out hover:-translate-y-1 hover:border-ainomiq-blue/30 hover:shadow-[0_22px_60px_rgba(15,23,42,0.12)]">
+                            <motion.div
+                              aria-hidden="true"
+                              className="pointer-events-none absolute -top-5 left-1/2 h-5 w-px origin-top -translate-x-1/2 bg-ainomiq-border"
+                              style={{ scaleY: memberBranchScale }}
+                            />
+                            <CardContent className="p-4">
+                              <div className="relative mb-4 flex aspect-[4/3] items-center justify-center overflow-hidden rounded-xl bg-ainomiq-navy-light text-sm font-medium text-ainomiq-text-muted">
+                                <Image
+                                  src={member.photo}
+                                  alt={member.name}
+                                  fill
+                                  className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
+                                  sizes="(min-width: 768px) 288px, calc(100vw - 6rem)"
+                                />
+                              </div>
+                              <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-ainomiq-blue">
+                                {member.role}
+                              </p>
+                              <h3 className="mt-1.5 text-lg font-extrabold tracking-tight text-ainomiq-text">
+                                {member.name}
+                              </h3>
+                            </CardContent>
+                          </Card>
+                        </motion.div>
                       ))}
                     </motion.div>
                   )}
