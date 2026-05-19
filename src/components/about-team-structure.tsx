@@ -96,14 +96,42 @@ export function AboutTeamStructure() {
           <div className="relative mx-auto mt-10 max-w-5xl md:mt-0">
             <motion.div
               aria-hidden="true"
-              className="pointer-events-none absolute left-5 top-0 h-full w-px origin-top bg-ainomiq-border md:left-1/2 md:h-24 md:-translate-x-1/2"
+              className="pointer-events-none absolute left-5 top-0 h-full w-px origin-top bg-ainomiq-border md:hidden"
               style={{ scaleY: trunkScale }}
             />
-            <motion.div
+            <motion.svg
               aria-hidden="true"
-              className="pointer-events-none absolute left-[16.66%] right-[16.66%] top-24 hidden h-px origin-center bg-ainomiq-border md:block"
-              style={{ scaleX: branchScale }}
-            />
+              className="pointer-events-none absolute inset-x-0 top-0 hidden h-36 w-full overflow-visible text-ainomiq-border md:block"
+              viewBox="0 0 100 144"
+              preserveAspectRatio="none"
+              fill="none"
+              shapeRendering="crispEdges"
+            >
+              <motion.path
+                d="M50 0V96"
+                stroke="currentColor"
+                strokeWidth="1"
+                vectorEffect="non-scaling-stroke"
+                style={{ pathLength: trunkScale }}
+              />
+              <motion.path
+                d="M16.666 96H83.333"
+                stroke="currentColor"
+                strokeWidth="1"
+                vectorEffect="non-scaling-stroke"
+                style={{ pathLength: branchScale }}
+              />
+              {[16.666, 50, 83.333].map((x) => (
+                <motion.path
+                  key={x}
+                  d={`M${x} 96V144`}
+                  stroke="currentColor"
+                  strokeWidth="1"
+                  vectorEffect="non-scaling-stroke"
+                  style={{ pathLength: branchScale }}
+                />
+              ))}
+            </motion.svg>
 
             <motion.div
               className="grid w-full gap-5 pt-8 md:grid-cols-3 md:pt-36"
@@ -124,7 +152,7 @@ export function AboutTeamStructure() {
                 >
                   <motion.div
                     aria-hidden="true"
-                    className="pointer-events-none absolute -left-[2.95rem] top-1/2 h-px w-10 origin-right bg-ainomiq-border md:-top-16 md:left-1/2 md:h-16 md:w-px md:-translate-x-1/2"
+                    className="pointer-events-none absolute -left-[2.95rem] top-1/2 h-px w-10 origin-right bg-ainomiq-border md:hidden"
                     style={{ scaleX: branchScale, scaleY: branchScale }}
                   />
                   <Card className="group relative border-ainomiq-border bg-white shadow-sm transition-[transform,box-shadow,border-color] duration-500 ease-out hover:-translate-y-1 hover:border-ainomiq-blue/30 hover:shadow-[0_22px_60px_rgba(15,23,42,0.12)]">
