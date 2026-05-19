@@ -10,16 +10,25 @@ const teams = [
     team: "Head of Development",
     lead: "Ashar",
     photo: "/team/ashar.png",
+    members: [
+      {
+        role: "Development",
+        name: "Jayden",
+        photo: "/team/jayden.png",
+      },
+    ],
   },
   {
     team: "Head of Sales",
     lead: "Marnix",
     photo: "/team/marnix.png",
+    members: [],
   },
   {
     team: "Head of HR",
     lead: "Nynke",
     photo: "/team/nynke.png",
+    members: [],
   },
 ];
 
@@ -132,6 +141,49 @@ export function AboutTeamStructure() {
                       </h3>
                     </CardContent>
                   </Card>
+                  {item.members.length > 0 && (
+                    <motion.div
+                      className="relative mt-6"
+                      initial={{ opacity: 0, y: 28, scale: 0.98 }}
+                      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                      viewport={{ once: true, amount: 0.35 }}
+                      transition={{
+                        duration: 0.65,
+                        delay: 0.16,
+                        ease: [0.22, 1, 0.36, 1],
+                      }}
+                    >
+                      <motion.div
+                        aria-hidden="true"
+                        className="pointer-events-none absolute -top-6 left-1/2 h-6 w-px origin-top -translate-x-1/2 bg-ainomiq-border"
+                        style={{ scaleY: branchScale }}
+                      />
+                      {item.members.map((member) => (
+                        <Card
+                          key={member.name}
+                          className="group relative border-ainomiq-border bg-white shadow-sm transition-[transform,box-shadow,border-color] duration-500 ease-out hover:-translate-y-1 hover:border-ainomiq-blue/30 hover:shadow-[0_22px_60px_rgba(15,23,42,0.12)]"
+                        >
+                          <CardContent className="p-4">
+                            <div className="relative mb-4 flex aspect-[4/3] items-center justify-center overflow-hidden rounded-xl bg-ainomiq-navy-light text-sm font-medium text-ainomiq-text-muted">
+                              <Image
+                                src={member.photo}
+                                alt={member.name}
+                                fill
+                                className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
+                                sizes="(min-width: 768px) 288px, calc(100vw - 6rem)"
+                              />
+                            </div>
+                            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-ainomiq-blue">
+                              {member.role}
+                            </p>
+                            <h3 className="mt-1.5 text-lg font-extrabold tracking-tight text-ainomiq-text">
+                              {member.name}
+                            </h3>
+                          </CardContent>
+                        </Card>
+                      ))}
+                    </motion.div>
+                  )}
                 </motion.div>
               ))}
             </motion.div>
