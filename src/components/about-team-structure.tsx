@@ -47,7 +47,7 @@ export function AboutTeamStructure() {
   const trunkScale = useTransform(scrollYProgress, [0.08, 0.34], [0, 1]);
   const branchScale = useTransform(scrollYProgress, [0.3, 0.55], [0, 1]);
   const cardOpacity = useTransform(scrollYProgress, [0.48, 0.7], [0, 1]);
-  const cardY = useTransform(scrollYProgress, [0.48, 0.78], [56, 0]);
+  const cardY = useTransform(scrollYProgress, [0.48, 0.78], [16, 0]);
 
   return (
     <section
@@ -96,12 +96,12 @@ export function AboutTeamStructure() {
           <div className="relative mx-auto mt-10 max-w-5xl md:mt-0">
             <motion.div
               aria-hidden="true"
-              className="pointer-events-none absolute left-5 top-0 h-full w-px origin-top bg-gradient-to-b from-ainomiq-blue/70 via-ainomiq-border to-ainomiq-border md:left-1/2 md:h-24 md:-translate-x-1/2"
+              className="pointer-events-none absolute left-5 top-0 h-full w-px origin-top bg-ainomiq-border md:left-1/2 md:h-24 md:-translate-x-1/2"
               style={{ scaleY: trunkScale }}
             />
             <motion.div
               aria-hidden="true"
-              className="pointer-events-none absolute left-[16.66%] right-[16.66%] top-24 hidden h-px origin-center bg-gradient-to-r from-ainomiq-border via-ainomiq-blue/60 to-ainomiq-border md:block"
+              className="pointer-events-none absolute left-[16.66%] right-[16.66%] top-24 hidden h-px origin-center bg-ainomiq-border md:block"
               style={{ scaleX: branchScale }}
             />
 
@@ -112,7 +112,7 @@ export function AboutTeamStructure() {
               {teams.map((item, index) => (
                 <motion.div
                   key={item.team}
-                  initial={{ opacity: 0, y: 38, scale: 0.98 }}
+                  initial={{ opacity: 0, y: 18, scale: 0.98 }}
                   whileInView={{ opacity: 1, y: 0, scale: 1 }}
                   viewport={{ once: true, amount: 0.35 }}
                   transition={{
@@ -124,7 +124,7 @@ export function AboutTeamStructure() {
                 >
                   <motion.div
                     aria-hidden="true"
-                    className="pointer-events-none absolute -left-[2.95rem] top-1/2 h-px w-10 origin-right bg-ainomiq-border md:-top-12 md:left-1/2 md:h-12 md:w-px md:-translate-x-1/2"
+                    className="pointer-events-none absolute -left-[2.95rem] top-1/2 h-px w-10 origin-right bg-ainomiq-border md:-top-16 md:left-1/2 md:h-16 md:w-px md:-translate-x-1/2"
                     style={{ scaleX: branchScale, scaleY: branchScale }}
                   />
                   <Card className="group relative border-ainomiq-border bg-white shadow-sm transition-[transform,box-shadow,border-color] duration-500 ease-out hover:-translate-y-1 hover:border-ainomiq-blue/30 hover:shadow-[0_22px_60px_rgba(15,23,42,0.12)]">
