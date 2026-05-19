@@ -124,7 +124,7 @@ export function AboutTeamStructure() {
               {[16.666, 50, 83.333].map((x) => (
                 <motion.path
                   key={x}
-                  d={`M${x} 96V144`}
+                  d={`M${x} 96V130`}
                   stroke="currentColor"
                   strokeWidth="1"
                   vectorEffect="non-scaling-stroke"
