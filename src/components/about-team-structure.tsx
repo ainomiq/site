@@ -8,30 +8,30 @@ import { Card, CardContent } from "@/components/ui/card";
 const teams = [
   {
     team: "Head of Development",
-    lead: "Ashar",
+    lead: "Ashar Mehmood",
     photo: "/team/ashar.png",
     members: [
       {
         role: "Development",
-        name: "Jayden",
+        name: "Jayden de Roo",
         photo: "/team/jayden.png",
       },
       {
         role: "Development",
-        name: "Teis",
+        name: "Teis Egelie",
         photo: "/team/teis.png",
       },
     ],
   },
   {
     team: "Head of Sales",
-    lead: "Marnix",
+    lead: "Marnix Schouten",
     photo: "/team/marnix.png",
     members: [],
   },
   {
     team: "Head of HR",
-    lead: "Nynke",
+    lead: "Nynke Jurjus",
     photo: "/team/nynke.png",
     members: [],
   },
@@ -87,7 +87,7 @@ export function AboutTeamStructure() {
                   Founders
                 </p>
                 <h3 className="mt-2 text-xl font-extrabold tracking-tight text-ainomiq-text">
-                  Bink & Pim
+                  Bink Sander & Pim Smit
                 </h3>
               </CardContent>
             </Card>
