@@ -48,9 +48,9 @@ export function AboutTeamStructure() {
   const branchScale = useTransform(scrollYProgress, [0.3, 0.55], [0, 1]);
   const levelTwoOpacity = useTransform(scrollYProgress, [0.45, 0.6], [0, 1]);
   const levelTwoY = useTransform(scrollYProgress, [0.45, 0.68], [18, 0]);
-  const memberBranchScale = useTransform(scrollYProgress, [0.68, 0.78], [0, 1]);
-  const levelThreeOpacity = useTransform(scrollYProgress, [0.76, 0.9], [0, 1]);
-  const levelThreeY = useTransform(scrollYProgress, [0.76, 0.96], [28, 0]);
+  const memberBranchScale = useTransform(scrollYProgress, [0.5, 0.62], [0, 1]);
+  const levelThreeOpacity = useTransform(scrollYProgress, [0.54, 0.68], [0, 1]);
+  const levelThreeY = useTransform(scrollYProgress, [0.54, 0.72], [20, 0]);
 
   return (
     <section
@@ -200,7 +200,7 @@ export function AboutTeamStructure() {
                           viewport={{ once: true, amount: 0.35 }}
                           transition={{
                             duration: 0.55,
-                            delay: 0.18 + memberIndex * 0.16,
+                            delay: memberIndex * 0.08,
                             ease: [0.22, 1, 0.36, 1],
                           }}
                         >
