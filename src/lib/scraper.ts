@@ -181,6 +181,28 @@ function parseSitemapUrls(xml: string | null, base: string): string[] {
   return Array.from(urls);
 }
 
+function priorityInternalPaths(paths: string[]): string[] {
+  const priorityPattern =
+    /\/(?:[a-z-]*services?|about|over-ons|over|solutions|oplossingen|ecommerce|custom|products?|collections|shop|winkel|pricing|prijzen|faq|contact|cases|industries|branches)(?:\/|$|\?)/i;
+  const skippedPattern =
+    /\/(?:cart|checkout|account|login|search|privacy|terms|voorwaarden|policy)(?:\/|$|\?)/i;
+
+  return paths
+    .filter((path) => path !== "/" && priorityPattern.test(path) && !skippedPattern.test(path))
+    .sort((a, b) => {
+      const score = (path: string) => {
+        if (/\/(?:products|product|collections|shop|winkel)\b/i.test(path)) return 0;
+        if (/\/(?:services|service|solutions|oplossingen|ecommerce|custom)\b/i.test(path)) return 1;
+        if (/\/(?:about|over-ons|over)\b/i.test(path)) return 2;
+        if (/\/(?:pricing|prijzen|faq|cases|industries|branches)\b/i.test(path)) return 3;
+        if (/\/contact\b/i.test(path)) return 4;
+        return 5;
+      };
+      return score(a) - score(b) || a.length - b.length;
+    })
+    .slice(0, 5);
+}
+
 function flattenJsonLd(value: unknown): Record<string, unknown>[] {
   const out: Record<string, unknown>[] = [];
   const visit = (item: unknown) => {
@@ -322,6 +344,14 @@ function extractPhones(text: string): string[] {
   return Array.from(phones);
 }
 
+function extractReadableBodyText($: cheerio.CheerioAPI): string {
+  const body = $("body").clone();
+  body
+    .find("script, style, noscript, template, svg, canvas, iframe")
+    .remove();
+  return body.text();
+}
+
 function parsePrice(value: string): number | null {
   let raw = value.replace(/[^\d,.-]/g, "");
   if (!raw) return null;
@@ -419,7 +449,7 @@ export async function scrapeUrl(url: string): Promise<ScrapedData> {
   const cookies = parseCookies(getSetCookieHeaders(response.headers));
   const html = await response.text();
   const $ = cheerio.load(html);
-  const bodyTextFull = $("body").text();
+  const bodyTextFull = extractReadableBodyText($);
 
   const robotsPromise = fetchText(`${origin}/robots.txt`, 2500);
   const contactHref =
@@ -522,7 +552,7 @@ export async function scrapeUrl(url: string): Promise<ScrapedData> {
   const sitemapUrls = sitemapResults.flatMap((xml, index) => parseSitemapUrls(xml, sitemapCandidates[index]));
 
   const contactHtml = await contactPromise;
-  const contactText = contactHtml ? cheerio.load(contactHtml)("body").text() : "";
+  const contactText = contactHtml ? extractReadableBodyText(cheerio.load(contactHtml)) : "";
 
   const footerText = $("footer").text();
   const mailtoEmails = $("a[href^='mailto:']")
@@ -571,6 +601,7 @@ export async function scrapeUrl(url: string): Promise<ScrapedData> {
       pageLinks.push(internal);
     }
   });
+
   for (const sitemapUrl of sitemapUrls.slice(0, 500)) {
     const internal = absoluteInternalPath(base, sitemapUrl);
     if (internal && !seenLinks.has(internal)) {
@@ -578,6 +609,19 @@ export async function scrapeUrl(url: string): Promise<ScrapedData> {
       pageLinks.push(internal);
     }
   }
+  const priorityPages = priorityInternalPaths(pageLinks);
+  const priorityPageTexts = (
+    await Promise.all(
+      priorityPages.map(async (path) => {
+        const pageHtml = await fetchText(resolveUrl(origin, path), 2200, "text/html,*/*;q=0.8");
+        if (!pageHtml) return "";
+        const text = extractReadableBodyText(cheerio.load(pageHtml))
+          .replace(/\s+/g, " ")
+          .trim();
+        return text ? `Page ${path}: ${text.slice(0, 1400)}` : "";
+      })
+    )
+  ).filter(Boolean);
 
   const socialLinks: Record<string, string> = {};
   const socialPatterns: Record<string, RegExp> = {
@@ -607,6 +651,15 @@ export async function scrapeUrl(url: string): Promise<ScrapedData> {
     sitemapProductUrls,
     sitemapCartOrCheckoutUrls,
   };
+  const shouldReportPriceRange =
+    allPrices.length >= 2 &&
+    (products.length > 0 ||
+      ecommerceSignals.hasAddToCartButtons ||
+      ecommerceSignals.sitemapProductUrls > 0 ||
+      ecommerceSignals.hasCartOrCheckoutLinks);
+  const priceRange = shouldReportPriceRange
+    ? { min: Math.min(...allPrices), max: Math.max(...allPrices) }
+    : null;
 
   const rating = structuredData.aggregateRating;
   const reviews = rating
@@ -617,7 +670,10 @@ export async function scrapeUrl(url: string): Promise<ScrapedData> {
       }
     : null;
 
-  const cleanText = bodyTextFull.replace(/\s+/g, " ").trim().slice(0, 4000);
+  const cleanText = [bodyTextFull.replace(/\s+/g, " ").trim(), ...priorityPageTexts]
+    .filter(Boolean)
+    .join(" ")
+    .slice(0, 7000);
 
   return {
     title,
@@ -628,7 +684,7 @@ export async function scrapeUrl(url: string): Promise<ScrapedData> {
     links,
     metas,
     products,
-    priceRange: allPrices.length >= 2 ? { min: Math.min(...allPrices), max: Math.max(...allPrices) } : null,
+    priceRange,
     currency,
     faqItems,
     pageLinks,
@@ -654,7 +710,27 @@ export function normalizeUrl(input: string): string {
     url = "https://" + url;
   }
   try {
-    return new URL(url).toString();
+    const parsed = new URL(url);
+    if (!["http:", "https:"].includes(parsed.protocol)) {
+      throw new Error("Invalid URL protocol");
+    }
+
+    const hostname = parsed.hostname.toLowerCase();
+    if (
+      hostname === "localhost" ||
+      hostname === "0.0.0.0" ||
+      hostname === "::1" ||
+      hostname.endsWith(".local") ||
+      /^127\./.test(hostname) ||
+      /^10\./.test(hostname) ||
+      /^192\.168\./.test(hostname) ||
+      /^172\.(1[6-9]|2\d|3[0-1])\./.test(hostname) ||
+      /^169\.254\./.test(hostname)
+    ) {
+      throw new Error("Private URLs are not allowed");
+    }
+
+    return parsed.toString();
   } catch {
     throw new Error("Invalid URL");
   }
