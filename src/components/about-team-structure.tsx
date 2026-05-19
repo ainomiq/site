@@ -55,7 +55,7 @@ export function AboutTeamStructure() {
   return (
     <section
       ref={sectionRef}
-      id="team"
+      id="story"
       className="scroll-mt-24 overflow-hidden px-6 pb-28"
     >
       <div className="mx-auto max-w-6xl">
@@ -68,7 +68,7 @@ export function AboutTeamStructure() {
           </h2>
         </div>
 
-        <div className="relative mx-auto max-w-6xl">
+        <div id="team" className="relative mx-auto max-w-6xl scroll-mt-24">
           <motion.div
             initial={{ opacity: 0, y: 28 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -238,10 +238,7 @@ export function AboutTeamStructure() {
           </div>
         </div>
 
-        <div
-          id="story"
-          className="mx-auto mt-20 max-w-3xl scroll-mt-24 text-center"
-        >
+        <div className="mx-auto mt-20 max-w-3xl text-center">
           <div className="space-y-4 text-lg leading-relaxed text-ainomiq-text-muted">
             <p>
               Pim and Bink have been friends since they were kids. One built e-commerce brands. The other built systems. Different backgrounds, same instinct: if work can be made smarter, faster or more scalable, it should be.
