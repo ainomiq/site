@@ -16,6 +16,23 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
+  const createJobMailto = (role: string) => {
+    const subject = `Application for ${role} at Ainomiq`;
+    const body = [
+      `Hi Ainomiq team,`,
+      ``,
+      `I am interested in the ${role} role at Ainomiq and would love to tell you more about myself.`,
+      ``,
+      `My name:`,
+      `My experience:`,
+      `Why I want to join Ainomiq:`,
+      ``,
+      `Kind regards,`,
+    ].join("\n");
+
+    return `mailto:info@ainomiq.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  };
+
   const socialLinks = [
     {
       label: "Facebook",
@@ -220,9 +237,9 @@ export default function AboutPage() {
               <div key={dept.dept}>
                 <h3 className="text-lg font-bold mb-0 pb-4 border-b border-ainomiq-border">{dept.dept}</h3>
                 {dept.jobs.map((job) => (
-                  <Link
+                  <a
                     key={job.title}
-                    href="/get-started"
+                    href={createJobMailto(job.title)}
                     className="flex items-center justify-between py-4 border-b border-ainomiq-border group"
                   >
                     <span className="font-semibold group-hover:text-ainomiq-blue transition-colors">{job.title}</span>
@@ -232,7 +249,7 @@ export default function AboutPage() {
                         <path d="M13.48 10.83H3.33V9.17h10.15L8.81 4.5 10 3.33l6.67 6.67L10 16.67l-1.19-1.17 4.67-4.67z" />
                       </svg>
                     </div>
-                  </Link>
+                  </a>
                 ))}
               </div>
             ))}
