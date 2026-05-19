@@ -253,7 +253,7 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-32 px-6 text-center bg-ainomiq-navy-light">
+      <section className="py-32 px-6 text-center bg-white">
         <div className="mx-auto max-w-2xl">
           <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-6">
             Let&apos;s get to know each other
