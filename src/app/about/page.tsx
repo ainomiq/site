@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import {
   RocketIcon,
   ArrowRightIcon,
 } from "lucide-react";
 import { AboutTypewriterWord } from "@/components/about-typewriter-word";
+import { AboutTeamStructure } from "@/components/about-team-structure";
 
 export const metadata: Metadata = {
   title: "About",
@@ -115,93 +114,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Team Structure */}
-      <section id="team" className="scroll-mt-24 overflow-hidden pb-24 px-6">
-        <div className="mx-auto max-w-6xl">
-          <div className="mb-10 text-center">
-            <div className="mb-4 inline-flex items-center rounded-full bg-ainomiq-blue-glow px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">
-              Team structure
-            </div>
-            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight">
-              Built around focused teams
-            </h2>
-          </div>
-
-          <div className="relative mx-auto max-w-6xl">
-            <Card className="group relative z-10 mx-auto w-full max-w-2xl border-ainomiq-border bg-white shadow-sm transition-[transform,box-shadow,border-color] duration-500 ease-out hover:-translate-y-0.5 hover:border-ainomiq-blue/30 hover:shadow-[0_20px_55px_rgba(15,23,42,0.10)]">
-              <CardContent className="p-5">
-                <div className="relative mb-5 aspect-[16/9] overflow-hidden rounded-2xl bg-ainomiq-blue-glow">
-                  <Image
-                    src="/team/founders.png"
-                    alt="Bink Sanders and Pim Smit"
-                    fill
-                    className="object-cover object-center"
-                    sizes="(min-width: 768px) 672px, calc(100vw - 3rem)"
-                  />
-                </div>
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-ainomiq-blue">
-                  Founders
-                </p>
-                <h3 className="mt-2 text-xl font-extrabold tracking-tight text-ainomiq-text">
-                  Bink & Pim
-                </h3>
-              </CardContent>
-            </Card>
-
-            <div className="relative mx-auto mt-8 max-w-5xl md:mt-0">
-              <div className="pointer-events-none absolute left-5 top-0 h-full w-px bg-ainomiq-border md:left-1/2 md:top-0 md:h-14 md:-translate-x-1/2" />
-              <div className="pointer-events-none absolute left-[16.66%] right-[16.66%] top-14 hidden h-px bg-ainomiq-border md:block" />
-
-              <div className="grid w-full gap-5 pt-8 md:grid-cols-3 md:pt-24">
-              {[
-                {
-                  team: "Head of Development",
-                  lead: "Ashar",
-                  photo: "/team/ashar.png",
-                },
-                {
-                  team: "Head of Sales",
-                  lead: "Marnix",
-                  photo: "/team/marnix.png",
-                },
-                {
-                  team: "Head of HR",
-                  lead: "Nynke",
-                  photo: "/team/nynke.png",
-                },
-              ].map((item) => (
-                <Card
-                  key={item.team}
-                  className="group relative ml-10 border-ainomiq-border bg-white shadow-sm transition-[transform,box-shadow,border-color] duration-500 ease-out hover:-translate-y-0.5 hover:border-ainomiq-blue/30 hover:shadow-[0_20px_55px_rgba(15,23,42,0.10)] md:ml-0"
-                >
-                  <div className="absolute -left-[2.95rem] top-1/2 h-px w-10 bg-ainomiq-border md:-top-10 md:left-1/2 md:h-10 md:w-px md:-translate-x-1/2" />
-                  <CardContent className="p-5">
-                    <div className="relative mb-5 flex aspect-[4/3] items-center justify-center overflow-hidden rounded-2xl bg-ainomiq-navy-light text-sm font-medium text-ainomiq-text-muted">
-                      {item.photo ? (
-                        <Image
-                          src={item.photo}
-                          alt={item.lead}
-                          fill
-                          className="object-cover object-top"
-                        />
-                      ) : (
-                        "Photo space"
-                      )}
-                    </div>
-                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-ainomiq-blue">
-                      {item.team}
-                    </p>
-                    <h3 className="mt-2 text-xl font-extrabold tracking-tight text-ainomiq-text">
-                      {item.lead}
-                    </h3>
-                  </CardContent>
-                </Card>
-              ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <AboutTeamStructure />
 
       {/* Why Ainomiq */}
       <section className="bg-ainomiq-navy-light px-6 py-24 text-center">
