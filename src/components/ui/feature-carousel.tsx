@@ -18,6 +18,7 @@ const FEATURES = [
     label: "E-commerce Automation",
     icon: ShoppingCart01Icon,
     image: "/projects/ecommerce-ainomiq-app.png",
+    imageFit: "contain",
     description: "Plug & play modules for your webshop. CS, email, inventory, ads - all autonomous.",
   },
   {
@@ -33,6 +34,7 @@ const FEATURES = [
     label: "Facility Services",
     icon: PackageIcon,
     image: "/projects/facility-cleaning-check.png",
+    imageFit: "contain",
     description: "AI for cleaning, maintenance, and service operations. A legacy market, reimagined.",
   },
   {
@@ -191,7 +193,8 @@ export function FeatureCarousel() {
                     src={feature.image}
                     alt={feature.label}
                     className={cn(
-                      "h-full w-full object-contain transition-all duration-700",
+                      "h-full w-full transition-all duration-700",
+                      feature.imageFit === "contain" ? "object-contain" : "object-cover",
                       isActive ? "grayscale-0 blur-0" : "grayscale blur-[2px] brightness-75"
                     )}
                     style={{ objectPosition: feature.imagePosition ?? "center" }}
