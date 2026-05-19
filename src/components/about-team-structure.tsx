@@ -115,13 +115,13 @@ export function AboutTeamStructure() {
                 style={{ pathLength: trunkScale }}
               />
               <motion.path
-                d="M16.666 96H83.333"
+                d="M18 96H82"
                 stroke="currentColor"
                 strokeWidth="1"
                 vectorEffect="non-scaling-stroke"
                 style={{ pathLength: branchScale }}
               />
-              {[16.666, 50, 83.333].map((x) => (
+              {[18, 50, 82].map((x) => (
                 <motion.path
                   key={x}
                   d={`M${x} 96V130`}
