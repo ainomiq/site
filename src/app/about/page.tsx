@@ -179,22 +179,10 @@ export default function AboutPage() {
             <p>
               And we keep it that way. Because AI evolves fast, your systems should too. Everything we build is designed to grow, adapt, and keep optimizing as the technology moves forward. That&apos;s what makes Ainomiq different. Not just a one-time solution, but a system that stays ahead.
             </p>
+            <p>
+              Every business deserves to benefit from AI, not just the ones with big budgets or tech teams. By building smart, evolving systems that make AI work for businesses of any size, we help companies compete in a world that&apos;s changing faster than ever.
+            </p>
           </div>
-        </div>
-      </section>
-
-      {/* Mission and Impact */}
-      <section className="px-6 py-24 text-center">
-        <div className="mx-auto max-w-3xl">
-          <div className="mb-6 inline-flex items-center rounded-full bg-ainomiq-blue-glow px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-ainomiq-blue">
-            Mission and Impact
-          </div>
-          <h2 className="mb-4 text-3xl font-extrabold tracking-tight md:text-5xl">
-            Bringing every business into the age of AI
-          </h2>
-          <p className="mx-auto max-w-2xl text-lg leading-relaxed text-ainomiq-text-muted">
-            Every business deserves to benefit from AI, not just the ones with big budgets or tech teams. We&apos;re here to change that. By building smart, evolving systems that make AI work for businesses of any size, we help companies compete in a world that&apos;s changing faster than ever.
-          </p>
         </div>
       </section>
 
