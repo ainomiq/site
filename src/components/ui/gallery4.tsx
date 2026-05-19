@@ -41,13 +41,12 @@ const data = [
     image: "/projects/bol-amazon-automation.png",
   },
   {
-    id: "field-team-automation",
-    title: "Field Team Ops",
+    id: "ecommerce-app",
+    title: "Ecommerce App",
     description:
-      "Job planning, field updates, proof-of-work, and reporting in one flow.",
-    href: "/facility",
-    image:
-      "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&q=80&w=1080",
+      "Automates every e-commerce workflow in one app: orders, stock, support, and reporting.",
+    href: "/ecommerce",
+    image: "/projects/ecommerce-ainomiq-app.png",
   },
   {
     id: "custom",
