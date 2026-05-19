@@ -88,7 +88,7 @@ export default function AboutPage() {
                 size="lg"
                 className="rounded-full bg-ainomiq-blue text-white shadow-lg shadow-ainomiq-blue/25 hover:bg-ainomiq-blue-hover"
               >
-                <Link href="#story">
+                <Link href="#founder-story">
                   Ainomiq story
                   <ArrowRightIcon className="ms-2 size-4" />
                 </Link>

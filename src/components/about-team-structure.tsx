@@ -1,8 +1,11 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import { ArrowRightIcon } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 
 const teams = [
@@ -89,6 +92,16 @@ export function AboutTeamStructure() {
                 <h3 className="mt-2 text-xl font-extrabold tracking-tight text-ainomiq-text">
                   Bink Sander & Pim Smit
                 </h3>
+                <Button
+                  asChild
+                  variant="outline"
+                  className="mt-5 rounded-full border-ainomiq-border bg-white text-ainomiq-text hover:border-ainomiq-blue/40 hover:bg-ainomiq-blue-glow"
+                >
+                  <Link href="#founder-story">
+                    Read story
+                    <ArrowRightIcon className="size-4" />
+                  </Link>
+                </Button>
               </CardContent>
             </Card>
           </motion.div>
@@ -235,7 +248,10 @@ export function AboutTeamStructure() {
           </div>
         </div>
 
-        <div className="mx-auto mt-20 max-w-3xl text-center">
+        <div
+          id="founder-story"
+          className="mx-auto mt-20 max-w-3xl scroll-mt-28 text-center"
+        >
           <div className="space-y-4 text-lg leading-relaxed text-ainomiq-text-muted">
             <p>
               Pim and Bink have been friends since they were kids. One built e-commerce brands. The other built systems. Different backgrounds, same instinct: if work can be made smarter, faster or more scalable, it should be.
