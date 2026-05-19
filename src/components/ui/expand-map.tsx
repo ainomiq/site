@@ -277,21 +277,6 @@ export function LocationMap({
               <line x1="15" x2="15" y1="6" y2="21" />
             </motion.svg>
 
-            <motion.div
-              className="flex items-center gap-1.5 rounded-full bg-ainomiq-text/5 px-2 py-1 backdrop-blur-sm"
-              animate={{
-                scale: isHovered ? 1.05 : 1,
-                backgroundColor: isHovered
-                  ? "rgba(15, 23, 42, 0.08)"
-                  : "rgba(15, 23, 42, 0.05)",
-              }}
-              transition={{ duration: 0.2 }}
-            >
-              <div className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-              <span className="text-[10px] font-medium uppercase tracking-wide text-ainomiq-text-muted">
-                Live
-              </span>
-            </motion.div>
           </div>
 
           <div className="space-y-1">
