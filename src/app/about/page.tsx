@@ -199,7 +199,7 @@ export default function AboutPage() {
       </section>
 
       {/* Careers at Ainomiq */}
-      <section id="jobs" className="py-24 px-6">
+      <section id="jobs" className="bg-ainomiq-navy-light py-24 px-6">
         <div className="mx-auto max-w-6xl">
           <span className="text-xs font-semibold uppercase tracking-[0.2em] text-ainomiq-blue">
             Careers at Ainomiq
