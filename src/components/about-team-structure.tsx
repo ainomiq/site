@@ -68,47 +68,140 @@ export function AboutTeamStructure() {
           </h2>
         </div>
 
-        <div id="team" className="relative mx-auto max-w-6xl scroll-mt-24">
-          <motion.div
-            initial={{ opacity: 0, y: 28 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.55 }}
-            transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <Card className="group relative z-20 mx-auto w-full max-w-2xl border-ainomiq-border bg-white shadow-sm transition-[transform,box-shadow,border-color] duration-500 ease-out hover:-translate-y-0.5 hover:border-ainomiq-blue/30 hover:shadow-[0_20px_55px_rgba(15,23,42,0.10)]">
-              <CardContent className="p-5">
-                <div className="relative mb-5 aspect-[16/9] overflow-hidden rounded-2xl bg-ainomiq-blue-glow">
+        <div id="team" className="scroll-mt-24">
+          <div className="md:hidden">
+            <Card className="border-ainomiq-border bg-white shadow-sm">
+              <CardContent className="p-4">
+                <div className="relative mb-4 aspect-[16/10] overflow-hidden rounded-xl bg-ainomiq-blue-glow">
                   <Image
                     src="/team/founders.png"
                     alt="Bink Sanders and Pim Smit"
                     fill
                     className="object-cover object-center"
-                    sizes="(min-width: 768px) 672px, calc(100vw - 3rem)"
+                    sizes="calc(100vw - 3rem)"
                   />
                 </div>
-                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-ainomiq-blue">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-ainomiq-blue">
                   Founders
                 </p>
-                <div className="mt-2 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                  <h3 className="text-xl font-extrabold tracking-tight text-ainomiq-text">
-                    Bink Sander & Pim Smit
-                  </h3>
-                  <Button
-                    asChild
-                    variant="outline"
-                    className="w-fit rounded-full border-ainomiq-border bg-white text-ainomiq-text hover:border-ainomiq-blue/40 hover:bg-ainomiq-blue-glow"
-                  >
-                    <Link href="#founder-story">
-                      Read story
-                      <ArrowRightIcon className="size-4" />
-                    </Link>
-                  </Button>
-                </div>
+                <h3 className="mt-1.5 text-lg font-extrabold tracking-tight text-ainomiq-text">
+                  Bink Sander & Pim Smit
+                </h3>
               </CardContent>
             </Card>
-          </motion.div>
 
-          <div className="relative mx-auto mt-10 max-w-5xl md:mt-0">
+            <div className="relative mt-8 space-y-5 pl-7">
+              <div
+                aria-hidden="true"
+                className="absolute bottom-0 left-3 top-0 w-px bg-ainomiq-border"
+              />
+              {teams.map((item) => (
+                <div key={item.team} className="relative">
+                  <div
+                    aria-hidden="true"
+                    className="absolute -left-4 top-28 h-px w-4 bg-ainomiq-border"
+                  />
+                  <Card className="border-ainomiq-border bg-white shadow-sm">
+                    <CardContent className="p-4">
+                      <div className="relative mb-4 aspect-[4/3] overflow-hidden rounded-xl bg-ainomiq-navy-light">
+                        <Image
+                          src={item.photo}
+                          alt={item.lead}
+                          fill
+                          className="object-cover object-top"
+                          sizes="calc(100vw - 5.5rem)"
+                        />
+                      </div>
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-ainomiq-blue">
+                        {item.team}
+                      </p>
+                      <h3 className="mt-1.5 text-lg font-extrabold tracking-tight text-ainomiq-text">
+                        {item.lead}
+                      </h3>
+                    </CardContent>
+                  </Card>
+
+                  {item.members.length > 0 && (
+                    <div className="relative mt-4 space-y-4 pl-5">
+                      <div
+                        aria-hidden="true"
+                        className="absolute bottom-0 left-2 top-0 w-px bg-ainomiq-border"
+                      />
+                      {item.members.map((member) => (
+                        <div key={member.name} className="relative">
+                          <div
+                            aria-hidden="true"
+                            className="absolute -left-3 top-20 h-px w-3 bg-ainomiq-border"
+                          />
+                          <Card className="border-ainomiq-border bg-white shadow-sm">
+                            <CardContent className="p-3">
+                              <div className="relative mb-3 aspect-[4/3] overflow-hidden rounded-lg bg-ainomiq-navy-light">
+                                <Image
+                                  src={member.photo}
+                                  alt={member.name}
+                                  fill
+                                  className="object-cover object-top"
+                                  sizes="calc(100vw - 7rem)"
+                                />
+                              </div>
+                              <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-ainomiq-blue">
+                                {member.role}
+                              </p>
+                              <h3 className="mt-1 text-base font-extrabold tracking-tight text-ainomiq-text">
+                                {member.name}
+                              </h3>
+                            </CardContent>
+                          </Card>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="relative mx-auto hidden max-w-6xl md:block">
+            <motion.div
+              initial={{ opacity: 0, y: 28 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.55 }}
+              transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <Card className="group relative z-20 mx-auto w-full max-w-2xl border-ainomiq-border bg-white shadow-sm transition-[transform,box-shadow,border-color] duration-500 ease-out hover:-translate-y-0.5 hover:border-ainomiq-blue/30 hover:shadow-[0_20px_55px_rgba(15,23,42,0.10)]">
+                <CardContent className="p-5">
+                  <div className="relative mb-5 aspect-[16/9] overflow-hidden rounded-2xl bg-ainomiq-blue-glow">
+                    <Image
+                      src="/team/founders.png"
+                      alt="Bink Sanders and Pim Smit"
+                      fill
+                      className="object-cover object-center"
+                      sizes="(min-width: 768px) 672px, calc(100vw - 3rem)"
+                    />
+                  </div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-ainomiq-blue">
+                    Founders
+                  </p>
+                  <div className="mt-2 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                    <h3 className="text-xl font-extrabold tracking-tight text-ainomiq-text">
+                      Bink Sander & Pim Smit
+                    </h3>
+                    <Button
+                      asChild
+                      variant="outline"
+                      className="w-fit rounded-full border-ainomiq-border bg-white text-ainomiq-text hover:border-ainomiq-blue/40 hover:bg-ainomiq-blue-glow"
+                    >
+                      <Link href="#founder-story">
+                        Read story
+                        <ArrowRightIcon className="size-4" />
+                      </Link>
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            </motion.div>
+
+            <div className="relative mx-auto mt-0 max-w-5xl">
             <motion.div
               aria-hidden="true"
               className="pointer-events-none absolute left-5 top-0 h-full w-px origin-top bg-ainomiq-border md:hidden"
@@ -248,6 +341,7 @@ export function AboutTeamStructure() {
               ))}
             </motion.div>
           </div>
+        </div>
         </div>
 
         <div
