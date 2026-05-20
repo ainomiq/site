@@ -60,7 +60,7 @@ export async function PATCH(
       deadline: asOptionalString(body.deadline),
       difficulty,
       priority: priority ?? undefined,
-      driveFolderUrl: asOptionalString(body.driveFolderUrl),
+      assetLibraryUrl: asOptionalString(body.assetLibraryUrl ?? body.driveFolderUrl),
       assignedTo: asOptionalString(body.assignedTo),
       discordMessageId: asOptionalString(body.discordMessageId),
     });

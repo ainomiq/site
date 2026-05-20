@@ -38,7 +38,7 @@ export interface ProjectRecord {
   referencesText: string | null;
   files: ProjectFile[];
   accessToken: string | null;
-  driveFolderUrl: string | null;
+  assetLibraryUrl: string | null;
   adminTitle: string | null;
   adminBrief: string | null;
   adminDeliverables: string[];
@@ -99,6 +99,7 @@ export interface UpdateProjectInput {
   designPrefs?: string | null;
   referencesText?: string | null;
   files?: ProjectFile[];
+  assetLibraryUrl?: string | null;
   driveFolderUrl?: string | null;
   adminTitle?: string | null;
   adminBrief?: string | null;
@@ -183,7 +184,7 @@ function mapRow(row: Record<string, unknown>): ProjectRecord {
     referencesText: typeof row.references_text === "string" ? row.references_text : null,
     files: parseFiles(row.files),
     accessToken: typeof row.access_token === "string" ? row.access_token : null,
-    driveFolderUrl: typeof row.drive_folder_url === "string" ? row.drive_folder_url : null,
+    assetLibraryUrl: typeof row.asset_library_url === "string" ? row.asset_library_url : typeof row.drive_folder_url === "string" ? row.drive_folder_url : null,
     adminTitle: typeof row.admin_title === "string" ? row.admin_title : null,
     adminBrief: typeof row.admin_brief === "string" ? row.admin_brief : null,
     adminDeliverables: parseJsonArray(row.admin_deliverables),
@@ -320,7 +321,8 @@ export async function updateProject(id: string, data: UpdateProjectInput): Promi
     designPrefs: "design_prefs",
     referencesText: "references_text",
     files: "files",
-    driveFolderUrl: "drive_folder_url",
+    assetLibraryUrl: "asset_library_url",
+    driveFolderUrl: "asset_library_url",
     adminTitle: "admin_title",
     adminBrief: "admin_brief",
     adminDeliverables: "admin_deliverables",

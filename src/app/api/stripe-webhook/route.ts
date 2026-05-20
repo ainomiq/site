@@ -115,7 +115,7 @@ export async function POST(request: NextRequest) {
       description: project.description,
       estimateTotal: project.estimateTotal,
       estimateHours: project.estimateHours,
-      driveFolderUrl: project.driveFolderUrl,
+      assetLibraryUrl: project.assetLibraryUrl,
       accessToken: project.accessToken,
     }, "available");
     if (msgId) {

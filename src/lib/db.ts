@@ -25,6 +25,7 @@ async function ensureSchema(db: Client) {
       design_prefs TEXT,
       references_text TEXT,
       files TEXT DEFAULT '[]',
+      asset_library_url TEXT,
       drive_folder_url TEXT,
       admin_title TEXT,
       admin_brief TEXT,
@@ -61,6 +62,7 @@ export async function getDb(): Promise<Client> {
       await ensureSchema(db);
       // Migration: add access_token column
       try { await db.execute('ALTER TABLE projects ADD COLUMN access_token TEXT'); } catch {}
+      try { await db.execute('ALTER TABLE projects ADD COLUMN asset_library_url TEXT'); } catch {}
       return db;
     })();
   }

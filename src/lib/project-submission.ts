@@ -180,8 +180,8 @@ export function buildBuilderPublishEmbed(project: ProjectRecord) {
             inline: false,
           },
           {
-            name: "📁 Project Folder",
-            value: project.driveFolderUrl || "N/A",
+            name: "📁 Project Assets",
+            value: project.assetLibraryUrl || "N/A",
             inline: false,
           },
           {

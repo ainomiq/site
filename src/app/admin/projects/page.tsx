@@ -47,7 +47,7 @@ interface EditableProjectState {
   deadline: string;
   difficulty: string;
   priority: string;
-  driveFolderUrl: string;
+  assetLibraryUrl: string;
 }
 
 function createEditableState(project: ProjectRecord): EditableProjectState {
@@ -64,7 +64,7 @@ function createEditableState(project: ProjectRecord): EditableProjectState {
     deadline: project.deadline || "",
     difficulty: project.difficulty || "Medium",
     priority: project.priority || "normal",
-    driveFolderUrl: project.driveFolderUrl || "",
+    assetLibraryUrl: project.assetLibraryUrl || "",
   };
 }
 
@@ -217,7 +217,7 @@ export default function AdminProjectsPage() {
           deadline: draft.deadline,
           difficulty: draft.difficulty,
           priority: draft.priority,
-          driveFolderUrl: draft.driveFolderUrl,
+          assetLibraryUrl: draft.assetLibraryUrl,
         }),
       });
 
@@ -591,11 +591,11 @@ export default function AdminProjectsPage() {
                           </select>
                         </div>
                         <div>
-                          <label className="mb-2 block text-sm text-ainomiq-text-subtle">Project folder</label>
+                          <label className="mb-2 block text-sm text-ainomiq-text-subtle">Project assets</label>
                           <input
                             type="text"
-                            value={draft.driveFolderUrl}
-                            onChange={(event) => updateDraft(project.id, (state) => ({ ...state, driveFolderUrl: event.target.value }))}
+                            value={draft.assetLibraryUrl}
+                            onChange={(event) => updateDraft(project.id, (state) => ({ ...state, assetLibraryUrl: event.target.value }))}
                             className="w-full rounded-xl border border-[#1e293b] bg-[#1e293b]/50 px-4 py-3 text-white focus:border-[#4A90F5] focus:outline-none focus:ring-1 focus:ring-[#4A90F5]"
                           />
                         </div>
